@@ -13,14 +13,17 @@ in a unit square** (maximize Σr), for N = 1..100.
 The values were extracted via an automated fetch, so they were cross-checked four independent ways
 (all passed):
 
-1. **Monotonic + smooth:** strictly increasing in N with smoothly decreasing increments (0.2105 at N=3
-   down to 0.0223 at N=91); no non-monotone entries, no increment anomalies. A mis-transcribed digit
-   would almost certainly break this.
+1. **Monotonic, with a decreasing increment trend:** strictly increasing in N at all 99 steps, and the
+   increments trend down from 0.2105 at N=3 to 0.0223 at N=91. The increment sequence is *not* itself
+   monotone (it oscillates locally, rising against the previous step at 49 of 98 points, which is
+   expected since packings gain and lose symmetry as N changes), so only the trend is evidence here.
+   A mis-transcribed leading digit would still almost certainly break monotonicity.
 2. **Analytic exact values:** N=1 = 0.5 (one inscribed circle); N=2 = 0.585786437626 vs the exact
    2−√2 = 0.585786437627 (matches to 9e-13); N=26 = 2.635983085 matches the literature value 2.635983.
 3. **Independent solver agreement:** our from-scratch solver reproduces 26 of these records to ~1e-11.
-4. **Independent re-extraction:** a second fetch of 8 scattered N (3, 17, 33, 50, 66, 75, 88, 100)
-   returned values matching this table to all 12 digits.
+4. **Independent re-extraction:** a re-fetch of the live table on 2026-08-03 was reparsed from raw HTML
+   and compared against **all 100 rows** of this CSV. Every value matched to all 12 digits, with zero
+   mismatches.
 
 ## Attribution notes (relevant to which records are beatable)
 

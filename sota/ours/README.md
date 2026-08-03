@@ -9,12 +9,19 @@ the sweep are in [`pck/`](pck/) and the raw table in [`results.csv`](results.csv
 | outcome | count | N |
 |---|---|---|
 | **beat the record (WIN)** | **1** | **27** |
-| tie (≤1e-6) | 26 | 2–24 and a few others |
-| below (our under-search at large N) | 72 | mostly 25+ |
+| tie (≤1e-6) | 26 | all of 2–24, plus 29, 31, 33 |
+| below (our under-search at larger N) | 72 | every N ≥ 25 except 27, 29, 31, 33 |
 
 Full table: [`comparison.md`](comparison.md). The 72 "below" are **our compute budget, not the records'
-ceiling**. Large N need more search time than 120s (and, like N=27, some may be beatable baseline entries
-with a harder re-run).
+ceiling**. Large N need more search time than 120s (and, like N=27, some may be beatable long-standing
+entries with a harder re-run).
+
+**Evidence that the 72 really are under-search:** [`chase/`](chase/) re-runs twelve of the closest
+near-misses at **240s over seeds 1–4** (vs the sweep's 120s on seed 1 alone), and reaches the record to
+**within 4e-11 at five of them**
+(N = 25, 28, 32, 35, 36), i.e. they become effective ties. Counting those, the repo demonstrates 31 ties
+rather than 26. The headline table above deliberately reports the *uniform* sweep only (120s, seed 1), so
+the two numbers are consistent, not contradictory.
 
 ## The one win: N = 27
 
@@ -58,7 +65,8 @@ python3 ../../solver/pack.py -n 27 --seed 1 --time 120 -o out27.json
 120s depends on machine speed and load. `(seed=1, 120s)` is deterministic in its RNG stream, but the
 *result* depends on how many restarts complete: on a slower/busier machine seed 1 may land in a different
 (possibly worse) local optimum. More time is **not** monotonically better either: a re-run at **seed 7,
-300s** found a *worse* config (2.683803) because it explored a different basin. The takeaway: the search
+300s** found a *worse* config (2.683803447573, re-confirmed on a second machine: 1017 starts, 1852 hops)
+because it explored a different basin. The takeaway: the search
 is a stochastic multi-start, so a specific win is tied to `(seed, budget, machine)`, but the saved
 packing (`wins/csqv27.pck`) is a fixed artifact that is strictly feasible and beats the record regardless
 of how it was found, and anyone can confirm that with `verify_pck.py`.
@@ -70,5 +78,5 @@ comparison.md            our full ours-vs-Packomania table (N=2..100)
 results.csv              raw sweep output (N, Σr, feasibility)
 wins/                    the record-beating N=27 result: csqv27.pck + seed1.json (full float64) + verify.txt
 pck/csqv<N>.pck          all 99 packings, Packomania format (csqv27 also here, for completeness)
-chase/                   harder re-runs of the closest near-misses (more time + seeds)
+chase/                   re-runs of 12 near-misses at 240s over seeds 1-4; ties the record at 5 of them
 ```
