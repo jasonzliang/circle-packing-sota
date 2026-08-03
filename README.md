@@ -157,12 +157,17 @@ python3 solver/compare.py && git diff --stat sota/ours/comparison.md   # expect 
 **The sweep produces no result at N=97**, so it covers 99 sizes and yields 98 packings: `results.csv` has a
 blank row with `feasible=0` and there is no `pck/csqv97.pck`.
 
-SLSQP diverges there and returns coincident centres. `repair()` scales all radii by a single uniform factor,
-and a zero distance between two centres drives that factor to 0, collapsing **every** radius to zero. The
-result violates no constraint and scores 0, which is why a feasibility check accepted it. Under-search is
-why the multi-start never escaped: `refine()` costs ~30s at n=97, so the 120s budget evaluated 4 candidates
-against 1185 at n=27. `--seed 1 --time 120` reproduces the collapse exactly, so this needs more time and
-seeds, not a re-roll.
+It is an **absorbing state**, not a hard instance. Replaying `search(97, seed=1, budget=120)` shows the
+whole chain: the first grid start refines to 532 coincident centre-pairs, so `repair()`'s single uniform
+scale factor hits 0 and zeroes every radius. That config violates nothing and scores 0, and since `best_s`
+starts at `-1.0`, **zero counts as an improvement** and becomes the incumbent. Every later iteration then
+hops from it, but `perturb` only moves 12-45% of the circles and scales their radii by 0.3, so the unmoved
+ones stay stacked and one leftover zero distance re-zeroes the whole configuration. Coincident pairs grew
+532 -> 1065 -> 1562 over the run's 4 candidates.
+
+So the budget bought one real attempt, not four. n=97 is otherwise fine: a different grid start refines
+cleanly to 5.121755, only 1.04% under the record. **More time on seed 1 cannot help** since the state is
+absorbing; more seeds can, because each seed is an independent stream with its own first candidate.
 
 Both checkers now catch it, fixed in the harness since `pack.py` is kept unmodified: `verify_pck.py` prints
 `DEGENERATE` and exits 1 on any zero radius, and `run_sweep.py` discards such candidates so the N records
