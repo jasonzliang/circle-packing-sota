@@ -6,17 +6,16 @@ experiment and run across a range of N, compared to the authoritative **Packoman
 > **Pack N variable-sized circles in a unit square so that no two overlap and all stay inside the square,
 > maximizing the sum of the radii Σr**, the AlphaEvolve / ShinkaEvolve benchmark (Packomania's `csqv` table).
 
-## Result in one paragraph
+## Result
 
 Across N the solver **reproduces 26 of the known records to within 4e-11** (worst 3.4e-11 at N=29, median
-1.5e-11) and lands a fraction of a
-percent under the heavily-optimized larger records (that gap is our compute budget, not the record's
-ceiling). It also found at least one **strictly-feasible packing that beats a current Packomania
-best-known**: N=27, Σr = 2.685978684198 vs the listed 2.685350025228 (+6.3e-4). That record is a
-long-standing 2011/12 entry (reference [1], D. W. Cantrell, sci.math forum), not one of the recent
-AI-optimized entries (e.g. N=26 = 2.635983, credited to Haowei Lin [8] in July 2026, which we do
-**not** beat). The authoritative, always-current verdict is `sota/ours/comparison.md`; **every claimed win
-is independently re-verifiable from its `.pck` with `solver/verify_pck.py` (see below).**
+1.5e-11) and lands a fraction of a percent under the heavily-optimized larger records (that gap is our
+compute budget, not the record's ceiling). It also found one **strictly-feasible packing that beats a
+current Packomania best-known**: N=27, Σr = 2.685978684198 vs the listed 2.685350025228 (+6.3e-4). That
+record is a long-standing 2011/12 entry (reference [1], D. W. Cantrell, sci.math forum), not one of the
+recent AI-optimized entries (e.g. N=26 = 2.635983, credited to Haowei Lin [8] in July 2026, which we do
+**not** beat). The always-current verdict is `sota/ours/comparison.md`, and **every claimed win is
+independently re-verifiable from its `.pck` with `solver/verify_pck.py`.**
 
 ## Verify the N=27 result (30 seconds, no dependencies, no solver)
 
@@ -40,21 +39,19 @@ record          : 2.685350025228
 ```
 
 `verify_pck.py` is **pure standard library and shares no code with the solver**, so it is a genuine
-independent check of our packings or anyone else's. It re-reads the coordinates and confirms from
-scratch that there are exactly N circles, all inside the square, none overlapping, and what Σr really
-sums to. Exits non-zero on any failure, so it works in a script. A copy of the output above is stored in
-[`sota/ours/wins/csqv27.verify.txt`](sota/ours/wins/csqv27.verify.txt) to diff against.
+independent check of our packings or anyone else's: it re-derives the circle count, containment, overlap
+and Σr from the coordinates alone, and exits non-zero on any failure. A copy of the output above is stored
+in [`sota/ours/wins/csqv27.verify.txt`](sota/ours/wins/csqv27.verify.txt) to diff against.
 
 The slacks are small but **positive** (strictly feasible, not feasible-within-tolerance), and the win
 margin (+6.29e-4) is ~6×10⁸ times larger than the smallest of them, so this is not numerical noise.
 
-### Removing the last doubt: zero-tolerance check in exact arithmetic
+### Zero-tolerance check in exact arithmetic
 
-`verify_pck.py` works in float64 and applies a 1e-9 tolerance, which leaves one fair objection: with
-slacks around 1e-12, is the margin itself float noise? `solver/exact_check.py` settles it. Every number
-in the stored config is a finite binary float, hence an exact rational, so the constraints can be
-*decided* with **zero tolerance** using `fractions.Fraction` and squared comparisons (no square roots, no
-epsilon):
+`verify_pck.py` uses float64 and a 1e-9 tolerance, which leaves a fair objection: with slacks around
+1e-12, is the margin itself float noise? `solver/exact_check.py` settles it. Every number in the stored
+config is a finite binary float, hence an exact rational, so the constraints can be *decided* with **zero
+tolerance** via `fractions.Fraction` and squared comparisons, with no square roots and no epsilon:
 
 ```bash
 python3 solver/exact_check.py sota/ours/wins/csqv27.seed1.json --n 27
@@ -65,8 +62,8 @@ python3 solver/exact_check.py sota/ours/wins/csqv27.seed1.json --n 27
 # EXACT_FEASIBLE: True
 ```
 
-A configuration that passes this is feasible **as a matter of arithmetic fact, not of tolerance**. It
-reads the full-precision `.json`; `verify_pck.py` is the one that reads `.pck` files.
+A configuration that passes this is feasible **as a matter of arithmetic fact, not of tolerance**. Note it
+reads the full-precision `.json`, while `verify_pck.py` reads `.pck` files.
 
 ## Reproduce the N=27 result from scratch
 
@@ -75,8 +72,9 @@ pip install -r requirements.txt                              # numpy + scipy
 python3 solver/pack.py -n 27 --seed 1 --time 120 -o out27.json
 ```
 
-That is the exact invocation behind the win: **seed 1, 120 s**. It is a stochastic search, so a re-run is
-not pass/fail; see the caveat below.
+That is the exact invocation behind the win: **seed 1, 120 s**. On the machine used here it reproduces the
+stored configuration bit-for-bit, first reaching the winning value at ~109s of the 120s budget. It is a
+stochastic search, though, so a re-run elsewhere is not pass/fail; see the caveat below.
 
 ## Reproduce the whole sweep (one command)
 
@@ -97,11 +95,10 @@ python3 solver/compare.py --results repro/results.csv --out repro/comparison.md
 for f in repro/pck/csqv*.pck; do python3 solver/verify_pck.py "$f" >/dev/null || echo "INFEASIBLE: $f"; done
 ```
 
-With no `--results`/`--out`, `compare.py` instead regenerates the committed `sota/ours/comparison.md`
-from the committed `sota/ours/results.csv`, a useful check in itself, since it should come out
-byte-identical to what is in the repo.
+With no `--results`/`--out`, `compare.py` regenerates the committed `sota/ours/comparison.md` from the
+committed `results.csv`, which is a check in itself: the output should be byte-identical to the repo's.
 
-## Reproducibility notes (read before trusting a "win")
+## Reproducibility notes
 
 - **The artifacts are fixed and verifiable; the search is stochastic.** The solver is multi-start over
   random initial layouts under a *wall-clock* budget, so a given N's best is seed-, time- **and
@@ -137,123 +134,134 @@ reproduce.sh  requirements.txt
 ## Solver Algorithm
 
 `solver/pack.py` (+ `container.py`, `shape.py`, `exact_check.py`) is used **unchanged** as produced by an
-automated program-search / self-improvement loop (an LLM-driven coding process). It is not hand-written
-for this repo. `n` is a parameter throughout, so the same code runs at any N without modification.
+automated program-search / self-improvement loop (an LLM-driven coding process), not hand-written for this
+repo. `n` is a parameter throughout, so the same code runs at any N.
 
-> **On the source's internal references.** Because those four files are verbatim copies, their docstrings
-> still address the layout of the experiment that produced them: they mention `tools/*.py` paths, `bench1`
-> ... `bench5` instances, `iter 4`/`iter 5` development stages, and one measurement log
-> (`artifacts/iter3/speedup.log`). None of those exist here, and the stale names are the price of not
-> touching the code. Read them as provenance, not as instructions. The runnable entry points are the ones
-> in this README, all of which are `solver/*.py`.
+> **Stale internal references.** Being verbatim copies, these files' docstrings still address the
+> originating experiment's layout: `tools/*.py`, `bench1`...`bench5`, `iter 4`/`iter 5`, and one log
+> (`artifacts/iter3/speedup.log`). None exist here. Read them as provenance, not instructions; every
+> runnable entry point is `solver/*.py`.
 
-### The structural fact everything rests on
+**Notation.** `c_i = (x_i, y_i)` and `r_i` are circle `i`'s centre and radius; `d_ij = |c_i - c_j|`;
+`w_i` is the distance from `c_i` to the nearest wall; the objective is `Σr = Σ_i r_i`.
 
-Maximizing Σr over centres *and* radii is a nonlinear program, but it has an **exactly solvable inner
-layer**. Hold the centres fixed, and the problem
+### The exactly solvable inner layer
+
+Maximizing `Σr` over centres *and* radii is a nonlinear program, but freezing the centres leaves
 
 ```text
-max Σ r_i   s.t.   r_i + r_j ≤ d_ij  (every pair),   r_i ≤ dist(c_i, wall),   r_i ≥ 0
+maximize     Σ r_i
+subject to   r_i + r_j  ≤  d_ij        for every pair (i, j)
+             r_i        ≤  w_i         for every i
+             r_i        ≥  0
 ```
 
-is a **pure linear program in r**, so the optimal radii for any layout are found exactly and in
-milliseconds, with no gradient noise and no step-size tuning. Every candidate gets that LP polish before
-it is scored, which reduces the search to a search over *centres* alone.
+a **pure linear program in `r`**, solved exactly and in milliseconds, with no gradient noise and no
+step-size tuning. Every candidate gets that LP polish before it is scored, which reduces the whole problem
+to a search over *centres* alone.
 
 ### The outer search
 
-The centres are the hard part, since the landscape is full of near-degenerate local optima. The solver
-attacks it with:
+The centres are the hard part, since the landscape is full of near-degenerate local optima. Under a
+wall-clock budget, the loop spends ~65% of its iterations hopping from the incumbent and the rest on fresh
+starts, using:
 
-- **joint SLSQP over all of (x, y, r)** with analytic constraint Jacobians, not just over the centres, so
+- **joint SLSQP over all of `(x, y, r)`** with analytic constraint Jacobians, not just over the centres, so
   the local solver can trade radius against position in one step;
-- **`refine()`**, which alternates SLSQP with the exact radius LP for up to 3 rounds, keeping the LP's
-  answer whenever it beats SLSQP's, and stopping early when it does not;
-- **basin hopping** that perturbs only a random *subset* of circles (a random 12%, 25% or 45%, at one of
-  three jump scales), rather than restarting from scratch;
-- a **diverse start pool**: random placements, and staggered-row grids, which is the structure good
-  packings actually have.
-
-The main loop spends ~65% of its iterations hopping from the incumbent and the rest on fresh starts, under
-a wall-clock budget.
+- **`refine()`**, alternating SLSQP with the exact radius LP for up to 3 rounds, keeping the LP's answer
+  whenever it beats SLSQP's and stopping early when it does not;
+- **basin hopping** that perturbs a random *subset* of circles (12%, 25% or 45%, at one of three jump
+  scales) rather than restarting from scratch;
+- a **diverse start pool** of random placements and staggered-row grids, the structure good packings
+  actually have.
 
 ### Innovation: an exact contact-graph reduction
 
-The formulation has n(n−1)/2 pair constraints, but a real packing's contact graph is **sparse** (roughly
-3n contacts, since it is essentially planar). At n=100 that is 4950 rows modelling ~300 real ones, and it
-is the dense Jacobian, not the geometry, that makes large n slow.
+The formulation has `n(n-1)/2` pair constraints, but a real packing's contact graph is **sparse**, roughly
+`3n` contacts, since it is essentially planar. At `n = 100` that is 4950 rows modelling ~300 real ones, and
+it is the dense Jacobian, not the geometry, that makes large `n` slow.
 
-The reduction is **provable, not heuristic**. Since r_i + r_j ≤ d_ij and r_j ≥ 0, every j forces
-r_i ≤ d_ij, so
+The reduction is **provable, not heuristic**. Since `r_i + r_j ≤ d_ij` and `r_j ≥ 0`, every `j` forces
+`r_i ≤ d_ij`. Therefore
 
 ```text
-u_i := min( dist(c_i, wall),  min_{j≠i} d_ij )
+u_i  :=  min( w_i,  min_{j ≠ i} d_ij )        is a valid bound on r_i, in every feasible config
+drop pair (i, j)   when   d_ij  ≥  u_i + u_j
 ```
 
-is a valid upper bound on r_i for *every* feasible configuration. Impose r_i ≤ u_i as a variable bound
-(valid bounds never cut off the optimum), and then any pair with d_ij ≥ u_i + u_j is **implied by those
-two bounds** and can be deleted with provably zero loss. Because u_i is roughly a nearest-neighbour
-distance, the surviving rows are exactly the local neighbourhood.
+Impose `r_i ≤ u_i` as a variable bound (valid bounds never cut off the optimum) and the dropped pairs are
+**implied by those two bounds**, so deleting them loses provably nothing. Because `u_i` is roughly a
+nearest-neighbour distance, the surviving rows are exactly the local neighbourhood.
 
-The two halves are one argument and must be used together: drop the rows without also imposing r ≤ u and
-the solver will inflate radii straight through the deleted constraints. `--self-test` checks the reduced
-LP against a naive all-pairs reference and measures **a worst gap of 4.4e-16 while keeping as few as 5.9%
-of the rows**.
+The bound and the drop rule are one argument and must be used together: drop rows without imposing
+`r ≤ u` and the solver inflates radii straight through the deleted constraints. `--self-test` checks the
+reduced LP against a naive all-pairs reference and measures **a worst gap of 4.4e-16 while keeping as few
+as 5.9% of the rows**.
 
 ### Innovation: LP duals as a search signal
 
-The radius LP is solved for its **duals** as well as its optimum. `lam[k]`, the dual price of pair
-constraint k, is ∂(Σr)/∂d_ij: how much the objective would gain from one more unit of room between that
-pair. It is zero unless the contact is tight. LP duality gives `Σ_j lam_ij + mu_i = 1` for every circle
-with r_i > 0, so `1 − mu_i` is precisely the share of circle i's radius that is limited by its
-**neighbours** rather than by the boundary.
+The radius LP is solved for its **duals** as well as its optimum:
 
-`perturb_dual()` uses that to aim: it samples contacts with probability proportional to `lam` and moves
-both ends, targeting the load-bearing part of the contact graph instead of wasting hops on circles whose
-radius is capped by a wall, which no amount of sliding can improve. This is opt-in via `--dual`.
+```text
+λ_k  =  ∂(Σr) / ∂d_ij      price of pair constraint k;  zero unless that contact is tight
+μ_i  =  ∂(Σr) / ∂w_i       price of circle i's wall bound
+Σ_j λ_ij  +  μ_i  =  1     LP duality, for every i with r_i > 0
+```
+
+(`lam` and `mu` in the code.) That identity makes `1 - μ_i` precisely the share of circle `i`'s radius
+limited by its **neighbours** rather than by the boundary. `perturb_dual()` uses it to aim: sample
+contacts with probability proportional to `λ` and move both ends, targeting the load-bearing part of the
+contact graph instead of wasting hops on circles a wall already caps, which no amount of sliding improves.
+Opt-in via `--dual`.
 
 ### Strict feasibility by construction, not by tolerance
 
 Nothing is trusted until `repair()` makes it strictly feasible: centres are projected into the container,
-then a **single uniform radius scale** s ≤ 1 is computed as the largest value that satisfies every pair
-and wall constraint at once, and the radii are shaved by a further 1e-12. That costs ~1e-11 of score and
-buys exactness. Any configuration still showing a violation above 1e-9 is discarded rather than reported.
+then a **single uniform radius scale** `s ≤ 1` is taken as the largest value satisfying every pair and wall
+constraint at once, and the radii are shaved by a further `1e-12`. That costs ~`1e-11` of score and buys
+exactness. Any configuration still violating a constraint by more than `1e-9` is discarded, not reported.
 
-### Generality: both the container and the packed shape are abstracted away
+### Generality: container and packed shape are both abstracted
 
-The container enters in **exactly one place**, the wall rows r_i ≤ F_k(c_i), which are linear in r for any
-convex container. So the inner LP survives verbatim when the unit square becomes a disk or a triangle.
+The container enters in **exactly one place**, the wall rows `r_i ≤ F_k(c_i)`, linear in `r` for any convex
+container. The inner LP therefore survives verbatim when the unit square becomes a disk or a triangle.
 
-The packed *object* is abstracted the same way: a circle becomes a homothet `c_i + r_i·K` of a
-centrally-symmetric convex body K, and K enters in only two coefficient slots (pair distance uses K's
-gauge γ_K instead of `hypot`, and each wall row is divided by K's support value h_K(a_k) instead of by 1).
-Both stay linear in r, so the inner LP survives a change of object too.
+The packed *object* is abstracted the same way. A circle becomes a homothet `c_i + r_i·K` of a
+centrally-symmetric convex body `K`, which enters in just two coefficient slots:
 
-**For polytopal K this gets strictly better.** Non-overlap γ_K(c_i − c_j) ≥ r_i + r_j is a *disjunction*
-of linear constraints, holding as soon as one facet normal separates the pair. Fix each pair's separating
-facet and the whole problem, **centres and radii together**, becomes one linear program. Iterating that is
-a genuine ascent, not a heuristic, for two reasons: every LP-feasible point is *truly* feasible (one
-separating facet suffices, since γ is the max over all of them), and the incoming configuration is itself
-LP-feasible, so the optimum can only improve. Each step is thus a global optimum within its combinatorial
-cell, needing no repair and no tolerance argument. A nonsmooth gauge then costs the search nothing, since
-the kinks that break SLSQP are exactly the combinatorial choices this makes explicit.
+```text
+pair distance   hypot(·)  ->  γ_K(·)          the gauge (Minkowski functional) of K
+wall divisor    1         ->  h_K(a_k)        the support value of K in wall normal a_k
+```
+
+Both stay linear in `r`, so the inner LP survives a change of object too.
+
+**For polytopal `K` this gets strictly better.** Non-overlap `γ_K(c_i - c_j) ≥ r_i + r_j` is a
+*disjunction* of linear constraints, holding as soon as one facet normal separates the pair. Fix each
+pair's separating facet and the whole problem, **centres and radii together**, becomes one linear program.
+Iterating that is a genuine ascent, not a heuristic, for two reasons: every LP-feasible point is *truly*
+feasible (one separating facet suffices, since `γ_K` is the max over all of them), and the incoming
+configuration is itself LP-feasible, so the optimum can only improve. Each step is thus a global optimum
+within its combinatorial cell, needing no repair and no tolerance argument. A nonsmooth gauge then costs
+the search nothing, since the kinks that break SLSQP are exactly the combinatorial choices this makes
+explicit.
 
 ### What was tried and rejected
 
 A trust-region QP restricted to the contact neighbourhood is implemented (`--sparse`) and is *correct*,
 but it is **not faster**: the extra passes it needs to re-earn the movement it gave up cost as much as the
-rows it saved. The source reports 0.1x / 1.0x / 1.1x at n=49/64/100 from a log not included in this repo;
-re-measuring `refine()` here gives **0.43x / 1.26x / 1.06x** on the same three sizes. Different machine,
+rows it saved. The source reports 0.1x / 1.0x / 1.1x at `n = 49 / 64 / 100` from a log not included in this
+repo; re-measuring `refine()` here gives **0.43x / 1.26x / 1.06x** at the same sizes. Different machine,
 same verdict, so it is off by default and the source explicitly declines to call it a speedup. The LP-side
 reduction above, which is exact and needs no trust region, stays on.
 
 ### Self-validation
 
 `python3 solver/pack.py --self-test` checks the machinery against facts rather than against itself: the
-LP dual identity and zero duality gap, the contact-graph reduction against a naive all-pairs LP, and, at
-full instance size, a **proved optimum**. For n = k² axis-aligned squares in the unit square, max Σr is
-exactly √n/2 (Cauchy-Schwarz on the area bound, attained by the k×k grid), and the search is asserted to
-reach it and never exceed it.
+dual identity above, a zero duality gap, the contact-graph reduction against a naive all-pairs LP, and, at
+full instance size, a **proved optimum**. For `n = k²` axis-aligned squares in the unit square,
+`max Σr = √n / 2` exactly (Cauchy-Schwarz on the area bound, attained by the `k × k` grid), and the search
+is asserted to reach it and never exceed it.
 
 ### What the N=27 win actually used
 
