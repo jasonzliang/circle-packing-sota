@@ -154,34 +154,19 @@ python3 solver/compare.py && git diff --stat sota/ours/comparison.md   # expect 
 
 ## Known issues
 
-**The sweep produces no result at N=97.** `results.csv` carries a blank row with `feasible=0` and there is
-no `pck/csqv97.pck`, so the sweep covers 99 sizes and yields 98 packings.
+**The sweep produces no result at N=97**, so it covers 99 sizes and yields 98 packings: `results.csv` has a
+blank row with `feasible=0` and there is no `pck/csqv97.pck`.
 
-The cause is a collapse in `repair()`. SLSQP diverges at n=97, returning a configuration with dozens of
-coincident centres. `repair()` then rescales all radii by one uniform factor, the smallest of the wall
-ratios `wall_cap_i / r_i` and the pair ratios `d_ij / (r_i + r_j)`. Coincident centres make some `d_ij`
-exactly 0, so that factor is 0 and **every radius goes to zero**. Uniform rescaling is all-or-nothing, so
-one degenerate cluster is enough to flatten the whole configuration.
+SLSQP diverges there and returns coincident centres. `repair()` scales all radii by a single uniform factor,
+and a zero distance between two centres drives that factor to 0, collapsing **every** radius to zero. The
+result violates no constraint and scores 0, which is why a feasibility check accepted it. Under-search is
+why the multi-start never escaped: `refine()` costs ~30s at n=97, so the 120s budget evaluated 4 candidates
+against 1185 at n=27. `--seed 1 --time 120` reproduces the collapse exactly, so this needs more time and
+seeds, not a re-roll.
 
-Severe under-search is why the multi-start never escaped it. `refine()` costs ~30s at n=97, so the seed-1
-120s run evaluated **4 candidates in total** (its log reads `1 fresh starts, 3 hops`) against 1185 at n=27.
-Re-running the identical `--seed 1 --time 120` reproduces the collapse exactly, so this is what those
-parameters produce, not a one-off fluke. More time and more seeds should fix it; nothing here suggests the
-record is out of reach at N=97.
-
-Two fixes are in place, both in the harness rather than the solver, since `pack.py` is kept unmodified:
-
-- **`verify_pck.py` rejects degenerate configurations**, printing `DEGENERATE` and exiting 1 when any radius
-  is 0. A pure constraint check *correctly* passes a collapsed packing, because zero-radius circles overlap
-  nothing and stay inside the square, so `reproduce.sh` could not previously detect this failure. It can
-  now. The 98 remaining packings, the N=27 win and all 12 `chase/` packings pass unchanged.
-- **`run_sweep.py` no longer accepts a collapse as a result.** It discards any candidate containing a zero
-  radius, so an N with nothing better falls through to the existing "no feasible config" path: a blank row
-  with `feasible=0` and no `.pck` written, instead of a zero-scoring file that looks valid.
-
-The committed N=97 row was corrected by hand to what the fixed code now emits, and the zero-radius
-`csqv97.pck` was deleted. This does not touch the N=27 claim, a separate file verified two independent ways
-above.
+Both checkers now catch it, fixed in the harness since `pack.py` is kept unmodified: `verify_pck.py` prints
+`DEGENERATE` and exits 1 on any zero radius, and `run_sweep.py` discards such candidates so the N records
+`feasible=0` with no `.pck` rather than a file that looks valid. The N=27 claim is unaffected.
 
 ## Layout
 
