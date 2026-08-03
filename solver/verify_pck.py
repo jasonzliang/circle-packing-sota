@@ -6,8 +6,8 @@ strict feasibility (exactly N circles, every circle inside the square, no two ov
 the coordinates. It deliberately shares NO code with the solver, so it is a genuine independent check of
 any packing — ours or anyone else's. Optionally compares against a known record.
 
-    python3 verify_pck.py ../results/pck/csqv27.pck --record 2.685350025228
-    python3 verify_pck.py ../results/pck/csqv27.pck                 # just verify + print Σr
+    python3 verify_pck.py ../sota/ours/pck/csqv27.pck --record 2.685350025228
+    python3 verify_pck.py ../sota/ours/pck/csqv27.pck                 # just verify + print Σr
     # exit code 0 = strictly feasible, 1 = infeasible/parse error (usable in scripts)
 
 Coordinate convention (matches what run_sweep.py writes): a square of side 1 centred at the origin, i.e.

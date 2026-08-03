@@ -52,8 +52,8 @@ def verdict(ours, rec):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--results", default="../results/results.csv")
-    ap.add_argument("--out", default="../results/comparison.md")
+    ap.add_argument("--results", default="../sota/ours/results.csv")
+    ap.add_argument("--out", default="../sota/ours/comparison.md")
     a = ap.parse_args()
     rows, wins, ties, below = [], [], [], []
     with open(a.results) as f:

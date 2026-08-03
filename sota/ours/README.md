@@ -1,8 +1,8 @@
-# ours-sota — our results vs the Packomania records
+# sota/ours — our results vs the Packomania records
 
 Our evolved solver's results for **N variable circles in a unit square, maximize Σr**, measured against
-the Packomania `csqv` best-known values in [`../sota/`](../sota/). This directory is the curated
-"how did we do" view; the full per-N packings from the sweep live in [`../results/`](../results/).
+the Packomania `csqv` best-known values in [`../theirs/`](../theirs/). The complete per-N packings from
+the sweep are in [`pck/`](pck/) and the raw table in [`results.csv`](results.csv).
 
 ## Headline (sweep N=2..100, from scratch, 120s/N, seed 1)
 
@@ -30,7 +30,7 @@ with a harder re-run).
 
 Verify it yourself (no solver needed):
 ```bash
-python3 ../solver/verify_pck.py wins/csqv27.pck --record 2.685350025228
+python3 ../../solver/verify_pck.py wins/csqv27.pck --record 2.685350025228
 ```
 
 ## How the seed works, and where the N=27 result's seed comes from
@@ -48,7 +48,7 @@ SLSQP refine + feasibility repair, and keeps the best — **until the wall-clock
 
 **The N=27 result's seed is therefore `1`.** To regenerate it:
 ```bash
-python3 ../solver/pack.py -n 27 --seed 1 --time 120 -o out27.json
+python3 ../../solver/pack.py -n 27 --seed 1 --time 120 -o out27.json
 ```
 
 **Reproducibility caveat (important).** The budget is *wall-clock*, so the number of restarts that fit in
@@ -64,9 +64,11 @@ of how it was found, and anyone can confirm that with `verify_pck.py`.
 
 ```
 comparison.md            our full ours-vs-Packomania table (N=2..100)
-wins/csqv27.pck          the record-beating N=27 packing (Packomania format)
-wins/csqv27.seed1.json   full-precision config, seed 1 (re-derivation)
+results.csv              raw sweep output (N, Σr, feasibility)
+pck/csqv<N>.pck          all 99 packings, Packomania format
+wins/csqv27.pck          the record-beating N=27 packing
+wins/csqv27.seed1.json   full-precision config, seed 1 (reproduces the win)
+wins/csqv27.seed7.json   a different seed (2.6838, below record): illustrates search variance
 wins/csqv27.verify.txt   independent feasibility + record check
+chase/                   harder re-runs of the closest near-misses (more time + seeds)
 ```
-The complete set of per-N packings (all 99) is in [`../results/pck/`](../results/pck/) and
-[`../results/json/`](../results/json/).

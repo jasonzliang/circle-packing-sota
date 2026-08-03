@@ -11,7 +11,7 @@ set -euo pipefail
 cd "$(dirname "$0")"
 
 NMIN="${1:-${NMIN:-2}}"; NMAX="${2:-${NMAX:-100}}"; TIME="${3:-${TIME:-120}}"
-WORKERS="${4:-${WORKERS:-8}}"; SEEDS="${SEEDS:-1}"; OUT="results"
+WORKERS="${4:-${WORKERS:-8}}"; SEEDS="${SEEDS:-1}"; OUT="sota/ours"
 
 echo "== deps ==" && python3 -c "import numpy,scipy; print(' numpy',numpy.__version__,'scipy',scipy.__version__)" \
   || { echo "Missing deps. Run: pip install -r requirements.txt"; exit 1; }

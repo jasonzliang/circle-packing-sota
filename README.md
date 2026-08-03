@@ -14,7 +14,7 @@ ceiling). It also found at least one **strictly-feasible packing that beats a cu
 best-known** — N=27, Σr = 2.685978684198 vs the listed 2.685350025228 (+6.3e-4). That record is a
 Packomania *baseline* entry (reference [1], Specht's own `csqv` program), not one of the recent
 AlphaEvolve/AI-optimized entries (e.g. N=26 = 2.635983, which we do **not** beat). The authoritative,
-always-current verdict is `results/comparison.md`; **every claimed win is independently re-verifiable
+always-current verdict is `sota/ours/comparison.md`; **every claimed win is independently re-verifiable
 from its `.pck` with `solver/verify_pck.py` (see below).**
 
 ## Reproduce (one command)
@@ -26,14 +26,14 @@ pip install -r requirements.txt          # numpy + scipy
 NMIN=27 NMAX=27 TIME=120 ./reproduce.sh  # a single N
 ```
 
-`reproduce.sh` runs the sweep, writes `results/comparison.md`, and **independently verifies every emitted
+`reproduce.sh` runs the sweep, writes `sota/ours/comparison.md`, and **independently verifies every emitted
 packing** (fails loudly if any is infeasible). Full N=2..100 takes ~25 min on a 10-core machine.
 
 Or step by step:
 ```bash
 OMP_NUM_THREADS=1 python3 solver/run_sweep.py --nmin 2 --nmax 100 --time 120 --workers 8 --out-dir results
-python3 solver/compare.py                                   # -> results/comparison.md
-python3 solver/verify_pck.py results/pck/csqv27.pck --record 2.685350025228   # independent check
+python3 solver/compare.py                                   # -> sota/ours/comparison.md
+python3 solver/verify_pck.py sota/ours/pck/csqv27.pck --record 2.685350025228   # independent check
 ```
 
 ## Independent verification (the important part)
@@ -43,7 +43,7 @@ independent check of any packing — ours or anyone else's. It recomputes Σr an
 feasibility (exactly N circles, all inside the square, no overlaps) straight from the coordinates:
 
 ```bash
-python3 solver/verify_pck.py results/pck/csqv27.pck --record 2.685350025228
+python3 solver/verify_pck.py sota/ours/pck/csqv27.pck --record 2.685350025228
 # ... STRICTLY FEASIBLE (tol 1e-09): True ;  Δ (ours-record): +6.287e-04 -> BEATS the record ;  exit 0
 ```
 
@@ -56,8 +56,8 @@ python3 solver/verify_pck.py results/pck/csqv27.pck --record 2.685350025228
   saved configuration is a fixed artifact that is strictly feasible and exceeds the record. Re-running the
   sweep reproduces the overall landscape (ties on easy N, small gaps on hard N) and *can* re-find a given
   win, but is not guaranteed to on one seed.
-- **Every result is saved twice:** `results/pck/csqv<N>.pck` (12 dp, Packomania format) and
-  `results/json/out<N>.json` (full float64, plus the seed and time budget that produced it) — so a win is
+- **Every result is saved twice:** `sota/ours/pck/csqv<N>.pck` (12 dp, Packomania format) and
+  `sota/ours/json/out<N>.json` (full float64, plus the seed and time budget that produced it) — so a win is
   preserved exactly and its provenance is recorded.
 - **Determinism caveat:** because the budget is wall-clock, a slower or busier machine does fewer restarts
   in the same seconds and may land slightly lower. Give more `--time` (or more `--seeds`) for a stronger,
@@ -66,12 +66,16 @@ python3 solver/verify_pck.py results/pck/csqv27.pck --record 2.685350025228
 ## Layout
 
 ```
-solver/   pack.py container.py shape.py exact_check.py   # the evolved solver, copied UNCHANGED
-          run_sweep.py    # parallel N-sweep -> pck + json + results.csv
-          compare.py      # ours vs the Packomania csqv records (records N=1..100 embedded) -> comparison.md
-          verify_pck.py   # independent, pure-stdlib feasibility + Σr checker for any .pck
-results/  results.csv  comparison.md  pck/csqv<N>.pck  json/out<N>.json
-submission/ email_draft.md   # verified contact + a fill-in-per-win email to Packomania's maintainer
+solver/        pack.py container.py shape.py exact_check.py   # the evolved solver, copied UNCHANGED
+               run_sweep.py    # parallel N-sweep -> pck + json + results.csv
+               compare.py      # ours vs the Packomania records -> comparison.md
+               verify_pck.py   # independent, pure-stdlib feasibility + Σr checker for any .pck
+sota/          the SOTA comparison, both sides in one place:
+  theirs/        packomania_csqv_records.csv     # the best-known records (N=1..100), + README
+  ours/          results.csv  comparison.md  pck/csqv<N>.pck  json/out<N>.json
+                 wins/          # the N=27 win (.pck, full-precision .json, verify.txt) + README
+                 chase/         # supplementary harder re-runs of the closest near-misses
+submission/    README.md        # how/whom to submit to (email draft is git-ignored, local only)
 reproduce.sh  requirements.txt
 ```
 

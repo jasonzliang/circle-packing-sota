@@ -6,7 +6,7 @@ Each N is an independent optimization, so the sweep is embarrassingly parallel: 
 strictly-feasible sum of radii over --seeds, writes a packomania `.pck` file, and appends a row to
 results.csv. The solver is used UNCHANGED from n=26 (n is a parameter throughout).
 
-    OMP_NUM_THREADS=1 python3 run_sweep.py --nmin 2 --nmax 100 --time 120 --workers 8 --out-dir ../results
+    OMP_NUM_THREADS=1 python3 run_sweep.py --nmin 2 --nmax 100 --time 120 --workers 8 --out-dir ../sota/ours
 
 Runs are from scratch (random multi-start, no warm-start), so each N is an honest independent attempt.
 Set BLAS threads to 1 in the environment so the workers don't oversubscribe the cores.
@@ -61,7 +61,7 @@ def main():
     ap.add_argument("--time", type=float, default=120.0, help="search seconds per (N, seed)")
     ap.add_argument("--seeds", default="1", help="comma-separated seeds; best is kept")
     ap.add_argument("--workers", type=int, default=8, help="parallel N solved at once (pack is single-core)")
-    ap.add_argument("--out-dir", default="../results")
+    ap.add_argument("--out-dir", default="../sota/ours")
     ap.add_argument("--author", default="Jason Liang")
     a = ap.parse_args()
     seeds = [int(s) for s in a.seeds.split(",") if s.strip()]
