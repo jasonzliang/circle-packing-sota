@@ -25,12 +25,14 @@ with a harder re-run).
 - Why this one is beatable: the N=27 record is a **long-standing 2011/12 entry** (reference [1] =
   D. W. Cantrell, sci.math forum), **not** one of the recent AI-optimized entries (e.g. N=26 = 2.635983,
   credited to Haowei Lin [8], July 2026, which we do not beat).
-- The packing is [`pck/csqv27.pck`](pck/csqv27.pck) (the canonical artifact, Packomania format); its
-  full-precision config is regenerable with the seed-1 command below.
+- Everything for the win is in [`wins/`](wins/): [`csqv27.pck`](wins/csqv27.pck) (the canonical packing,
+  Packomania format), `csqv27.seed1.json` (the full float64 config), and `csqv27.verify.txt` (the
+  independent feasibility + record check). The same packing is also part of the complete set in
+  [`pck/`](pck/).
 
 Verify it yourself (no solver needed):
 ```bash
-python3 ../../solver/verify_pck.py pck/csqv27.pck --record 2.685350025228
+python3 ../../solver/verify_pck.py wins/csqv27.pck --record 2.685350025228
 ```
 
 ## How the seed works, and where the N=27 result's seed comes from
@@ -57,7 +59,7 @@ python3 ../../solver/pack.py -n 27 --seed 1 --time 120 -o out27.json
 (possibly worse) local optimum. More time is **not** monotonically better either: a re-run at **seed 7,
 300s** found a *worse* config (2.683803) because it explored a different basin. The takeaway: the search
 is a stochastic multi-start, so a specific win is tied to `(seed, budget, machine)` — but the saved
-packing (`pck/csqv27.pck`) is a fixed artifact that is strictly feasible and beats the record regardless
+packing (`wins/csqv27.pck`) is a fixed artifact that is strictly feasible and beats the record regardless
 of how it was found, and anyone can confirm that with `verify_pck.py`.
 
 ## Contents
@@ -65,6 +67,7 @@ of how it was found, and anyone can confirm that with `verify_pck.py`.
 ```
 comparison.md            our full ours-vs-Packomania table (N=2..100)
 results.csv              raw sweep output (N, Σr, feasibility)
-pck/csqv<N>.pck          all 99 packings, Packomania format (csqv27.pck = the record-beating N=27 win)
+wins/                    the record-beating N=27 result: csqv27.pck + seed1.json (full float64) + verify.txt
+pck/csqv<N>.pck          all 99 packings, Packomania format (csqv27 also here, for completeness)
 chase/                   harder re-runs of the closest near-misses (more time + seeds)
 ```

@@ -14,8 +14,8 @@ ceiling). It also found at least one **strictly-feasible packing that beats a cu
 best-known** — N=27, Σr = 2.685978684198 vs the listed 2.685350025228 (+6.3e-4). That record is a
 long-standing 2011/12 entry (reference [1], D. W. Cantrell, sci.math forum), not one of the recent
 AI-optimized entries (e.g. N=26 = 2.635983, credited to Haowei Lin [8] in July 2026, which we do
-**not** beat). The authoritative,
-always-current verdict is `sota/ours/comparison.md`; **every claimed win is independently re-verifiable
+**not** beat). The authoritative, always-current verdict is `sota/ours/comparison.md`; **every claimed
+win is independently re-verifiable
 from its `.pck` with `solver/verify_pck.py` (see below).**
 
 ## Reproduce (one command)
@@ -73,7 +73,9 @@ solver/        pack.py container.py shape.py exact_check.py   # the evolved solv
                verify_pck.py   # independent, pure-stdlib feasibility + Σr checker for any .pck
 sota/          the SOTA comparison, both sides in one place:
   theirs/        packomania_csqv_records.csv     # the best-known records (N=1..100), + README
-  ours/          results.csv  comparison.md  pck/csqv<N>.pck (csqv27 = the N=27 win)  + README
+  ours/          results.csv  comparison.md  + README
+                 wins/          # the record-beating N=27 result: csqv27.pck + full-precision json + verify
+                 pck/           # all 99 packings (complete set; csqv27 also here)
                  chase/         # supplementary harder re-runs of the closest near-misses
 reproduce.sh  requirements.txt
 email_draft.md   # a drafted submission email to Packomania's maintainer (git-ignored, local only)
