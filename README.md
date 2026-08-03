@@ -20,10 +20,10 @@ N=92 at 2.29%. The sweep covered 99 sizes but produced only **98 usable packings
 N=97 (see [Known issues](#known-issues)). Per-N detail is in `sota/ours/comparison.md`; **every claimed win
 is independently re-verifiable from its `.pck` with `solver/verify_pck.py`.**
 
-## Verify the N=27 result (30 seconds, no dependencies, no solver)
+## Verify the N=27 result
 
-**The win does not depend on re-running the search.** The packing is a fixed file, and checking it is
-pure arithmetic on 27 (x, y, r) triples. From a clean checkout:
+**The win does not depend on re-running the search.** The packing is a fixed file, and checking it is pure
+arithmetic on 27 (x, y, r) triples, so nothing needs installing. From a clean checkout:
 
 ```bash
 python3 solver/verify_pck.py sota/ours/wins/csqv27.pck --record 2.685350025228
