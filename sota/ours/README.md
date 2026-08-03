@@ -17,11 +17,10 @@ ceiling**. Large N need more search time than 120s (and, like N=27, some may be 
 entries with a harder re-run).
 
 **Evidence that the 72 really are under-search:** [`chase/`](chase/) re-runs twelve of the closest
-near-misses at **240s over seeds 1–4** (vs the sweep's 120s on seed 1 alone), and reaches the record to
-**within 4e-11 at five of them**
-(N = 25, 28, 32, 35, 36), i.e. they become effective ties. Counting those, the repo demonstrates 31 ties
-rather than 26. The headline table above deliberately reports the *uniform* sweep only (120s, seed 1), so
-the two numbers are consistent, not contradictory.
+near-misses at **240s over seeds 1–4** (vs the sweep's 120s on seed 1 alone) and reaches the record to
+**within 4e-11 at five of them** (N = 25, 28, 32, 35, 36), i.e. they become effective ties. Counting
+those, the repo demonstrates 31 ties rather than 26. The headline table reports the *uniform* sweep only
+(120s, seed 1), so the two numbers are consistent, not contradictory.
 
 ## The one win: N = 27
 
@@ -66,14 +65,14 @@ python3 ../../solver/pack.py -n 27 --seed 1 --time 120 -o out27.json
 *result* depends on how many restarts complete: on a slower/busier machine seed 1 may land in a different
 (possibly worse) local optimum. More time is **not** monotonically better either: a re-run at **seed 7,
 300s** found a *worse* config (2.683803447573, re-confirmed on a second machine: 1017 starts, 1852 hops)
-because it explored a different basin. The takeaway: the search
-is a stochastic multi-start, so a specific win is tied to `(seed, budget, machine)`, but the saved
-packing (`wins/csqv27.pck`) is a fixed artifact that is strictly feasible and beats the record regardless
-of how it was found, and anyone can confirm that with `verify_pck.py`.
+because it explored a different basin. The takeaway: the search is a stochastic multi-start, so a specific
+win is tied to `(seed, budget, machine)`, but the saved packing (`wins/csqv27.pck`) is a fixed artifact
+that is strictly feasible and beats the record regardless of how it was found, and anyone can confirm
+that with `verify_pck.py`.
 
 ## Contents
 
-```
+```text
 comparison.md            our full ours-vs-Packomania table (N=2..100)
 results.csv              raw sweep output (N, Σr, feasibility)
 wins/                    the record-beating N=27 result: csqv27.pck + seed1.json (full float64) + verify.txt

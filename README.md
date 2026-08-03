@@ -28,7 +28,7 @@ python3 solver/verify_pck.py sota/ours/wins/csqv27.pck --record 2.685350025228
 
 Expected output (exit code 0):
 
-```
+```text
 circles (N)     : 27
 sum of radii Σr : 2.685978684198
 min wall slack  : 1.000e-12  (>= 0 => all circles inside the square)
@@ -118,7 +118,7 @@ byte-identical to what is in the repo.
 
 ## Layout
 
-```
+```text
 solver/        pack.py container.py shape.py   # the evolved solver, copied UNCHANGED
                exact_check.py  # zero-tolerance feasibility decision in exact rational arithmetic
                run_sweep.py    # parallel N-sweep -> pck + json + results.csv
@@ -129,7 +129,7 @@ sota/          the SOTA comparison, both sides in one place:
   ours/          results.csv  comparison.md  + README
                  wins/          # the record-beating N=27 result: csqv27.pck + full-precision json + verify
                  pck/           # all 99 packings (complete set; csqv27 also here)
-                 chase/         # supplementary harder re-runs of the closest near-misses
+                 chase/         # 12 near-misses re-run at 240s over seeds 1-4 (ties the record at 5)
 reproduce.sh  requirements.txt
 email_draft.md   # a drafted submission email to Packomania's maintainer (git-ignored, local only)
 ```
@@ -145,7 +145,7 @@ for this repo. `n` is a parameter throughout, so the same code runs at any N wit
 Maximizing Σr over centres *and* radii is a nonlinear program, but it has an **exactly solvable inner
 layer**. Hold the centres fixed, and the problem
 
-```
+```text
 max Σ r_i   s.t.   r_i + r_j ≤ d_ij  (every pair),   r_i ≤ dist(c_i, wall),   r_i ≥ 0
 ```
 
@@ -179,7 +179,7 @@ is the dense Jacobian, not the geometry, that makes large n slow.
 The reduction is **provable, not heuristic**. Since r_i + r_j ≤ d_ij and r_j ≥ 0, every j forces
 r_i ≤ d_ij, so
 
-```
+```text
 u_i := min( dist(c_i, wall),  min_{j≠i} d_ij )
 ```
 
@@ -234,10 +234,11 @@ the kinks that break SLSQP are exactly the combinatorial choices this makes expl
 ### What was tried and rejected
 
 A trust-region QP restricted to the contact neighbourhood is implemented (`--sparse`) and is *correct*,
-but it was **measured at 0.1x / 1.0x / 1.1x** speed at n=49/64/100: the extra passes it needs to re-earn
-the movement it gave up cost as much as the rows it saved. It is off by default and the source explicitly
-declines to call it a speedup. The LP-side reduction above, which is exact and needs no trust region,
-stays on.
+but it is **not faster**: the extra passes it needs to re-earn the movement it gave up cost as much as the
+rows it saved. The source reports 0.1x / 1.0x / 1.1x at n=49/64/100 from a log not included in this repo;
+re-measuring `refine()` here gives **0.43x / 1.26x / 1.06x** on the same three sizes. Different machine,
+same verdict, so it is off by default and the source explicitly declines to call it a speedup. The LP-side
+reduction above, which is exact and needs no trust region, stays on.
 
 ### Self-validation
 
