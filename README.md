@@ -72,8 +72,7 @@ solver/        pack.py container.py shape.py exact_check.py   # the evolved solv
                verify_pck.py   # independent, pure-stdlib feasibility + Σr checker for any .pck
 sota/          the SOTA comparison, both sides in one place:
   theirs/        packomania_csqv_records.csv     # the best-known records (N=1..100), + README
-  ours/          results.csv  comparison.md  pck/csqv<N>.pck  json/out<N>.json
-                 wins/          # the N=27 win (.pck, full-precision .json, verify.txt) + README
+  ours/          results.csv  comparison.md  pck/csqv<N>.pck (csqv27 = the N=27 win)  + README
                  chase/         # supplementary harder re-runs of the closest near-misses
 reproduce.sh  requirements.txt
 email_draft.md   # a drafted submission email to Packomania's maintainer (git-ignored, local only)

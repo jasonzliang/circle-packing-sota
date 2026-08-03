@@ -19,18 +19,18 @@ with a harder re-run).
 ## The one win: N = 27
 
 - **ours Σr = 2.685978684198**  vs  **Packomania record 2.685350025228**  →  **+6.29e-4 (+0.023%)**
-- Strictly feasible (independently re-checked, [`wins/csqv27.verify.txt`](wins/csqv27.verify.txt)):
+- Strictly feasible (independently re-checked with `verify_pck.py`, below):
   27 circles, min wall slack +1.0e-12, min pairwise slack +7.2e-13 — no overlaps, all inside the square;
   the win margin is ~9 orders larger than the feasibility slack, so it is real, not numerical noise.
 - Why this one is beatable: the N=27 record is a Packomania **baseline** entry (reference [1] = Specht's
   own `csqv` program), **not** one of the recent AlphaEvolve/AI-optimized entries (e.g. N=26 = 2.635983,
   which we do not beat).
-- Files: [`wins/csqv27.pck`](wins/csqv27.pck) (the canonical artifact, Packomania format),
-  `wins/csqv27.seed1.json` (full-precision re-derivation from seed 1), `wins/csqv27.verify.txt`.
+- The packing is [`pck/csqv27.pck`](pck/csqv27.pck) (the canonical artifact, Packomania format); its
+  full-precision config is regenerable with the seed-1 command below.
 
 Verify it yourself (no solver needed):
 ```bash
-python3 ../../solver/verify_pck.py wins/csqv27.pck --record 2.685350025228
+python3 ../../solver/verify_pck.py pck/csqv27.pck --record 2.685350025228
 ```
 
 ## How the seed works, and where the N=27 result's seed comes from
@@ -57,7 +57,7 @@ python3 ../../solver/pack.py -n 27 --seed 1 --time 120 -o out27.json
 (possibly worse) local optimum. More time is **not** monotonically better either: a re-run at **seed 7,
 300s** found a *worse* config (2.683803) because it explored a different basin. The takeaway: the search
 is a stochastic multi-start, so a specific win is tied to `(seed, budget, machine)` — but the saved
-packing (`wins/csqv27.pck`) is a fixed artifact that is strictly feasible and beats the record regardless
+packing (`pck/csqv27.pck`) is a fixed artifact that is strictly feasible and beats the record regardless
 of how it was found, and anyone can confirm that with `verify_pck.py`.
 
 ## Contents
@@ -65,10 +65,6 @@ of how it was found, and anyone can confirm that with `verify_pck.py`.
 ```
 comparison.md            our full ours-vs-Packomania table (N=2..100)
 results.csv              raw sweep output (N, Σr, feasibility)
-pck/csqv<N>.pck          all 99 packings, Packomania format
-wins/csqv27.pck          the record-beating N=27 packing
-wins/csqv27.seed1.json   full-precision config, seed 1 (reproduces the win)
-wins/csqv27.seed7.json   a different seed (2.6838, below record): illustrates search variance
-wins/csqv27.verify.txt   independent feasibility + record check
+pck/csqv<N>.pck          all 99 packings, Packomania format (csqv27.pck = the record-beating N=27 win)
 chase/                   harder re-runs of the closest near-misses (more time + seeds)
 ```
