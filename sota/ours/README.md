@@ -16,19 +16,24 @@ Full table: [`comparison.md`](comparison.md). The 72 "below" are **our compute b
 ceiling**. Large N need more search time than 120s (and, like N=27, some may be beatable long-standing
 entries with a harder re-run).
 
-**Evidence that the 72 really are under-search:** [`chase/`](chase/) re-runs twelve of the closest
-near-misses at **240s over seeds 1–4** (vs the sweep's 120s on seed 1 alone) and reaches the record to
-**within 4e-11 at five of them** (N = 25, 28, 32, 35, 36), i.e. they become effective ties. Counting
-those, the repo demonstrates 31 ties rather than 26. The headline table reports the *uniform* sweep only
-(120s, seed 1), so the two numbers are consistent, not contradictory.
+**Partial evidence that the 72 are under-search:** [`chase/`](chase/) re-runs twelve near-misses at **240s
+over seeds 1–4** (vs the sweep's 120s on seed 1 alone) and reaches the record to **within 4e-11 at five of
+them** (N = 25, 28, 32, 35, 36), i.e. they become effective ties. Counting those, the repo demonstrates 31
+ties rather than 26; the headline table reports the *uniform* sweep only, so the two counts are consistent.
+
+Stated fully, because the result cuts both ways: seven of the twelve stayed below the record, and at **N=30
+eight times the compute produced no improvement at all** (bit-identical to the 120s run; N=54 gained 1e-11,
+which is nothing). So extra search closes the gap at some N and demonstrably does not at others. The twelve
+are also not exactly the twelve smallest gaps: N=26 was excluded (it is the AI-optimized record above,
+which we do not expect to beat) and N=41 included in its place.
 
 ## The one win: N = 27
 
 - **ours Σr = 2.685978684198**  vs  **Packomania record 2.685350025228**  →  **+6.29e-4 (+0.023%)**
 - Strictly feasible (independently re-checked with `verify_pck.py`, below):
   27 circles, min wall slack +1.0e-12, min pairwise slack +7.2e-13, meaning no overlaps and every
-  circle inside the square. The win margin is ~9 orders larger than the feasibility slack, so it is
-  real, not numerical noise.
+  circle inside the square. The win margin is 8.7×10⁸ times the smaller slack, so it is real, not
+  numerical noise.
 - Why this one is beatable: the N=27 record is a **long-standing 2011/12 entry** (reference [1] =
   D. W. Cantrell, sci.math forum), **not** one of the recent AI-optimized entries (e.g. N=26 = 2.635983,
   credited to Haowei Lin [8], July 2026, which we do not beat).
@@ -74,7 +79,7 @@ that with `verify_pck.py`.
 
 ```text
 comparison.md            our full ours-vs-Packomania table (N=2..100)
-results.csv              raw sweep output (N, Σr, feasibility)
+results.csv              raw sweep output (n, sum_radii, max_violation, seeds, feasible)
 wins/                    the record-beating N=27 result: csqv27.pck + seed1.json (full float64) + verify.txt
 pck/csqv<N>.pck          all 99 packings, Packomania format (csqv27 also here, for completeness)
 chase/                   re-runs of 12 near-misses at 240s over seeds 1-4; ties the record at 5 of them

@@ -10,21 +10,25 @@ in a unit square** (maximize Σr), for N = 1..100.
 
 ## Verification (why we trust these numbers)
 
-The values were extracted via an automated fetch, so they were cross-checked four independent ways
-(all passed):
+The values were extracted via an automated fetch, so they were cross-checked four ways (all passed). Note
+up front that only the first two are independent of this repo; checks 3 and 4 are weaker than they look and
+are labelled as such:
 
-1. **Monotonic, with a decreasing increment trend:** strictly increasing in N at all 99 steps, and the
-   increments trend down from 0.2105 at N=3 to 0.0223 at N=91. The increment sequence is *not* itself
-   monotone (it oscillates locally, rising against the previous step at 49 of 98 points, which is
-   expected since packings gain and lose symmetry as N changes), so only the trend is evidence here.
-   A mis-transcribed leading digit would still almost certainly break monotonicity.
-2. **Analytic exact values:** N=1 = 0.5 (one inscribed circle); N=2 = 0.585786437626 vs the exact
-   2−√2 = 0.585786437627 (matches to 9e-13); N=26 = 2.635983085 matches the literature value 2.635983.
-3. **Independent solver agreement:** our from-scratch solver reproduces 26 of these records to within
-   4e-11 (worst 3.4e-11, median 1.5e-11), and beats one (N=27).
-4. **Independent re-extraction:** a re-fetch of the live table on 2026-08-03 was reparsed from raw HTML
-   and compared against **all 100 rows** of this CSV. Every value matched to all 12 digits, with zero
-   mismatches.
+1. **Monotonicity.** Strictly increasing in N at all 99 steps. Increments run from 0.2105 at N=3 down to
+   0.0318 at N=100, with the minimum 0.0223 at N=91; the sequence is *not* monotone, rising against the
+   previous step at 49 of 98 points, which is expected as packings gain and lose symmetry with N. So the
+   evidence here is monotonicity of the values, not smoothness of the increments.
+2. **Analytic values.** N=1 = 0.5 exactly (one inscribed circle). N=2 = 0.585786437626 against
+   2−√2 = 0.5857864376269, agreeing to 9.0e-13 (the CSV is stored at 12 dp, so the printed strings differ
+   in the last place). N=26 = 2.635983084918 matches the 2.635983 quoted in the AlphaEvolve/ShinkaEvolve
+   literature to its 6 published digits.
+3. **Solver agreement (not independent).** Our own solver reproduces 26 of these records to within 4e-11
+   (worst 3.4e-11, median 1.5e-11) and beats one (N=27). This is the artifact under review checking its own
+   reference, so it argues the two agree, not that either is right.
+4. **Re-extraction (same-day, so it tests the parser).** The live table was re-fetched on 2026-08-03,
+   reparsed from raw HTML, and compared against **all 100 rows** here: every value matched to 12 digits,
+   zero mismatches. Since the original fetch was the same day, this rules out transcription and parsing
+   error, not a stale table.
 
 ## Attribution notes (relevant to which records are beatable)
 

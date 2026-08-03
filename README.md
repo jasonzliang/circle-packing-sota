@@ -8,14 +8,18 @@ experiment and run across a range of N, compared to the authoritative **Packoman
 
 ## Result
 
-Across N the solver **reproduces 26 of the known records to within 4e-11** (worst 3.4e-11 at N=29, median
-1.5e-11) and lands a fraction of a percent under the heavily-optimized larger records (that gap is our
-compute budget, not the record's ceiling). It also found one **strictly-feasible packing that beats a
-current Packomania best-known**: N=27, Σr = 2.685978684198 vs the listed 2.685350025228 (+6.3e-4). That
-record is a long-standing 2011/12 entry (reference [1], D. W. Cantrell, sci.math forum), not one of the
-recent AI-optimized entries (e.g. N=26 = 2.635983, credited to Haowei Lin [8] in July 2026, which we do
-**not** beat). The always-current verdict is `sota/ours/comparison.md`, and **every claimed win is
-independently re-verifiable from its `.pck` with `solver/verify_pck.py`.**
+A sweep of N=2..100 (120s per N, seed 1) **reproduces 26 of the known records to within 4e-11** (worst
+3.4e-11 at N=29, median 1.5e-11) and found one **strictly-feasible packing that beats a current Packomania
+best-known**: N=27, Σr = 2.685978684198 vs the listed 2.685350025228 (+6.3e-4). That record is a
+long-standing 2011/12 entry (reference [1], D. W. Cantrell, sci.math forum), not one of the recent
+AI-optimized entries (e.g. N=26 = 2.635983, credited to Haowei Lin [8] in July 2026, which we do **not**
+beat).
+
+**The other 72 of 99 sizes fall short, several by more than 1%.** 43 gaps exceed 0.5% and 27 exceed 1%,
+the worst genuine one being N=92 at 2.29%. **N=97 failed outright**: the sweep emitted 97 circles of
+radius zero, and `results.csv` still records it as feasible (see [Known issues](#known-issues)). Per-N
+detail is in `sota/ours/comparison.md`; **every claimed win is independently re-verifiable from its `.pck`
+with `solver/verify_pck.py`.**
 
 ## Verify the N=27 result (30 seconds, no dependencies, no solver)
 
@@ -29,8 +33,11 @@ python3 solver/verify_pck.py sota/ours/wins/csqv27.pck --record 2.685350025228
 Expected output (exit code 0):
 
 ```text
+file            : sota/ours/wins/csqv27.pck
+author          : Jason Liang
 circles (N)     : 27
 sum of radii Σr : 2.685978684198
+min radius      : 6.648e-02  (must be >= 0)
 min wall slack  : 1.000e-12  (>= 0 => all circles inside the square)
 min pair slack  : 7.198e-13  (>= 0 => no two circles overlap)
 STRICTLY FEASIBLE (tol 1e-09): True
@@ -44,7 +51,7 @@ and Σr from the coordinates alone, and exits non-zero on any failure. A copy of
 in [`sota/ours/wins/csqv27.verify.txt`](sota/ours/wins/csqv27.verify.txt) to diff against.
 
 The slacks are small but **positive** (strictly feasible, not feasible-within-tolerance), and the win
-margin (+6.29e-4) is ~6×10⁸ times larger than the smallest of them, so this is not numerical noise.
+margin (+6.287e-4) is 8.7×10⁸ times the smaller of them, so this is not numerical noise.
 
 ### Zero-tolerance check in exact arithmetic
 
@@ -62,8 +69,11 @@ python3 solver/exact_check.py sota/ours/wins/csqv27.seed1.json --n 27
 # EXACT_FEASIBLE: True
 ```
 
-A configuration that passes this is feasible **as a matter of arithmetic fact, not of tolerance**. Note it
-reads the full-precision `.json`, while `verify_pck.py` reads `.pck` files.
+A configuration that passes this is feasible **as a matter of arithmetic fact, not of tolerance**. Two
+things to note. `--n 27` is **required**: it defaults to 26, and on a mismatch the tool reports
+`EXACT_FEASIBLE: False` while still exiting 0, so read the text, not the exit status. And its slacks are
+**squared** (`d² - s²`), so they are not directly comparable to `verify_pck.py`'s linear ones above; it
+also reads the full-precision `.json` rather than the `.pck`.
 
 ## Reproduce the N=27 result from scratch
 
@@ -96,7 +106,12 @@ for f in repro/pck/csqv*.pck; do python3 solver/verify_pck.py "$f" >/dev/null ||
 ```
 
 With no `--results`/`--out`, `compare.py` regenerates the committed `sota/ours/comparison.md` from the
-committed `results.csv`, which is a check in itself: the output should be byte-identical to the repo's.
+committed `results.csv`, which is a check in itself. It rewrites that file **in place**, so confirm with
+git rather than by eye:
+
+```bash
+python3 solver/compare.py && git diff --stat sota/ours/comparison.md   # expect no output: byte-identical
+```
 
 ## Reproducibility notes
 
@@ -107,12 +122,32 @@ committed `results.csv`, which is a check in itself: the output should be byte-i
   the record-beating 2.685978684198 while seed 7 (300s) found a worse 2.683803. None of this weakens the
   win: a packing is either valid or not, and the saved file is strictly feasible and exceeds the record
   however it was found. Use more `--time`/`--seeds` for a more repeatable search.
-- **What is stored where.** All 99 packings are in `sota/ours/pck/csqv<N>.pck` (12 dp, Packomania format).
+- **What is stored where.** All 99 sweep outputs are in `sota/ours/pck/csqv<N>.pck` (12 dp, Packomania
+  format), one of which (N=97) is degenerate, see below.
   For N=27, `sota/ours/wins/` also holds the full float64 config with its seed and budget
   (`csqv27.seed1.json`) and the stored verifier output (`csqv27.verify.txt`). A fresh sweep additionally
   writes `<out-dir>/json/out<N>.json`.
 - **Rounding to 12 dp is safe.** It costs 3.1e-13 of Σr and the packing stays strictly feasible; the
   slacks above are measured on the rounded `.pck` itself, not on the unrounded solution.
+
+## Known issues
+
+**N=97 in the committed sweep is a failure, not a result.** `sota/ours/pck/csqv97.pck` contains 97 circles
+of radius exactly zero, Σr = 0, a 100% gap that `comparison.md` duly reports as its largest. The cause is
+in `repair()`: it rescales all radii by a *single* uniform factor `s = min_i(wall_cap_i / r_i)`, so one
+circle landing exactly on a wall (`wall_cap = 0`) with `r > 0` drives `s` to 0 and **zeroes every radius in
+the configuration**.
+
+Two consequences worth stating plainly:
+
+- `results.csv` records N=97 as `feasible=1`, and `verify_pck.py` reports `STRICTLY FEASIBLE: True` with
+  exit 0. That is *correct*: zero-radius circles overlap nothing and stay inside the square. But it means
+  **the verification harness cannot detect a collapsed packing**, and `reproduce.sh`'s "fails loudly if any
+  is infeasible" would not catch this. A useful sweep should also assert Σr is close to the reference.
+- N=97 is a distinct failure mode from the other 71 shortfalls, which really are under-search. Do not read
+  it as evidence about compute budget either way.
+
+This does not touch the N=27 claim, which is a separate file verified two independent ways above.
 
 ## Layout
 
@@ -170,16 +205,19 @@ starts, using:
   the local solver can trade radius against position in one step;
 - **`refine()`**, alternating SLSQP with the exact radius LP for up to 3 rounds, keeping the LP's answer
   whenever it beats SLSQP's and stopping early when it does not;
-- **basin hopping** that perturbs a random *subset* of circles (12%, 25% or 45%, at one of three jump
-  scales) rather than restarting from scratch;
+- **subset hopping** that perturbs a random 12%, 25% or 45% of circles at one of three jump scales, also
+  deflating their radii to 30%, rather than restarting from scratch. The code calls this basin hopping, but
+  acceptance is strictly greedy (`if s > best_s`): there is no Metropolis criterion and no temperature, so
+  it is closer to iterated local search;
 - a **diverse start pool** of random placements and staggered-row grids, the structure good packings
   actually have.
 
 ### Innovation: an exact contact-graph reduction
 
-The formulation has `n(n-1)/2` pair constraints, but a real packing's contact graph is **sparse**, roughly
-`3n` contacts, since it is essentially planar. At `n = 100` that is 4950 rows modelling ~300 real ones, and
-it is the dense Jacobian, not the geometry, that makes large `n` slow.
+The formulation has `n(n-1)/2` pair constraints, but a real packing's contact graph is planar, so it has at
+most `3n - 6` contacts. At `n = 100` that is 4950 rows modelling ~270 real ones. **This reduction applies to
+the radius LP only**; SLSQP on the default path still builds the full dense Jacobian, and only `--sparse`
+(rejected below) tries to shrink that.
 
 The reduction is **provable, not heuristic**. Since `r_i + r_j ≤ d_ij` and `r_j ≥ 0`, every `j` forces
 `r_i ≤ d_ij`. Therefore
@@ -191,84 +229,125 @@ drop pair (i, j)   when   d_ij  ≥  u_i + u_j
 
 Impose `r_i ≤ u_i` as a variable bound (valid bounds never cut off the optimum) and the dropped pairs are
 **implied by those two bounds**, so deleting them loses provably nothing. Because `u_i` is roughly a
-nearest-neighbour distance, the surviving rows are exactly the local neighbourhood.
+nearest-neighbour distance, the surviving rows are a superset of the true contacts, concentrated in each
+circle's local neighbourhood.
 
-The bound and the drop rule are one argument and must be used together: drop rows without imposing
-`r ≤ u` and the solver inflates radii straight through the deleted constraints. `--self-test` checks the
-reduced LP against a naive all-pairs reference and measures **a worst gap of 4.4e-16 while keeping as few
-as 5.9% of the rows**.
+Three caveats the argument depends on: `u_i` is valid only for the **centres it was computed from**, so it
+goes stale the moment SLSQP moves anything; only the optimal **value** is preserved, not the duals (dropped
+rows are reported with `λ = 0`, which matters for the next section); and the bound and the drop rule are one
+argument, so dropping rows without imposing `r ≤ u` lets the solver inflate radii straight through the
+deleted constraints. `--self-test` checks the reduced LP against a naive all-pairs reference and measures
+**a worst gap of 4.4e-16 while keeping as few as 5.9% of the rows**.
 
 ### Innovation: LP duals as a search signal
 
-The radius LP is solved for its **duals** as well as its optimum:
+The radius LP is solved for its **duals** as well as its optimum (`lam` and `mu` in the code):
 
 ```text
-λ_k  =  ∂(Σr) / ∂d_ij      price of pair constraint k;  zero unless that contact is tight
-μ_i  =  ∂(Σr) / ∂w_i       price of circle i's wall bound
-Σ_j λ_ij  +  μ_i  =  1     LP duality, for every i with r_i > 0
+λ_k  =  price of pair row k = (i, j);  zero unless that contact is tight
+μ_i  =  price of the variable bound r_i ≤ u_i
+Σ_j λ_ij  +  μ_i  =  1        for every i with r_i > 0
 ```
 
-(`lam` and `mu` in the code.) That identity makes `1 - μ_i` precisely the share of circle `i`'s radius
-limited by its **neighbours** rather than by the boundary. `perturb_dual()` uses it to aim: sample
-contacts with probability proportional to `λ` and move both ends, targeting the load-bearing part of the
-contact graph instead of wasting hops on circles a wall already caps, which no amount of sliding improves.
-Opt-in via `--dual`.
+The identity is complementary slackness (the reduced cost of `r_i` vanishing), and it holds with `≥ 1` when
+`r_i = 0`. Read as a sensitivity, `λ_k` is the gain in `Σr` per unit of extra room at contact `k`, which
+requires a unique optimal dual to be a true derivative; this LP is often degenerate, so treat it as one
+optimal dual vector rather than a gradient.
+
+Because the bound is `r_i ≤ u_i` and not `r_i ≤ w_i`, `μ_i` is only a *boundary* price when `u_i = w_i`,
+i.e. when the wall is what caps circle `i`. In that case `1 - μ_i` is the share of its radius set by
+**neighbours** rather than the boundary, and that is the signal `perturb_dual()` aims with: sample contacts
+with probability proportional to `λ` (without replacement, so proportional only for the first draw) and
+move both ends, spending hops on the load-bearing contacts instead of on circles whose radius is
+boundary-limited *at their current position*. Opt-in via `--dual`. No measurement in this repo shows it
+beats uniform hopping, and the N=27 win did not use it.
 
 ### Strict feasibility by construction, not by tolerance
 
 Nothing is trusted until `repair()` makes it strictly feasible: centres are projected into the container,
-then a **single uniform radius scale** `s ≤ 1` is taken as the largest value satisfying every pair and wall
-constraint at once, and the radii are shaved by a further `1e-12`. That costs ~`1e-11` of score and buys
-exactness. Any configuration still violating a constraint by more than `1e-9` is discarded, not reported.
+then a **single uniform radius scale** is applied, `min(1, s)` where `s` is the largest factor satisfying
+every pair and wall constraint at once, and the radii are shaved by a further `1e-12` (costing `n·1e-12` of
+score, 2.7e-11 at n=27). Any candidate still violating a constraint by more than `1e-9` is dropped by the
+search loop, costing that iteration.
+
+Uniformity is what makes this cheap and also what makes it brittle: **one badly placed circle can zero the
+whole configuration**, since `s = 0` scales every radius to 0. That is exactly how N=97 collapsed, see
+[Known issues](#known-issues). Note too that this repair is float arithmetic; the tolerance-free guarantee
+comes from `exact_check.py`, run above for N=27.
 
 ### Generality: container and packed shape are both abstracted
 
-The container enters in **exactly one place**, the wall rows `r_i ≤ F_k(c_i)`, linear in `r` for any convex
-container. The inner LP therefore survives verbatim when the unit square becomes a disk or a triangle.
+In the *formulation*, the container enters in **exactly one place**: the wall rows `r_i ≤ F_k(c_i)`, where
+`F_k(c_i)` is the largest radius wall `k` allows at `c_i` and `w_i = min_k F_k(c_i)`. Those are linear in `r`
+for any convex container, so the inner LP survives verbatim when the unit square becomes a disk or a
+triangle (`--container`, three are implemented). The *code* touches the container in ~15 places for
+projection, sampling and bounding boxes; it is the LP structure that is untouched, not the call graph.
 
 The packed *object* is abstracted the same way. A circle becomes a homothet `c_i + r_i·K` of a
 centrally-symmetric convex body `K`, which enters in just two coefficient slots:
 
 ```text
 pair distance   hypot(·)  ->  γ_K(·)          the gauge (Minkowski functional) of K
-wall divisor    1         ->  h_K(a_k)        the support value of K in wall normal a_k
+wall divisor    1         ->  h_K(a_k)        support value of K in unit wall normal a_k
 ```
 
-Both stay linear in `r`, so the inner LP survives a change of object too.
+Both stay linear in `r`, so the inner LP survives a change of object too (`--shape`, four are implemented).
+From here on, read `d_ij` as `γ_K(c_i - c_j)`. The two axes do **not** compose: a non-ball shape asserts a
+polyhedral container, so disks-in-a-disk works and squares-in-a-disk is refused.
 
 **For polytopal `K` this gets strictly better.** Non-overlap `γ_K(c_i - c_j) ≥ r_i + r_j` is a
 *disjunction* of linear constraints, holding as soon as one facet normal separates the pair. Fix each
 pair's separating facet and the whole problem, **centres and radii together**, becomes one linear program.
-Iterating that is a genuine ascent, not a heuristic, for two reasons: every LP-feasible point is *truly*
-feasible (one separating facet suffices, since `γ_K` is the max over all of them), and the incoming
-configuration is itself LP-feasible, so the optimum can only improve. Each step is thus a global optimum
-within its combinatorial cell, needing no repair and no tolerance argument. A nonsmooth gauge then costs
-the search nothing, since the kinks that break SLSQP are exactly the combinatorial choices this makes
-explicit.
+Iterating that is a monotone ascent, not a heuristic: every LP-feasible point is *truly* feasible (one
+separating facet suffices, since `γ_K` is the max over all of them), and the incoming configuration is
+itself LP-feasible, so the optimum can only improve. Each step is a global optimum **within its
+combinatorial cell**, which is not global optimality; re-selecting facets and re-solving converges to a
+fixed point of that selection map. In the code SLSQP is skipped entirely on this path, and `repair()` still
+brackets it as a guard, with a `1e-11` stopping tolerance. Coverage is thin: the only evidence here is two
+self-test instances.
 
-### What was tried and rejected
+### A path that is implemented but disabled
 
-A trust-region QP restricted to the contact neighbourhood is implemented (`--sparse`) and is *correct*,
-but it is **not faster**: the extra passes it needs to re-earn the movement it gave up cost as much as the
-rows it saved. The source reports 0.1x / 1.0x / 1.1x at `n = 49 / 64 / 100` from a log not included in this
-repo; re-measuring `refine()` here gives **0.43x / 1.26x / 1.06x** at the same sizes. Different machine,
-same verdict, so it is off by default and the source explicitly declines to call it a speedup. The LP-side
-reduction above, which is exact and needs no trust region, stays on.
+This is a note about a development decision, not a runtime mechanism: nothing in the solver tries
+alternatives and discards them while packing.
+
+The idea was to shrink SLSQP's dense Jacobian the way the LP's rows were shrunk, by optimizing only over
+each circle's local contact neighbourhood inside a trust region that bounds how far centres may move. It is
+implemented, reachable via **`--sparse`**, and **off by default because it is not faster**: the extra passes
+needed to re-earn the movement the trust region gave up cost about what the skipped rows saved.
+
+Benchmarking `refine()` at `n = 49 / 64 / 100`, as a ratio of dense time to sparse time (so above 1 means
+sparse won):
+
+| source of measurement | n=49 | n=64 | n=100 |
+|---|---|---|---|
+| the solver's own log, not included in this repo | 0.1 | 1.0 | 1.1 |
+| re-measured here, seed 0, 3 repetitions | 0.43 | 1.26 | 1.06 |
+
+So it is roughly break-even at large `n` and clearly worse at `n = 49`, with the `n = 64` figure varying by
+seed. "Not faster" means no reliable win, not a uniform loss. Two caveats on the sparse path itself: its
+safety argument bounds centre motion per *coordinate* while the row-dropping margin is Euclidean, so
+correctness actually rests on the cutting-plane re-check that follows each solve plus `repair()`; and the
+committed repo contains no benchmark script, so the second row above is not reproducible from the repo as
+it stands. The LP-side reduction above is unaffected and stays on.
 
 ### Self-validation
 
 `python3 solver/pack.py --self-test` checks the machinery against facts rather than against itself: the
-dual identity above, a zero duality gap, the contact-graph reduction against a naive all-pairs LP, and, at
-full instance size, a **proved optimum**. For `n = k²` axis-aligned squares in the unit square,
-`max Σr = √n / 2` exactly (Cauchy-Schwarz on the area bound, attained by the `k × k` grid), and the search
-is asserted to reach it and never exceed it.
+dual identity above, a zero duality gap, the contact-graph reduction against a naive all-pairs LP, and a
+**proved optimum**. For `n = k²` axis-aligned squares of half-side `r` in the unit square,
+`max Σr = √n / 2` exactly (Cauchy-Schwarz on `Σ 4r_i² ≤ 1`, attained by the `k × k` grid); the search is
+asserted never to exceed it and to come within 1e-4. That runs at `k = 2, 3` only, so `n = 4` and `n = 9`,
+not at sweep sizes.
 
 ### What the N=27 win actually used
 
-The default path only: **multi-start joint SLSQP + exact-LP radii + uniform basin hopping**, with the
-exact contact-graph reduction on, Euclidean disks in the unit square, dense pair set. Not the dual-guided
+The default path only: **multi-start joint SLSQP + exact-LP radii + uniform subset hopping**, with the LP's
+contact-graph reduction on, Euclidean disks in the unit square, dense SLSQP pair set. Not the dual-guided
 hopping (`--dual`), not the trust-region QP (`--sparse`), and not the polytope joint-LP path. The stored
-config records this in `sota/ours/wins/csqv27.seed1.json` under `method`.
+config's `method` field reads `multi-start SLSQP + exact-LP radii + basin hopping`, which confirms the
+positive half; the flags are not serialized, so the negative half rests on `run_sweep.py` calling
+`search()` with those defaults.
 
 ## `.pck` format
 
@@ -287,5 +366,7 @@ Packomania's submission format, defined at
 
 ## Requirements
 
-Python 3 with **numpy** and **scipy** (`pip install -r requirements.txt`). scipy enables the SLSQP path;
-`pack.py` falls back to an LP-only path without it. `verify_pck.py` needs only the standard library.
+Python 3 with **numpy** and **scipy** (`pip install -r requirements.txt`). scipy supplies both `linprog` and
+`minimize`, so without it there is **no LP and no SLSQP**: `pack.py` degrades to an iterative
+radius-shrinking heuristic that is measurably worse and returns no duals. Treat scipy as required.
+`verify_pck.py` and `exact_check.py` need only the standard library.
