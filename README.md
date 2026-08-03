@@ -137,18 +137,17 @@ python3 solver/compare.py && git diff --stat sota/ours/comparison.md   # expect 
 
 ## Reproducibility notes
 
-- **The artifacts are fixed and verifiable; the search is stochastic.** The solver is multi-start over
-  random initial layouts under a *wall-clock* budget, so a given N's best is seed-, time- **and
-  machine-dependent**: a slower or busier machine completes fewer restarts in the same 120s and may land
-  in a worse local optimum. More time is not monotonically better either: at N=27, seed 1 (120s) found
-  the record-beating 2.685978684198 while seed 7 (300s) found a worse 2.683803. None of this weakens the
-  win: a packing is either valid or not, and the saved file is strictly feasible and exceeds the record
-  however it was found. Use more `--time`/`--seeds` for a more repeatable search.
+- **The artifacts are fixed and verifiable; the search is stochastic.** It is multi-start over random
+  layouts under a *wall-clock* budget, so a given N's best depends on seed, budget and machine speed, and
+  **the seed dominates**: at N=27, seed 1 at 120s found the record-beating 2.685978684198 while seed 7 at
+  300s found a worse 2.683803 on 2.5x the budget. That does not weaken the win, since the saved file is
+  strictly feasible and beats the record however it was found. To make a search more repeatable, vary the
+  seed (`run_sweep.py --seeds`, or `pack.py --seed`) rather than only raising `--time`; N=97 below is a case
+  where more time cannot help at all.
 - **What is stored where.** The sweep's 98 usable outputs are in `sota/ours/pck/csqv<N>.pck` (12 dp,
-  Packomania format). There is no file for N=97; see [Known issues](#known-issues).
-  For N=27, `sota/ours/wins/` also holds the full float64 config with its seed and budget
-  (`csqv27.seed1.json`) and the stored verifier output (`csqv27.verify.txt`). A fresh sweep additionally
-  writes `<out-dir>/json/out<N>.json`.
+  Packomania format), with no file for N=97. For N=27, `sota/ours/wins/` also holds the full float64 config
+  with its seed and budget (`csqv27.seed1.json`) and the stored verifier output (`csqv27.verify.txt`). A
+  fresh sweep additionally writes `<out-dir>/json/out<N>.json`.
 - **Rounding to 12 dp is safe.** It costs 3.1e-13 of Σr and the packing stays strictly feasible; the
   slacks above are measured on the rounded `.pck` itself, not on the unrounded solution.
 
@@ -157,15 +156,14 @@ python3 solver/compare.py && git diff --stat sota/ours/comparison.md   # expect 
 **The sweep produces no result at N=97**, so it covers 99 sizes and yields 98 packings: `results.csv` has a
 blank row with `feasible=0` and there is no `pck/csqv97.pck`.
 
-It is an **absorbing state**, not a hard instance. Replaying `search(97, seed=1, budget=120)` shows the
-whole chain: the first grid start refines to 532 coincident centre-pairs, so `repair()`'s single uniform
-scale factor hits 0 and zeroes every radius. That config violates nothing and scores 0, and since `best_s`
-starts at `-1.0`, **zero counts as an improvement** and becomes the incumbent. Every later iteration then
-hops from it, but `perturb` only moves 12-45% of the circles and scales their radii by 0.3, so the unmoved
-ones stay stacked and one leftover zero distance re-zeroes the whole configuration. Coincident pairs grew
-532 -> 1065 -> 1562 over the run's 4 candidates.
+It is an **absorbing state**, not a hard instance. Replaying `search(97, seed=1, budget=120)`: the first
+grid start refines to 532 coincident centre-pairs, so `repair()`'s single uniform scale factor hits 0 and
+zeroes every radius. That config violates nothing and scores 0, and since `best_s` starts at `-1.0`, **zero
+counts as an improvement** and becomes the incumbent. Every later iteration hops from it, but a hop moves
+only a subset of the circles, so the unmoved ones stay stacked and one leftover zero distance re-zeroes
+everything. Coincident pairs rose with every one of the run's 4 candidates.
 
-So the budget bought one real attempt, not four. n=97 is otherwise fine: a different grid start refines
+So the budget bought one real attempt, not four, and n=97 is otherwise fine: a different grid start refines
 cleanly to 5.121755, only 1.04% under the record. **More time on seed 1 cannot help** since the state is
 absorbing; more seeds can, because each seed is an independent stream with its own first candidate.
 

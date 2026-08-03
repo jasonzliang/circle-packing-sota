@@ -67,15 +67,14 @@ SLSQP refine + feasibility repair, and keeps the best. This repeats **until the 
 python3 ../../solver/pack.py -n 27 --seed 1 --time 120 -o out27.json
 ```
 
-**Reproducibility caveat (important).** The budget is *wall-clock*, so the number of restarts that fit in
-120s depends on machine speed and load. `(seed=1, 120s)` is deterministic in its RNG stream, but the
-*result* depends on how many restarts complete: on a slower/busier machine seed 1 may land in a different
-(possibly worse) local optimum. More time is **not** monotonically better either: a re-run at **seed 7,
+**Reproducibility caveat (important).** The budget is *wall-clock*, so `(seed=1, 120s)` is deterministic in
+its RNG stream but not in its *result*: a slower or busier machine completes fewer restarts and may land in
+a different, possibly worse local optimum. The seed matters more than the budget. A re-run at **seed 7,
 300s** found a *worse* config (2.683803447573, re-confirmed on a second machine: 1017 starts, 1852 hops)
-because it explored a different basin. The takeaway: the search is a stochastic multi-start, so a specific
-win is tied to `(seed, budget, machine)`, but the saved packing (`wins/csqv27.pck`) is a fixed artifact
-that is strictly feasible and beats the record regardless of how it was found, and anyone can confirm
-that with `verify_pck.py`.
+despite 2.5x the time, because it explored a different basin. Note this varies both seed and budget, so it
+shows the seed dominating rather than more time being harmful in itself. Either way a specific win is tied
+to `(seed, budget, machine)`, while the saved packing (`wins/csqv27.pck`) is a fixed artifact that is
+strictly feasible and beats the record regardless of how it was found.
 
 ## Contents
 
