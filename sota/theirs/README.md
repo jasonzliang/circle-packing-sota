@@ -1,9 +1,9 @@
-# sota — Packomania reference records (the SOTA to beat)
+# sota/theirs: Packomania reference records (the SOTA to beat)
 
 `packomania_csqv_records.csv` holds the best-known **sum of radii** for packing **N variable-sized circles
 in a unit square** (maximize Σr), for N = 1..100.
 
-- **Source:** https://www.packomania.com/csqv/csqv.html — the `csqv` table.
+- **Source:** https://www.packomania.com/csqv/csqv.html (the `csqv` table).
 - **Maintainer:** Dr. Eckard Specht, Otto-von-Guericke-Universität Magdeburg.
 - **Fetched:** 2026-08-03 (the table was last refreshed 01-Aug-2026).
 - These are **best-known** values, **not proven optima**.
@@ -30,11 +30,11 @@ The `csqv` table mixes a recent AI-optimized frontier with much older entries. P
 **[5]** = Yiping Wang; **[7]** = Sebastian Pokutta; **[8]** = Haowei Lin, `packing_records`, mid-July 2026;
 **[10]** = Everett Dutton, private communication, July 2026.
 
-- The strongest recent entries are credited to **LLM/AI-driven and contributed** work — e.g. **N=26 =
+- The strongest recent entries are credited to **LLM/AI-driven and contributed** work: e.g. **N=26 =
   2.635983** is now credited to **Haowei Lin [8]** (superseding Yiping Wang [5]), and Everett Dutton [10]
   supplied ~25 improvements on 01-Aug-2026. These are hard to beat.
 - Other entries (e.g. **N=27 = 2.685350025228**) still carry **reference [1] = D. W. Cantrell, sci.math
-  forum 2011/12** — long-standing values that a good modern optimizer can sometimes improve (we beat
+  forum 2011/12**, long-standing values that a good modern optimizer can sometimes improve (we beat
   N=27; see `../ours/`).
 
 Note the table is actively moving: the changelog shows record churn through late July / 01-Aug-2026, so

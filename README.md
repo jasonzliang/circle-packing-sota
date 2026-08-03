@@ -4,14 +4,14 @@ An **evolved circle-packing solver**, extracted from a self-improvement (AI-Gene
 experiment and run across a range of N, compared to the authoritative **Packomania** records for:
 
 > **Pack N variable-sized circles in a unit square so that no two overlap and all stay inside the square,
-> maximizing the sum of the radii Σr** — the AlphaEvolve / ShinkaEvolve benchmark (Packomania's `csqv` table).
+> maximizing the sum of the radii Σr**, the AlphaEvolve / ShinkaEvolve benchmark (Packomania's `csqv` table).
 
 ## Result in one paragraph
 
 Across N the solver **reproduces the known optima to ~1e-11 on small/mid N** and lands a fraction of a
 percent under the heavily-optimized larger records (that gap is our compute budget, not the record's
 ceiling). It also found at least one **strictly-feasible packing that beats a current Packomania
-best-known** — N=27, Σr = 2.685978684198 vs the listed 2.685350025228 (+6.3e-4). That record is a
+best-known**: N=27, Σr = 2.685978684198 vs the listed 2.685350025228 (+6.3e-4). That record is a
 long-standing 2011/12 entry (reference [1], D. W. Cantrell, sci.math forum), not one of the recent
 AI-optimized entries (e.g. N=26 = 2.635983, credited to Haowei Lin [8] in July 2026, which we do
 **not** beat). The authoritative, always-current verdict is `sota/ours/comparison.md`; **every claimed win
@@ -39,12 +39,12 @@ record          : 2.685350025228
 ```
 
 `verify_pck.py` is **pure standard library and shares no code with the solver**, so it is a genuine
-independent check — of our packings or anyone else's. It re-reads the coordinates and confirms from
+independent check of our packings or anyone else's. It re-reads the coordinates and confirms from
 scratch that there are exactly N circles, all inside the square, none overlapping, and what Σr really
 sums to. Exits non-zero on any failure, so it works in a script. A copy of the output above is stored in
 [`sota/ours/wins/csqv27.verify.txt`](sota/ours/wins/csqv27.verify.txt) to diff against.
 
-The slacks are small but **positive** — strictly feasible, not feasible-within-tolerance — and the win
+The slacks are small but **positive** (strictly feasible, not feasible-within-tolerance), and the win
 margin (+6.29e-4) is ~6×10⁸ times larger than the smallest of them, so this is not numerical noise.
 
 ## Reproduce the N=27 result from scratch
@@ -55,7 +55,7 @@ python3 solver/pack.py -n 27 --seed 1 --time 120 -o out27.json
 ```
 
 That is the exact invocation behind the win: **seed 1, 120 s**. It is a stochastic search, so a re-run is
-not pass/fail — see the caveat below.
+not pass/fail; see the caveat below.
 
 ## Reproduce the whole sweep (one command)
 
@@ -77,7 +77,7 @@ for f in repro/pck/csqv*.pck; do python3 solver/verify_pck.py "$f" >/dev/null ||
 ```
 
 With no `--results`/`--out`, `compare.py` instead regenerates the committed `sota/ours/comparison.md`
-from the committed `sota/ours/results.csv` — a useful check in itself, since it should come out
+from the committed `sota/ours/results.csv`, a useful check in itself, since it should come out
 byte-identical to what is in the repo.
 
 ## Reproducibility notes (read before trusting a "win")
@@ -85,7 +85,7 @@ byte-identical to what is in the repo.
 - **The artifacts are fixed and verifiable; the search is stochastic.** The solver is multi-start over
   random initial layouts under a *wall-clock* budget, so a given N's best is seed-, time- **and
   machine-dependent**: a slower or busier machine completes fewer restarts in the same 120s and may land
-  in a worse local optimum. More time is not monotonically better either — at N=27, seed 1 (120s) found
+  in a worse local optimum. More time is not monotonically better either: at N=27, seed 1 (120s) found
   the record-beating 2.685978684198 while seed 7 (300s) found a worse 2.683803. None of this weakens the
   win: a packing is either valid or not, and the saved file is strictly feasible and exceeds the record
   however it was found. Use more `--time`/`--seeds` for a more repeatable search.
@@ -93,7 +93,7 @@ byte-identical to what is in the repo.
   For N=27, `sota/ours/wins/` also holds the full float64 config with its seed and budget
   (`csqv27.seed1.json`) and the stored verifier output (`csqv27.verify.txt`). A fresh sweep additionally
   writes `<out-dir>/json/out<N>.json`.
-- **Rounding to 12 dp is safe.** It costs 3.1e-13 of Σr and the packing stays strictly feasible — the
+- **Rounding to 12 dp is safe.** It costs 3.1e-13 of Σr and the packing stays strictly feasible; the
   slacks above are measured on the rounded `.pck` itself, not on the unrounded solution.
 
 ## Layout
@@ -119,7 +119,7 @@ email_draft.md   # a drafted submission email to Packomania's maintainer (git-ig
 program-search / self-improvement process (an LLM-driven coding loop); it is not hand-written for this
 repo. The optimizer:
 
-1. **holds the circle centres fixed and solves an exact linear program for the radii** — Σr is linear in r
+1. **holds the circle centres fixed and solves an exact linear program for the radii**: Σr is linear in r
    for a fixed layout (each radius ≤ its distance to the four walls, and for every pair r_i + r_j ≤ the
    centre distance), so the best radii for any layout are found exactly and instantly;
 2. wraps that in a joint **SLSQP** search over the centres (analytic Jacobians, diverse multi-start) with
@@ -135,11 +135,11 @@ Packomania's submission format, defined at
 - line 1 = radius of the **largest** circle, as a bare number (no letters, no `=`);
 - line 2 = author name(s), comma-separated if several;
 - line 3 onward = one `x y r` per circle, whitespace-separated, **sorted by increasing radius**;
-- the square container is fixed at **side 1, centred at (0,0)** — coordinates live in `[-0.5, 0.5]²` and
+- the square container is fixed at **side 1, centred at (0,0)**, so coordinates live in `[-0.5, 0.5]²` and
   must be rescaled to fit. We emit 12 decimals, matching Packomania's own published `csqv` coordinates.
 
 **Two conventions coexist in this repo:** `.pck` files are origin-centred as above, while the solver's
-`.json` configs use the `[0, 1]²` corner convention (see `container.vertices`) — convert by subtracting
+`.json` configs use the `[0, 1]²` corner convention (see `container.vertices`); convert by subtracting
 0.5. `verify_pck.py --corner`/`--side` reads either.
 
 ## Requirements

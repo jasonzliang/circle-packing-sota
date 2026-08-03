@@ -1,10 +1,10 @@
-# sota — the state-of-the-art comparison (both sides, one place)
+# sota: the state-of-the-art comparison (both sides, one place)
 
 Both sides of the comparison for **N variable circles in a unit square, maximize Σr**:
 
-- [`theirs/`](theirs/) — the Packomania `csqv` **best-known records** (N=1..100), the reference to beat
+- [`theirs/`](theirs/): the Packomania `csqv` **best-known records** (N=1..100), the reference to beat
   (verified four independent ways; see `theirs/README.md`).
-- [`ours/`](ours/) — **our** evolved solver's results across N=2..100: the comparison table, all 99
+- [`ours/`](ours/): **our** evolved solver's results across N=2..100: the comparison table, all 99
   packings, and the one record-beating packing (N=27) in [`ours/wins/csqv27.pck`](ours/wins/csqv27.pck).
 
 **Headline:** 26 ties, **1 strict win (N=27)**, the rest under-searched at the sweep's per-N budget. Full
