@@ -75,6 +75,28 @@ things to note. `--n 27` is **required**, because it defaults to 26 and a count 
 are not comparable to `verify_pck.py`'s linear ones above; it also reads the full-precision `.json` rather
 than the `.pck`.
 
+## `.pck` format
+
+Packomania's submission format, defined at
+[packomania.com/hints.html](https://www.packomania.com/hints.html):
+
+- line 1 = radius of the **largest** circle, as a bare number (no letters, no `=`);
+- line 2 = author name(s), comma-separated if several;
+- line 3 onward = one `x y r` per circle, whitespace-separated, **sorted by increasing radius**;
+- the square container is fixed at **side 1, centred at (0,0)**, so coordinates live in `[-0.5, 0.5]²` and
+  must be rescaled to fit. We emit 12 decimals, matching Packomania's own published `csqv` coordinates.
+
+**Two conventions coexist in this repo:** `.pck` files are origin-centred as above, while the solver's
+`.json` configs use the `[0, 1]²` corner convention (see `container.vertices`); convert by subtracting
+0.5. `verify_pck.py --corner`/`--side` reads either.
+
+## Requirements
+
+Python 3 with **numpy** and **scipy** (`pip install -r requirements.txt`). scipy supplies both `linprog` and
+`minimize`, so without it there is **no LP and no SLSQP**: `pack.py` degrades to an iterative
+radius-shrinking heuristic that is measurably worse and returns no duals. Treat scipy as required.
+`verify_pck.py` and `exact_check.py` need only the standard library.
+
 ## Reproduce the N=27 result from scratch
 
 ```bash
@@ -185,10 +207,23 @@ repo. `n` is a parameter throughout, so the same code runs at any N.
 > (`artifacts/iter3/speedup.log`). None exist here. Read them as provenance, not instructions; every
 > runnable entry point is `solver/*.py`.
 
-**Notation.** `c_i = (x_i, y_i)` and `r_i` are circle `i`'s centre and radius; `d_ij = |c_i - c_j|`;
-`w_i` is the distance from `c_i` to the nearest wall; the objective is `Σr = Σ_i r_i`.
+### What the N=27 win actually used
+
+Read this first, because it says which of the mechanisms below matter to the record claim and which are
+context. The win came from the **default path only**: multi-start joint SLSQP over `(x, y, r)`, exact-LP
+radii, uniform subset hopping, the LP's contact-graph reduction on, Euclidean disks in the unit square, and
+a dense SLSQP pair set. So the next four sections are the ones that produced it.
+
+It did **not** use the dual-guided hopping (`--dual`), the trust-region QP (`--sparse`), or the polytope
+joint-LP path. The stored config's `method` field reads `multi-start SLSQP + exact-LP radii + basin
+hopping`, and its `container` / `shape` fields record `unit_square` / `ball`; since `method` differs on the
+polytope path, the file rules that path out on its own. Only `--dual` and `--sparse` go unserialized, so
+those two rest on `run_sweep.py` calling `search()` with its defaults.
 
 ### The exactly solvable inner layer
+
+**Notation.** `c_i = (x_i, y_i)` and `r_i` are circle `i`'s centre and radius; `d_ij = |c_i - c_j|`;
+`w_i` is the distance from `c_i` to the nearest wall; the objective is `Σr = Σ_i r_i`.
 
 Maximizing `Σr` over centres *and* radii is a nonlinear program, but freezing the centres leaves
 
@@ -254,6 +289,19 @@ argument, so dropping rows without imposing `r ≤ u` lets the solver inflate ra
 deleted constraints. `--self-test` checks the reduced LP against a naive all-pairs reference and measures
 **a worst gap of 4.4e-16 while keeping as few as 5.9% of the rows**.
 
+### Strict feasibility by construction, not by tolerance
+
+Nothing is trusted until `repair()` makes it strictly feasible: centres are projected into the container,
+then a **single uniform radius scale** is applied, `min(1, s)` where `s` is the largest factor satisfying
+every pair and wall constraint at once, and the radii are shaved by a further `1e-12` (costing `n·1e-12` of
+score, 2.7e-11 at n=27). Any candidate still violating a constraint by more than `1e-9` is dropped by the
+search loop, costing that iteration.
+
+Uniformity is what makes this cheap and also what makes it brittle: **one badly placed circle can zero the
+whole configuration**, since `s = 0` scales every radius to 0. That is exactly how N=97 collapsed, see
+[Known issues](#known-issues). Note too that this repair is float arithmetic; the tolerance-free guarantee
+comes from `exact_check.py`, run above for N=27.
+
 ### Innovation: LP duals as a search signal
 
 The radius LP is solved for its **duals** as well as its optimum (`lam` and `mu` in the code):
@@ -277,20 +325,21 @@ move both ends, spending hops on the load-bearing contacts instead of on circles
 boundary-limited *at their current position*. Opt-in via `--dual`. No measurement in this repo shows it
 beats uniform hopping, and the N=27 win did not use it.
 
-### Strict feasibility by construction, not by tolerance
+### Self-validation
 
-Nothing is trusted until `repair()` makes it strictly feasible: centres are projected into the container,
-then a **single uniform radius scale** is applied, `min(1, s)` where `s` is the largest factor satisfying
-every pair and wall constraint at once, and the radii are shaved by a further `1e-12` (costing `n·1e-12` of
-score, 2.7e-11 at n=27). Any candidate still violating a constraint by more than `1e-9` is dropped by the
-search loop, costing that iteration.
+`python3 solver/pack.py --self-test` checks the machinery against facts rather than against itself: the
+dual identity above, a zero duality gap, the contact-graph reduction against a naive all-pairs LP, and a
+**proved optimum**. For `n = k²` axis-aligned squares of half-side `r` in the unit square,
+`max Σr = √n / 2` exactly (Cauchy-Schwarz on `Σ 4r_i² ≤ 1`, attained by the `k × k` grid); the search is
+asserted never to exceed it and to come within 1e-4. That runs at `k = 2, 3` only, so `n = 4` and `n = 9`,
+not at sweep sizes.
 
-Uniformity is what makes this cheap and also what makes it brittle: **one badly placed circle can zero the
-whole configuration**, since `s = 0` scales every radius to 0. That is exactly how N=97 collapsed, see
-[Known issues](#known-issues). Note too that this repair is float arithmetic; the tolerance-free guarantee
-comes from `exact_check.py`, run above for N=27.
+### Beyond the record run
 
-### Generality: container and packed shape are both abstracted
+Everything below is implemented and exercised by `--self-test`, but **did not contribute to the N=27
+result**. Skip it unless you are interested in the solver as a solver.
+
+#### Generality: container and packed shape are both abstracted
 
 In the *formulation*, the container enters in **exactly one place**: the wall rows `r_i ≤ F_k(c_i)`, where
 `F_k(c_i)` is the largest radius wall `k` allows at `c_i` and `w_i = min_k F_k(c_i)`. Those are linear in `r`
@@ -321,7 +370,7 @@ fixed point of that selection map. In the code SLSQP is skipped entirely on this
 brackets it as a guard, with a `1e-11` stopping tolerance. Coverage is thin: the only evidence here is two
 self-test instances.
 
-### A path that is implemented but disabled
+#### A path that is implemented but disabled
 
 This is a note about a development decision, not a runtime mechanism: nothing in the solver tries
 alternatives and discards them while packing.
@@ -345,44 +394,3 @@ safety argument bounds centre motion per *coordinate* while the row-dropping mar
 correctness actually rests on the cutting-plane re-check that follows each solve plus `repair()`; and the
 committed repo contains no benchmark script, so the second row above is not reproducible from the repo as
 it stands. The LP-side reduction above is unaffected and stays on.
-
-### Self-validation
-
-`python3 solver/pack.py --self-test` checks the machinery against facts rather than against itself: the
-dual identity above, a zero duality gap, the contact-graph reduction against a naive all-pairs LP, and a
-**proved optimum**. For `n = k²` axis-aligned squares of half-side `r` in the unit square,
-`max Σr = √n / 2` exactly (Cauchy-Schwarz on `Σ 4r_i² ≤ 1`, attained by the `k × k` grid); the search is
-asserted never to exceed it and to come within 1e-4. That runs at `k = 2, 3` only, so `n = 4` and `n = 9`,
-not at sweep sizes.
-
-### What the N=27 win actually used
-
-The default path only: **multi-start joint SLSQP + exact-LP radii + uniform subset hopping**, with the LP's
-contact-graph reduction on, Euclidean disks in the unit square, dense SLSQP pair set. Not the dual-guided
-hopping (`--dual`), not the trust-region QP (`--sparse`), and not the polytope joint-LP path. The stored
-config's `method` field reads `multi-start SLSQP + exact-LP radii + basin hopping`, and its `container` and
-`shape` fields record `unit_square` / `ball`. Since the `method` string differs on the polytope path, the
-file rules that path out on its own. Only `--dual` and `--sparse` go unserialized, so those two rest on
-`run_sweep.py` calling `search()` with its defaults.
-
-## `.pck` format
-
-Packomania's submission format, defined at
-[packomania.com/hints.html](https://www.packomania.com/hints.html):
-
-- line 1 = radius of the **largest** circle, as a bare number (no letters, no `=`);
-- line 2 = author name(s), comma-separated if several;
-- line 3 onward = one `x y r` per circle, whitespace-separated, **sorted by increasing radius**;
-- the square container is fixed at **side 1, centred at (0,0)**, so coordinates live in `[-0.5, 0.5]²` and
-  must be rescaled to fit. We emit 12 decimals, matching Packomania's own published `csqv` coordinates.
-
-**Two conventions coexist in this repo:** `.pck` files are origin-centred as above, while the solver's
-`.json` configs use the `[0, 1]²` corner convention (see `container.vertices`); convert by subtracting
-0.5. `verify_pck.py --corner`/`--side` reads either.
-
-## Requirements
-
-Python 3 with **numpy** and **scipy** (`pip install -r requirements.txt`). scipy supplies both `linprog` and
-`minimize`, so without it there is **no LP and no SLSQP**: `pack.py` degrades to an iterative
-radius-shrinking heuristic that is measurably worse and returns no duals. Treat scipy as required.
-`verify_pck.py` and `exact_check.py` need only the standard library.
