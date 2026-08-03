@@ -8,7 +8,8 @@ experiment and run across a range of N, compared to the authoritative **Packoman
 
 ## Result in one paragraph
 
-Across N the solver **reproduces the known optima to ~1e-11 on small/mid N** and lands a fraction of a
+Across N the solver **reproduces 26 of the known records to within 4e-11** (worst 3.4e-11 at N=29, median
+1.5e-11) and lands a fraction of a
 percent under the heavily-optimized larger records (that gap is our compute budget, not the record's
 ceiling). It also found at least one **strictly-feasible packing that beats a current Packomania
 best-known**: N=27, Σr = 2.685978684198 vs the listed 2.685350025228 (+6.3e-4). That record is a
@@ -131,7 +132,6 @@ sota/          the SOTA comparison, both sides in one place:
                  pck/           # all 99 packings (complete set; csqv27 also here)
                  chase/         # 12 near-misses re-run at 240s over seeds 1-4 (ties the record at 5)
 reproduce.sh  requirements.txt
-email_draft.md   # a drafted submission email to Packomania's maintainer (git-ignored, local only)
 ```
 
 ## Solver Algorithm
@@ -139,6 +139,13 @@ email_draft.md   # a drafted submission email to Packomania's maintainer (git-ig
 `solver/pack.py` (+ `container.py`, `shape.py`, `exact_check.py`) is used **unchanged** as produced by an
 automated program-search / self-improvement loop (an LLM-driven coding process). It is not hand-written
 for this repo. `n` is a parameter throughout, so the same code runs at any N without modification.
+
+> **On the source's internal references.** Because those four files are verbatim copies, their docstrings
+> still address the layout of the experiment that produced them: they mention `tools/*.py` paths, `bench1`
+> ... `bench5` instances, `iter 4`/`iter 5` development stages, and one measurement log
+> (`artifacts/iter3/speedup.log`). None of those exist here, and the stale names are the price of not
+> touching the code. Read them as provenance, not as instructions. The runnable entry points are the ones
+> in this README, all of which are `solver/*.py`.
 
 ### The structural fact everything rests on
 
