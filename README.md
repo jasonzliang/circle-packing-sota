@@ -15,11 +15,11 @@ long-standing 2011/12 entry (reference [1], D. W. Cantrell, sci.math forum), not
 AI-optimized entries (e.g. N=26 = 2.635983, credited to Haowei Lin [8] in July 2026, which we do **not**
 beat).
 
-**The other 72 of 99 sizes fall short, several by more than 1%.** 43 gaps exceed 0.5% and 27 exceed 1%,
-the worst genuine one being N=92 at 2.29%. **N=97 failed outright**: the sweep emitted 97 circles of
-radius zero, and `results.csv` still records it as feasible (see [Known issues](#known-issues)). Per-N
-detail is in `sota/ours/comparison.md`; **every claimed win is independently re-verifiable from its `.pck`
-with `solver/verify_pck.py`.**
+**The other 72 of 99 sizes fall short, several by more than 1%.** Excluding the degenerate N=97 below, 42
+gaps exceed 0.5% and 26 exceed 1%, the worst being N=92 at 2.29%. **N=97 failed outright**: the sweep
+emitted 97 circles of radius zero, and `results.csv` still records it as feasible (see
+[Known issues](#known-issues)). Per-N detail is in `sota/ours/comparison.md`; **every claimed win is
+independently re-verifiable from its `.pck` with `solver/verify_pck.py`.**
 
 ## Verify the N=27 result (30 seconds, no dependencies, no solver)
 
@@ -70,10 +70,10 @@ python3 solver/exact_check.py sota/ours/wins/csqv27.seed1.json --n 27
 ```
 
 A configuration that passes this is feasible **as a matter of arithmetic fact, not of tolerance**. Two
-things to note. `--n 27` is **required**: it defaults to 26, and on a mismatch the tool reports
-`EXACT_FEASIBLE: False` while still exiting 0, so read the text, not the exit status. And its slacks are
-**squared** (`d² - s²`), so they are not directly comparable to `verify_pck.py`'s linear ones above; it
-also reads the full-precision `.json` rather than the `.pck`.
+things to note. `--n 27` is **required**, because it defaults to 26 and a count mismatch is reported as
+`EXACT_FEASIBLE: False` (exit 1, so it is script-safe). And its slacks are **squared** (`d² - s²`), so they
+are not comparable to `verify_pck.py`'s linear ones above; it also reads the full-precision `.json` rather
+than the `.pck`.
 
 ## Reproduce the N=27 result from scratch
 
@@ -82,9 +82,10 @@ pip install -r requirements.txt                              # numpy + scipy
 python3 solver/pack.py -n 27 --seed 1 --time 120 -o out27.json
 ```
 
-That is the exact invocation behind the win: **seed 1, 120 s**. On the machine used here it reproduces the
-stored configuration bit-for-bit, first reaching the winning value at ~109s of the 120s budget. It is a
-stochastic search, though, so a re-run elsewhere is not pass/fail; see the caveat below.
+That is the exact invocation behind the win: **seed 1, 120 s**. It has reproduced the stored configuration
+bit-for-bit on two different machines, though at different points in the budget (the winning value first
+appeared at 91s on one and 109s on the other), which is what you would expect from a wall-clock budget. It
+is a stochastic search, so a re-run elsewhere is not pass/fail; see the caveat below.
 
 ## Reproduce the whole sweep (one command)
 
@@ -133,19 +134,25 @@ python3 solver/compare.py && git diff --stat sota/ours/comparison.md   # expect 
 ## Known issues
 
 **N=97 in the committed sweep is a failure, not a result.** `sota/ours/pck/csqv97.pck` contains 97 circles
-of radius exactly zero, Σr = 0, a 100% gap that `comparison.md` duly reports as its largest. The cause is
-in `repair()`: it rescales all radii by a *single* uniform factor `s = min_i(wall_cap_i / r_i)`, so one
-circle landing exactly on a wall (`wall_cap = 0`) with `r > 0` drives `s` to 0 and **zeroes every radius in
-the configuration**.
+of radius exactly zero, Σr = 0, a 100% gap that `comparison.md` duly reports as its largest.
 
-Two consequences worth stating plainly:
+What went wrong is upstream of `repair()`. SLSQP diverged: the saved file has only **43 distinct centres for
+97 circles**, with 58 of them stacked exactly on the four corners (27, 16, 11 and 4). `repair()` then
+rescales all radii by one uniform factor, the smallest of the wall ratios `wall_cap_i / r_i` and the pair
+ratios `d_ij / (r_i + r_j)`. With coincident centres some `d_ij` is exactly 0, so that factor is 0 and
+**every radius in the configuration goes to zero**. Uniform rescaling is all-or-nothing, so one degenerate
+cluster is enough.
 
-- `results.csv` records N=97 as `feasible=1`, and `verify_pck.py` reports `STRICTLY FEASIBLE: True` with
+Three consequences worth stating plainly:
+
+- `results.csv` records N=97 as `feasible=1`, and `verify_pck.py` reports `STRICTLY FEASIBLE: True`,
   exit 0. That is *correct*: zero-radius circles overlap nothing and stay inside the square. But it means
   **the verification harness cannot detect a collapsed packing**, and `reproduce.sh`'s "fails loudly if any
-  is infeasible" would not catch this. A useful sweep should also assert Σr is close to the reference.
-- N=97 is a distinct failure mode from the other 71 shortfalls, which really are under-search. Do not read
-  it as evidence about compute budget either way.
+  is infeasible" would not catch this. A useful sweep should also assert Σr is near the reference.
+- N=97 is *also* under-searched, so it is not purely a collapse. One `refine()` call at n=97 takes ~9s
+  here, so the 120s budget evaluates only ~13 candidates, against ~1170 at n=27. The multi-start never got
+  the attempts it would need to escape a bad basin.
+- More time or seeds would likely fix it. Nothing here suggests the record is unreachable at N=97.
 
 This does not touch the N=27 claim, which is a separate file verified two independent ways above.
 
@@ -173,7 +180,8 @@ automated program-search / self-improvement loop (an LLM-driven coding process),
 repo. `n` is a parameter throughout, so the same code runs at any N.
 
 > **Stale internal references.** Being verbatim copies, these files' docstrings still address the
-> originating experiment's layout: `tools/*.py`, `bench1`...`bench5`, `iter 4`/`iter 5`, and one log
+> originating experiment's layout: `tools/*.py` paths, a `bench/` tree (`bench/verify.py`,
+> `bench/bench1/best.json`), `bench1`...`bench5` instances, `iter 4`/`iter 5` stages, and one log
 > (`artifacts/iter3/speedup.log`). None exist here. Read them as provenance, not instructions; every
 > runnable entry point is `solver/*.py`.
 
@@ -192,8 +200,15 @@ subject to   r_i + r_j  ≤  d_ij        for every pair (i, j)
 ```
 
 a **pure linear program in `r`**, solved exactly and in milliseconds, with no gradient noise and no
-step-size tuning. Every candidate gets that LP polish before it is scored, which reduces the whole problem
-to a search over *centres* alone.
+step-size tuning. That is what lets the search treat the problem as a search over *centres*: for any layout
+the best radii are one LP away.
+
+One implementation caveat, small but worth knowing: `refine()` computes the LP radii each round and keeps
+them only when they beat what SLSQP already had, otherwise it stops and `repair()` rescales SLSQP's radii
+instead. SLSQP's raw sum is higher surprisingly often (13 of 24 trial starts at n=27) because its output can
+be a hair infeasible, so the scored radii are not *always* the LP optimum for the final centres. The
+discrepancy is immaterial in practice: 12 of those 13 were under 1e-12, i.e. below the `1e-12` shave
+`repair()` applies anyway.
 
 ### The outer search
 
@@ -280,7 +295,7 @@ comes from `exact_check.py`, run above for N=27.
 In the *formulation*, the container enters in **exactly one place**: the wall rows `r_i ≤ F_k(c_i)`, where
 `F_k(c_i)` is the largest radius wall `k` allows at `c_i` and `w_i = min_k F_k(c_i)`. Those are linear in `r`
 for any convex container, so the inner LP survives verbatim when the unit square becomes a disk or a
-triangle (`--container`, three are implemented). The *code* touches the container in ~15 places for
+triangle (`--container`, three are implemented). The *code* touches the container handle in 19 places for
 projection, sampling and bounding boxes; it is the LP structure that is untouched, not the call graph.
 
 The packed *object* is abstracted the same way. A circle becomes a homothet `c_i + r_i·K` of a
@@ -345,9 +360,10 @@ not at sweep sizes.
 The default path only: **multi-start joint SLSQP + exact-LP radii + uniform subset hopping**, with the LP's
 contact-graph reduction on, Euclidean disks in the unit square, dense SLSQP pair set. Not the dual-guided
 hopping (`--dual`), not the trust-region QP (`--sparse`), and not the polytope joint-LP path. The stored
-config's `method` field reads `multi-start SLSQP + exact-LP radii + basin hopping`, which confirms the
-positive half; the flags are not serialized, so the negative half rests on `run_sweep.py` calling
-`search()` with those defaults.
+config's `method` field reads `multi-start SLSQP + exact-LP radii + basin hopping`, and its `container` and
+`shape` fields record `unit_square` / `ball`. Since the `method` string differs on the polytope path, the
+file rules that path out on its own. Only `--dual` and `--sparse` go unserialized, so those two rest on
+`run_sweep.py` calling `search()` with its defaults.
 
 ## `.pck` format
 
