@@ -75,8 +75,8 @@ sota/          the SOTA comparison, both sides in one place:
   ours/          results.csv  comparison.md  pck/csqv<N>.pck  json/out<N>.json
                  wins/          # the N=27 win (.pck, full-precision .json, verify.txt) + README
                  chase/         # supplementary harder re-runs of the closest near-misses
-submission/    README.md        # how/whom to submit to (email draft is git-ignored, local only)
 reproduce.sh  requirements.txt
+email_draft.md   # a drafted submission email to Packomania's maintainer (git-ignored, local only)
 ```
 
 ## Solver provenance
