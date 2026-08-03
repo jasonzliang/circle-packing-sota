@@ -68,7 +68,9 @@ def main():
             if rec is None:
                 continue
             v, d = verdict(ours, rec)
-            gap = (rec - ours) / rec * 100.0
+            # Signed like Δ: negative when we are below the record, positive when above. The reverse
+            # convention made "gap %" positive on a shortfall while Δ on the same row was negative.
+            gap = (ours - rec) / rec * 100.0
             rows.append((n, ours, rec, d, gap, v))
             (wins if v == "WIN" else ties if v == "tie" else below).append(n)
     rows.sort()   # the parallel sweep completes out of order; present by N
@@ -82,10 +84,12 @@ def main():
         "|---:|---:|---:|---:|---:|:--|",
     ]
     for n, ours, rec, d, gap, v in rows:
-        mark = {"WIN": "**WIN** 🏆", "tie": "tie", "below": f"−{gap:.4f}%"}[v]
+        mark = {"WIN": "**WIN** 🏆", "tie": "tie", "below": f"{gap:.4f}%"}[v]
         lines.append(f"| {n} | {ours:.12f} | {rec:.12f} | {d:+.2e} | {gap:+.4f} | {mark} |")
     if below:
-        worst = max(rows, key=lambda t: t[4]); best = min((r for r in rows if r[5] == "below"), key=lambda t: t[4], default=None)
+        # gap is now negative below the record, so the largest shortfall is the minimum and the
+        # closest-below is the maximum among the below rows.
+        worst = min(rows, key=lambda t: t[4]); best = max((r for r in rows if r[5] == "below"), key=lambda t: t[4], default=None)
         lines += ["", f"Closest below: N={best[0]} ({best[4]:+.4f}%). Largest gap: N={worst[0]} ({worst[4]:+.4f}%)." if best else ""]
     open(a.out, "w").write("\n".join(lines) + "\n")
     print("\n".join(lines))
