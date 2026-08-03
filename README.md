@@ -14,55 +14,87 @@ ceiling). It also found at least one **strictly-feasible packing that beats a cu
 best-known** — N=27, Σr = 2.685978684198 vs the listed 2.685350025228 (+6.3e-4). That record is a
 long-standing 2011/12 entry (reference [1], D. W. Cantrell, sci.math forum), not one of the recent
 AI-optimized entries (e.g. N=26 = 2.635983, credited to Haowei Lin [8] in July 2026, which we do
-**not** beat). The authoritative, always-current verdict is `sota/ours/comparison.md`; **every claimed
-win is independently re-verifiable
-from its `.pck` with `solver/verify_pck.py` (see below).**
+**not** beat). The authoritative, always-current verdict is `sota/ours/comparison.md`; **every claimed win
+is independently re-verifiable from its `.pck` with `solver/verify_pck.py` (see below).**
 
-## Reproduce (one command)
+## Verify the N=27 result (30 seconds, no dependencies, no solver)
+
+**The win does not depend on re-running the search.** The packing is a fixed file, and checking it is
+pure arithmetic on 27 (x, y, r) triples. From a clean checkout:
 
 ```bash
-pip install -r requirements.txt          # numpy + scipy
+python3 solver/verify_pck.py sota/ours/wins/csqv27.pck --record 2.685350025228
+```
+
+Expected output (exit code 0):
+
+```
+circles (N)     : 27
+sum of radii Σr : 2.685978684198
+min wall slack  : 1.000e-12  (>= 0 => all circles inside the square)
+min pair slack  : 7.198e-13  (>= 0 => no two circles overlap)
+STRICTLY FEASIBLE (tol 1e-09): True
+record          : 2.685350025228
+Δ (ours-record) : +6.287e-04   -> BEATS the record
+```
+
+`verify_pck.py` is **pure standard library and shares no code with the solver**, so it is a genuine
+independent check — of our packings or anyone else's. It re-reads the coordinates and confirms from
+scratch that there are exactly N circles, all inside the square, none overlapping, and what Σr really
+sums to. Exits non-zero on any failure, so it works in a script. A copy of the output above is stored in
+[`sota/ours/wins/csqv27.verify.txt`](sota/ours/wins/csqv27.verify.txt) to diff against.
+
+The slacks are small but **positive** — strictly feasible, not feasible-within-tolerance — and the win
+margin (+6.29e-4) is ~6×10⁸ times larger than the smallest of them, so this is not numerical noise.
+
+## Reproduce the N=27 result from scratch
+
+```bash
+pip install -r requirements.txt                              # numpy + scipy
+python3 solver/pack.py -n 27 --seed 1 --time 120 -o out27.json
+```
+
+That is the exact invocation behind the win: **seed 1, 120 s**. It is a stochastic search, so a re-run is
+not pass/fail — see the caveat below.
+
+## Reproduce the whole sweep (one command)
+
+```bash
 ./reproduce.sh                           # full sweep N=2..100, then compare, then verify every packing
 ./reproduce.sh 20 30 60 4                # quick demo: N=20..30 @ 60s/N, 4 workers
 NMIN=27 NMAX=27 TIME=120 ./reproduce.sh  # a single N
 ```
 
-`reproduce.sh` runs the sweep, writes `sota/ours/comparison.md`, and **independently verifies every emitted
-packing** (fails loudly if any is infeasible). Full N=2..100 takes ~25 min on a 10-core machine.
+`reproduce.sh` writes to a fresh `repro/` directory (it does **not** clobber the committed reference
+results), then independently verifies every emitted packing and fails loudly if any is infeasible. Full
+N=2..100 takes ~25 min on a 10-core machine.
 
 Or step by step:
 ```bash
-OMP_NUM_THREADS=1 python3 solver/run_sweep.py --nmin 2 --nmax 100 --time 120 --workers 8 --out-dir results
-python3 solver/compare.py                                   # -> sota/ours/comparison.md
-python3 solver/verify_pck.py sota/ours/pck/csqv27.pck --record 2.685350025228   # independent check
+OMP_NUM_THREADS=1 python3 solver/run_sweep.py --nmin 2 --nmax 100 --time 120 --workers 8 --out-dir repro
+python3 solver/compare.py --results repro/results.csv --out repro/comparison.md
+for f in repro/pck/csqv*.pck; do python3 solver/verify_pck.py "$f" >/dev/null || echo "INFEASIBLE: $f"; done
 ```
 
-## Independent verification (the important part)
-
-`solver/verify_pck.py` is **pure standard library and shares no code with the solver**, so it is a genuine
-independent check of any packing — ours or anyone else's. It recomputes Σr and confirms strict
-feasibility (exactly N circles, all inside the square, no overlaps) straight from the coordinates:
-
-```bash
-python3 solver/verify_pck.py sota/ours/pck/csqv27.pck --record 2.685350025228
-# ... STRICTLY FEASIBLE (tol 1e-09): True ;  Δ (ours-record): +6.287e-04 -> BEATS the record ;  exit 0
-```
+With no `--results`/`--out`, `compare.py` instead regenerates the committed `sota/ours/comparison.md`
+from the committed `sota/ours/results.csv` — a useful check in itself, since it should come out
+byte-identical to what is in the repo.
 
 ## Reproducibility notes (read before trusting a "win")
 
 - **The artifacts are fixed and verifiable; the search is stochastic.** The solver is multi-start over
-  random initial layouts under a wall-clock budget, so a given N's best is **seed- and time-dependent**.
-  Example: at N=27, seed 1 (120s) found the record-beating 2.685978684198, while seed 7 (300s) found a
-  worse local optimum (2.683803). This does **not** weaken the win: a packing is valid or not, and the
-  saved configuration is a fixed artifact that is strictly feasible and exceeds the record. Re-running the
-  sweep reproduces the overall landscape (ties on easy N, small gaps on hard N) and *can* re-find a given
-  win, but is not guaranteed to on one seed.
-- **Every result is saved twice:** `sota/ours/pck/csqv<N>.pck` (12 dp, Packomania format) and
-  `sota/ours/json/out<N>.json` (full float64, plus the seed and time budget that produced it) — so a win is
-  preserved exactly and its provenance is recorded.
-- **Determinism caveat:** because the budget is wall-clock, a slower or busier machine does fewer restarts
-  in the same seconds and may land slightly lower. Give more `--time` (or more `--seeds`) for a stronger,
-  more repeatable result. The `.pck`/`.json` artifacts remain valid and verifiable regardless.
+  random initial layouts under a *wall-clock* budget, so a given N's best is seed-, time- **and
+  machine-dependent**: a slower or busier machine completes fewer restarts in the same 120s and may land
+  in a worse local optimum. More time is not monotonically better either — at N=27, seed 1 (120s) found
+  the record-beating 2.685978684198 while seed 7 (300s) found a worse 2.683803. None of this weakens the
+  win: a packing is either valid or not, and the saved file is strictly feasible and exceeds the record
+  however it was found. Use more `--time`/`--seeds` for a more repeatable search.
+- **What is stored where.** All 99 packings are in `sota/ours/pck/csqv<N>.pck` (12 dp, Packomania format).
+  For N=27, `sota/ours/wins/` also holds the full float64 config with its seed and budget
+  (`csqv27.seed1.json`) and the stored verifier output (`csqv27.verify.txt`). A fresh sweep additionally
+  writes `<out-dir>/json/out<N>.json`.
+- **Rounding to 12 dp is safe.** It costs 3.1e-13 of Σr and the packing stays strictly feasible — the
+  slacks above are measured on the rounded `.pck` itself, not on the unrounded solution.
 
 ## Layout
 
@@ -95,13 +127,20 @@ repo. The optimizer:
 3. finishes with an exact **uniform-radius-scaling repair**, so every emitted config is strictly feasible
    in exact arithmetic. `n` is a parameter throughout, so the same code runs unchanged at any N.
 
-The solver code was itself written with substantial help from AI (the LLM-driven self-improvement loop).
-
 ## `.pck` format
 
-Packomania format (`hints.html`): line 1 = largest radius, line 2 = author, then one `x y r` per circle
-sorted by increasing radius. Coordinates are placed in a **unit-side square centred at the origin**
-(`[-0.5, 0.5]²`); `verify_pck.py --corner`/`--side` handle other conventions.
+Packomania's submission format, defined at
+[packomania.com/hints.html](https://www.packomania.com/hints.html):
+
+- line 1 = radius of the **largest** circle, as a bare number (no letters, no `=`);
+- line 2 = author name(s), comma-separated if several;
+- line 3 onward = one `x y r` per circle, whitespace-separated, **sorted by increasing radius**;
+- the square container is fixed at **side 1, centred at (0,0)** — coordinates live in `[-0.5, 0.5]²` and
+  must be rescaled to fit. We emit 12 decimals, matching Packomania's own published `csqv` coordinates.
+
+**Two conventions coexist in this repo:** `.pck` files are origin-centred as above, while the solver's
+`.json` configs use the `[0, 1]²` corner convention (see `container.vertices`) — convert by subtracting
+0.5. `verify_pck.py --corner`/`--side` reads either.
 
 ## Requirements
 

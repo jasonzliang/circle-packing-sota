@@ -51,9 +51,12 @@ def verdict(ours, rec):
 
 
 def main():
+    # Defaults are resolved against the repo root (this file's parent dir), not the caller's cwd,
+    # so `python3 solver/compare.py` works from anywhere.
+    repo = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     ap = argparse.ArgumentParser()
-    ap.add_argument("--results", default="../sota/ours/results.csv")
-    ap.add_argument("--out", default="../sota/ours/comparison.md")
+    ap.add_argument("--results", default=os.path.join(repo, "sota/ours/results.csv"))
+    ap.add_argument("--out", default=os.path.join(repo, "sota/ours/comparison.md"))
     a = ap.parse_args()
     rows, wins, ties, below = [], [], [], []
     with open(a.results) as f:
