@@ -22,9 +22,9 @@ with a harder re-run).
 - Strictly feasible (independently re-checked with `verify_pck.py`, below):
   27 circles, min wall slack +1.0e-12, min pairwise slack +7.2e-13 — no overlaps, all inside the square;
   the win margin is ~9 orders larger than the feasibility slack, so it is real, not numerical noise.
-- Why this one is beatable: the N=27 record is a Packomania **baseline** entry (reference [1] = Specht's
-  own `csqv` program), **not** one of the recent AlphaEvolve/AI-optimized entries (e.g. N=26 = 2.635983,
-  which we do not beat).
+- Why this one is beatable: the N=27 record is a **long-standing 2011/12 entry** (reference [1] =
+  D. W. Cantrell, sci.math forum), **not** one of the recent AI-optimized entries (e.g. N=26 = 2.635983,
+  credited to Haowei Lin [8], July 2026, which we do not beat).
 - The packing is [`pck/csqv27.pck`](pck/csqv27.pck) (the canonical artifact, Packomania format); its
   full-precision config is regenerable with the seed-1 command below.
 

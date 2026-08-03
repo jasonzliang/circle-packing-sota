@@ -12,8 +12,9 @@ Across N the solver **reproduces the known optima to ~1e-11 on small/mid N** and
 percent under the heavily-optimized larger records (that gap is our compute budget, not the record's
 ceiling). It also found at least one **strictly-feasible packing that beats a current Packomania
 best-known** — N=27, Σr = 2.685978684198 vs the listed 2.685350025228 (+6.3e-4). That record is a
-Packomania *baseline* entry (reference [1], Specht's own `csqv` program), not one of the recent
-AlphaEvolve/AI-optimized entries (e.g. N=26 = 2.635983, which we do **not** beat). The authoritative,
+long-standing 2011/12 entry (reference [1], D. W. Cantrell, sci.math forum), not one of the recent
+AI-optimized entries (e.g. N=26 = 2.635983, credited to Haowei Lin [8] in July 2026, which we do
+**not** beat). The authoritative,
 always-current verdict is `sota/ours/comparison.md`; **every claimed win is independently re-verifiable
 from its `.pck` with `solver/verify_pck.py` (see below).**
 
