@@ -15,11 +15,10 @@ long-standing 2011/12 entry (reference [1], D. W. Cantrell, sci.math forum), not
 AI-optimized entries (e.g. N=26 = 2.635983, credited to Haowei Lin [8] in July 2026, which we do **not**
 beat).
 
-**The other 72 of 99 sizes fall short, several by more than 1%.** Excluding the degenerate N=97 below, 42
-gaps exceed 0.5% and 26 exceed 1%, the worst being N=92 at 2.29%. **N=97 failed outright**: the sweep
-emitted 97 circles of radius zero, and `results.csv` still records it as feasible (see
-[Known issues](#known-issues)). Per-N detail is in `sota/ours/comparison.md`; **every claimed win is
-independently re-verifiable from its `.pck` with `solver/verify_pck.py`.**
+**The other 71 fall short, several by more than 1%**: 42 gaps exceed 0.5% and 26 exceed 1%, the worst being
+N=92 at 2.29%. The sweep covered 99 sizes but produced only **98 usable packings**, failing outright at
+N=97 (see [Known issues](#known-issues)). Per-N detail is in `sota/ours/comparison.md`; **every claimed win
+is independently re-verifiable from its `.pck` with `solver/verify_pck.py`.**
 
 ## Verify the N=27 result (30 seconds, no dependencies, no solver)
 
@@ -37,7 +36,7 @@ file            : sota/ours/wins/csqv27.pck
 author          : Jason Liang
 circles (N)     : 27
 sum of radii Σr : 2.685978684198
-min radius      : 6.648e-02  (must be >= 0)
+min radius      : 6.648e-02  (must be > 0)
 min wall slack  : 1.000e-12  (>= 0 => all circles inside the square)
 min pair slack  : 7.198e-13  (>= 0 => no two circles overlap)
 STRICTLY FEASIBLE (tol 1e-09): True
@@ -145,8 +144,8 @@ python3 solver/compare.py && git diff --stat sota/ours/comparison.md   # expect 
   the record-beating 2.685978684198 while seed 7 (300s) found a worse 2.683803. None of this weakens the
   win: a packing is either valid or not, and the saved file is strictly feasible and exceeds the record
   however it was found. Use more `--time`/`--seeds` for a more repeatable search.
-- **What is stored where.** All 99 sweep outputs are in `sota/ours/pck/csqv<N>.pck` (12 dp, Packomania
-  format), one of which (N=97) is degenerate, see below.
+- **What is stored where.** The sweep's 98 usable outputs are in `sota/ours/pck/csqv<N>.pck` (12 dp,
+  Packomania format). There is no file for N=97; see [Known issues](#known-issues).
   For N=27, `sota/ours/wins/` also holds the full float64 config with its seed and budget
   (`csqv27.seed1.json`) and the stored verifier output (`csqv27.verify.txt`). A fresh sweep additionally
   writes `<out-dir>/json/out<N>.json`.
@@ -155,28 +154,34 @@ python3 solver/compare.py && git diff --stat sota/ours/comparison.md   # expect 
 
 ## Known issues
 
-**N=97 in the committed sweep is a failure, not a result.** `sota/ours/pck/csqv97.pck` contains 97 circles
-of radius exactly zero, Σr = 0, a 100% gap that `comparison.md` duly reports as its largest.
+**The sweep produces no result at N=97.** `results.csv` carries a blank row with `feasible=0` and there is
+no `pck/csqv97.pck`, so the sweep covers 99 sizes and yields 98 packings.
 
-What went wrong is upstream of `repair()`. SLSQP diverged: the saved file has only **43 distinct centres for
-97 circles**, with 58 of them stacked exactly on the four corners (27, 16, 11 and 4). `repair()` then
-rescales all radii by one uniform factor, the smallest of the wall ratios `wall_cap_i / r_i` and the pair
-ratios `d_ij / (r_i + r_j)`. With coincident centres some `d_ij` is exactly 0, so that factor is 0 and
-**every radius in the configuration goes to zero**. Uniform rescaling is all-or-nothing, so one degenerate
-cluster is enough.
+The cause is a collapse in `repair()`. SLSQP diverges at n=97, returning a configuration with dozens of
+coincident centres. `repair()` then rescales all radii by one uniform factor, the smallest of the wall
+ratios `wall_cap_i / r_i` and the pair ratios `d_ij / (r_i + r_j)`. Coincident centres make some `d_ij`
+exactly 0, so that factor is 0 and **every radius goes to zero**. Uniform rescaling is all-or-nothing, so
+one degenerate cluster is enough to flatten the whole configuration.
 
-Three consequences worth stating plainly:
+Severe under-search is why the multi-start never escaped it. `refine()` costs ~30s at n=97, so the seed-1
+120s run evaluated **4 candidates in total** (its log reads `1 fresh starts, 3 hops`) against 1185 at n=27.
+Re-running the identical `--seed 1 --time 120` reproduces the collapse exactly, so this is what those
+parameters produce, not a one-off fluke. More time and more seeds should fix it; nothing here suggests the
+record is out of reach at N=97.
 
-- `results.csv` records N=97 as `feasible=1`, and `verify_pck.py` reports `STRICTLY FEASIBLE: True`,
-  exit 0. That is *correct*: zero-radius circles overlap nothing and stay inside the square. But it means
-  **the verification harness cannot detect a collapsed packing**, and `reproduce.sh`'s "fails loudly if any
-  is infeasible" would not catch this. A useful sweep should also assert Σr is near the reference.
-- N=97 is *also* under-searched, so it is not purely a collapse. One `refine()` call at n=97 takes ~9s
-  here, so the 120s budget evaluates only ~13 candidates, against ~1170 at n=27. The multi-start never got
-  the attempts it would need to escape a bad basin.
-- More time or seeds would likely fix it. Nothing here suggests the record is unreachable at N=97.
+Two fixes are in place, both in the harness rather than the solver, since `pack.py` is kept unmodified:
 
-This does not touch the N=27 claim, which is a separate file verified two independent ways above.
+- **`verify_pck.py` rejects degenerate configurations**, printing `DEGENERATE` and exiting 1 when any radius
+  is 0. A pure constraint check *correctly* passes a collapsed packing, because zero-radius circles overlap
+  nothing and stay inside the square, so `reproduce.sh` could not previously detect this failure. It can
+  now. The 98 remaining packings, the N=27 win and all 12 `chase/` packings pass unchanged.
+- **`run_sweep.py` no longer accepts a collapse as a result.** It discards any candidate containing a zero
+  radius, so an N with nothing better falls through to the existing "no feasible config" path: a blank row
+  with `feasible=0` and no `.pck` written, instead of a zero-scoring file that looks valid.
+
+The committed N=97 row was corrected by hand to what the fixed code now emits, and the zero-radius
+`csqv97.pck` was deleted. This does not touch the N=27 claim, a separate file verified two independent ways
+above.
 
 ## Layout
 
@@ -190,7 +195,7 @@ sota/          the SOTA comparison, both sides in one place:
   theirs/        packomania_csqv_records.csv     # the best-known records (N=1..100), + README
   ours/          results.csv  comparison.md  + README
                  wins/          # the record-beating N=27 result: csqv27.pck + full-precision json + verify
-                 pck/           # all 99 packings (complete set; csqv27 also here)
+                 pck/           # the 98 usable packings (csqv27 also here); no N=97, see Known issues
                  chase/         # 12 near-misses re-run at 240s over seeds 1-4 (ties the record at 5)
 reproduce.sh  requirements.txt
 ```
@@ -344,7 +349,7 @@ result**. Skip it unless you are interested in the solver as a solver.
 In the *formulation*, the container enters in **exactly one place**: the wall rows `r_i ≤ F_k(c_i)`, where
 `F_k(c_i)` is the largest radius wall `k` allows at `c_i` and `w_i = min_k F_k(c_i)`. Those are linear in `r`
 for any convex container, so the inner LP survives verbatim when the unit square becomes a disk or a
-triangle (`--container`, three are implemented). The *code* touches the container handle in 19 places for
+triangle (`--container`, three are implemented). The *code* touches the container handle on 19 lines for
 projection, sampling and bounding boxes; it is the LP structure that is untouched, not the call graph.
 
 The packed *object* is abstracted the same way. A circle becomes a homothet `c_i + r_i·K` of a

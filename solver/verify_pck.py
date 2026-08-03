@@ -50,9 +50,14 @@ def verify(circ, side=1.0, corner=False, tol=1e-9):
             pair = min(pair, math.hypot(xi - xj, yi - yj) - (ri + rj))
     neg_r = min(r for *_, r in circ)
     feasible = neg_r >= -tol and cont >= -tol and (n < 2 or pair >= -tol)
+    # A radius of zero is not a circle, so a config containing one is not a packing of n circles even
+    # though it violates nothing. This is the failure mode a pure constraint check cannot see: a collapsed
+    # config (every radius scaled to 0 by repair()) is trivially "feasible" and scores 0.
+    degenerate = neg_r <= tol
     return {"n": n, "sum_radii": S, "min_radius": neg_r,
             "min_containment_slack": cont, "min_pairwise_slack": (None if n < 2 else pair),
-            "feasible": feasible, "tol": tol}
+            "feasible": feasible, "degenerate": degenerate, "valid": feasible and not degenerate,
+            "tol": tol}
 
 
 def main():
@@ -72,17 +77,19 @@ def main():
     print(f"author          : {author}")
     print(f"circles (N)     : {r['n']}")
     print(f"sum of radii Σr : {r['sum_radii']:.12f}")
-    print(f"min radius      : {r['min_radius']:.3e}  (must be >= 0)")
+    print(f"min radius      : {r['min_radius']:.3e}  (must be > 0)")
     print(f"min wall slack  : {r['min_containment_slack']:.3e}  (>= 0 => all circles inside the square)")
     ps = r["min_pairwise_slack"]
     print(f"min pair slack  : {'n/a (N<2)' if ps is None else f'{ps:.3e}'}  (>= 0 => no two circles overlap)")
     print(f"STRICTLY FEASIBLE (tol {a.tol:g}): {r['feasible']}")
+    if r["degenerate"]:
+        print(f"DEGENERATE      : a radius is 0, so this is not a packing of {r['n']} circles")
     if a.record is not None:
         d = r["sum_radii"] - a.record
-        tag = "BEATS the record" if (d > 1e-9 and r["feasible"]) else ("ties" if abs(d) <= 1e-6 else "below")
+        tag = "BEATS the record" if (d > 1e-9 and r["valid"]) else ("ties" if abs(d) <= 1e-6 else "below")
         print(f"record          : {a.record:.12f}")
         print(f"Δ (ours-record) : {d:+.3e}   -> {tag}")
-    return 0 if r["feasible"] else 1
+    return 0 if r["valid"] else 1
 
 
 if __name__ == "__main__":

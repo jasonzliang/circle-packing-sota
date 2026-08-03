@@ -2,7 +2,8 @@
 
 Our evolved solver's results for **N variable circles in a unit square, maximize Σr**, measured against
 the Packomania `csqv` best-known values in [`../theirs/`](../theirs/). The complete per-N packings from
-the sweep are in [`pck/`](pck/) and the raw table in [`results.csv`](results.csv).
+the sweep are in [`pck/`](pck/) and the raw table in [`results.csv`](results.csv). The sweep covered 99
+sizes and produced 98 usable packings; N=97 collapsed and has no file.
 
 ## Headline (sweep N=2..100, from scratch, 120s/N, seed 1)
 
@@ -10,13 +11,14 @@ the sweep are in [`pck/`](pck/) and the raw table in [`results.csv`](results.csv
 |---|---|---|
 | **beat the record (WIN)** | **1** | **27** |
 | tie (≤1e-6) | 26 | all of 2–24, plus 29, 31, 33 |
-| below (our under-search at larger N) | 72 | every N ≥ 25 except 27, 29, 31, 33 |
+| below (our under-search at larger N) | 71 | every N ≥ 25 except 27, 29, 31, 33, 97 |
+| no result at all | 1 | 97 (collapsed; see the root README's Known issues) |
 
-Full table: [`comparison.md`](comparison.md). The 72 "below" are **our compute budget, not the records'
+Full table: [`comparison.md`](comparison.md). The 71 "below" are **our compute budget, not the records'
 ceiling**. Large N need more search time than 120s (and, like N=27, some may be beatable long-standing
 entries with a harder re-run).
 
-**Partial evidence that the 72 are under-search:** [`chase/`](chase/) re-runs twelve near-misses at **240s
+**Partial evidence that the 71 are under-search:** [`chase/`](chase/) re-runs twelve near-misses at **240s
 over seeds 1–4** (vs the sweep's 120s on seed 1 alone) and reaches the record to **within 4e-11 at five of
 them** (N = 25, 28, 32, 35, 36), i.e. they become effective ties. Counting those, the repo demonstrates 31
 ties rather than 26; the headline table reports the *uniform* sweep only, so the two counts are consistent.
@@ -81,6 +83,6 @@ that with `verify_pck.py`.
 comparison.md            our full ours-vs-Packomania table (N=2..100)
 results.csv              raw sweep output (n, sum_radii, max_violation, seeds, feasible)
 wins/                    the record-beating N=27 result: csqv27.pck + seed1.json (full float64) + verify.txt
-pck/csqv<N>.pck          all 99 packings, Packomania format (csqv27 also here, for completeness)
+pck/csqv<N>.pck          the 98 usable packings, Packomania format (csqv27 also here; no N=97)
 chase/                   re-runs of 12 near-misses at 240s over seeds 1-4; ties the record at 5 of them
 ```
