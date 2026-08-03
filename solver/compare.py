@@ -76,7 +76,7 @@ def main():
         "# Our evolved solver vs Packomania `csqv` records (max Σr, N circles in a unit square)",
         "",
         f"Sweep: {len(rows)} sizes.  **WINS: {len(wins)}**  ·  ties (≤1e-6): {len(ties)}  ·  below: {len(below)}.",
-        (f"Wins at N = {wins}." if wins else "No N beats the Packomania record (expected — see README)."),
+        (f"Wins at N = {wins}." if wins else "No N beats the Packomania record (expected; see README)."),
         "",
         "| N | ours Σr | Packomania record | Δ (ours−rec) | gap % | verdict |",
         "|---:|---:|---:|---:|---:|:--|",
