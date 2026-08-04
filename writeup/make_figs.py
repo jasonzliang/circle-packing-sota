@@ -84,14 +84,10 @@ axA.grid(True, axis="y", ls=":", alpha=0.3)
 axB.bar(it, hit, width=0.6, color=["#2e8b57" if h >= 14 else "#c0504d" for h in hit], alpha=0.9)
 for x, h in zip(it, hit):
     axB.text(x, h + 0.4, f"{h}%", ha="center", fontsize=8.6, color="#333333")
-axB.set_ylim(0, 19)
+axB.set_ylim(0, 17)
 axB.set_xticks(it)
 axB.set_ylabel("% of 50 seeds\nbeating the record", fontsize=9.2)
-axB.set_xlabel("solver iteration (v6-radical-circle-nietzsche arm)", fontsize=10.3)
-axB.text(0.75, 18.6,
-         "every iteration reaches the identical record-beating packing;\n"
-         "more self-improvement lifts the per-seed hit rate 10% $\\rightarrow$ 14%",
-         fontsize=8.6, color="#555555", va="top", linespacing=1.3)
+axB.set_xlabel("solver iteration", fontsize=10.3)
 axB.grid(True, axis="y", ls=":", alpha=0.3)
 plt.tight_layout()
 plt.savefig(f"{OUT}/fig3_emergence.png", dpi=200, bbox_inches="tight")
