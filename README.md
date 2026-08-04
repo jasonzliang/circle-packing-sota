@@ -17,6 +17,12 @@ AlphaEvolve/AI-optimized entries (e.g. N=26 = 2.635983, which we do **not** beat
 always-current verdict is `sota/ours/comparison.md`; **every claimed win is independently re-verifiable
 from its `.pck` with `solver/verify_pck.py` (see below).**
 
+## Write-up
+
+A narrative explainer of this result — what the problem is, what record was beaten, how a
+self-improving AI agent produced the solver, and why it matters — with figures:
+**[`writeup/`](writeup/README.md)**.
+
 ## Reproduce (one command)
 
 ```bash
@@ -76,6 +82,7 @@ sota/          the SOTA comparison, both sides in one place:
                  wins/          # the record-beating N=27 result: csqv27.pck + full-precision json + verify
                  pck/           # all 99 packings (complete set; csqv27 also here)
                  chase/         # supplementary harder re-runs of the closest near-misses
+writeup/       README.md + fig1..3.png   # narrative explainer of the N=27 result (+ make_figs.py to regen)
 reproduce.sh  requirements.txt
 email_draft.md   # a drafted submission email to Packomania's maintainer (git-ignored, local only)
 ```
