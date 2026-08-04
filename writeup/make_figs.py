@@ -35,7 +35,7 @@ for x, y, r in circ:
                         edgecolor="white", lw=0.8, alpha=0.95))
 ax.set_xlim(-0.03, 1.03); ax.set_ylim(-0.03, 1.03)
 ax.set_aspect("equal"); ax.axis("off")
-ax.set_title("27 circles in the unit square — maximizing the sum of radii",
+ax.set_title("27 circles in the unit square: maximizing the sum of radii",
              fontsize=13, fontweight="bold", pad=12)
 ax.text(0.5, -0.065,
         f"$\\Sigma r$ = {WIN:.9f}   (beats the listed Packomania record {RECORD:.9f} by +6.29$\\times10^{{-4}}$)",
@@ -65,16 +65,16 @@ fig, ax = plt.subplots(figsize=(9.2, 4.6))
 ax.axhspan(-0.001, 0.001, color="#cfe8cf", alpha=0.6, zorder=0)
 ax.axhline(0, color="#888888", lw=1.0, zorder=1)
 ax.scatter(Nk[~ties], gk[~ties], s=26, c="#c0504d", zorder=3, label="below record (our compute budget, not the record's ceiling)")
-ax.scatter(Nk[ties], gk[ties], s=30, c="#4f81bd", zorder=3, label="tie (matches best-known to $\\leq10^{-6}$)")
+ax.scatter(Nk[ties], gk[ties], s=30, c="#4f81bd", zorder=3, label="tie (matches best-known, $\\sim10^{-11}$)")
 win_i = np.where(Nk == 27)[0][0]
 ax.scatter([27], [gk[win_i]], s=220, marker="*", c="#2e8b57", edgecolor="black",
-           lw=0.7, zorder=5, label="N=27 — beats the listed record")
+           lw=0.7, zorder=5, label="N=27: beats the listed record")
 ax.annotate("N = 27  WIN", xy=(27, gk[win_i]), xytext=(34, 0.28),
             fontsize=10.5, fontweight="bold", color="#2e8b57",
             arrowprops=dict(arrowstyle="->", color="#2e8b57", lw=1.4))
 ax.set_xlabel("N  (number of circles)", fontsize=11)
 ax.set_ylabel("sum of radii vs Packomania record  (%)", fontsize=11)
-ax.set_title("One evolved solver across N = 2..100 vs the authoritative Packomania records",
+ax.set_title("Our solver across N = 2..100 vs the authoritative Packomania records",
              fontsize=12, fontweight="bold")
 ax.set_ylim(-2.6, 0.6)
 ax.legend(loc="lower left", fontsize=8.6, framealpha=0.92)
@@ -95,34 +95,36 @@ xlab = ["iter 1\n$2.48", "iter 2\n$5.95", "iter 3\n$9.79", "iter 4\n$14.82", "it
 fig, (axA, axB) = plt.subplots(2, 1, figsize=(8.8, 6.4), sharex=True,
                                gridspec_kw={"height_ratios": [2.1, 1.0], "hspace": 0.12})
 
-# top: Sigma r
-axA.axhline(WIN, color="#2e8b57", ls=":", lw=1.0, alpha=0.5, zorder=1)
-axA.plot(it, best, "-o", color="#2e8b57", lw=2.6, ms=9, zorder=5,
-         label="best of 50 random starts  =  the record-beating win (2.685979)")
+# top panel: Sigma r vs iteration (direct right-side labels; no in-plot legend to obscure the data)
+axA.axhline(WIN, color="#2e8b57", ls=":", lw=1.0, alpha=0.4, zorder=1)
+axA.plot(it, best, "-o", color="#2e8b57", lw=2.6, ms=9, zorder=5)
 axA.axhline(RECORD, color="#c0504d", ls="--", lw=1.7, zorder=2)
-axA.plot(it, median, "-s", color="#7f7f7f", lw=1.8, ms=6, zorder=4,
-         label="median run (2.685157) — a typical single start does NOT beat the record")
-axA.text(5.38, WIN,    "  the WIN\n  2.685979", color="#2e8b57", va="center", fontsize=8.8, fontweight="bold")
-axA.text(5.38, RECORD, "  record\n  2.685350", color="#c0504d", va="center", fontsize=8.8)
-axA.annotate("present from\niteration 1", xy=(1, WIN), xytext=(1.55, 2.685680),
+axA.plot(it, median, "-s", color="#7f7f7f", lw=1.8, ms=6, zorder=4)
+axA.text(5.18, WIN,    "best of 50 starts\n= the WIN  2.685979", color="#2e8b57",
+         va="center", fontsize=8.6, fontweight="bold")
+axA.text(5.18, RECORD + 0.00003, "record  2.685350", color="#c0504d", va="bottom", fontsize=8.6)
+axA.text(5.18, median[0], "median run  2.685157\n(a typical start\ndoes not beat it)", color="#5f5f5f",
+         va="center", fontsize=8.2)
+axA.annotate("present from\niteration 1", xy=(1, WIN), xytext=(1.75, 2.685740),
              fontsize=9, color="#2e8b57", ha="center",
              arrowprops=dict(arrowstyle="->", color="#2e8b57", lw=1.3))
 axA.set_ylim(2.68500, 2.68612)
+axA.set_xlim(0.5, 7.0)
 axA.set_ylabel("sum of radii  $\\Sigma r$", fontsize=11)
-axA.set_title("The record-beating capability appears early; more evolution buys reliability, not the peak",
+axA.set_title("The record-beating capability appears early; more self-improvement buys reliability, not the peak",
               fontsize=11.5, fontweight="bold")
-axA.legend(loc="lower right", fontsize=8.6, framealpha=0.93)
 axA.grid(True, axis="y", ls=":", alpha=0.35)
-axA.set_xlim(0.5, 5.9)
 
-# bottom: hit rate
+# bottom panel: per-seed hit rate
 axB.bar(it, hit_pct, width=0.55, color="#4f81bd", alpha=0.85)
 for x, h in zip(it, hit_pct):
     axB.text(x, h + 0.5, f"{h}%", ha="center", color="#28527a", fontsize=9)
 axB.set_ylim(0, 20)
+axB.set_xlim(0.5, 7.0)
 axB.set_ylabel("hit rate\n(% of 50 starts\nbeating record)", fontsize=9.5)
 axB.set_xticks(it); axB.set_xticklabels(xlab, fontsize=9.2)
-axB.set_xlabel("solver version (self-improvement iteration)   ·   cumulative $ spent evolving the solver", fontsize=10.3)
+axB.set_xlabel("solver version (self-improvement iteration)   ·   cumulative $ spent improving the solver",
+               fontsize=10.3, x=0.36)
 axB.grid(True, axis="y", ls=":", alpha=0.35)
 plt.savefig(f"{OUT}/fig3_emergence.png", dpi=200, bbox_inches="tight")
 plt.close()

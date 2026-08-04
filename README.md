@@ -1,6 +1,6 @@
 # circle-packing-sota
 
-An **evolved circle-packing solver**, extracted from a self-improvement (AI-Generating-Algorithms)
+An **AI-written circle-packing solver**, extracted from a self-improvement (AI-Generating-Algorithms)
 experiment and run across a range of N, compared to the authoritative **Packomania** records for:
 
 > **Pack N variable-sized circles in a unit square so that no two overlap and all stay inside the square,
@@ -180,7 +180,7 @@ Both checkers now catch it, fixed in the harness since `pack.py` is kept unmodif
 ## Layout
 
 ```text
-solver/        pack.py container.py shape.py   # the evolved solver, copied UNCHANGED
+solver/        pack.py container.py shape.py   # the AI-written solver, copied UNCHANGED
                exact_check.py  # zero-tolerance feasibility decision in exact rational arithmetic
                run_sweep.py    # parallel N-sweep -> pck + json + results.csv
                compare.py      # ours vs the Packomania records -> comparison.md
