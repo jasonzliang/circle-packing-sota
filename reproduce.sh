@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# End-to-end reproduction: sweep the evolved solver across N, compare to the Packomania records, and
+# End-to-end reproduction: sweep the self-improved solver across N, compare to the Packomania records, and
 # independently verify every packing. One command, from a clean checkout.
 #
 #   ./reproduce.sh                 # full sweep N=2..100 @ 120s/N, 8 workers (~25 min on a 10-core mac)

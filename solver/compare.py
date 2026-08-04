@@ -75,7 +75,7 @@ def main():
             (wins if v == "WIN" else ties if v == "tie" else below).append(n)
     rows.sort()   # the parallel sweep completes out of order; present by N
     lines = [
-        "# Our evolved solver vs Packomania `csqv` records (max Σr, N circles in a unit square)",
+        "# Our self-improved solver vs Packomania `csqv` records (max Σr, N circles in a unit square)",
         "",
         f"Sweep: {len(rows)} sizes.  **WINS: {len(wins)}**  ·  ties (≤1e-6): {len(ties)}  ·  below: {len(below)}.",
         (f"Wins at N = {wins}." if wins else "No N beats the Packomania record (expected; see README)."),

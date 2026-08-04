@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Sweep the evolved circle-packing solver (pack.py) across N, in PARALLEL, and emit results.
+"""Sweep the self-improved circle-packing solver (pack.py) across N, in PARALLEL, and emit results.
 
 Each N is an independent optimization, so the sweep is embarrassingly parallel: a process pool runs
 --workers instances of pack.search() at once (pack itself is single-core). For each N it keeps the best
@@ -20,7 +20,7 @@ import time
 
 import numpy as np
 
-import pack   # the evolved solver (imports container, shape); scipy used if present
+import pack   # the self-improved solver (imports container, shape); scipy used if present
 
 
 def to_pck(circles, author, center_origin=True):
