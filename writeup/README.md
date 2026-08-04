@@ -2,15 +2,15 @@
 
 *[Cognizant AI Lab](https://www.cognizant.com/us/en/ai-lab) · research note*
 
-**The problem:** fit N circles of any sizes into a square, without overlaps, and make the total of all their radii (the "sum of radii") as large as possible. It sounds small, but it is a genuinely hard optimization problem that has become a public benchmark for AI. **What happened:** an AI coding agent at Cognizant AI Lab that repeatedly rewrites and re-tests its own solver found a 27-circle arrangement that beats the value listed in Packomania, the standard reference table for this problem.
+**The problem:** fit N circles of any sizes into a square, without overlaps, and make the total of all their radii (the "sum of radii") as large as possible. It sounds small, but it is a genuinely hard optimization problem that has become a public benchmark for AI. **What happened:** an AI coding agent at Cognizant AI Lab that repeatedly rewrites and re-tests its own solver found a 27-circle arrangement that is now the listed record in Packomania, the standard reference table for this problem, beating an entry that had stood since 2011/12.
 
 ---
 
 ## Key takeaways
 
-- A self-improving AI coding agent at Cognizant AI Lab wrote an optimizer that found a **new best-known** packing of 27 circles in a square, beating the value listed in Packomania, the field's authoritative reference table.
+- A self-improving AI coding agent at Cognizant AI Lab wrote an optimizer that found a **new best-known** packing of 27 circles in a square. It is **now the listed record in Packomania** (the field's authoritative reference table), beating a previous entry that had stood since 2011/12.
 
-- The new configuration has sum of radii **2.685978684198** versus the listed **2.685350025228**, an improvement of **+0.000628658970 (+0.023%)**. It is a fixed, strictly-feasible artifact that anyone can independently verify from its coordinates.
+- The new configuration has sum of radii **2.685978684198** versus the previous record **2.685350025228**, an improvement of **+0.000628658970 (+0.023%)**. It is a fixed, strictly-feasible artifact that anyone can independently verify from its coordinates.
 
 - **Honest scope:** the entry we beat is a *long-standing classical entry* in Packomania's table (a 2011/12 result), **NOT** one of the recent AI-optimized results from systems like Google DeepMind's AlphaEvolve or Sakana AI's ShinkaEvolve. On the famous N=26 case we *tie* the recent AI-optimized best-known value there (2.635983); we do not beat it.
 
@@ -32,7 +32,7 @@ We took a solver that one of our self-improvement experiments produced and ran i
 
 ![Our solver vs the Packomania records across N=2..100](fig2_sweep_gap.png)
 
-*Our solver vs the authoritative Packomania records across N=2 to N=100. It ties 26 records at small/mid sizes, trails on large boards (our compute budget, not a ceiling), and beats the listed record at N=27 (a small but real +0.023%).*
+*Our solver vs the authoritative Packomania records across N=2 to N=100. It ties 26 records at small/mid sizes, trails on large boards (our compute budget, not a ceiling), and beats the previous record at N=27 (a small but real +0.023%, now the listed record).*
 
 For small and mid-sized boards the solver reproduces the known optima essentially exactly (matching 26 of them to about one part in 100 billion). For large boards it falls short of the heavily hand-tuned records, from a fraction of a percent up to about 2.3% (largest at N=92); on one size, N=97, a single run failed to return a valid packing at all. But those gaps reflect our modest compute budget, not a ceiling of the method. And at one size, it did something the reference table had not: it found a better packing.
 
@@ -45,7 +45,7 @@ At N=27, our solver produced a strictly-feasible packing with sum of radii:
 | | sum of radii |
 |---|---|
 | **ours** | **2.685978684198** |
-| listed (Packomania's standing record) | 2.685350025228 |
+| previous record (Cantrell, 2011/12) | 2.685350025228 |
 | **gain** | **+0.000628658970  (+0.023%)** |
 
 ![The record-beating N=27 packing](fig1_n27_packing.png)
@@ -56,7 +56,11 @@ At N=27, our solver produced a strictly-feasible packing with sum of radii:
 
 The scope matters, and we state it plainly. Packomania lists, for each N, the best value anyone has submitted. The N=27 entry we improved is a *long-standing classical entry*, a 2011/12 result (attributed to D. W. Cantrell on the sci.math forum) that predates the recent AI systems, not one of the AI-optimized entries. On the most-studied case, N=26 (the size AlphaEvolve made famous as its showcase result), the best-known value is 2.635983, a recent AI-optimized entry (credited to Haowei Lin, 2026); there, our agent *matches* that number but does not beat it. So this is a genuine, verifiable improvement to a standing reference value, not a claim to have dethroned AlphaEvolve or ShinkaEvolve. Small, but real, and the kind of thing that, until recently, only a human expert or a purpose-built research program would produce.
 
-We have prepared a submission of the N=27 packing to Packomania's maintainer for review; the artifact stands on its own regardless of how it was produced.
+The N=27 packing is now the listed record on [Packomania](https://www.packomania.com/csqv/csqv.html): it was accepted and credited to Jason Liang (reference [11]), superseding the entry by David Cantrell, and the site notes its "remarkable D1 symmetry" (a single mirror axis). The artifact stands on its own regardless of how it was produced.
+
+![Previous record value vs the new record](fig4_prev_vs_new.png)
+
+*The previous record value (left, Σr = 2.685350) and our new record (right, Σr = 2.685979), both with the same D1 mirror symmetry (a single diagonal axis; mirror-pairs share a color). The two near-optimal arrangements are similar, but ours squeezes out slightly more total radius. The left is a packing at the old value that our own solver also reaches; Cantrell's exact 2011/12 coordinates are not public, so it stands in for the previous optimum.*
 
 ---
 
@@ -84,7 +88,7 @@ Because the search uses random restarts, we could ask a sharp question: at which
 
 ![When the capability appeared, and at what cost](fig3_emergence.png)
 
-*The record-beating packing (green, best of 50 starts) is present from iteration 1; the median run (grey) sits just below the record; more self-improvement lifts the per-start hit rate 10% → 14%: reliability, not the peak.*
+*When a record-capable N=27 solver emerges (the radical self-modifying arm; 120 s/seed, 50 seeds). Top: the best of 50 random starts (blue) reaches the record-beating win from iteration 1, with the full 50-seed spread in grey and the exact seed-1 layout we submitted (red) first winning at iteration 4. Bottom: the per-seed hit rate rises from 10% to 14% with more self-improvement, buying reliability, not a higher peak.*
 
 The record-beating packing is reachable from the *very first* iteration, the one that cost about $2.48. Every later version reaches the identical winning configuration too; roughly one in seven to one in ten random starts lands on it. What ~$12 more of self-improvement bought was not a higher peak but better *reliability*: the per-start hit rate rose from 10% to 14%. (The exact coordinates we submitted are one such run, which first turned up at iteration 4, about $15 of cumulative cost; it is the same winning value, not a better one.) The median single run, tellingly, lands just *below* the record, so the win comes from a good method run a few times, not from luck.
 
@@ -108,7 +112,7 @@ Three implications for enterprises:
 
 ## Honest caveats (and how to check us)
 
-- The N=27 result is a real, independently-verifiable improvement to the *listed baseline*; it is not a claim to beat the AI-optimized AlphaEvolve/ShinkaEvolve entries, and on N=26 we tie rather than beat them.
+- The N=27 result improves on the previously listed record (now the accepted record); it does not claim to beat the recent AI-optimized entries, and on N=26 we tie rather than beat the best-known.
 - Each of the six experimental arms is a single run; cross-arm differences (e.g., which "values" arm won) are directional, not statistically powered.
 - The search is stochastic and wall-clock-budgeted, so re-running does not guarantee re-finding a given win on one seed (one random starting layout), but the saved configuration is fixed and stays valid forever.
 - The solver is not uniformly strong: on large boards it trails the records by up to ~2.3%, and on one size (N=97) a single run failed to produce any valid packing (it is omitted from the sweep figure). The N=27 result is a specific, verified win, not a claim of across-the-board superiority.

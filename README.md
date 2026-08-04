@@ -6,6 +6,10 @@ experiment and run across a range of N, compared to the authoritative **Packoman
 > **Pack N variable-sized circles in a unit square so that no two overlap and all stay inside the square,
 > maximizing the sum of the radii Σr**, the AlphaEvolve / ShinkaEvolve benchmark (Packomania's `csqv` table).
 
+### 📄 Start here: **[the write-up](writeup/README.md)**
+
+A short, figure-rich explainer of what the problem is, the record we beat, how a self-improving AI agent found it, and why it matters. **[Read it → `writeup/README.md`](writeup/README.md)**
+
 ## Result
 
 A sweep of N=2..100 (120s per N, seed 1) **reproduces 26 of the known records to within 4e-11** (worst
@@ -19,12 +23,6 @@ beat).
 N=92 at 2.29%. The sweep covered 99 sizes but produced only **98 usable packings**, failing outright at
 N=97 (see [Known issues](#known-issues)). Per-N detail is in `sota/ours/comparison.md`; **every claimed win
 is independently re-verifiable from its `.pck` with `solver/verify_pck.py`.**
-
-## Write-up
-
-A narrative explainer of this result — what the problem is, what record was beaten, how a
-self-improving AI agent produced the solver, and why it matters — with figures:
-**[`writeup/`](writeup/README.md)**.
 
 ## Verify the N=27 result
 
