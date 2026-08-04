@@ -54,7 +54,7 @@ The N=27 packing is now the listed record on [Packomania](https://www.packomania
 
 ![Previous record value vs the new record](fig4_prev_vs_new.png)
 
-*The previous record (left, Σr = 2.685350) and our new record (right, Σr = 2.685979), both D1-symmetric about the diagonal (mirror-pairs share a color; on-axis circles are grey). Our solver rediscovers the previous optimum: the left matches Cantrell's published layout, two equal large circles as a mirror pair, and his Σr to about one part in 100 billion. Our record instead places a single larger circle on the axis (the big grey disk) where that symmetric pair used to be, netting the extra +6.29×10⁻⁴. Cantrell's exact 2011/12 coordinates are not published, so the left is our solver's rendering of that optimum.*
+*The previous record (left, Σr = 2.685350) and our new record (right, Σr = 2.685979), both D1-symmetric about a diagonal axis (mirror-pairs share a color; on-axis circles are grey). Our solver rediscovers the previous optimum: the left reproduces its layout (two equal large circles as a mirror pair) and matches the published record value to about one part in 100 billion. Our record instead places a single larger circle on the axis (the big grey disk) where that symmetric pair used to be, netting the extra +6.29×10⁻⁴. Cantrell's exact 2011/12 coordinates are not published, so the left is our solver's rendering of that optimum.*
 
 ---
 
