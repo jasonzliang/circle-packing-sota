@@ -1,64 +1,34 @@
 #!/usr/bin/env python3
-"""Write-up visuals for the N=27 circle-packing result. All data read from the repo's own
-committed artifacts (sota/ours/...). Generates fig1 (the record packing) and fig2 (the
-N=2..100 sweep vs Packomania). fig3_emergence.png is the SI-v2 study report's Figure 2,
-rasterized in separately and NOT regenerated here. Run from anywhere:
-    python3 writeup/make_figs.py    ->  regenerates writeup/fig1_n27_packing.png and fig2_sweep_gap.png."""
-import json, os, re, math
+"""Write-up visuals for the N=27 circle-packing result. Data from the repo's own committed
+artifacts (sota/ours/comparison.md) plus the SI-v2 study's per-iteration emergence numbers.
+Generates:
+  fig2_sweep_gap.png  -- our solver vs Packomania across N=2..100
+  fig3_emergence.png  -- when a record-capable N=27 solver emerges (also saved as .pdf, the twin
+                         used as Figure 2 of the SI-v2 circle-packing report)
+(fig4_prev_vs_new.png is built by make_compare_fig.py.)
+    python3 writeup/make_figs.py"""
+import os, re
 import numpy as np
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from matplotlib.patches import Circle, Rectangle
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-SOTA = os.path.dirname(HERE)          # repo root (this script lives in writeup/)
-OUT = HERE                            # write the figures next to this script
-os.makedirs(OUT, exist_ok=True)
-
+SOTA = os.path.dirname(HERE)
+OUT = HERE
 RECORD = 2.685350025228          # Packomania csqv27 previous record (Cantrell, 2011/12)
 WIN    = 2.685978684198          # our verified Sigma r (now the listed record)
-
-# ----------------------------------------------------------------------------- fig 1: the packing
-d = json.load(open(f"{SOTA}/sota/ours/wins/csqv27.seed1.json"))
-circ = np.array(d["circles"])                     # x, y, r in [0,1]^2
-sr = circ[:, 2].sum()
-assert abs(sr - d["sum_radii"]) < 1e-9
-print(f"fig1: N={len(circ)}  Sigma r (recomputed) = {sr:.12f}")
-
-fig, ax = plt.subplots(figsize=(6.6, 6.9))
-ax.add_patch(Rectangle((0, 0), 1, 1, fill=False, lw=2.0, ec="#222222"))
-cmap = plt.cm.viridis
-rmin, rmax = circ[:, 2].min(), circ[:, 2].max()
-for x, y, r in circ:
-    frac = (r - rmin) / (rmax - rmin + 1e-12)
-    ax.add_patch(Circle((x, y), r, facecolor=cmap(0.15 + 0.75 * frac),
-                        edgecolor="white", lw=0.8, alpha=0.95))
-ax.set_xlim(-0.03, 1.03); ax.set_ylim(-0.03, 1.03)
-ax.set_aspect("equal"); ax.axis("off")
-ax.set_title("27 circles in the unit square: maximizing the sum of radii",
-             fontsize=13, fontweight="bold", pad=12)
-ax.text(0.5, -0.065,
-        f"$\\Sigma r$ = {WIN:.9f}   (beats the previous Packomania record {RECORD:.9f} by +6.29$\\times10^{{-4}}$)",
-        ha="center", va="top", fontsize=10.5, transform=ax.transAxes)
-ax.text(0.5, -0.11, "strictly feasible: exactly 27 circles, all inside the square, no overlaps (verified to 1e-9)",
-        ha="center", va="top", fontsize=8.8, color="#555555", transform=ax.transAxes)
-plt.tight_layout()
-plt.savefig(f"{OUT}/fig1_n27_packing.png", dpi=200, bbox_inches="tight")
-plt.close()
 
 # ----------------------------------------------------------------------------- fig 2: sweep gap vs N
 rows = []
 for line in open(f"{SOTA}/sota/ours/comparison.md"):
     m = re.match(r"\|\s*(\d+)\s*\|\s*([\d.]+)\s*\|\s*([\d.]+)\s*\|", line)
     if m:
-        N, ours, rec = int(m.group(1)), float(m.group(2)), float(m.group(3))
-        rows.append((N, ours, rec))
+        rows.append((int(m.group(1)), float(m.group(2)), float(m.group(3))))
 rows.sort()
-N   = np.array([r[0] for r in rows])
-gap = np.array([100.0 * (r[1] - r[2]) / r[2] for r in rows])   # signed % of record (>0 = we beat it)
-# drop the single degenerate seed failure (N=97 returned Sigma r = 0 -> not a real -100% gap)
-keep = ~((N == 97) & (gap < -50))
+N = np.array([r[0] for r in rows])
+gap = np.array([100.0 * (r[1] - r[2]) / r[2] for r in rows])
+keep = ~((N == 97) & (gap < -50))          # drop the single degenerate seed failure at N=97
 Nk, gk = N[keep], gap[keep]
 ties = np.abs(gk) < 1e-4
 
@@ -67,24 +37,65 @@ ax.axhspan(-0.001, 0.001, color="#cfe8cf", alpha=0.6, zorder=0)
 ax.axhline(0, color="#888888", lw=1.0, zorder=1)
 ax.scatter(Nk[~ties], gk[~ties], s=26, c="#c0504d", zorder=3, label="below record (our compute budget, not the record's ceiling)")
 ax.scatter(Nk[ties], gk[ties], s=30, c="#4f81bd", zorder=3, label="tie (matches best-known, $\\sim10^{-11}$)")
-win_i = np.where(Nk == 27)[0][0]
-ax.scatter([27], [gk[win_i]], s=220, marker="*", c="#2e8b57", edgecolor="black",
-           lw=0.7, zorder=5, label="N=27: beats the previous record")
-ax.annotate("N = 27  WIN", xy=(27, gk[win_i]), xytext=(34, 0.28),
-            fontsize=10.5, fontweight="bold", color="#2e8b57",
-            arrowprops=dict(arrowstyle="->", color="#2e8b57", lw=1.4))
+wi = np.where(Nk == 27)[0][0]
+ax.scatter([27], [gk[wi]], s=220, marker="*", c="#2e8b57", edgecolor="black", lw=0.7, zorder=5,
+           label="N=27: beats the previous record")
+ax.annotate("N = 27  WIN", xy=(27, gk[wi]), xytext=(34, 0.28), fontsize=10.5, fontweight="bold",
+            color="#2e8b57", arrowprops=dict(arrowstyle="->", color="#2e8b57", lw=1.4))
 ax.set_xlabel("N  (number of circles)", fontsize=11)
 ax.set_ylabel("sum of radii vs Packomania record  (%)", fontsize=11)
-ax.set_title("Our solver across N = 2..100 vs the authoritative Packomania records",
-             fontsize=12, fontweight="bold")
+ax.set_title("Our solver across N = 2..100 vs the authoritative Packomania records", fontsize=12, fontweight="bold")
 ax.set_ylim(-2.6, 0.6)
 ax.legend(loc="lower left", fontsize=8.6, framealpha=0.92)
 ax.grid(True, axis="y", ls=":", alpha=0.4)
 plt.tight_layout()
 plt.savefig(f"{OUT}/fig2_sweep_gap.png", dpi=200, bbox_inches="tight")
 plt.close()
-print(f"fig2: {len(Nk)} sizes plotted; ties={ties.sum()}; N=27 gap={gk[win_i]:+.4f}%")
+print(f"fig2: {len(Nk)} sizes; ties={ties.sum()}; N=27 gap={gk[wi]:+.4f}%")
 
-# fig 3 (writeup/fig3_emergence.png) is the SI-v2 study report's Figure 2, rasterized in
-# separately from reports/fig_circle_n27_iters.pdf and NOT regenerated here.
-print("fig1 + fig2 written to", OUT)
+# ----------------------------------------------------------------------------- fig 3: emergence
+# Data: SI-v2 study report, Table 'Per-version n=27 outcomes over 50 seeds (120 s each)'.
+# best-of-50 = the win (constant); `worst` is the lower edge of the 50-seed spread; seed 1 lands in
+# the dominant near-record basin (2.685157) for iters 1-3, then reaches the win from iter 4.
+it    = list(range(1, 11))
+best  = [WIN] * 10
+worst = [2.681726, 2.681726, 2.681541, 2.681508, 2.681508, 2.681508, 2.681508, 2.681508, 2.681508, 2.681508]
+seed1 = [2.685157, 2.685157, 2.685157] + [WIN] * 7
+hit   = [10, 10, 12, 14, 14, 14, 14, 14, 14, 14]
+
+fig, (axA, axB) = plt.subplots(2, 1, figsize=(8.8, 6.8), sharex=True,
+                               gridspec_kw={"height_ratios": [2.3, 1.0], "hspace": 0.13})
+axA.fill_between(it, worst, best, color="#cfcfcf", alpha=0.7, zorder=0, label="seed spread (50 seeds)")
+axA.axhline(RECORD, color="#000000", ls=":", lw=1.6, zorder=2)
+axA.text(10.15, RECORD, "Packomania\nrecord", fontsize=8.6, va="center")
+axA.plot(it, best, "-o", color="#1f6fb2", lw=2.4, ms=7, zorder=5, label="best of 50 seeds (capability)")
+axA.plot(it, seed1, "--s", color="#c0392b", lw=2.2, ms=7, zorder=5, label="seed 1 only (sota-repo condition)")
+axA.annotate("SOTA-capable at iter 1\n(best of seeds = the win; ~$2.48)", xy=(1, WIN), xytext=(1.35, 2.6835),
+             color="#1f6fb2", fontsize=9, arrowprops=dict(arrowstyle="->", color="#1f6fb2", lw=1.2))
+axA.annotate("seed-1 win from iter 4\n(~$14.82 cum.)", xy=(4, WIN), xytext=(4.7, 2.6840),
+             color="#c0392b", fontsize=9, arrowprops=dict(arrowstyle="->", color="#c0392b", lw=1.2))
+axA.set_ylim(2.6810, 2.6864)
+axA.set_xlim(0.7, 11.0)
+axA.set_ylabel("N=27  $\\Sigma r$  (higher = better)", fontsize=10.5)
+axA.set_title("When does a SOTA-capable N=27 solver emerge?   (120 s/seed, 50 seeds)", fontsize=12, fontweight="bold")
+axA.legend(loc="lower right", fontsize=8.4, framealpha=0.93)
+axA.grid(True, axis="y", ls=":", alpha=0.3)
+
+axB.bar(it, hit, width=0.6, color=["#2e8b57" if h >= 14 else "#c0504d" for h in hit], alpha=0.9)
+for x, h in zip(it, hit):
+    axB.text(x, h + 0.4, f"{h}%", ha="center", fontsize=8.6, color="#333333")
+axB.set_ylim(0, 19)
+axB.set_xticks(it)
+axB.set_ylabel("% of 50 seeds\nbeating the record", fontsize=9.2)
+axB.set_xlabel("solver iteration (v6-radical-circle-nietzsche arm)", fontsize=10.3)
+axB.text(0.75, 18.6,
+         "every iteration reaches the identical record-beating packing;\n"
+         "more self-improvement lifts the per-seed hit rate 10% $\\rightarrow$ 14%",
+         fontsize=8.6, color="#555555", va="top", linespacing=1.3)
+axB.grid(True, axis="y", ls=":", alpha=0.3)
+plt.tight_layout()
+plt.savefig(f"{OUT}/fig3_emergence.png", dpi=200, bbox_inches="tight")
+plt.savefig(f"{OUT}/fig3_emergence.pdf", bbox_inches="tight")   # PDF twin for the report's Figure 2
+plt.close()
+print("fig3: emergence written (png + pdf)")
+print("fig2 + fig3 written to", OUT)

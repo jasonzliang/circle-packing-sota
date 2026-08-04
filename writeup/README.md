@@ -12,8 +12,6 @@
 
 - The new configuration has sum of radii **2.685978684198** versus the previous record **2.685350025228**, an improvement of **+0.000628658970 (+0.023%)**. It is a fixed, strictly-feasible artifact that anyone can independently verify from its coordinates.
 
-- **Honest scope:** the entry we beat is a *long-standing classical entry* in Packomania's table (a 2011/12 result), **NOT** one of the recent AI-optimized results from systems like Google DeepMind's AlphaEvolve or Sakana AI's ShinkaEvolve. On the famous N=26 case we *tie* the recent AI-optimized best-known value there (2.635983); we do not beat it.
-
 - The agent did it with no copied solver code, by writing one strong solver and running it in a handful of actions and a few dollars, a different paradigm from evolutionary systems that search over hundreds of generated programs.
 
 - The most interesting finding is about *where* the value of self-improvement lies: the record-beating capability was present in the very first, ~$2.48 iteration. The additional iterations bought reliability and generalization, not the peak result.
@@ -48,10 +46,6 @@ At N=27, our solver produced a strictly-feasible packing with sum of radii:
 | previous record (Cantrell, 2011/12) | 2.685350025228 |
 | **gain** | **+0.000628658970  (+0.023%)** |
 
-![The record-beating N=27 packing](fig1_n27_packing.png)
-
-*The record-beating N=27 packing (circle shade shows size: darker = smaller, lighter = larger). Sum of radii 2.685978684198.*
-
 "Strictly feasible" is not a figure of speech: the configuration has exactly 27 circles, every one inside the square, and no pair overlapping, verified to a tolerance of 1e-9 and independently confirmed feasible in exact rational arithmetic (zero tolerance).
 
 The scope matters, and we state it plainly. Packomania lists, for each N, the best value anyone has submitted. The N=27 entry we improved is a *long-standing classical entry*, a 2011/12 result (attributed to D. W. Cantrell on the sci.math forum) that predates the recent AI systems, not one of the AI-optimized entries. On the most-studied case, N=26 (the size AlphaEvolve made famous as its showcase result), the best-known value is 2.635983, a recent AI-optimized entry (credited to Haowei Lin, 2026); there, our agent *matches* that number but does not beat it. So this is a genuine, verifiable improvement to a standing reference value, not a claim to have dethroned AlphaEvolve or ShinkaEvolve. Small, but real, and the kind of thing that, until recently, only a human expert or a purpose-built research program would produce.
@@ -60,7 +54,7 @@ The N=27 packing is now the listed record on [Packomania](https://www.packomania
 
 ![Previous record value vs the new record](fig4_prev_vs_new.png)
 
-*The previous record value (left, Σr = 2.685350) and our new record (right, Σr = 2.685979), both with the same D1 mirror symmetry (a single diagonal axis; mirror-pairs share a color). The two near-optimal arrangements are similar, but ours squeezes out slightly more total radius. The left is a packing at the old value that our own solver also reaches; Cantrell's exact 2011/12 coordinates are not public, so it stands in for the previous optimum.*
+*The previous record (left, Σr = 2.685350) and our new record (right, Σr = 2.685979), both D1-symmetric about the diagonal (mirror-pairs share a color; on-axis circles are grey). Our solver rediscovers the previous optimum: the left matches Cantrell's published layout, two equal large circles as a mirror pair, and his Σr to about one part in 100 billion. Our record instead places a single larger circle on the axis (the big grey disk) where that symmetric pair used to be, netting the extra +6.29×10⁻⁴. Cantrell's exact 2011/12 coordinates are not published, so the left is our solver's rendering of that optimum.*
 
 ---
 
