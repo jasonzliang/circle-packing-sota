@@ -3,3 +3,4 @@ __pycache__/
 .DS_Store
 email_draft.md
 repro/
+writeup/fig3_emergence.pdf   # build byproduct of make_figs.py (copied into the report; writeup embeds the .png)
