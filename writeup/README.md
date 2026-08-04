@@ -10,7 +10,7 @@
 
 - The new configuration has sum of radii **2.685978684198** versus the listed **2.685350025228** — an improvement of **+0.000628658970 (+0.023%)**. It is a fixed, strictly-feasible artifact that anyone can independently verify from its coordinates.
 
-- **Honest scope:** the entry we beat is the *classical baseline* in Packomania's table, **NOT** the recent AI-optimized results from Google DeepMind's AlphaEvolve or Sakana AI's ShinkaEvolve. On the famous N=26 case we *tie* the AI-optimized best-known value there (ShinkaEvolve's); we do not beat it.
+- **Honest scope:** the entry we beat is a *long-standing classical entry* in Packomania's table (a 2011/12 result), **NOT** one of the recent AI-optimized results from systems like Google DeepMind's AlphaEvolve or Sakana AI's ShinkaEvolve. On the famous N=26 case we *tie* the recent AI-optimized best-known value there (2.635983); we do not beat it.
 
 - The agent did it with no copied solver code, by writing one strong solver and running it in a handful of actions and a few dollars — a different paradigm from evolutionary systems that search over hundreds of generated programs.
 
@@ -52,7 +52,7 @@ At N=27, our solver produced a strictly-feasible packing with sum of radii:
 
 "Strictly feasible" is not a figure of speech: the configuration has exactly 27 circles, every one inside the square, and no pair overlapping, verified to a tolerance of 1e-9 (and guaranteed feasible by the solver's exact-arithmetic repair step).
 
-The scope matters, and we state it plainly. Packomania lists, for each N, the best value anyone has submitted. The N=27 entry we improved is the *classical baseline* — the value from Dr. Specht's own long-standing search program — not one of the recent AI-optimized entries. On the most famous case, N=26, the best-known value is 2.635983, set by ShinkaEvolve; there, our agent *matches* that number but does not beat it. So this is a genuine, verifiable improvement to a standing reference value, not a claim to have dethroned AlphaEvolve or ShinkaEvolve. Small, but real — and the kind of thing that, until recently, only a human expert or a purpose-built research code would produce.
+The scope matters, and we state it plainly. Packomania lists, for each N, the best value anyone has submitted. The N=27 entry we improved is a *long-standing classical entry* — a 2011/12 result (attributed to D. W. Cantrell on the sci.math forum) that predates the recent AI systems — not one of the AI-optimized entries. On the most famous case, N=26, the best-known value is 2.635983, a recent AI-optimized entry (credited to Haowei Lin, 2026); there, our agent *matches* that number but does not beat it. So this is a genuine, verifiable improvement to a standing reference value, not a claim to have dethroned AlphaEvolve or ShinkaEvolve. Small, but real — and the kind of thing that, until recently, only a human expert or a purpose-built research code would produce.
 
 We have prepared a submission of the N=27 packing to Packomania's maintainer for review; the artifact stands on its own regardless of how it was produced.
 

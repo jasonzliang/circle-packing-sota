@@ -3,8 +3,8 @@
 
 Each N is an independent optimization, so the sweep is embarrassingly parallel: a process pool runs
 --workers instances of pack.search() at once (pack itself is single-core). For each N it keeps the best
-strictly-feasible sum of radii over --seeds, writes a packomania `.pck` file, and appends a row to
-results.csv. The solver is used UNCHANGED from n=26 (n is a parameter throughout).
+strictly-feasible, non-degenerate sum of radii over --seeds, writes a packomania `.pck` file, and appends a
+row to results.csv. An N with no acceptable config gets a blank row with feasible=0 and no `.pck`. The solver is used UNCHANGED from n=26 (n is a parameter throughout).
 
     OMP_NUM_THREADS=1 python3 run_sweep.py --nmin 2 --nmax 100 --time 120 --workers 8 --out-dir ../sota/ours
 
@@ -36,7 +36,13 @@ def to_pck(circles, author, center_origin=True):
 
 
 def solve_n(n, budget, seeds):
-    """Best strictly-feasible (sum_r, circles, violation) for n circles over the seeds. Runs in a worker."""
+    """Best strictly-feasible, NON-DEGENERATE (sum_r, circles, violation) for n circles over the seeds.
+
+    Runs in a worker. A feasibility test alone is not enough: repair() rescales every radius by one
+    uniform factor, so a single degenerate cluster (two coincident centres) drives that factor to 0 and
+    zeroes the whole configuration. The result violates nothing and scores 0, so `v <= 1e-9` accepts it.
+    Reject any config containing a zero radius instead, since a radius-0 circle is not a circle.
+    """
     best = None
     for s in seeds:
         try:
@@ -46,6 +52,9 @@ def solve_n(n, budget, seeds):
             continue
         v = pack.max_violation(z, n)
         if v > 1e-9:
+            continue
+        if float(np.min(z[2 * n:])) <= 1e-12:
+            print(f"  n={n} seed={s} DEGENERATE (a radius is 0), rejected", flush=True)
             continue
         if best is None or sr > best[0]:
             c = np.stack([z[:n], z[n:2 * n], z[2 * n:]], axis=1)

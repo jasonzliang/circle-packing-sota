@@ -51,9 +51,12 @@ def verdict(ours, rec):
 
 
 def main():
+    # Defaults are resolved against the repo root (this file's parent dir), not the caller's cwd,
+    # so `python3 solver/compare.py` works from anywhere.
+    repo = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     ap = argparse.ArgumentParser()
-    ap.add_argument("--results", default="../sota/ours/results.csv")
-    ap.add_argument("--out", default="../sota/ours/comparison.md")
+    ap.add_argument("--results", default=os.path.join(repo, "sota/ours/results.csv"))
+    ap.add_argument("--out", default=os.path.join(repo, "sota/ours/comparison.md"))
     a = ap.parse_args()
     rows, wins, ties, below = [], [], [], []
     with open(a.results) as f:
@@ -65,7 +68,9 @@ def main():
             if rec is None:
                 continue
             v, d = verdict(ours, rec)
-            gap = (rec - ours) / rec * 100.0
+            # Signed like Δ: negative when we are below the record, positive when above. The reverse
+            # convention made "gap %" positive on a shortfall while Δ on the same row was negative.
+            gap = (ours - rec) / rec * 100.0
             rows.append((n, ours, rec, d, gap, v))
             (wins if v == "WIN" else ties if v == "tie" else below).append(n)
     rows.sort()   # the parallel sweep completes out of order; present by N
@@ -73,16 +78,18 @@ def main():
         "# Our evolved solver vs Packomania `csqv` records (max Σr, N circles in a unit square)",
         "",
         f"Sweep: {len(rows)} sizes.  **WINS: {len(wins)}**  ·  ties (≤1e-6): {len(ties)}  ·  below: {len(below)}.",
-        (f"Wins at N = {wins}." if wins else "No N beats the Packomania record (expected — see README)."),
+        (f"Wins at N = {wins}." if wins else "No N beats the Packomania record (expected; see README)."),
         "",
         "| N | ours Σr | Packomania record | Δ (ours−rec) | gap % | verdict |",
         "|---:|---:|---:|---:|---:|:--|",
     ]
     for n, ours, rec, d, gap, v in rows:
-        mark = {"WIN": "**WIN** 🏆", "tie": "tie", "below": f"−{gap:.4f}%"}[v]
+        mark = {"WIN": "**WIN** 🏆", "tie": "tie", "below": f"{gap:.4f}%"}[v]
         lines.append(f"| {n} | {ours:.12f} | {rec:.12f} | {d:+.2e} | {gap:+.4f} | {mark} |")
     if below:
-        worst = max(rows, key=lambda t: t[4]); best = min((r for r in rows if r[5] == "below"), key=lambda t: t[4], default=None)
+        # gap is now negative below the record, so the largest shortfall is the minimum and the
+        # closest-below is the maximum among the below rows.
+        worst = min(rows, key=lambda t: t[4]); best = max((r for r in rows if r[5] == "below"), key=lambda t: t[4], default=None)
         lines += ["", f"Closest below: N={best[0]} ({best[4]:+.4f}%). Largest gap: N={worst[0]} ({worst[4]:+.4f}%)." if best else ""]
     open(a.out, "w").write("\n".join(lines) + "\n")
     print("\n".join(lines))

@@ -1,30 +1,44 @@
-# sota/ours — our results vs the Packomania records
+# sota/ours: our results vs the Packomania records
 
 Our evolved solver's results for **N variable circles in a unit square, maximize Σr**, measured against
 the Packomania `csqv` best-known values in [`../theirs/`](../theirs/). The complete per-N packings from
-the sweep are in [`pck/`](pck/) and the raw table in [`results.csv`](results.csv).
+the sweep are in [`pck/`](pck/) and the raw table in [`results.csv`](results.csv). The sweep covered 99
+sizes and produced 98 usable packings; N=97 collapsed and has no file.
 
 ## Headline (sweep N=2..100, from scratch, 120s/N, seed 1)
 
 | outcome | count | N |
 |---|---|---|
 | **beat the record (WIN)** | **1** | **27** |
-| tie (≤1e-6) | 26 | 2–24 and a few others |
-| below (our under-search at large N) | 72 | mostly 25+ |
+| tie (≤1e-6) | 26 | all of 2–24, plus 29, 31, 33 |
+| below (our under-search at larger N) | 71 | every N ≥ 25 except 27, 29, 31, 33, 97 |
+| no result at all | 1 | 97 (collapsed; see the root README's Known issues) |
 
-Full table: [`comparison.md`](comparison.md). The 72 "below" are **our compute budget, not the records'
-ceiling** — large N need more search time than 120s (and, like N=27, some may be beatable baseline entries
-with a harder re-run).
+Full table: [`comparison.md`](comparison.md). The 71 "below" are **our compute budget, not the records'
+ceiling**. Large N need more search time than 120s (and, like N=27, some may be beatable long-standing
+entries with a harder re-run).
+
+**Partial evidence that the 71 are under-search:** [`chase/`](chase/) re-runs twelve near-misses at **240s
+over seeds 1–4** (vs the sweep's 120s on seed 1 alone) and reaches the record to **within 4e-11 at five of
+them** (N = 25, 28, 32, 35, 36), i.e. they become effective ties. Counting those, the repo demonstrates 31
+ties rather than 26; the headline table reports the *uniform* sweep only, so the two counts are consistent.
+
+Stated fully, because the result cuts both ways: seven of the twelve stayed below the record, and at **N=30
+eight times the compute produced no improvement at all** (bit-identical to the 120s run; N=54 gained 1e-11,
+which is nothing). So extra search closes the gap at some N and demonstrably does not at others. The twelve
+are also not exactly the twelve smallest gaps: N=26 was excluded (it is the AI-optimized record above,
+which we do not expect to beat) and N=41 included in its place.
 
 ## The one win: N = 27
 
 - **ours Σr = 2.685978684198**  vs  **Packomania record 2.685350025228**  →  **+6.29e-4 (+0.023%)**
 - Strictly feasible (independently re-checked with `verify_pck.py`, below):
-  27 circles, min wall slack +1.0e-12, min pairwise slack +7.2e-13 — no overlaps, all inside the square;
-  the win margin is ~9 orders larger than the feasibility slack, so it is real, not numerical noise.
-- Why this one is beatable: the N=27 record is a Packomania **baseline** entry (reference [1] = Specht's
-  own `csqv` program), **not** one of the recent AlphaEvolve/AI-optimized entries (e.g. N=26 = 2.635983,
-  which we do not beat).
+  27 circles, min wall slack +1.0e-12, min pairwise slack +7.2e-13, meaning no overlaps and every
+  circle inside the square. The win margin is 8.7×10⁸ times the smaller slack, so it is real, not
+  numerical noise.
+- Why this one is beatable: the N=27 record is a **long-standing 2011/12 entry** (reference [1] =
+  D. W. Cantrell, sci.math forum), **not** one of the recent AI-optimized entries (e.g. N=26 = 2.635983,
+  credited to Haowei Lin [8], July 2026, which we do not beat).
 - Everything for the win is in [`wins/`](wins/): [`csqv27.pck`](wins/csqv27.pck) (the canonical packing,
   Packomania format), `csqv27.seed1.json` (the full float64 config), and `csqv27.verify.txt` (the
   independent feasibility + record check). The same packing is also part of the complete set in
@@ -46,28 +60,28 @@ generator, `rng = np.random.default_rng(seed)`. That single `rng` drives *everyt
 random initial layouts (`start_random`/`start_grid`), the basin-hopping perturbations
 (`perturb`/`perturb_dual`), and the per-restart parameter choices. So the seed fully determines the random
 stream. The loop repeatedly draws a fresh start (or perturbs the current best), runs the exact radius LP +
-SLSQP refine + feasibility repair, and keeps the best — **until the wall-clock `budget` expires**.
+SLSQP refine + feasibility repair, and keeps the best. This repeats **until the wall-clock `budget` expires**.
 
 **The N=27 result's seed is therefore `1`.** To regenerate it:
 ```bash
 python3 ../../solver/pack.py -n 27 --seed 1 --time 120 -o out27.json
 ```
 
-**Reproducibility caveat (important).** The budget is *wall-clock*, so the number of restarts that fit in
-120s depends on machine speed and load. `(seed=1, 120s)` is deterministic in its RNG stream, but the
-*result* depends on how many restarts complete — on a slower/busier machine seed 1 may land in a different
-(possibly worse) local optimum. More time is **not** monotonically better either: a re-run at **seed 7,
-300s** found a *worse* config (2.683803) because it explored a different basin. The takeaway: the search
-is a stochastic multi-start, so a specific win is tied to `(seed, budget, machine)` — but the saved
-packing (`wins/csqv27.pck`) is a fixed artifact that is strictly feasible and beats the record regardless
-of how it was found, and anyone can confirm that with `verify_pck.py`.
+**Reproducibility caveat (important).** The budget is *wall-clock*, so `(seed=1, 120s)` is deterministic in
+its RNG stream but not in its *result*: a slower or busier machine completes fewer restarts and may land in
+a different, possibly worse local optimum. The seed matters more than the budget. A re-run at **seed 7,
+300s** found a *worse* config (2.683803447573, re-confirmed on a second machine: 1017 starts, 1852 hops)
+despite 2.5x the time, because it explored a different basin. Note this varies both seed and budget, so it
+shows the seed dominating rather than more time being harmful in itself. Either way a specific win is tied
+to `(seed, budget, machine)`, while the saved packing (`wins/csqv27.pck`) is a fixed artifact that is
+strictly feasible and beats the record regardless of how it was found.
 
 ## Contents
 
-```
+```text
 comparison.md            our full ours-vs-Packomania table (N=2..100)
-results.csv              raw sweep output (N, Σr, feasibility)
+results.csv              raw sweep output (n, sum_radii, max_violation, seeds, feasible)
 wins/                    the record-beating N=27 result: csqv27.pck + seed1.json (full float64) + verify.txt
-pck/csqv<N>.pck          all 99 packings, Packomania format (csqv27 also here, for completeness)
-chase/                   harder re-runs of the closest near-misses (more time + seeds)
+pck/csqv<N>.pck          the 98 usable packings, Packomania format (csqv27 also here; no N=97)
+chase/                   re-runs of 12 near-misses at 240s over seeds 1-4; ties the record at 5 of them
 ```
