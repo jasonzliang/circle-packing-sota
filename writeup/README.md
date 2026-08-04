@@ -80,10 +80,6 @@ None of these ingredients is new to mathematics on its own. What is notable is t
 
 Because the search uses random restarts, we could ask a sharp question: at which iteration of self-improvement does the record-beating ability actually appear, and what did each additional dollar of iteration buy? We re-ran every version of the solver, from its first self-improvement iteration onward, 50 random starts each, on N=27.
 
-![When the capability appeared, and at what cost](fig3_emergence.png)
-
-*When a record-capable N=27 solver emerges (the radical self-modifying arm; 120 s/seed, 50 seeds). Top: the best of 50 random starts (blue) reaches the record-beating win from iteration 1, with the full 50-seed spread in grey and the exact seed-1 layout we submitted (red) first winning at iteration 4. Bottom: the per-seed hit rate rises from 10% to 14% with more self-improvement, buying reliability, not a higher peak.*
-
 The record-beating packing is reachable from the *very first* iteration, the one that cost about $2.48. Every later version reaches the identical winning configuration too; roughly one in seven to one in ten random starts lands on it. What ~$12 more of self-improvement bought was not a higher peak but better *reliability*: the per-start hit rate rose from 10% to 14%. (The exact coordinates we submitted are one such run, which first turned up at iteration 4, about $15 of cumulative cost; it is the same winning value, not a better one.) The median single run, tellingly, lands just *below* the record, so the win comes from a good method run a few times, not from luck.
 
 This mirrors what we saw on the N=26 tie, where five of six agents matched the state-of-the-art packing at 1 to 5 iterations and $2.48 to $16.11 each. (That tie came from the agents' full runs. The same solver, run once at the short fixed budget used for the public sweep above, lands a hair under N=26; that is a compute-budget gap between two setups, not a different result.) The broader lesson: the base model supplies the raw capability early and cheaply, and the self-improvement loop is what makes it reliable and general.
