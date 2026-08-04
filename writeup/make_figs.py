@@ -3,7 +3,7 @@
 artifacts (sota/ours/comparison.md) plus the SI-v2 study's per-iteration emergence numbers.
 Generates:
   fig2_sweep_gap.png  -- our solver vs Packomania across N=2..100
-  fig3_emergence.png  -- when a record-capable N=27 solver emerges (also saved as .pdf, the twin
+  fig3_emergence.png  -- when a record-capable N=27 solver emerges (the twin
                          used as Figure 2 of the SI-v2 circle-packing report)
 (fig4_prev_vs_new.png is built by make_compare_fig.py.)
     python3 writeup/make_figs.py"""
@@ -28,8 +28,7 @@ for line in open(f"{SOTA}/sota/ours/comparison.md"):
 rows.sort()
 N = np.array([r[0] for r in rows])
 gap = np.array([100.0 * (r[1] - r[2]) / r[2] for r in rows])
-keep = ~((N == 97) & (gap < -50))          # drop the single degenerate seed failure at N=97
-Nk, gk = N[keep], gap[keep]
+Nk, gk = N, gap                            # comparison.md already omits the failed N=97
 ties = np.abs(gk) < 1e-4
 
 fig, ax = plt.subplots(figsize=(9.2, 4.6))
@@ -91,7 +90,6 @@ axB.set_xlabel("solver iteration", fontsize=10.3)
 axB.grid(True, axis="y", ls=":", alpha=0.3)
 plt.tight_layout()
 plt.savefig(f"{OUT}/fig3_emergence.png", dpi=200, bbox_inches="tight")
-plt.savefig(f"{OUT}/fig3_emergence.pdf", bbox_inches="tight")   # PDF twin for the report's Figure 2
 plt.close()
-print("fig3: emergence written (png + pdf)")
+print("fig3: emergence written (png)")
 print("fig2 + fig3 written to", OUT)

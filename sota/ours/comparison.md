@@ -1,6 +1,6 @@
-# Our evolved solver vs Packomania `csqv` records (max Σr, N circles in a unit square)
+# Our self-improved solver vs Packomania `csqv` records (max Σr, N circles in a unit square)
 
-Sweep: 98 sizes.  **WINS: 1**  ·  ties (≤1e-6): 26  ·  below: 71.
+Sweep: 98 sizes.  **WINS: 1**  ·  ties (≤1e-6): 27  ·  below: 70.
 Wins at N = [27].
 
 | N | ours Σr | Packomania record | Δ (ours−rec) | gap % | verdict |
@@ -29,7 +29,7 @@ Wins at N = [27].
 | 23 | 2.478013611940 | 2.478013611963 | -2.30e-11 | -0.0000 | tie |
 | 24 | 2.530311586947 | 2.530311586971 | -2.40e-11 | -0.0000 | tie |
 | 25 | 2.584877308948 | 2.587275055266 | -2.40e-03 | -0.0927 | -0.0927% |
-| 26 | 2.632341639574 | 2.635983084918 | -3.64e-03 | -0.1381 | -0.1381% |
+| 26 | 2.635983084892 | 2.635983084918 | -2.60e-11 | -0.0000 | tie |
 | 27 | 2.685978684198 | 2.685350025228 | +6.29e-04 | +0.0234 | **WIN** 🏆 |
 | 28 | 2.734376375373 | 2.737739985536 | -3.36e-03 | -0.1229 | -0.1229% |
 | 29 | 2.790344154597 | 2.790344154631 | -3.40e-11 | -0.0000 | tie |

@@ -22,7 +22,7 @@ are labelled as such:
    2−√2 = 0.5857864376269, agreeing to 9.0e-13 (the CSV is stored at 12 dp, so the printed strings differ
    in the last place). N=26 = 2.635983084918 matches the 2.635983 quoted in the AlphaEvolve/ShinkaEvolve
    literature to its 6 published digits.
-3. **Solver agreement (not independent).** Our own solver reproduces 26 of these records to within 4e-11
+3. **Solver agreement (not independent).** Our own solver reproduces 27 of these records to within 4e-11
    (worst 3.4e-11, median 1.5e-11) and beats one (N=27). This is the artifact under review checking its own
    reference, so it argues the two agree, not that either is right.
 4. **Re-extraction (same-day, so it tests the parser).** The live table was re-fetched on 2026-08-03,

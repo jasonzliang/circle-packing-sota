@@ -5,29 +5,29 @@ the Packomania `csqv` best-known values in [`../theirs/`](../theirs/). The compl
 the sweep are in [`pck/`](pck/) and the raw table in [`results.csv`](results.csv). The sweep covered 99
 sizes and produced 98 usable packings; N=97 collapsed and has no file.
 
-## Headline (sweep N=2..100, from scratch, 120s/N, seed 1)
+## Headline (sweep N=2..100, from scratch, 120s/N, seed 1; N=26 re-run at 240s over seeds 1-6)
 
 | outcome | count | N |
 |---|---|---|
 | **beat the record (WIN)** | **1** | **27** |
-| tie (≤1e-6) | 26 | all of 2–24, plus 29, 31, 33 |
-| below (our under-search at larger N) | 71 | every N ≥ 25 except 27, 29, 31, 33, 97 |
+| tie (≤1e-6) | 27 | all of 2–24, plus 26, 29, 31, 33 |
+| below (our under-search at larger N) | 70 | every N ≥ 25 except 26, 27, 29, 31, 33, 97 |
 | no result at all | 1 | 97 (collapsed; see the root README's Known issues) |
 
-Full table: [`comparison.md`](comparison.md). The 71 "below" are **our compute budget, not the records'
+Full table: [`comparison.md`](comparison.md). The 70 "below" are **our compute budget, not the records'
 ceiling**. Large N need more search time than 120s (and, like N=27, some may be beatable long-standing
 entries with a harder re-run).
 
-**Partial evidence that the 71 are under-search:** [`chase/`](chase/) re-runs twelve near-misses at **240s
+**Partial evidence that the 70 are under-search:** [`chase/`](chase/) re-runs twelve near-misses at **240s
 over seeds 1–4** (vs the sweep's 120s on seed 1 alone) and reaches the record to **within 4e-11 at five of
-them** (N = 25, 28, 32, 35, 36), i.e. they become effective ties. Counting those, the repo demonstrates 31
-ties rather than 26; the headline table reports the *uniform* sweep only, so the two counts are consistent.
+them** (N = 25, 28, 32, 35, 36), i.e. they become effective ties. Counting those, the repo demonstrates 32
+ties rather than 27; the headline table reports the per-N budgets above, so the two counts are consistent.
 
 Stated fully, because the result cuts both ways: seven of the twelve stayed below the record, and at **N=30
 eight times the compute produced no improvement at all** (bit-identical to the 120s run; N=54 gained 1e-11,
 which is nothing). So extra search closes the gap at some N and demonstrably does not at others. The twelve
-are also not exactly the twelve smallest gaps: N=26 was excluded (it is the AI-optimized record above,
-which we do not expect to beat) and N=41 included in its place.
+are also not exactly the twelve smallest gaps: N=26 is absent because the same treatment (240s over more
+seeds) already ties it, so it is folded into the main set above rather than kept here.
 
 ## The one win: N = 27
 

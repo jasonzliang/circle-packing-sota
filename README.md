@@ -12,14 +12,15 @@ technical record, covering how to verify the result, how to reproduce it, and ho
 
 ## Result
 
-A sweep of N=2..100 (120s per N, seed 1) **reproduces 26 of the known records to within 4e-11** (worst
-3.4e-11 at N=29, median 1.5e-11) and found one **strictly-feasible packing that beats a current Packomania
-best-known**: N=27, Σr = 2.685978684198 vs the listed 2.685350025228 (+6.3e-4). That record is a
+A sweep of N=2..100 (120s per N on seed 1, except N=26 which needed 240s over seeds 1-6)
+**reproduces 27 of the known records to within 4e-11** (worst 3.4e-11 at N=29, median 1.5e-11) and
+found one **strictly-feasible packing that beats a current Packomania best-known**: N=27,
+Σr = 2.685978684198 vs the listed 2.685350025228 (+6.3e-4). That record is a
 long-standing 2011/12 entry (reference [1], D. W. Cantrell, sci.math forum), not one of the recent
 AI-optimized entries (e.g. N=26 = 2.635983, credited to Haowei Lin [8] in July 2026, which we do **not**
 beat).
 
-**The other 71 fall short, several by more than 1%**: 42 gaps exceed 0.5% and 26 exceed 1%, the worst being
+**The other 70 fall short, several by more than 1%**: 42 gaps exceed 0.5% and 26 exceed 1%, the worst being
 N=92 at 2.29%. The sweep covered 99 sizes but produced only **98 usable packings**, failing outright at
 N=97 (see [Known issues](#known-issues)). Per-N detail is in `sota/ours/comparison.md`; **every claimed win
 is independently re-verifiable from its `.pck` with `solver/verify_pck.py`.**
