@@ -6,9 +6,9 @@ experiment and run across a range of N, compared to the authoritative **Packoman
 > **Pack N variable-sized circles in a unit square so that no two overlap and all stay inside the square,
 > maximizing the sum of the radii Σr**, the AlphaEvolve / ShinkaEvolve benchmark (Packomania's `csqv` table).
 
-### 📄 Start here: **[the write-up](writeup/README.md)**
-
-A short, figure-rich explainer of what the problem is, the record we beat, how a self-improving AI agent found it, and why it matters. **[Read it → `writeup/README.md`](writeup/README.md)**
+**Start with the [write-up](writeup/README.md)**, a short explainer with figures: what the problem is, the
+record we beat, how a self-improving AI agent found it, and why it matters. The rest of this file is the
+technical record, covering how to verify the result, how to reproduce it, and how the solver works.
 
 ## Result
 
