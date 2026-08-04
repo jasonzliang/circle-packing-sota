@@ -33,10 +33,11 @@ restarts, plus a final rescaling step guaranteeing every answer it reports is st
 approximately legal. A check for copied implementations found none, so the agent reconstructed this from
 its own knowledge rather than looking it up.
 
-**The finding we did not expect.** Because the search restarts from random layouts, we could ask exactly
-when the record-beating ability appeared. We re-ran every version of the solver, 50 random starts each.
-The answer: the very first iteration, costing about $2.48, could already reach the record-beating
-configuration. Roughly $12 more of self-improvement did not raise the peak at all. What it bought was
+**The finding we did not expect.** Every version of the solver was saved as the agent worked, so we could
+go back and test all of them. A single run of one version tells you little, since the result depends on
+where its random starting layout lands, so we ran each version 50 times from different starts and asked
+which of them could reach the record at all. The answer: the very first iteration, costing about $2.48,
+could already reach the record-beating configuration. Roughly $12 more of self-improvement did not raise the peak at all. What it bought was
 reliability, lifting the per-start success rate from 10% to 14%. That is a useful and slightly deflating
 result. The raw capability came from the base model, early and cheaply; the self-improvement loop turned a
 capable first idea into something dependable.
