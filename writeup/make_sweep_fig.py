@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Write-up visual: our solver vs the Packomania records across N=2..100. Reads the repo's own
-committed sweep (sota/ours/comparison.md) and writes writeup/fig2_sweep_gap.png.
+committed sweep (sota/nietzsche-sm-radical-v6-n27/comparison.md) and writes writeup/fig2_sweep_gap.png.
 (fig4_prev_vs_new.png is built by make_compare_fig.py.)
     python3 writeup/make_figs.py"""
 import os, re
@@ -14,7 +14,7 @@ SOTA = os.path.dirname(HERE)
 OUT = HERE
 
 rows = []
-for line in open(f"{SOTA}/sota/ours/comparison.md"):
+for line in open(f"{SOTA}/sota/nietzsche-sm-radical-v6-n27/comparison.md"):
     m = re.match(r"\|\s*(\d+)\s*\|\s*([\d.]+)\s*\|\s*([\d.]+)\s*\|", line)
     if m:
         rows.append((int(m.group(1)), float(m.group(2)), float(m.group(3))))

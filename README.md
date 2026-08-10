@@ -22,8 +22,8 @@ beat).
 
 **The other 70 fall short, several by more than 1%**: 42 gaps exceed 0.5% and 26 exceed 1%, the worst being
 N=92 at 2.29%. The sweep covered 99 sizes but produced only **98 usable packings**, failing outright at
-N=97 (see [Known issues](#known-issues)). Per-N detail is in `sota/ours/comparison.md`; **every claimed win
-is independently re-verifiable from its `.pck` with `solver/verify_pck.py`.**
+N=97 (see [Known issues](#known-issues)). Per-N detail is in `sota/nietzsche-sm-radical-v6-n27/comparison.md`; **every claimed win
+is independently re-verifiable from its `.pck` with `verify_and_compare.py verify`.**
 
 ## Verify the N=27 result
 
@@ -31,13 +31,13 @@ is independently re-verifiable from its `.pck` with `solver/verify_pck.py`.**
 arithmetic on 27 (x, y, r) triples, so nothing needs installing. From a clean checkout:
 
 ```bash
-python3 solver/verify_pck.py sota/ours/wins/csqv27.pck --record 2.685350025228
+python3 verify_and_compare.py verify sota/nietzsche-sm-radical-v6-n27/wins/csqv27.pck --record 2.685350025228
 ```
 
 Expected output (exit code 0):
 
 ```text
-file            : sota/ours/wins/csqv27.pck
+file            : sota/nietzsche-sm-radical-v6-n27/wins/csqv27.pck
 author          : Jason Liang
 circles (N)     : 27
 sum of radii Σr : 2.685978684198
@@ -49,23 +49,23 @@ record          : 2.685350025228
 Δ (ours-record) : +6.287e-04   -> BEATS the record
 ```
 
-`verify_pck.py` is **pure standard library and shares no code with the solver**, so it is a genuine
+`verify_and_compare.py` is **pure standard library and shares no code with the solver**, so it is a genuine
 independent check of our packings or anyone else's: it re-derives the circle count, containment, overlap
 and Σr from the coordinates alone, and exits non-zero on any failure. A copy of the output above is stored
-in [`sota/ours/wins/csqv27.verify.txt`](sota/ours/wins/csqv27.verify.txt) to diff against.
+in [`sota/nietzsche-sm-radical-v6-n27/wins/csqv27.verify.txt`](sota/nietzsche-sm-radical-v6-n27/wins/csqv27.verify.txt) to diff against.
 
 The slacks are small but **positive** (strictly feasible, not feasible-within-tolerance), and the win
 margin (+6.287e-4) is 8.7×10⁸ times the smaller of them, so this is not numerical noise.
 
 ### Zero-tolerance check in exact arithmetic
 
-`verify_pck.py` uses float64 and a 1e-9 tolerance, which leaves a fair objection: with slacks around
-1e-12, is the margin itself float noise? `solver/exact_check.py` settles it. Every number in the stored
+`verify_and_compare.py` uses float64 and a 1e-9 tolerance, which leaves a fair objection: with slacks around
+1e-12, is the margin itself float noise? `solver-nietzsche-sm-radical-v6-n27/exact_check.py` settles it. Every number in the stored
 config is a finite binary float, hence an exact rational, so the constraints can be *decided* with **zero
 tolerance** via `fractions.Fraction` and squared comparisons, with no square roots and no epsilon:
 
 ```bash
-python3 solver/exact_check.py sota/ours/wins/csqv27.seed1.json --n 27
+python3 solver-nietzsche-sm-radical-v6-n27/exact_check.py sota/nietzsche-sm-radical-v6-n27/wins/csqv27.seed1.json --n 27
 # exact: 27 circles, all constraints decided in exact rational arithmetic with ZERO tolerance
 # exact: tightest wall slack (squared) = +1.460063e-13  (ok)
 # exact: tightest pair slack (d^2-s^2) = +6.269444e-13  (ok)
@@ -76,7 +76,7 @@ python3 solver/exact_check.py sota/ours/wins/csqv27.seed1.json --n 27
 A configuration that passes this is feasible **as a matter of arithmetic fact, not of tolerance**. Two
 things to note. `--n 27` is **required**, because it defaults to 26 and a count mismatch is reported as
 `EXACT_FEASIBLE: False` (exit 1, so it is script-safe). And its slacks are **squared** (`d² - s²`), so they
-are not comparable to `verify_pck.py`'s linear ones above; it also reads the full-precision `.json` rather
+are not comparable to `verify_and_compare.py`'s linear ones above; it also reads the full-precision `.json` rather
 than the `.pck`.
 
 ## `.pck` format
@@ -92,20 +92,20 @@ Packomania's submission format, defined at
 
 **Two conventions coexist in this repo:** `.pck` files are origin-centred as above, while the solver's
 `.json` configs use the `[0, 1]²` corner convention (see `container.vertices`); convert by subtracting
-0.5. `verify_pck.py --corner`/`--side` reads either.
+0.5. `verify_and_compare.py verify --corner`/`--side` reads either.
 
 ## Requirements
 
 Python 3 with **numpy** and **scipy** (`pip install -r requirements.txt`). scipy supplies both `linprog` and
 `minimize`, so without it there is **no LP and no SLSQP**: `pack.py` degrades to an iterative
 radius-shrinking heuristic that is measurably worse and returns no duals. Treat scipy as required.
-`verify_pck.py` and `exact_check.py` need only the standard library.
+`verify_and_compare.py` and `exact_check.py` need only the standard library.
 
 ## Reproduce the N=27 result from scratch
 
 ```bash
 pip install -r requirements.txt                              # numpy + scipy
-python3 solver/pack.py -n 27 --seed 1 --time 120 -o out27.json
+python3 solver-nietzsche-sm-radical-v6-n27/pack.py -n 27 --seed 1 --time 120 -o out27.json
 ```
 
 That is the exact invocation behind the win: **seed 1, 120 s**. It has reproduced the stored configuration
@@ -127,17 +127,17 @@ N=2..100 takes ~25 min on a 10-core machine.
 
 Or step by step:
 ```bash
-OMP_NUM_THREADS=1 python3 solver/run_sweep.py --nmin 2 --nmax 100 --time 120 --workers 8 --out-dir repro
-python3 solver/compare.py --results repro/results.csv --out repro/comparison.md
-for f in repro/pck/csqv*.pck; do python3 solver/verify_pck.py "$f" >/dev/null || echo "INFEASIBLE: $f"; done
+OMP_NUM_THREADS=1 python3 solver-nietzsche-sm-radical-v6-n27/run_sweep.py --nmin 2 --nmax 100 --time 120 --workers 8 --out-dir repro
+python3 verify_and_compare.py compare --pck-dir repro --refresh --out repro/comparison.md
+for f in repro/pck/csqv*.pck; do python3 verify_and_compare.py verify "$f" >/dev/null || echo "INFEASIBLE: $f"; done
 ```
 
-With no `--results`/`--out`, `compare.py` regenerates the committed `sota/ours/comparison.md` from the
+With no `--results`/`--out`, `compare.py` regenerates the committed `sota/nietzsche-sm-radical-v6-n27/comparison.md` from the
 committed `results.csv`, which is a check in itself. It rewrites that file **in place**, so confirm with
 git rather than by eye:
 
 ```bash
-python3 solver/compare.py && git diff --stat sota/ours/comparison.md   # expect no output: byte-identical
+python3 solver-nietzsche-sm-radical-v6-n27/compare.py && git diff --stat sota/nietzsche-sm-radical-v6-n27/comparison.md   # expect no output: byte-identical
 ```
 
 ## Reproducibility notes
@@ -149,8 +149,8 @@ python3 solver/compare.py && git diff --stat sota/ours/comparison.md   # expect 
   strictly feasible and beats the record however it was found. To make a search more repeatable, vary the
   seed (`run_sweep.py --seeds`, or `pack.py --seed`) rather than only raising `--time`; N=97 below is a case
   where more time cannot help at all.
-- **What is stored where.** The sweep's 98 usable outputs are in `sota/ours/pck/csqv<N>.pck` (12 dp,
-  Packomania format), with no file for N=97. For N=27, `sota/ours/wins/` also holds the full float64 config
+- **What is stored where.** The sweep's 98 usable outputs are in `sota/nietzsche-sm-radical-v6-n27/pck/csqv<N>.pck` (12 dp,
+  Packomania format), with no file for N=97. For N=27, `sota/nietzsche-sm-radical-v6-n27/wins/` also holds the full float64 config
   with its seed and budget (`csqv27.seed1.json`) and the stored verifier output (`csqv27.verify.txt`). A
   fresh sweep additionally writes `<out-dir>/json/out<N>.json`.
 - **Rounding to 12 dp is safe.** It costs 3.1e-13 of Σr and the packing stays strictly feasible; the
@@ -172,21 +172,20 @@ So the budget bought one real attempt, not four, and n=97 is otherwise fine: a d
 cleanly to 5.121755, only 1.04% under the record. **More time on seed 1 cannot help** since the state is
 absorbing; more seeds can, because each seed is an independent stream with its own first candidate.
 
-Both checkers now catch it, fixed in the harness since `pack.py` is kept unmodified: `verify_pck.py` prints
+Both checkers now catch it, fixed in the harness since `pack.py` is kept unmodified: `verify_and_compare.py` prints
 `DEGENERATE` and exits 1 on any zero radius, and `run_sweep.py` discards such candidates so the N records
 `feasible=0` with no `.pck` rather than a file that looks valid. The N=27 claim is unaffected.
 
 ## Layout
 
 ```text
-solver/        pack.py container.py shape.py   # the AI-written solver, copied UNCHANGED
+solver-nietzsche-sm-radical-v6-n27/        pack.py container.py shape.py   # the AI-written solver, copied UNCHANGED
                exact_check.py  # zero-tolerance feasibility decision in exact rational arithmetic
                run_sweep.py    # parallel N-sweep -> pck + json + results.csv
-               compare.py      # ours vs the Packomania records -> comparison.md
-               verify_pck.py   # independent, pure-stdlib feasibility + Σr checker for any .pck
+verify_and_compare.py          # fetch LIVE packomania records + independent pck verify + compare -> comparison.md
 sota/          the SOTA comparison, both sides in one place:
   theirs/        packomania_csqv_records.csv     # the best-known records (N=1..100), + README
-  ours/          results.csv  comparison.md  + README
+  nietzsche-sm-radical-v6-n27/          results.csv  comparison.md  + README
                  wins/          # the record-beating N=27 result: csqv27.pck + full-precision json + verify
                  pck/           # the 98 usable packings (csqv27 also here); no N=97, see Known issues
                  chase/         # 12 near-misses re-run at 240s over seeds 1-4 (ties the record at 5)
@@ -196,7 +195,7 @@ reproduce.sh  requirements.txt
 
 ## Solver Algorithm
 
-`solver/pack.py` (+ `container.py`, `shape.py`, `exact_check.py`) is used **unchanged** as produced by an
+`solver-nietzsche-sm-radical-v6-n27/pack.py` (+ `container.py`, `shape.py`, `exact_check.py`) is used **unchanged** as produced by an
 automated program-search / self-improvement loop (an LLM-driven coding process), not hand-written for this
 repo. `n` is a parameter throughout, so the same code runs at any N.
 
@@ -204,7 +203,7 @@ repo. `n` is a parameter throughout, so the same code runs at any N.
 > originating experiment's layout: `tools/*.py` paths, a `bench/` tree (`bench/verify.py`,
 > `bench/bench1/best.json`), `bench1`...`bench5` instances, `iter 4`/`iter 5` stages, and one log
 > (`artifacts/iter3/speedup.log`). None exist here. Read them as provenance, not instructions; every
-> runnable entry point is `solver/*.py`.
+> runnable entry point is `solver-nietzsche-sm-radical-v6-n27/*.py`.
 
 ### What the N=27 win actually used
 
@@ -326,7 +325,7 @@ beats uniform hopping, and the N=27 win did not use it.
 
 ### Self-validation
 
-`python3 solver/pack.py --self-test` checks the machinery against facts rather than against itself: the
+`python3 solver-nietzsche-sm-radical-v6-n27/pack.py --self-test` checks the machinery against facts rather than against itself: the
 dual identity above, a zero duality gap, the contact-graph reduction against a naive all-pairs LP, and a
 **proved optimum**. For `n = k²` axis-aligned squares of half-side `r` in the unit square,
 `max Σr = √n / 2` exactly (Cauchy-Schwarz on `Σ 4r_i² ≤ 1`, attained by the `k × k` grid); the search is

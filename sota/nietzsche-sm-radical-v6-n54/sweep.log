@@ -1,0 +1,273 @@
+sweep N=2..100 (99 sizes), OUTER=seed INNER=N, 10 workers, 250s/(N,seed), seeds=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10] -> ../sota/ours-nietzsche-sm-n54
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+  n=94 seed=1 ERROR RuntimeError: no candidate produced -- budget too small
+  n=93 seed=1 ERROR RuntimeError: no candidate produced -- budget too small
+  n=95 seed=1 ERROR RuntimeError: no candidate produced -- budget too small
+  n=96 seed=1 ERROR RuntimeError: no candidate produced -- budget too small
+  n=98 seed=1 ERROR RuntimeError: no candidate produced -- budget too small
+  n=97 seed=1 ERROR RuntimeError: no candidate produced -- budget too small
+  n=99 seed=1 ERROR RuntimeError: no candidate produced -- budget too small
+  n=100 seed=1 ERROR RuntimeError: no candidate produced -- budget too small
+[seed 1] pass 1/10 in 2481s; feasible N: 91/99; improved this pass: 91; elapsed 2481s
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+  n=94 seed=2 ERROR RuntimeError: no candidate produced -- budget too small
+  n=96 seed=2 ERROR RuntimeError: no candidate produced -- budget too small
+  n=95 seed=2 ERROR RuntimeError: no candidate produced -- budget too small
+  n=97 seed=2 ERROR RuntimeError: no candidate produced -- budget too small
+  n=98 seed=2 ERROR RuntimeError: no candidate produced -- budget too small
+  n=99 seed=2 ERROR RuntimeError: no candidate produced -- budget too small
+  n=100 seed=2 ERROR RuntimeError: no candidate produced -- budget too small
+[seed 2] pass 2/10 in 2481s; feasible N: 92/99; improved this pass: 40; elapsed 4962s
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+  n=93 seed=3 ERROR RuntimeError: no candidate produced -- budget too small
+  n=94 seed=3 ERROR RuntimeError: no candidate produced -- budget too small
+  n=95 seed=3 ERROR RuntimeError: no candidate produced -- budget too small
+  n=96 seed=3 ERROR RuntimeError: no candidate produced -- budget too small
+  n=97 seed=3 ERROR RuntimeError: no candidate produced -- budget too small
+  n=98 seed=3 ERROR RuntimeError: no candidate produced -- budget too small
+  n=99 seed=3 ERROR RuntimeError: no candidate produced -- budget too small
+  n=100 seed=3 ERROR RuntimeError: no candidate produced -- budget too small
+[seed 3] pass 3/10 in 2481s; feasible N: 92/99; improved this pass: 36; elapsed 7443s
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+  n=93 seed=4 ERROR RuntimeError: no candidate produced -- budget too small
+  n=94 seed=4 ERROR RuntimeError: no candidate produced -- budget too small
+  n=95 seed=4 ERROR RuntimeError: no candidate produced -- budget too small
+  n=96 seed=4 ERROR RuntimeError: no candidate produced -- budget too small
+  n=97 seed=4 ERROR RuntimeError: no candidate produced -- budget too small
+  n=98 seed=4 ERROR RuntimeError: no candidate produced -- budget too small
+  n=99 seed=4 ERROR RuntimeError: no candidate produced -- budget too small
+  n=100 seed=4 ERROR RuntimeError: no candidate produced -- budget too small
+[seed 4] pass 4/10 in 2482s; feasible N: 92/99; improved this pass: 21; elapsed 9925s
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+  n=94 seed=5 ERROR RuntimeError: no candidate produced -- budget too small
+  n=95 seed=5 ERROR RuntimeError: no candidate produced -- budget too small
+  n=96 seed=5 ERROR RuntimeError: no candidate produced -- budget too small
+  n=97 seed=5 ERROR RuntimeError: no candidate produced -- budget too small
+  n=98 seed=5 ERROR RuntimeError: no candidate produced -- budget too small
+  n=99 seed=5 ERROR RuntimeError: no candidate produced -- budget too small
+  n=100 seed=5 ERROR RuntimeError: no candidate produced -- budget too small
+[seed 5] pass 5/10 in 2481s; feasible N: 92/99; improved this pass: 13; elapsed 12406s
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+  n=93 seed=6 ERROR RuntimeError: no candidate produced -- budget too small
+  n=94 seed=6 ERROR RuntimeError: no candidate produced -- budget too small
+  n=95 seed=6 ERROR RuntimeError: no candidate produced -- budget too small
+  n=96 seed=6 ERROR RuntimeError: no candidate produced -- budget too small
+  n=97 seed=6 ERROR RuntimeError: no candidate produced -- budget too small
+  n=98 seed=6 ERROR RuntimeError: no candidate produced -- budget too small
+  n=100 seed=6 ERROR RuntimeError: no candidate produced -- budget too small
+  n=99 seed=6 ERROR RuntimeError: no candidate produced -- budget too small
+[seed 6] pass 6/10 in 2481s; feasible N: 92/99; improved this pass: 12; elapsed 14887s
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+  n=93 seed=7 ERROR RuntimeError: no candidate produced -- budget too small
+  n=94 seed=7 ERROR RuntimeError: no candidate produced -- budget too small
+  n=95 seed=7 ERROR RuntimeError: no candidate produced -- budget too small
+  n=96 seed=7 ERROR RuntimeError: no candidate produced -- budget too small
+  n=97 seed=7 ERROR RuntimeError: no candidate produced -- budget too small
+  n=98 seed=7 ERROR RuntimeError: no candidate produced -- budget too small
+  n=99 seed=7 ERROR RuntimeError: no candidate produced -- budget too small
+  n=100 seed=7 ERROR RuntimeError: no candidate produced -- budget too small
+[seed 7] pass 7/10 in 2481s; feasible N: 92/99; improved this pass: 13; elapsed 17369s
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+  n=93 seed=8 ERROR RuntimeError: no candidate produced -- budget too small
+  n=94 seed=8 ERROR RuntimeError: no candidate produced -- budget too small
+  n=95 seed=8 ERROR RuntimeError: no candidate produced -- budget too small
+  n=96 seed=8 ERROR RuntimeError: no candidate produced -- budget too small
+  n=97 seed=8 ERROR RuntimeError: no candidate produced -- budget too small
+  n=98 seed=8 ERROR RuntimeError: no candidate produced -- budget too small
+  n=99 seed=8 ERROR RuntimeError: no candidate produced -- budget too small
+  n=100 seed=8 ERROR RuntimeError: no candidate produced -- budget too small
+[seed 8] pass 8/10 in 2482s; feasible N: 92/99; improved this pass: 15; elapsed 19850s
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+  n=93 seed=9 ERROR RuntimeError: no candidate produced -- budget too small
+  n=94 seed=9 ERROR RuntimeError: no candidate produced -- budget too small
+  n=96 seed=9 ERROR RuntimeError: no candidate produced -- budget too small
+  n=95 seed=9 ERROR RuntimeError: no candidate produced -- budget too small
+  n=97 seed=9 ERROR RuntimeError: no candidate produced -- budget too small
+  n=98 seed=9 ERROR RuntimeError: no candidate produced -- budget too small
+  n=100 seed=9 ERROR RuntimeError: no candidate produced -- budget too small
+  n=99 seed=9 ERROR RuntimeError: no candidate produced -- budget too small
+[seed 9] pass 9/10 in 2481s; feasible N: 92/99; improved this pass: 15; elapsed 22331s
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+/Users/jason/Desktop/circle-packing-sota/solver-nietzsche-sm-radical-v6-n54/packlib.py:244: RuntimeWarning: divide by zero encountered in divide
+  inv = v / d
+  n=94 seed=10 ERROR RuntimeError: no candidate produced -- budget too small
+  n=95 seed=10 ERROR RuntimeError: no candidate produced -- budget too small
+  n=96 seed=10 ERROR RuntimeError: no candidate produced -- budget too small
+  n=97 seed=10 ERROR RuntimeError: no candidate produced -- budget too small
+  n=98 seed=10 ERROR RuntimeError: no candidate produced -- budget too small
+  n=99 seed=10 ERROR RuntimeError: no candidate produced -- budget too small
+  n=100 seed=10 ERROR RuntimeError: no candidate produced -- budget too small
+[seed 10] pass 10/10 in 2482s; feasible N: 92/99; improved this pass: 11; elapsed 24813s
+done -> ../sota/ours-nietzsche-sm-n54/results.csv  (24813s wall)
