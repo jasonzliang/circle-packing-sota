@@ -26,7 +26,8 @@ KKT point) → threshold-accepting basin hopping over KKT points. Needs `numpy` 
 ## Files (keep FLAT — modules import each other as siblings)
 `pipeline.py` (solver), `slp.py` (SLP-KKT), `packlib.py` (LP radii + core), `endgame.py`, `broad.py`,
 `baseline.py`, `adversary.py`, `split_sweep.py`, `walkcurve.py`, `verify.py` (independent feasibility+Σr
-checker), `record_n54_best.json` (the record packing), `solve.py` (entrypoint shim).
+checker), `solve.py` (entrypoint shim). (Solver code only — the record packings live under
+`sota/nietzsche-sm-radical-v6-n54/`.)
 
 ## Status & how it would slot into the comparison
 This directory is the **solver only**. A full N-sweep of it (analogous to the top-level `reproduce.sh`
