@@ -18,6 +18,14 @@ square** (maximize Σr), from https://www.packomania.com/csqv/csqv.html
   +2.6e-3, N=27 2.685350→2.685979; a few differ only at 1e-12 storage rounding).
   **15 of our win-N had their bar raised in this window, and we beat the raised
   Aug-10 values** — so re-fetch before claiming any win.
+- **`history/packomania_csqv_<YYYY-MM-DD>.html`** — offline copy of the full
+  `csqv` page (records table + author/reference legend + changelog) for each
+  snapshot where one was captured. **2026-08-10** is saved
+  (`packomania_csqv_2026-08-10.html`, from https://www.packomania.com/csqv/).
+  There is **no HTML for 2026-08-03**: that json was reconstructed from git
+  commit `21e7568` (records only), and the page is not archived in the Wayback
+  Machine — but the 2026-08-10 page's own changelog documents the intervening
+  record churn (e.g. Dutton [10] on 01/02/04/06-Aug, Liang N=27 on 03-Aug).
 
 _(The former `packomania_csqv_records.csv` — the 2026-08-03 fetch — is retired
 into `history/packomania_csqv_2026-08-03.json`; the verification below documents

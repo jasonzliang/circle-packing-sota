@@ -1,0 +1,469 @@
+<!-- Offline snapshot of https://www.packomania.com/csqv/ retrieved 2026-08-10 UTC; corresponds to packomania_csqv_2026-08-10.json -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=ISO-8859-1" />
+<meta http-equiv="content-language" content="en" />
+<meta name="author" lang="en" content="Eckard Specht" />
+<meta name="copyright" lang="en" content="Eckard Specht" />
+<meta name="distribution" content="global" />
+<meta name="description" lang="en" content="packing of unequal circles in a square" />
+<meta name="keywords" lang="en" content="packing, unequal circles, square, unequal disks, disk, contacts, traveling salesman problem, TSP" />
+<meta name="language" content="en" />
+<meta name="resource-type" content="document" />
+<link rel="stylesheet" type="text/css" href="../css/main.css" />
+<style>
+  table.t {
+    tr {
+      th { text-align: center; }
+      th:nth-child(4)  { padding-right: 1em; }
+      th:nth-child(5)  { padding-right: 1em; }
+      th:nth-child(6)  { padding-right: 1em; }
+      th:nth-child(7)  { padding-right: 1em; }
+      td { text-align: right; padding-left: 1em; padding-right: 1em; }
+      td:nth-child(1)  { font-family: "Courier New"; font-weight: normal; }
+      td:nth-child(4)  { padding-right: 2em; }
+      td:nth-child(5)  { padding-right: 1.5em; }
+      td:nth-child(6)  { padding-right: 3em; }
+      td:nth-child(7)  { padding-right: 1.5em; }
+      td:nth-child(8)  { padding-right: 1em; }
+    }
+  }
+</style>
+<title>The best known packings of unequal circles in a square</title>
+</head>
+
+<body>
+<h2>The best known packings of variable-sized circles in a square with maximized sum of radii (complete up to <I>N</I> = 100)</h2>
+<br />
+<h3>Last update: 08-Aug-2026</h3>
+<hr />
+<a href="#Overview">Overview</a> &nbsp;&nbsp;
+<a href="#Download">Download</a> &nbsp;&nbsp;
+<a href="#Results">Results</a> &nbsp;&nbsp;
+<!--
+<a href="#Formulae">Formulae</a> &nbsp;&nbsp;
+<a href="#Applications">Applications</a> &nbsp;&nbsp;
+<a href="#OEIS">OEIS Entries</a> &nbsp;&nbsp;
+-->
+<a href="#Updates">History of updates</a> &nbsp;&nbsp;
+<a href="#References">References</a>
+<br />
+<hr />
+
+<a name="Overview"></a>
+<h3>Overview</h3>
+<a href="d1.html">1-12</a> &nbsp;
+<a href="d2.html">13-24</a> &nbsp;
+<a href="d3.html">25-36</a> &nbsp;
+<a href="d4.html">37-48</a> &nbsp;
+<a href="d5.html">49-60</a> &nbsp;
+<a href="d6.html">61-72</a> &nbsp;
+<a href="d7.html">73-84</a> &nbsp;
+<a href="d8.html">85-96</a> &nbsp;
+<a href="d9.html">97-100</a> &nbsp;
+<br />
+<br />
+<hr />
+
+<a name="Download"></a>
+<h3>Download</h3>
+You may download ASCII files which contain all the values of radius, ratio etc. by using the links
+given in the table header below.
+<br />
+All coordinates of all packings are packed as ASCII files
+<a href="txt/csqr_coords.tar.gz">here</a>.
+<br />
+All packings are stored as nice PDF files
+<a href="pdf/csqr_pdf.tar.gz">here</a>.
+<br />
+All contact graphs of all packings are stored as nice PDF files
+<a href="pdf/csqr_ctc_pdf.tar.gz">here</a>.
+<br />
+For industrial applications, for instance if a machine has to do an important job at every circle center,
+<br />
+it is useful to know a tour visiting each of the circle centers once which is of minimal length.
+<br />
+This problem is known as the "Traveling Salesman Problem" (TSP).
+Thus (very near) optimal tours are provided for every packing.
+<br />
+All optimal TSP tours of all packings are stored as nice PDF files
+<a href="pdf/csqr_tsp_pdf.tar.gz">here</a>.
+<br />
+<br />
+<hr />
+
+<a name="Results"></a>
+<h3>Results</h3>
+The table below summarizes the current status of the search.
+<br />
+Please use the links in the following table to view a picture for a certain configuration.
+<br />
+Furthermore, note that for certain values of <I>N</I> several distinct optimal configurations exist;
+however, only one is shown here.
+<br />
+<em>Proven</em> optimal packings are indicated by a sum of radii in bold face type.
+<br />
+<br />
+<strong>Legend:</strong>
+<dl>
+<dt><strong> <i>N</i> </strong>  <dd> the number of circles; colors correspond to active researchers in the past, see "References" at the bottom of the page
+<dt><strong> sum of radii </strong> <dd> of all circles in the container square, the latter has always a side length of 1
+<dt><strong> density </strong>   <dd> ratio of total area occupied by the circles to container area, also known as <em>packing fraction</em> <i>&#981;</i>
+<dt><strong> contacts </strong>  <dd> number of contacts between circles and container and mutually between the circles
+<dt><strong> boundary </strong>  <dd> number of circles that are near to the container boundary (including rattlers if any)
+<dt><strong> core </strong>      <dd> number of circles that are at the container core
+<dt><strong> symmetry group </strong> <dd> of the packing (Sch&ouml;nfliess notation); if field is empty then the packing has symmetry element <i>C</i><sub><small>1</small></sub>
+<dt><strong> reference </strong> <dd> for the best known packing so far, see at bottom of the page
+<dt><strong> <a href="txt/records.txt" target="_blank">records </a></strong> <dd> the sequence of <i>N</i> 's that establish density records
+</dl>
+<br>
+<div class="results">
+<table class="t" summary="data of all packings">
+<tr><th align="right"><i>N</i></th>
+    <th><a href="txt/sumradii.txt" target="_blank">sum of radii</a></th>
+    <th><a href="txt/density.txt" target="_blank">density</a></th>
+    <th><a href="txt/contacts.txt" target="_blank">contacts</a></th>
+    <th><a href="txt/boundary.txt" target="_blank">boundary</a></th>
+    <th><a href="txt/core.txt" target="_blank">core</a></th>
+    <th><a href="txt/symmetry.txt" target="_blank">symmetry</a></th>
+    <th><a href="txt/author.txt" target="_blank">reference</a></th>
+</tr>
+</thead>
+<tbody />
+<tr><td                  ><a href="csqv1.html"   name="csqv1">      1</a></td> <td>0.500000000000</td> <td>0.785398163397</td> <td>    4</td> <td>    1 </td> <td>      </td> <td><i></i><sub><small></small></sub></td> <td>    </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv2.html"   name="csqv2">      2</a></td> <td>0.585786437626</td> <td>0.539012084451</td> <td>    5</td> <td>    2 </td> <td>      </td> <td><i>D</i><sub><small>2</small></sub></td> <td>[1] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv3.html"   name="csqv3">      3</a></td> <td>0.796287456147</td> <td>0.678218187440</td> <td>    9</td> <td>    3 </td> <td>      </td> <td><i>D</i><sub><small>1</small></sub></td> <td>[1] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv4.html"   name="csqv4">      4</a></td> <td>1.006788474668</td> <td>0.817424290428</td> <td>   13</td> <td>    4 </td> <td>      </td> <td><i>D</i><sub><small>2</small></sub></td> <td>[1] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv5.html"   name="csqv5">      5</a></td> <td>1.103553390593</td> <td>0.819086418676</td> <td>   16</td> <td>    4 </td> <td>    1 </td> <td><i>D</i><sub><small>4</small></sub></td> <td>[1] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv6.html"   name="csqv6">      6</a></td> <td>1.202838910871</td> <td>0.830664461672</td> <td>   19</td> <td>    6 </td> <td>      </td> <td><i>D</i><sub><small>1</small></sub></td> <td>[1] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv7.html"   name="csqv7">      7</a></td> <td>1.306546350758</td> <td>0.832372446742</td> <td>   22</td> <td>    6 </td> <td>    1 </td> <td><i>D</i><sub><small>1</small></sub></td> <td>[1] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv8.html"   name="csqv8">      8</a></td> <td>1.423813915320</td> <td>0.817424290433</td> <td>   24</td> <td>    8 </td> <td>      </td> <td><i>D</i><sub><small>4</small></sub></td> <td>[1] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv9.html"   name="csqv9">      9</a></td> <td>1.524365359370</td> <td>0.839665382935</td> <td>   28</td> <td>    8 </td> <td>    1 </td> <td><i>D</i><sub><small>1</small></sub></td> <td>[1] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv10.html"  name="csqv10">    10</a></td> <td>1.591012852634</td> <td>0.840405214793</td> <td>   31</td> <td>    8 </td> <td>    2 </td> <td><i>D</i><sub><small>1</small></sub></td> <td>[1] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv11.html"  name="csqv11">    11</a></td> <td>1.680058380778</td> <td>0.845401576001</td> <td>   34</td> <td>    8 </td> <td>    3 </td> <td><i>D</i><sub><small>1</small></sub></td> <td>[1] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv12.html"  name="csqv12">    12</a></td> <td>1.765978318170</td> <td>0.842428591982</td> <td>   37</td> <td>    8 </td> <td>    4 </td> <td><i>D</i><sub><small>2</small></sub></td> <td>[1] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv13.html"  name="csqv13">    13</a></td> <td>1.829542411692</td> <td>0.843172230057</td> <td>   39</td> <td>   10 </td> <td>    3 </td> <td>                                   </td> <td>[1] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv14.html"  name="csqv14">    14</a></td> <td>1.905667205293</td> <td>0.847885561040</td> <td>   43</td> <td>   10 </td> <td>    4 </td> <td><i>D</i><sub><small>1</small></sub></td> <td>[1] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv15.html"  name="csqv15">    15</a></td> <td>1.980266508444</td> <td>0.846184875220</td> <td>   45</td> <td>   12 </td> <td>    3 </td> <td>                                   </td> <td>[1] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv16.html"  name="csqv16">    16</a></td> <td>2.053080418439</td> <td>0.853389973899</td> <td>   49</td> <td>   12 </td> <td>    4 </td> <td><i>D</i><sub><small>1</small></sub></td> <td>[1] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv17.html"  name="csqv17">    17</a></td> <td>2.111185327830</td> <td>0.850943221106</td> <td>   51</td> <td>   12 </td> <td>    5 </td> <td>                                   </td> <td>[1] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv18.html"  name="csqv18">    18</a></td> <td>2.178530295972</td> <td>0.856434344552</td> <td>   55</td> <td>   12 </td> <td>    6 </td> <td><i>D</i><sub><small>1</small></sub></td> <td>[1] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv19.html"  name="csqv19">    19</a></td> <td>2.236704571294</td> <td>0.853822984295</td> <td>   57</td> <td>   12 </td> <td>    7 </td> <td>                                   </td> <td>[1] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv20.html"  name="csqv20">    20</a></td> <td>2.301122834497</td> <td>0.854890113387</td> <td>   60</td> <td>   12 </td> <td>    8 </td> <td>                                   </td> <td>[1] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv21.html"  name="csqv21">    21</a></td> <td>2.362117319374</td> <td>0.855805001847</td> <td>   64</td> <td>   12 </td> <td>    9 </td> <td><i>D</i><sub><small>2</small></sub></td> <td>[1] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv22.html"  name="csqv22">    22</a></td> <td>2.420202649748</td> <td>0.858428348512</td> <td>   66</td> <td>   13 </td> <td>    9 </td> <td>                                   </td> <td>[1] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv23.html"  name="csqv23">    23</a></td> <td>2.478013611963</td> <td>0.858563010053</td> <td>   69</td> <td>   16 </td> <td>    7 </td> <td>                                   </td> <td>[1] </td></tr>
+<tr><td bgcolor="#6495ed"><a href="csqv24.html"  name="csqv24">    24</a></td> <td>2.530311586971</td> <td>0.860593386358</td> <td>   72</td> <td>   16 </td> <td>    8 </td> <td>                                   </td> <td>[2] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv25.html"  name="csqv25">    25</a></td> <td>2.587275055266</td> <td>0.863260424813</td> <td>   76</td> <td>   16 </td> <td>    9 </td> <td><i>D</i><sub><small>2</small></sub></td> <td>[1] </td></tr>
+<tr><td                  ><a href="csqv26.html"  name="csqv26">    26</a></td> <td>2.635983084918</td> <td>0.862734562615</td> <td>   78</td> <td>   16 </td> <td>   10 </td> <td>                                   </td> <td>[8] </td></tr>
+<tr><td                  ><a href="csqv27.html"  name="csqv27">    27</a></td> <td>2.685978684198</td> <td>0.864374412342</td> <td>   82</td> <td>   16 </td> <td>   11 </td> <td><i>D</i><sub><small>1</small></sub></td> <td>[11] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv28.html"  name="csqv28">    28</a></td> <td>2.737739985536</td> <td>0.862283425201</td> <td>   84</td> <td>   16 </td> <td>   12 </td> <td>                                   </td> <td>[1] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv29.html"  name="csqv29">    29</a></td> <td>2.790344154631</td> <td>0.862992740834</td> <td>   87</td> <td>   16 </td> <td>   13 </td> <td>                                   </td> <td>[1] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv30.html"  name="csqv30">    30</a></td> <td>2.842668747462</td> <td>0.863678798204</td> <td>   90</td> <td>   16 </td> <td>   14 </td> <td>                                   </td> <td>[1] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv31.html"  name="csqv31">    31</a></td> <td>2.889969851933</td> <td>0.863902357568</td> <td>   93</td> <td>   16 </td> <td>   15 </td> <td>                                   </td> <td>[1] </td></tr>
+<tr><td                  ><a href="csqv32.html"  name="csqv32">    32</a></td> <td>2.939572771205</td> <td>0.865911045200</td> <td>   96</td> <td>   18 </td> <td>   14 </td> <td>                                   </td> <td>[7] </td></tr>
+<tr><td                  ><a href="csqv33.html"  name="csqv33">    33</a></td> <td>2.987285008591</td> <td>0.867066089447</td> <td>   99</td> <td>   19 </td> <td>   14 </td> <td>                                   </td> <td>[8] </td></tr>
+<tr><td                  ><a href="csqv34.html"  name="csqv34">    34</a></td> <td>3.029799271188</td> <td>0.869081132598</td> <td>  103</td> <td>   20 </td> <td>   14 </td> <td><i>D</i><sub><small>1</small></sub></td> <td>[8] </td></tr>
+<tr><td                  ><a href="csqv35.html"  name="csqv35">    35</a></td> <td>3.074036363728</td> <td>0.869011650678</td> <td>  105</td> <td>   19 </td> <td>   16 </td> <td>                                   </td> <td>[8] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv36.html"  name="csqv36">    36</a></td> <td>3.121754486102</td> <td>0.869881804498</td> <td>  109</td> <td>   20 </td> <td>   16 </td> <td><i>D</i><sub><small>2</small></sub></td> <td>[1] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv37.html"  name="csqv37">    37</a></td> <td>3.161498916179</td> <td>0.870181953644</td> <td>  111</td> <td>   20 </td> <td>   17 </td> <td>                                   </td> <td>[1] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv38.html"  name="csqv38">    38</a></td> <td>3.205945627974</td> <td>0.870613578474</td> <td>  115</td> <td>   20 </td> <td>   18 </td> <td><i>D</i><sub><small>1</small></sub></td> <td>[1] </td></tr>
+<tr><td                  ><a href="csqv39.html"  name="csqv39">    39</a></td> <td>3.248110798173</td> <td>0.870172333103</td> <td>  117</td> <td>   20 </td> <td>   19 </td> <td>                                   </td> <td>[8] </td></tr>
+<tr><td                  ><a href="csqv40.html"  name="csqv40">    40</a></td> <td>3.292391572609</td> <td>0.869253904522</td> <td>  120</td> <td>   20 </td> <td>   20 </td> <td>                                   </td> <td>[8] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv41.html"  name="csqv41">    41</a></td> <td>3.336245021959</td> <td>0.870463471234</td> <td>  123</td> <td>   20 </td> <td>   21 </td> <td>                                   </td> <td>[1] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv42.html"  name="csqv42">    42</a></td> <td>3.380421747611</td> <td>0.870873606317</td> <td>  126</td> <td>   20 </td> <td>   22 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv43.html"  name="csqv43">    43</a></td> <td>3.422605518048</td> <td>0.868635886925</td> <td>  129</td> <td>   20 </td> <td>   23 </td> <td>                                   </td> <td>[1] </td></tr>
+<tr><td bgcolor="#6495ed"><a href="csqv44.html"  name="csqv44">    44</a></td> <td>3.466043568234</td> <td>0.872329991512</td> <td>  132</td> <td>   21 </td> <td>   23 </td> <td>                                   </td> <td>[2] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv45.html"  name="csqv45">    45</a></td> <td>3.503095055216</td> <td>0.871496118603</td> <td>  135</td> <td>   22 </td> <td>   23 </td> <td>                                   </td> <td>[1] </td></tr>
+<tr><td bgcolor="#6495ed"><a href="csqv46.html"  name="csqv46">    46</a></td> <td>3.539568936862</td> <td>0.872596494882</td> <td>  138</td> <td>   24 </td> <td>   22 </td> <td>                                   </td> <td>[2] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv47.html"  name="csqv47">    47</a></td> <td>3.578955041750</td> <td>0.873515182161</td> <td>  141</td> <td>   24 </td> <td>   23 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv48.html"  name="csqv48">    48</a></td> <td>3.615166622821</td> <td>0.873096687255</td> <td>  144</td> <td>   24 </td> <td>   24 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv49.html"  name="csqv49">    49</a></td> <td>3.655413576541</td> <td>0.874887674201</td> <td>  148</td> <td>   24 </td> <td>   25 </td> <td><i>D</i><sub><small>2</small></sub></td> <td>[1] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv50.html"  name="csqv50">    50</a></td> <td>3.689944926007</td> <td>0.874764880142</td> <td>  150</td> <td>   24 </td> <td>   26 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv51.html"  name="csqv51">    51</a></td> <td>3.727021028707</td> <td>0.875237682889</td> <td>  153</td> <td>   24 </td> <td>   27 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv52.html"  name="csqv52">    52</a></td> <td>3.765353522998</td> <td>0.874939596676</td> <td>  157</td> <td>   24 </td> <td>   28 </td> <td><i>D</i><sub><small>1</small></sub></td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv53.html"  name="csqv53">    53</a></td> <td>3.803308399164</td> <td>0.873599915707</td> <td>  159</td> <td>   24 </td> <td>   29 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv54.html"  name="csqv54">    54</a></td> <td>3.841733103296</td> <td>0.874393098529</td> <td>  162</td> <td>   24 </td> <td>   30 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv55.html"  name="csqv55">    55</a></td> <td>3.881992983052</td> <td>0.875346467978</td> <td>  165</td> <td>   24 </td> <td>   31 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv56.html"  name="csqv56">    56</a></td> <td>3.918995278232</td> <td>0.875487011034</td> <td>  168</td> <td>   24 </td> <td>   32 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv57.html"  name="csqv57">    57</a></td> <td>3.954683754497</td> <td>0.875557633127</td> <td>  171</td> <td>   25 </td> <td>   32 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv58.html"  name="csqv58">    58</a></td> <td>3.990566331646</td> <td>0.876764162060</td> <td>  174</td> <td>   25 </td> <td>   33 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv59.html"  name="csqv59">    59</a></td> <td>4.023613974606</td> <td>0.877500688539</td> <td>  177</td> <td>   27 </td> <td>   32 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv60.html"  name="csqv60">    60</a></td> <td>4.057375010904</td> <td>0.877801322733</td> <td>  180</td> <td>   27 </td> <td>   33 </td> <td>                                   </td> <td>[1] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv61.html"  name="csqv61">    61</a></td> <td>4.091602684217</td> <td>0.877899009046</td> <td>  183</td> <td>   27 </td> <td>   34 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv62.html"  name="csqv62">    62</a></td> <td>4.122646173929</td> <td>0.877890239008</td> <td>  186</td> <td>   27 </td> <td>   35 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv63.html"  name="csqv63">    63</a></td> <td>4.153419675083</td> <td>0.878505549755</td> <td>  189</td> <td>   28 </td> <td>   35 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv64.html"  name="csqv64">    64</a></td> <td>4.190585830354</td> <td>0.878610892803</td> <td>  193</td> <td>   28 </td> <td>   36 </td> <td><i>D</i><sub><small>1</small></sub></td> <td>[1] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv65.html"  name="csqv65">    65</a></td> <td>4.219413302014</td> <td>0.878356876349</td> <td>  195</td> <td>   28 </td> <td>   37 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#6495ed"><a href="csqv66.html"  name="csqv66">    66</a></td> <td>4.253570319327</td> <td>0.878566107130</td> <td>  198</td> <td>   28 </td> <td>   38 </td> <td>                                   </td> <td>[2] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv67.html"  name="csqv67">    67</a></td> <td>4.287265111281</td> <td>0.876290120810</td> <td>  201</td> <td>   27 </td> <td>   40 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv68.html"  name="csqv68">    68</a></td> <td>4.322065528308</td> <td>0.878405958807</td> <td>  204</td> <td>   28 </td> <td>   40 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#6495ed"><a href="csqv69.html"  name="csqv69">    69</a></td> <td>4.356202760849</td> <td>0.878107843555</td> <td>  207</td> <td>   28 </td> <td>   41 </td> <td>                                   </td> <td>[2] </td></tr>
+<tr><td bgcolor="#6495ed"><a href="csqv70.html"  name="csqv70">    70</a></td> <td>4.392179819755</td> <td>0.879139148529</td> <td>  210</td> <td>   28 </td> <td>   42 </td> <td>                                   </td> <td>[2] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv71.html"  name="csqv71">    71</a></td> <td>4.424767281371</td> <td>0.878814315582</td> <td>  213</td> <td>   28 </td> <td>   43 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv72.html"  name="csqv72">    72</a></td> <td>4.458515412631</td> <td>0.879964231925</td> <td>  216</td> <td>   29 </td> <td>   43 </td> <td><i>D</i><sub><small>1</small></sub></td> <td>[1] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv73.html"  name="csqv73">    73</a></td> <td>4.488004575020</td> <td>0.878835121728</td> <td>  219</td> <td>   28 </td> <td>   45 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv74.html"  name="csqv74">    74</a></td> <td>4.518264420768</td> <td>0.879682048635</td> <td>  222</td> <td>   29 </td> <td>   45 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv75.html"  name="csqv75">    75</a></td> <td>4.548223289937</td> <td>0.880207829133</td> <td>  225</td> <td>   29 </td> <td>   46 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv76.html"  name="csqv76">    76</a></td> <td>4.578201562751</td> <td>0.880750187906</td> <td>  228</td> <td>   30 </td> <td>   46 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv77.html"  name="csqv77">    77</a></td> <td>4.604940889106</td> <td>0.880345459910</td> <td>  231</td> <td>   32 </td> <td>   45 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv78.html"  name="csqv78">    78</a></td> <td>4.635843558758</td> <td>0.880645110599</td> <td>  234</td> <td>   32 </td> <td>   46 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv79.html"  name="csqv79">    79</a></td> <td>4.664674436598</td> <td>0.881288148502</td> <td>  237</td> <td>   32 </td> <td>   47 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv80.html"  name="csqv80">    80</a></td> <td>4.693110077471</td> <td>0.879889005152</td> <td>  240</td> <td>   29 </td> <td>   51 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv81.html"  name="csqv81">    81</a></td> <td>4.726033735177</td> <td>0.881670504106</td> <td>  244</td> <td>   32 </td> <td>   49 </td> <td><i>D</i><sub><small>2</small></sub></td> <td>[1] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv82.html"  name="csqv82">    82</a></td> <td>4.751887781603</td> <td>0.880268108106</td> <td>  246</td> <td>   32 </td> <td>   50 </td> <td><i>D</i><sub><small>1</small></sub></td> <td>[10] </td></tr>
+<tr><td bgcolor="#6495ed"><a href="csqv83.html"  name="csqv83">    83</a></td> <td>4.782255354392</td> <td>0.880742398684</td> <td>  249</td> <td>   30 </td> <td>   53 </td> <td>                                   </td> <td>[2] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv84.html"  name="csqv84">    84</a></td> <td>4.813488264696</td> <td>0.880846634467</td> <td>  252</td> <td>   31 </td> <td>   53 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv85.html"  name="csqv85">    85</a></td> <td>4.844696924329</td> <td>0.882009550930</td> <td>  255</td> <td>   32 </td> <td>   53 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv86.html"  name="csqv86">    86</a></td> <td>4.876312684220</td> <td>0.881234110832</td> <td>  258</td> <td>   32 </td> <td>   54 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv87.html"  name="csqv87">    87</a></td> <td>4.906314285985</td> <td>0.880882751934</td> <td>  261</td> <td>   32 </td> <td>   55 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv88.html"  name="csqv88">    88</a></td> <td>4.939497171360</td> <td>0.881979228494</td> <td>  264</td> <td>   32 </td> <td>   56 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#6495ed"><a href="csqv89.html"  name="csqv89">    89</a></td> <td>4.966708260631</td> <td>0.881433957967</td> <td>  267</td> <td>   33 </td> <td>   56 </td> <td>                                   </td> <td>[2] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv90.html"  name="csqv90">    90</a></td> <td>4.996999276706</td> <td>0.883087421247</td> <td>  270</td> <td>   34 </td> <td>   56 </td> <td>                                   </td> <td>[1] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv91.html"  name="csqv91">    91</a></td> <td>5.021462693130</td> <td>0.882997368509</td> <td>  273</td> <td>   34 </td> <td>   57 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv92.html"  name="csqv92">    92</a></td> <td>5.048426925392</td> <td>0.883223324673</td> <td>  276</td> <td>   34 </td> <td>   58 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv93.html"  name="csqv93">    93</a></td> <td>5.071029091028</td> <td>0.883182351521</td> <td>  279</td> <td>   34 </td> <td>   59 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv94.html"  name="csqv94">    94</a></td> <td>5.098748716187</td> <td>0.883467205785</td> <td>  282</td> <td>   36 </td> <td>   58 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv95.html"  name="csqv95">    95</a></td> <td>5.125567045105</td> <td>0.883049384536</td> <td>  285</td> <td>   34 </td> <td>   61 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv96.html"  name="csqv96">    96</a></td> <td>5.152146722729</td> <td>0.883229405231</td> <td>  288</td> <td>   35 </td> <td>   61 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv97.html"  name="csqv97">    97</a></td> <td>5.180639279289</td> <td>0.883126820718</td> <td>  291</td> <td>   35 </td> <td>   62 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv98.html"  name="csqv98">    98</a></td> <td>5.204165507569</td> <td>0.882936834557</td> <td>  294</td> <td>   35 </td> <td>   63 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fad219"><a href="csqv99.html"  name="csqv99">    99</a></td> <td>5.233204567399</td> <td>0.883817116428</td> <td>  297</td> <td>   36 </td> <td>   63 </td> <td>                                   </td> <td>[10] </td></tr>
+<tr><td bgcolor="#fa8072"><a href="csqv100.html" name="csqv100">  100</a></td> <td>5.261573443983</td> <td>0.884045506369</td> <td>  301</td> <td>   36 </td> <td>   64 </td> <td><i>D</i><sub><small>1</small></sub></td> <td>[1] </td></tr>
+<tr><td bgcolor="#6495ed"><a href="csqv113.html" name="csqv113">  113</a></td> <td>5.466919623437</td> <td>0.879395103092</td> <td>  340</td> <td>   28 </td> <td>   85 </td> <td><i>D</i><sub><small>4</small></sub></td> <td>[2] </td></tr>
+<tr><td bgcolor="#6495ed"><a href="csqv145.html" name="csqv145">  145</a></td> <td>6.203179763987</td> <td>0.882166715266</td> <td>  436</td> <td>   32 </td> <td>  113 </td> <td><i>D</i><sub><small>4</small></sub></td> <td>[2] </td></tr>
+<tr><td bgcolor="#6495ed"><a href="csqv181.html" name="csqv181">  181</a></td> <td>6.939889809379</td> <td>0.884421938014</td> <td>  544</td> <td>   36 </td> <td>  145 </td> <td><i>D</i><sub><small>4</small></sub></td> <td>[2] </td></tr>
+<tr><td bgcolor="#6495ed"><a href="csqv221.html" name="csqv221">  221</a></td> <td>7.676927093459</td> <td>0.886293611742</td> <td>  664</td> <td>   40 </td> <td>  181 </td> <td><i>D</i><sub><small>4</small></sub></td> <td>[2] </td></tr>
+<tr><td bgcolor="#6495ed"><a href="csqv265.html" name="csqv265">  265</a></td> <td>8.414210400025</td> <td>0.887872509444</td> <td>  796</td> <td>   44 </td> <td>  221 </td> <td><i>D</i><sub><small>4</small></sub></td> <td>[2] </td></tr>
+<tr><td bgcolor="#6495ed"><a href="csqv313.html" name="csqv313">  313</a></td> <td>9.151683700015</td> <td>0.889222778983</td> <td>  940</td> <td>   48 </td> <td>  265 </td> <td><i>D</i><sub><small>4</small></sub></td> <td>[2] </td></tr>
+<tr><td bgcolor="#6495ed"><a href="csqv365.html" name="csqv365">  365</a></td> <td>9.889307019483</td> <td>0.890391048793</td> <td> 1096</td> <td>   52 </td> <td>  313 </td> <td><i>D</i><sub><small>4</small></sub></td> <td>[2] </td></tr>
+<tr><td bgcolor="#6495ed"><a href="csqv421.html" name="csqv421">  421</a></td> <td>10.627051029404</td> <td>0.891412034803</td> <td> 1264</td> <td>   56 </td> <td>  365 </td> <td><i>D</i><sub><small>4</small></sub></td> <td>[2] </td></tr>
+<tr><td bgcolor="#6495ed"><a href="csqv481.html" name="csqv481">  481</a></td> <td>11.364893695176</td> <td>0.892312122358</td> <td> 1444</td> <td>   60 </td> <td>  421 </td> <td><i>D</i><sub><small>4</small></sub></td> <td>[2] </td></tr>
+<tr><td bgcolor="#6495ed"><a href="csqv545.html" name="csqv545">  545</a></td> <td>12.102818122811</td> <td>0.893111728021</td> <td> 1636</td> <td>   64 </td> <td>  481 </td> <td><i>D</i><sub><small>4</small></sub></td> <td>[2] </td></tr>
+<tr><td bgcolor="#6495ed"><a href="csqv613.html" name="csqv613">  613</a></td> <td>12.840811129581</td> <td>0.893826900219</td> <td> 1840</td> <td>   68 </td> <td>  545 </td> <td><i>D</i><sub><small>4</small></sub></td> <td>[2] </td></tr>
+<tr><td bgcolor="#6495ed"><a href="csqv685.html" name="csqv685">  685</a></td> <td>13.578862268967</td> <td>0.894470430463</td> <td> 2056</td> <td>   72 </td> <td>  613 </td> <td><i>D</i><sub><small>4</small></sub></td> <td>[2] </td></tr>
+<tr><td bgcolor="#6495ed"><a href="csqv761.html" name="csqv761">  761</a></td> <td>14.316963149341</td> <td>0.895052641377</td> <td> 2284</td> <td>   76 </td> <td>  685 </td> <td><i>D</i><sub><small>4</small></sub></td> <td>[2] </td></tr>
+<tr><td bgcolor="#6495ed"><a href="csqv841.html" name="csqv841">  841</a></td> <td>15.055106947710</td> <td>0.895581956188</td> <td> 2524</td> <td>   80 </td> <td>  761 </td> <td><i>D</i><sub><small>4</small></sub></td> <td>[2] </td></tr>
+<tr><td bgcolor="#6495ed"><a href="csqv925.html" name="csqv925">  925</a></td> <td>15.793288056089</td> <td>0.896065317340</td> <td> 2776</td> <td>   84 </td> <td>  841 </td> <td><i>D</i><sub><small>4</small></sub></td> <td>[2] </td></tr>
+<tr><td bgcolor="#6495ed"><a href="csqv1013.html" name="csqv1013"> 1013</a></td> <td>16.531501819969</td> <td>0.896508498900</td> <td> 3040</td> <td>   88 </td> <td>  925 </td> <td><i>D</i><sub><small>4</small></sub></td> <td>[2] </td></tr>
+</tbody>
+</table>
+</div>
+<br />
+<br />
+<hr />
+
+<!--
+<a name="Formulae"></a>
+<br>
+<h3>Formulae</h3>
+The following table contains parameters from least-square fits of the ratio R/r over N by an exponential law
+R/r = a * N^b. This means that the least-square fit was applied to the function log(R/r) = b * log(N) + log(a)
+which gives also the standard deviation s_(n-1).
+<br>
+Please note that the fits are taken from different intervals of N. Remember this if you like to extrapolate 
+the given formulae to higher values of N.
+<br>
+<br>
+<TABLE BORDER=3 CELLPADDING=5>
+<TH>Interval of fit<TH>a<TH>b<TH>s
+<tr><td align=center> 11...100 <td> 1.232962 <td> 0.476521 <td> 0.005844
+<tr><td align=center>101...200 <td> 1.207426 <td> 0.481650 <td> 0.001398
+<tr><td align=center>201...300 <td> 1.212083 <td> 0.481106 <td> 0.001169
+<tr><td align=center>301...400 <td> 1.176876 <td> 0.486370 <td> 0.000915
+<tr><td align=center>401...500 <td> 1.217405 <td> 0.480678 <td> 0.001356
+
+<tr><td align=center> 21...500 <td> 1.203885 <td> 0.482409 <td> 0.002347
+<tr><td align=center>101...500 <td> 1.195318 <td> 0.483673 <td> 0.001265
+<tr><td align=center>201...500 <td> 1.193373 <td> 0.483954 <td> 0.001196
+<tr><td align=center>301...500 <td> 1.199264 <td> 0.483144 <td> 0.001176
+</TABLE> 
+<br> 
+<hr>
+-->
+<!--
+<a name="Applications"></a>
+<h3>Applications</h3>
+Suppose, you have to cut circles with a fixed diameter from a circle-shaped plate of any material with fixed side length.
+<br>
+How many circles can you get in order to minimize the waste?
+<br>
+Please use the following form for this calculation:
+<br>
+<br>
+<form method="get" action="http://hydra.nat.uni-magdeburg.de/cgi-bin/cci1.pl">
+<table>
+<tr><td><strong><font color="red">Side length</font> of circle-shaped plate: &nbsp;&nbsp;&nbsp;&nbsp;</strong> <td><INPUT TYPE=text name="size" size="20">
+&nbsp;(enter <font color="red">only numbers</font>, no units and/or text please)
+<tr><td><strong><font color="red">Diameter</font> of small circles: &nbsp;&nbsp;&nbsp;&nbsp;</strong> <td><INPUT TYPE="text" name="diameter" size="20">
+&nbsp;(no units please)
+</table>
+-->
+<!--
+<br>
+<hr>
+<br>
+Suppose, you have to cut a fixed number of circles with a fixed diameter from a circle-shaped plate of any material.
+<br>
+What is the minimum side length of the circle?
+<br>
+Please use the following form for this calculation:
+<br>
+<br>
+<FORM METHOD=GET ACTION="http://hydra.nat.uni-magdeburg.de/cgi-bin/cci2.pl">
+<TABLE>
+<tr><td><strong><FONT COLOR=red>Diameter</FONT> of small circles: &nbsp;&nbsp;&nbsp;&nbsp;</strong> <td><INPUT TYPE=text name=diameter SIZE=20>
+&nbsp;(no units please)
+<tr><td><strong><FONT COLOR=red>Number</FONT> of small circles: &nbsp;&nbsp;&nbsp;&nbsp;</strong> <td><INPUT TYPE=text name=number SIZE=20>
+&nbsp;(enter <FONT COLOR=red>only numbers</FONT>, no units and/or text please)
+</TABLE>
+<br>
+<hr>
+-->
+<!--
+<br>
+Please enter your name and your e-mail address in the following forms. I can assure you that your data won't be misused for any purposes.
+<br><br>
+<strong>Name:</strong> <input type="text" name="name" size="25"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>e-mail-address:</strong> <INPUT TYPE=text name=addr SIZE=30>
+<br><br>
+<input type="submit" value="Let's go!">
+<input type="reset" value="Reset">
+</form>
+-->
+<!--
+<br><br>
+A recently discovered application was inspired by Dennis Gretsinger: <a href=http://hydra.nat.uni-magdeburg.de/misc/dennis2.html>How to measure large holes with small gauge pins</a>.
+<br><br>
+Feel free to send me an <a href="mailto:eckard.specht@physik.uni-magdeburg.de">e-mail</a> for comments and suggestions!
+<br>
+<br>
+<hr>
+
+<a name="OEIS"></a>
+<br>
+<h3> <FONT COLOR=purple>Related entries in the <a href="http://www.research.att.com/~njas/sequences/">OEIS</a>
+(On-Line Encyclopedia of Integer Sequences)</FONT> </h3>
+<DL>
+<DT><a href="http://www.research.att.com/projects/OEIS?Anum=A084618">A084618</a>
+<DD>Maximum number of circles with area 1 that can be packed in a circle of area <em>n</em>
+<DT><a href="http://www.research.att.com/projects/OEIS?Anum=A084619">A084619</a>
+<DD>Maximum number of circles of radius 1 that can be packed in a circle of radius <em>n</em>
+<DT><a href="http://www.research.att.com/projects/OEIS?Anum=A084644">A084644</a>
+<DD>Best packings of <em>m</em>>1 equal circles into a larger circle setting a new density record
+</DL>
+Many thanks to <em>Hugo Pfoertner</em> for establishing these sequences.
+<br>
+<hr>
+-->
+
+<a name="Updates"></a>
+<h3>Updates</h3>
+Please note that the results are taken from a running search. For updates look at the list below.
+<br />
+<br />
+<table>
+<tr><td valign="top">about 2011: <td>First complete presentation from <I>N</I>=1 to <I>N</I>=100 due to results by David W. Cantrell [1].
+He posted his packings at the sci.math forum, but I can't found or remember the URL. Shortly later, my program found many improvements.
+Unfortunately, this web page disappeared 2012 for some mysterious reason. In the meantime, Erich Friedman's Packing Center [3] shows the
+best known results for <i>N</i>=1&ndash;40, but only with poor accuracy (3 decimal places) and without providing coordinates of the packings.
+<br />
+<tr><td valign="top">23-Jul-2026: <td>Revival of the old web page as of 2012. In the last time, new approaches driven by LLM yield better results,
+see [4]&ndash;[7].
+<br />
+<tr><td valign="top">24-Jul-2026: <td>The case <i>N</i>=26 attracted some attention in the last year. Now this record, credited to Yiping Wang [5],
+is present <a href="csqv26.html" target="_blank">here</a>, it has D<sub>1</sub> symmetry. The <a href="csqv26-old1.html" target="_blank">former candidate</a> lacks this property.
+<br />
+<tr><td valign="top">25-Jul-2026: <td>It is not easy to reproduce an announced new record if no coordinates of the circles are available [7].
+Now the case <i>N</i>=32 is shown here.
+<br />
+<tr><td valign="top">27-Jul-2026: <td>What a surprise! Yiping Wang's record for <i>N</i>=26 could be beaten again [2].
+The value of 'sum of radii' is raised from 2.635977394754 to 2.635983084918. The new candidate configuration has no symmetry.
+<br />
+<tr><td valign="top">01-Aug-2026: <td>Command back! Everett Dutton pointed me yesterday to the fact that <strong>Haowei Lin</strong> [8] published
+his results two weeks ago. He refers to <strong>Jonathan Viquerat</strong> [9]. So the credits for <i>N</i>=26, 33 should go to him. Moreover,
+the database is updated by his new records for <i>N</i>=34, 35, 39, 40.
+<br />
+<tr><td valign="top">01-Aug-2026: <td><strong>Everett Dutton</strong> from Gurobi Optimization LLC [10] sent me significant improvements for the cases
+<i>N</i>=42, 47, 48, 53&ndash;59, 61, 69, 73&ndash;75, 77, 78, 80, 83, 86&ndash;88, 91, 95, 96, 99. Great work, Everett!
+<br />
+<tr><td valign="top">01-Aug-2026: <td>Some of these new records could be immediately reclaimed [2]: <i>N</i>=58, 62, 69, 86, 88, 96, 99.
+<br />
+<tr><td valign="top">02-Aug-2026: <td>Nearly all of my previous records are blown away by Everett Dutton [10]: <i>N</i>=58, 62, 86, 88, 96, 99.
+<br />
+<tr><td valign="top">03-Aug-2026: <td>Today an old record by David Cantrell was beaten by <strong>Jason Liang</strong>: <i>N</i>=27.
+The packing has a remarkable D<sub>1</sub> symmetry.
+<br />
+<tr><td valign="top">04-Aug-2026: <td>An incredible amount of new candidates by Everett Dutton [10]: <i>N</i>=48, 51, 52, 54&ndash;56, 61, 63, 65, 68,
+71, 74&ndash;80, 82&ndash;85, 87, 89, 91&ndash;95, 97, 98.
+<br />
+<tr><td valign="top">06-Aug-2026: <td>A few candidates more by Everett Dutton [10]: <i>N</i>=50, 66, 67.
+<br />
+<tr><td valign="top">06-Aug-2026: <td>For the cases <i>N</i>=66, 83, 89, I could do better [2].
+<br />
+<tr><td valign="top">08-Aug-2026: <td>An own class of packings is presented today [2]. These examples are far from being records. But their full <i>D</i><sub>4</sub>
+symmetry makes them quite pretty to look at: <i>N</i>=113, 145, 181, 221, 265, 313, 365, 421, 481, 545, 613, 685, 761, 841, 925, 1013. The formula for generating
+the number of circles is 2 <i>n</i><sup>2</sup> - 2 n + 1. Be inspired and have fun!
+</table>
+<br />
+<hr />
+
+<a name="References"></a>
+<h3>References</h3>
+<table>
+<tr><td align="right" valign="top">[1]<td valign="top"> &nbsp; <img WIDTH=139 HEIGHT=18 src="../cantrell.png" align="middle">, sci.math forum 2011/12.
+<br />
+<tr><td align="right" valign="top">[2]<td valign="top"> &nbsp; <img WIDTH=110 HEIGHT=18 src="../specht.png" align="middle">, program <em>csqv</em>, 2011&ndash;2026.
+<br />
+<tr><td align="right" valign="top">[3]<td valign="top"> &nbsp; E. Friedman, <a href="https://erich-friedman.github.io/packing/cirRsqu/"><em> Circles in Squares</em></a>.
+<br />
+<tr><td align="right" valign="top">[4]<td valign="top"> &nbsp; A. Novikov et al., <a href="https://arxiv.org/pdf/2506.13131" target="_blank"><em> AlphaEvolve: A coding agent for scientific and algorithmic discovery, </em></a> Google DeepMind, Jun 2025.
+<br />
+<tr><td align="right" valign="top">[5]<td valign="top"> &nbsp; Y. Wang, <a href="https://github.com/algorithmicsuperintelligence/openevolve/issues/156" target="_blank"><em> Seems a new circle packing result (2.635977) when reproducing your example #156, </em></a> Jul 2025.
+<br />
+<tr><td align="right" valign="top">[6]<td valign="top"> &nbsp; <a href="https://eu.36kr.com/en/p/3388453754962049" target="_blank"><em> Breaking the world record, a mysterious student defeated Google's AlphaEvolve's optimal solution to a difficult problem with a margin of only 0.00006442, </em></a> 36kr Europe, Jul 2025.
+<br />
+<tr><td align="right" valign="top">[7]<td valign="top"> &nbsp; Sebastian Pokutta, <a href="https://www.pokutta.com/blog/not-every-discovery-needs-an-llm/" target="_blank"><em>Not every discovery needs an LLM, </em></a> Apr 2026.
+<br />
+</table>
+<br />
+<hr />
+
+<a name="References"></a>
+<h3>References</h3>
+<table>
+<tr><td align="right" valign="top">[1]<td valign="top"> &nbsp; <img WIDTH=139 HEIGHT=18 src="../cantrell.png" align="middle">, sci.math forum 2011/12.
+<br />
+<tr><td align="right" valign="top">[2]<td valign="top"> &nbsp; <img WIDTH=110 HEIGHT=18 src="../specht.png" align="middle">, program <em>csqv</em>, 2011&ndash;2026.
+<br />
+<tr><td align="right" valign="top">[3]<td valign="top"> &nbsp; E. Friedman, <a href="https://erich-friedman.github.io/packing/cirRsqu/"><em> Circles in Squares</em></a>.
+<br />
+<tr><td align="right" valign="top">[4]<td valign="top"> &nbsp; A. Novikov et al., <a href="https://arxiv.org/pdf/2506.13131" target="_blank"><em> AlphaEvolve: A coding agent for scientific and algorithmic discovery, </em></a> Google DeepMind, Jun 2025.
+<br />
+<tr><td align="right" valign="top">[5]<td valign="top"> &nbsp; Y. Wang, <a href="https://github.com/algorithmicsuperintelligence/openevolve/issues/156" target="_blank"><em> Seems a new circle packing result (2.635977) when reproducing your example #156, </em></a> Jul 2025.
+<br />
+<tr><td align="right" valign="top">[6]<td valign="top"> &nbsp; <a href="https://eu.36kr.com/en/p/3388453754962049" target="_blank"><em> Breaking the world record, a mysterious student defeated Google's AlphaEvolve's optimal solution to a difficult problem with a margin of only 0.00006442, </em></a> 36kr Europe, Jul 2025.
+<br />
+<tr><td align="right" valign="top">[7]<td valign="top"> &nbsp; Sebastian Pokutta, <a href="https://www.pokutta.com/blog/not-every-discovery-needs-an-llm/" target="_blank"><em>Not every discovery needs an LLM, </em></a> Apr 2026.
+<br />
+<tr><td align="right" valign="top">[8]<td valign="top"> &nbsp; Haowei Lin, <a href="https://github.com/Tencent-Hunyuan/Hyra-results/tree/main/AI4Science/packing_records/records/" target="_blank"><em>packing_records, </em></a> Mid July 2026.
+<br />
+<tr><td align="right" valign="top">[9]<td valign="top"> &nbsp; Jonathan Viquerat, <a href="https://github.com/jviquerat/pbo/" target="_blank"><em>Policy-based optimization, </em></a> 2025.
+<br />
+<tr><td align="right" valign="top">[10]<td valign="top"> &nbsp; <img WIDTH=114 HEIGHT=18 src="../dutton.png" align="middle">, private communication, July/August 2026.
+<br />
+<tr><td align="right" valign="top">[11]<td valign="top"> &nbsp; Jason Liang, <a href=" https://github.com/jasonzliang/circle-packing-sota/" target="_blank"><em>
+circle-packing-sota , </em></a> August 2026.
+</table>
+<br />
+<hr />
+
+<div class="footer">
+<a href="https://www.ovgu.de/datenschutzerklaerung.html" target="_blank"><strong>Datenschutzerkl&auml;rung der Otto-von-Guericke-Universit&auml;t Magdeburg nach DSGVO</strong></a><br /><br />
+&copy;&nbsp;&nbsp;<i><a href="mailto:eckard.specht@ovgu.de">E. Specht</a></i>&nbsp;&nbsp;&nbsp; 08-Aug-2026
+</div>
+<br />
+<br />
+</body>
+</html>
