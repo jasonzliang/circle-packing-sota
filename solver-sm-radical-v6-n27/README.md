@@ -1,8 +1,8 @@
-# solver-nietzsche-sm-radical-v6-n27 — the original N=27 record solver
+# solver-sm-radical-v6-n27 — the original N=27 record solver
 
-The **original** AI-evolved circle-packing solver (lineage
-`nietzsche-sm-radical-v6`) that set the **N=27** Packomania `csqv` best-known,
-Σr = **2.685978684198** (now the _listed_ best-known, a tie; see the
+The **original** AI-generated circle-packing solver (lineage `sm-radical-v6`)
+that set the **N=27** Packomania `csqv` best-known, Σr = **2.685978684198** (now
+the _listed_ best-known, a tie; see the
 [repo README's Verify section](../README.md#verify-the-results)).
 
 ## Provenance / entrypoint
@@ -16,9 +16,9 @@ Entry point `search(n, seed, budget)` in `pack.py` (alongside `container.py`,
 The radii-as-exact-LP inner layer that both solvers share — for _fixed_ centres
 the optimal radii are an exact linear program, with notation `c_i`, `r_i`,
 `d_ij = |c_i − c_j|`, `w_i` (wall distance) — is described in the
-[n54 solver's algorithm](../solver-nietzsche-sm-radical-v6-n54/README.md#algorithm).
-This solver optimises the centres around it, and additionally solves that LP for
-its **duals** and applies a **provable contact-graph reduction**, both below.
+[n54 solver's algorithm](../solver-sm-radical-v6-n54/README.md#algorithm). This
+solver optimises the centres around it, and additionally solves that LP for its
+**duals** and applies a **provable contact-graph reduction**, both below.
 
 `search(n, seed, budget)` is a multi-start over centres. ~65% of iterations hop
 from the incumbent and the rest are fresh starts (random or staggered-row

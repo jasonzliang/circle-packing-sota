@@ -14,7 +14,7 @@ independent check of any packing, ours or anyone else's):
 
     # 3. verify EVERY packing in a dir AND compare vs records -> comparison.md (a WIN must be strictly
     #    feasible AND strictly exceed the record). --refresh re-fetches the records first.
-    python3 verify_and_compare.py compare --pck-dir sota/nietzsche-sm-radical-v6-n54 --refresh
+    python3 verify_and_compare.py compare --pck-dir sota/sm-radical-v6-n54 --refresh
 
 `fetch` reads https://www.packomania.com/csqv/txt/sumradii.txt (the maintainer's plain-text sum-of-radii
 table: `N<TAB>Σr`, `#` comments) — robust to parse and the single source of truth, so the records can

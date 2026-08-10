@@ -76,7 +76,7 @@ communication, July 2026.
 - Other entries (e.g. **N=27 = 2.685350025228**) still carry **reference [1] =
   D. W. Cantrell, sci.math forum 2011/12**, long-standing values that a good
   modern optimizer can sometimes improve (we beat N=27; see
-  `../nietzsche-sm-radical-v6-n27/`).
+  `../sm-radical-v6-n27/`).
 
 Note the table is actively moving: the changelog shows record churn through late
 July / 01-Aug-2026, so re-scrape before claiming any win.

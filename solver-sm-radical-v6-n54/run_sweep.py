@@ -9,7 +9,7 @@ so the repo's verify_and_compare.py applies unchanged.
 Drives THIS solver's native entrypoint:  solve.solve(n, seconds, seed) -> (x, y, r, cost)
 
     OMP_NUM_THREADS=1 python3 run_sweep.py --nmin 2 --nmax 100 --time 250 \
-        --seeds 1,2,3,4,5,6,7,8,9,10 --workers 10 --out-dir ../sota/nietzsche-sm-radical-v6-n54
+        --seeds 1,2,3,4,5,6,7,8,9,10 --workers 10 --out-dir ../sota/sm-radical-v6-n54
 """
 import argparse
 import concurrent.futures as cf
@@ -91,7 +91,7 @@ def main():
     ap.add_argument("--time", type=float, default=250.0, help="search seconds per (N, seed)")
     ap.add_argument("--seeds", default="1,2,3,4,5,6,7,8,9,10", help="comma-separated seeds; best is kept")
     ap.add_argument("--workers", type=int, default=os.cpu_count())
-    ap.add_argument("--out-dir", default="../sota/nietzsche-sm-radical-v6-n54")
+    ap.add_argument("--out-dir", default="../sota/sm-radical-v6-n54")
     ap.add_argument("--author", default="Jason Liang")
     a = ap.parse_args()
     seeds = [int(s) for s in a.seeds.split(",") if s.strip()]

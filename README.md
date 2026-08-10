@@ -1,6 +1,6 @@
 # circle-packing-sota
 
-**AI-evolved circle-packing solvers**, extracted from self-improvement
+**AI-generated circle-packing solvers**, extracted from self-improvement
 (AI-Generating-Algorithms) experiments and run across a range of N, compared to
 the authoritative **Packomania** records for:
 
@@ -19,7 +19,7 @@ how to reproduce, and how the solvers work.
 
 ## Result
 
-Two AI-evolved solvers live here; all standings are against the **live**
+Two AI-generated solvers live here; all standings are against the **live**
 Packomania `csqv` best-known.
 
 **The updated n54 solver holds 21 strictly-feasible packings that beat the
@@ -27,9 +27,9 @@ current best-known.** Verified against the live table (fetched 2026-08-10): N =
 **50, 51, 52, 53, 54, 55, 62, 63, 66, 67, 68, 69, 71, 72, 77, 80, 82, 83, 84,
 85, 87**, by margins from +2.3e-5 (N=55) to +2.6e-3 (N=51), each independently
 re-verified from its `.pck` coordinates. Full per-N table:
-[`sota/nietzsche-sm-radical-v6-n54/comparison.md`](sota/nietzsche-sm-radical-v6-n54/comparison.md)
+[`sota/sm-radical-v6-n54/comparison.md`](sota/sm-radical-v6-n54/comparison.md)
 (**21 wins · 45 ties · 26 below**, of 92 solved). The solver is in
-[`solver-nietzsche-sm-radical-v6-n54/`](solver-nietzsche-sm-radical-v6-n54/).
+[`solver-sm-radical-v6-n54/`](solver-sm-radical-v6-n54/).
 
 **The original n27 solver set the N=27 best-known.** It reproduces 27 known
 records and found N=27 Σr = **2.685978684198**, which beat the long-standing
@@ -40,7 +40,7 @@ now reads as a **tie**: our result is the record, not a beat. As many other
 records also rose (43 of 100 between the 2026-08-03 and 2026-08-10 snapshots),
 this solver's full sweep is now **0 wins · 28 ties · 70 below** vs the live
 table:
-[`sota/nietzsche-sm-radical-v6-n27/comparison.md`](sota/nietzsche-sm-radical-v6-n27/comparison.md).
+[`sota/sm-radical-v6-n27/comparison.md`](sota/sm-radical-v6-n27/comparison.md).
 (It failed outright only at N=97 — see [Known issues](#known-issues).)
 
 **Every claimed win is independently re-verifiable from its `.pck` with
@@ -55,14 +55,14 @@ single packing — feasibility + Σr, and (with `--records`) its status against 
 best-known:
 
 ```bash
-python3 verify_and_compare.py verify sota/nietzsche-sm-radical-v6-n54/pck/csqv54.pck \
+python3 verify_and_compare.py verify sota/sm-radical-v6-n54/pck/csqv54.pck \
         --records sota/packomania/packomania_csqv.json
 ```
 
 Expected output (exit code 0):
 
 ```text
-file            : sota/nietzsche-sm-radical-v6-n54/pck/csqv54.pck
+file            : sota/sm-radical-v6-n54/pck/csqv54.pck
 author          : Jason Liang
 circles (N)     : 54
 sum of radii Σr : 3.842635794451
@@ -80,7 +80,7 @@ straight from Packomania and compare:
 
 ```bash
 python3 verify_and_compare.py fetch                                              # -> sota/packomania/packomania_csqv.json
-python3 verify_and_compare.py compare --pck-dir sota/nietzsche-sm-radical-v6-n54 --refresh
+python3 verify_and_compare.py compare --pck-dir sota/sm-radical-v6-n54 --refresh
 ```
 
 `verify_and_compare.py` is **pure standard library and shares no code with the
@@ -90,23 +90,23 @@ alone, and exits non-zero on any failure. The win slacks are small but
 **positive** (strictly feasible, not feasible-within-tolerance).
 
 **On N=27:** the earlier N=27 packing
-([`sota/nietzsche-sm-radical-v6-n27/wins/csqv27.pck`](sota/nietzsche-sm-radical-v6-n27/wins/csqv27.pck),
+([`sota/sm-radical-v6-n27/wins/csqv27.pck`](sota/sm-radical-v6-n27/wins/csqv27.pck),
 Σr = 2.685978684198) is now the _listed_ best-known — the live record equals it
 to 12 digits — so `verify … --records` reports it as a **tie**. Against the
 older 2011/12 value it originally beat it still shows `BEATS`:
-`verify_and_compare.py verify sota/nietzsche-sm-radical-v6-n27/wins/csqv27.pck --record 2.685350025228`.
+`verify_and_compare.py verify sota/sm-radical-v6-n27/wins/csqv27.pck --record 2.685350025228`.
 
 ### Zero-tolerance check in exact arithmetic
 
 `verify_and_compare.py` uses float64 and a 1e-9 tolerance, which leaves a fair
 objection: with slacks around 1e-12, is the margin itself float noise?
-`solver-nietzsche-sm-radical-v6-n27/exact_check.py` settles it. Every number in
-the stored config is a finite binary float, hence an exact rational, so the
-constraints can be _decided_ with **zero tolerance** via `fractions.Fraction`
-and squared comparisons, with no square roots and no epsilon:
+`solver-sm-radical-v6-n27/exact_check.py` settles it. Every number in the stored
+config is a finite binary float, hence an exact rational, so the constraints can
+be _decided_ with **zero tolerance** via `fractions.Fraction` and squared
+comparisons, with no square roots and no epsilon:
 
 ```bash
-python3 solver-nietzsche-sm-radical-v6-n27/exact_check.py sota/nietzsche-sm-radical-v6-n27/wins/csqv27.seed1.json --n 27
+python3 solver-sm-radical-v6-n27/exact_check.py sota/sm-radical-v6-n27/wins/csqv27.seed1.json --n 27
 # exact: 27 circles, all constraints decided in exact rational arithmetic with ZERO tolerance
 # exact: tightest wall slack (squared) = +1.460063e-13  (ok)
 # exact: tightest pair slack (d^2-s^2) = +6.269444e-13  (ok)
@@ -154,8 +154,8 @@ measurably worse and returns no duals. Treat scipy as required.
 Re-derive their status against the current live records with the same
 `compare --refresh` shown in [Verify](#verify-the-results): it re-verifies all
 92 committed packings and prints `WINS: 21` while the table stands, regenerating
-`sota/nietzsche-sm-radical-v6-n54/comparison.md` in place. The count can move as
-the live records do; the `.pck` never change.
+`sota/sm-radical-v6-n54/comparison.md` in place. The count can move as the live
+records do; the `.pck` never change.
 
 **Re-run the sweeps that produced them** (stochastic wall-clock search). It took
 three passes — the base sweep, a longer targeted pass for four hard near-misses,
@@ -166,7 +166,7 @@ _Base sweep — 13 of the 21 wins_ (`N=2..100`, 250 s/(N, seed), best over seeds
 folded in — see notes):
 
 ```bash
-cd solver-nietzsche-sm-radical-v6-n54                     # run_sweep.py does `import solve`, so run it here
+cd solver-sm-radical-v6-n54                     # run_sweep.py does `import solve`, so run it here
 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 \
   python3 run_sweep.py --nmin 2 --nmax 100 --time 250 \
           --seeds 1,2,3,4,5,6,7,8,9,10 --workers 10 --out-dir ../repro-n54
@@ -177,7 +177,7 @@ _Targeted near-miss pass — the other 4 wins (N=72, 82, 84, 85)_, which needed 
 longer 400 s budget:
 
 ```bash
-cd solver-nietzsche-sm-radical-v6-n54
+cd solver-sm-radical-v6-n54
 OMP_NUM_THREADS=1 python3 run_sweep.py --ns 72,82,84,85 --time 400 \
   --seeds 1,2,3,4,5,6,7,8,9,10 --workers 4 --out-dir ../repro-n54-targeted
 ```
@@ -186,25 +186,24 @@ _Phase-2 near-miss pass — 3 more wins (N=62, 66, 67)_, at a much longer 1500
 s/(N, seed) over ten stubborn near-misses (seeds 1–4):
 
 ```bash
-cd solver-nietzsche-sm-radical-v6-n54
+cd solver-sm-radical-v6-n54
 OMP_NUM_THREADS=1 python3 run_sweep.py --ns 38,39,57,60,62,65,66,67,70,75 --time 1500 \
   --seeds 1,2,3,4 --workers 10 --out-dir ../repro-n54-phase2
 ```
 
-Write to a **fresh `--out-dir`** — the default
-(`../sota/nietzsche-sm-radical-v6-n54`) _is_ the committed reference. Both are
-stochastic searches under a wall-clock budget, so a re-run **won't be
-bit-identical** and the exact set of live wins can differ run to run; every
-emitted `.pck` is independently verifiable (see caveats below). Each win's
-`json/out<N>.json` records the budget + seed it was found at (250 s for the 13
-base-sweep wins, 240 s for N=54, 400 s for the four targeted ones, and 1500 s
-for the three phase-2 ones).
+Write to a **fresh `--out-dir`** — the default (`../sota/sm-radical-v6-n54`)
+_is_ the committed reference. Both are stochastic searches under a wall-clock
+budget, so a re-run **won't be bit-identical** and the exact set of live wins
+can differ run to run; every emitted `.pck` is independently verifiable (see
+caveats below). Each win's `json/out<N>.json` records the budget + seed it was
+found at (250 s for the 13 base-sweep wins, 240 s for N=54, 400 s for the four
+targeted ones, and 1500 s for the three phase-2 ones).
 
 ## Reproduce the N=27 record (n27 solver)
 
 ```bash
 pip install -r requirements.txt                              # numpy + scipy
-python3 solver-nietzsche-sm-radical-v6-n27/pack.py -n 27 --seed 1 --time 120 -o out27.json
+python3 solver-sm-radical-v6-n27/pack.py -n 27 --seed 1 --time 120 -o out27.json
 ```
 
 That is the exact invocation behind the record: **seed 1, 120 s**. It has
@@ -228,7 +227,7 @@ NMIN=27 NMAX=27 TIME=120 ./reproduce.sh  # a single N
 Or step by step:
 
 ```bash
-OMP_NUM_THREADS=1 python3 solver-nietzsche-sm-radical-v6-n27/run_sweep.py \
+OMP_NUM_THREADS=1 python3 solver-sm-radical-v6-n27/run_sweep.py \
   --nmin 2 --nmax 100 --time 120 --workers 8 --out-dir repro
 python3 verify_and_compare.py compare --pck-dir repro --refresh --out repro/comparison.md
 for f in repro/pck/csqv*.pck; do python3 verify_and_compare.py verify "$f" >/dev/null || echo "INFEASIBLE: $f"; done
@@ -236,7 +235,7 @@ for f in repro/pck/csqv*.pck; do python3 verify_and_compare.py verify "$f" >/dev
 
 (To re-score the _committed_ n27 sweep against the live table instead of
 `repro/`, point the same `compare --refresh` at
-`--pck-dir sota/nietzsche-sm-radical-v6-n27`; N=27 now reads as a tie — see
+`--pck-dir sota/sm-radical-v6-n27`; N=27 now reads as a tie — see
 [Verify](#verify-the-results).)
 
 ## Reproducibility notes
@@ -261,16 +260,16 @@ for f in repro/pck/csqv*.pck; do python3 verify_and_compare.py verify "$f" >/dev
   `pack.py --seed`. n27 N=97 is a case where more time cannot help at all — see
   [Known issues](#known-issues).
 - **What is stored where.**
-  - **n54 (headline, 21 wins)** → `sota/nietzsche-sm-radical-v6-n54/`:
-    `pck/csqv<N>.pck` (92 packings for N=2..93 — N=94..100 have no feasible
-    packing at 250 s, see Known issues; 12 dp, Packomania format),
-    `json/out<N>.json` (full float64 config + winning seed + budget),
-    `results.csv`, `comparison.md`, and the run's `sweep.log`.
-  - **n27 (set the N=27 record)** → `sota/nietzsche-sm-radical-v6-n27/`:
-    `pck/csqv<N>.pck` (98 packings, no file for N=97), `results.csv`,
-    `comparison.md`. `wins/` also holds the N=27 full float64 config with its
-    seed and budget (`csqv27.seed1.json`), its `.pck`, and the stored verifier
-    output (`csqv27.verify.txt`).
+  - **n54 (headline, 21 wins)** → `sota/sm-radical-v6-n54/`: `pck/csqv<N>.pck`
+    (92 packings for N=2..93 — N=94..100 have no feasible packing at 250 s, see
+    Known issues; 12 dp, Packomania format), `json/out<N>.json` (full float64
+    config + winning seed + budget), `results.csv`, `comparison.md`, and the
+    run's `sweep.log`.
+  - **n27 (set the N=27 record)** → `sota/sm-radical-v6-n27/`: `pck/csqv<N>.pck`
+    (98 packings, no file for N=97), `results.csv`, `comparison.md`. `wins/`
+    also holds the N=27 full float64 config with its seed and budget
+    (`csqv27.seed1.json`), its `.pck`, and the stored verifier output
+    (`csqv27.verify.txt`).
   - A fresh sweep from either solver writes the same `pck/` +
     `json/out<N>.json` + `results.csv` layout to its `--out-dir`.
 - **Rounding to 12 dp is safe.** Every comparison and verification runs on the
@@ -319,16 +318,16 @@ larger per-N time budget. So the n54 artifacts cover **N=2..93** (92 packings).
 ## Layout
 
 ```text
-solver-nietzsche-sm-radical-v6-n27/  pack.py container.py shape.py  # original AI-written solver (set the N=27 record), UNCHANGED
+solver-sm-radical-v6-n27/  pack.py container.py shape.py  # original AI-written solver (set the N=27 record), UNCHANGED
                exact_check.py  # zero-tolerance feasibility decision in exact rational arithmetic
                run_sweep.py    # parallel N-sweep -> pck + json + results.csv
-solver-nietzsche-sm-radical-v6-n54/  pipeline.py slp.py packlib.py endgame.py broad.py ...  # the UPDATED solver (21 live wins)
+solver-sm-radical-v6-n54/  pipeline.py slp.py packlib.py endgame.py broad.py ...  # the UPDATED solver (21 live wins)
                run_sweep.py    # its N-sweep driver
 verify_and_compare.py          # fetch LIVE packomania records + independent pck verify + compare -> comparison.md
 sota/          the SOTA comparison, all in one place:
   packomania/    packomania_csqv.json (live, canonical) + history/<dated> snapshots + README   # the best-known records
-  nietzsche-sm-radical-v6-n27/  results.csv comparison.md + README; wins/ (csqv27 = now the record), pck/ (no N=97), chase/
-  nietzsche-sm-radical-v6-n54/  results.csv comparison.md; pck/ json/   # updated solver: 21 live record-beats
+  sm-radical-v6-n27/  results.csv comparison.md + README; wins/ (csqv27 = now the record), pck/ (no N=97), chase/
+  sm-radical-v6-n54/  results.csv comparison.md; pck/ json/   # updated solver: 21 live record-beats
 writeup/       README.md + figs   # narrative explainer of the original N=27 result
 reproduce.sh  requirements.txt
 ```
@@ -337,8 +336,8 @@ reproduce.sh  requirements.txt
 
 This repo has **two** solvers, both produced **unchanged** by the same automated
 program-search / self-improvement loop (LLM-driven coding, lineage
-`nietzsche-sm-radical-v6`), not hand-written here. They share one structural
-idea and differ only in how they optimise the circle _centres_.
+`sm-radical-v6`), not hand-written here. They share one structural idea and
+differ only in how they optimise the circle _centres_.
 
 **Shared inner layer — radii are an exact LP for fixed centres.** For _fixed_
 centres, the optimal radii are the solution of a linear program
@@ -347,25 +346,23 @@ in milliseconds, so both solvers treat the problem as a search over centres with
 the radii one LP away. Both implement it with scipy/HiGHS and fall back to a
 numpy-only monotone fixed point when scipy is absent (n54: `packlib.max_radii`;
 n27: `pack.lp_solve`).
-[full algorithm](solver-nietzsche-sm-radical-v6-n54/README.md#algorithm)
+[full algorithm](solver-sm-radical-v6-n54/README.md#algorithm)
 
-**The updated n54 solver** (`solver-nietzsche-sm-radical-v6-n54/`) is behind all
-**21 live record-beats**. Its one n-generic entry point
-`solve(n, seconds, seed)` (`solve.py` → `pipeline.py`) runs a **broad
-multistart** to a good funnel, then an **endgame** basin-hop: exact-LP radii →
-an **SLP-KKT primal linearization polish** (a feasibility-preserving Sequential
-LP that drives any layout to a jammed KKT point) → **threshold-accepting basin
-hopping** over KKT points. This is the improvement that cracked records the n27
-approach plateaued on.
-[full algorithm](solver-nietzsche-sm-radical-v6-n54/README.md#algorithm)
+**The updated n54 solver** (`solver-sm-radical-v6-n54/`) is behind all **21 live
+record-beats**. Its one n-generic entry point `solve(n, seconds, seed)`
+(`solve.py` → `pipeline.py`) runs a **broad multistart** to a good funnel, then
+an **endgame** basin-hop: exact-LP radii → an **SLP-KKT primal linearization
+polish** (a feasibility-preserving Sequential LP that drives any layout to a
+jammed KKT point) → **threshold-accepting basin hopping** over KKT points. This
+is the improvement that cracked records the n27 approach plateaued on.
+[full algorithm](solver-sm-radical-v6-n54/README.md#algorithm)
 
-**The original n27 solver** (`solver-nietzsche-sm-radical-v6-n27/pack.py`) set
-the N=27 best-known (Σr = 2.685978684198 — now the _listed_ best-known, a tie;
-see [Verify](#verify-the-results)). Its entry point `search(n, seed, budget)` is
-a multi-start over centres whose optimiser is **joint SLSQP over (x, y, r)**
-with exact-LP radii, a **provable contact-graph reduction**, and greedy **subset
-hopping**.
-[full algorithm](solver-nietzsche-sm-radical-v6-n27/README.md#algorithm)
+**The original n27 solver** (`solver-sm-radical-v6-n27/pack.py`) set the N=27
+best-known (Σr = 2.685978684198 — now the _listed_ best-known, a tie; see
+[Verify](#verify-the-results)). Its entry point `search(n, seed, budget)` is a
+multi-start over centres whose optimiser is **joint SLSQP over (x, y, r)** with
+exact-LP radii, a **provable contact-graph reduction**, and greedy **subset
+hopping**. [full algorithm](solver-sm-radical-v6-n27/README.md#algorithm)
 
 **Novelty, stated without over-claim.** Both solvers are clean **syntheses of
 published parts**, assembled and tuned autonomously by the loop, not new
@@ -384,4 +381,4 @@ not a novel method.
 > `iter 4`/`iter 5` stages, and logs such as `artifacts/iter3/speedup.log` and
 > `artifacts/iter9_cycles_sweep.log`. None exist here. Read them as provenance,
 > not instructions; every runnable entry point is
-> `solver-nietzsche-sm-radical-v6-{n27,n54}/*.py`.
+> `solver-sm-radical-v6-{n27,n54}/*.py`.

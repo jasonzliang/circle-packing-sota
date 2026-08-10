@@ -1,6 +1,6 @@
 # sota/ours: our results vs the Packomania records
 
-Our evolved solver's results for **N variable circles in a unit square, maximize
+Our updated solver's results for **N variable circles in a unit square, maximize
 Σr**, measured against the Packomania `csqv` best-known values in
 [`../packomania/`](../packomania/). The complete per-N packings from the sweep
 are in [`pck/`](pck/) and the raw table in [`results.csv`](results.csv). The
@@ -68,7 +68,7 @@ python3 ../../verify_and_compare.py verify wins/csqv27.pck --record 2.6853500252
 result. (`--seeds` accepts a comma list; the best over all listed seeds is kept.
 We used a single seed, `1`.)
 
-**What the seed does.** Inside `solver-nietzsche-sm-radical-v6-n27/pack.py`,
+**What the seed does.** Inside `solver-sm-radical-v6-n27/pack.py`,
 `search(n, seed, budget)` creates **one** numpy PCG64 generator,
 `rng = np.random.default_rng(seed)`. That single `rng` drives _everything_
 stochastic: the random initial layouts (`start_random`/`start_grid`), the
@@ -81,7 +81,7 @@ radius LP + SLSQP refine + feasibility repair, and keeps the best. This repeats
 **The N=27 result's seed is therefore `1`.** To regenerate it:
 
 ```bash
-python3 ../../solver-nietzsche-sm-radical-v6-n27/pack.py -n 27 --seed 1 --time 120 -o out27.json
+python3 ../../solver-sm-radical-v6-n27/pack.py -n 27 --seed 1 --time 120 -o out27.json
 ```
 
 **Reproducibility caveat (important).** The budget is _wall-clock_, so
