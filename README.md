@@ -32,14 +32,10 @@ re-verified from its `.pck` coordinates. Full per-N table:
 [`solver-sm-radical-v6-n54/`](solver-sm-radical-v6-n54/).
 
 **The original n27 solver set the N=27 best-known.** It reproduces 27 known
-records and found N=27 Σr = **2.685978684198**, which beat the long-standing
+records and found N=27 Σr = **2.685978684198**, beating the long-standing
 2011/12 entry (2.685350025228, +6.3e-4; reference [1], D. W. Cantrell, sci.math
-forum). The live `csqv` table has since been updated to **exactly that value**
-(it matches our Σr to all 12 digits), so against the _current_ best-known, N=27
-now reads as a **tie**: our result is the record, not a beat. As many other
-records also rose (43 of 100 between the 2026-08-03 and 2026-08-10 snapshots),
-this solver's full sweep is now **0 wins · 28 ties · 70 below** vs the live
-table:
+forum). Across its full N=2..100 sweep that is **1 win · 27 ties · 70 below**
+(of 98 solved):
 [`sota/sm-radical-v6-n27/comparison.md`](sota/sm-radical-v6-n27/comparison.md).
 (It failed outright only at N=97; see [Known issues](#known-issues).)
 
