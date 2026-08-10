@@ -12,10 +12,9 @@ Records are **fetched live** from Packomania (not hardcoded); the `csqv` table
 is actively updated, so best-known values move over time and every claim below
 is checked against the table _as fetched_.
 
-**Start with the [write-up](writeup/README.md)** for the original N=27 result
-(note: that write-up predates the live-record update described below). The rest
-of this file is the technical record: the current standings, how to verify them,
-how to reproduce, and how the solvers work.
+**Start with the [write-up](writeup/README.md)** for the original N=27 result.
+The rest of this file is the technical record: the current standings, how to
+verify them, how to reproduce, and how the solvers work.
 
 ## Result
 
