@@ -143,7 +143,7 @@ never change. This regenerates `sota/nietzsche-sm-radical-v6-n54/comparison.md` 
 **Re-run the sweeps that produced them** (stochastic wall-clock search). It took two passes — the base
 sweep, plus a longer targeted pass for four hard near-misses:
 
-*Base sweep — 14 of the 18 wins* (`N=2..100`, 250 s/(N, seed), best over seeds 1..10; ~7 h on 10 cores):
+*Base sweep — 13 of the 18 wins* (`N=2..100`, 250 s/(N, seed), best over seeds 1..10; ~7 h on 10 cores; N=54's committed win is instead Run B's own 240 s run, folded in — see notes):
 
 ```bash
 cd solver-nietzsche-sm-radical-v6-n54                     # run_sweep.py does `import solve`, so run it here
@@ -215,15 +215,17 @@ python3 verify_and_compare.py compare --pck-dir sota/nietzsche-sm-radical-v6-n27
   checkable with `verify_and_compare.py verify` (pure stdlib, no shared code), however it was found.
 - **The seed dominates — vary seeds before raising `--time`.** n27: seed 1 @120 s found the
   record-beating 2.685978684198, while seed 7 @300 s found a worse 2.683803 on 2.5× the budget. n54:
-  14 of the 18 wins came from the `N=2..100` base sweep at 250 s/(N, seed), best over seeds `1..10`
-  (winning seeds spread across the range — e.g. N=54 seed 1, N=87 seed 4, N=55 seed 9, N=63 seed 10),
-  and the other 4 (N=72, 82, 84, 85) from a **targeted 400 s** near-miss pass — so both *more seeds* and
+  13 of the 18 wins came from the `N=2..100` base sweep at 250 s/(N, seed), best over seeds `1..10`
+  (winning seeds spread across the range — e.g. N=87 seed 4, N=55 seed 9, N=63 seed 10); N=54's committed
+  packing is Run B's own 240 s iteration-10 result, folded in as it beats the sweep's N=54; and the other 4
+  (N=72, 82, 84, 85) came from a **targeted 400 s** near-miss pass — so both *more seeds* and
   *more time per seed* mattered, and no single seed carries the result. Use `--seeds` (both
   `run_sweep.py`) or `pack.py --seed`. n27 N=97 is a case where more time cannot help at all — see
   [Known issues](#known-issues).
 - **What is stored where.**
-  - **n54 (headline, 18 wins)** → `sota/nietzsche-sm-radical-v6-n54/`: `pck/csqv<N>.pck` (92 packings,
-    12 dp, Packomania format), `json/out<N>.json` (full float64 config + winning seed + budget),
+  - **n54 (headline, 18 wins)** → `sota/nietzsche-sm-radical-v6-n54/`: `pck/csqv<N>.pck` (92 packings for
+    N=2..93 — N=94..100 have no feasible packing at 250 s, see Known issues; 12 dp, Packomania format),
+    `json/out<N>.json` (full float64 config + winning seed + budget),
     `results.csv`, `comparison.md`, and the run's `sweep.log`.
   - **n27 (set the N=27 record)** → `sota/nietzsche-sm-radical-v6-n27/`: `pck/csqv<N>.pck` (98
     packings, no file for N=97), `results.csv`, `comparison.md`. `wins/` also holds the N=27 full
@@ -254,6 +256,12 @@ absorbing; more seeds can, because each seed is an independent stream with its o
 Both checkers now catch it, fixed in the harness since `pack.py` is kept unmodified: `verify_and_compare.py` prints
 `DEGENERATE` and exits 1 on any zero radius, and `run_sweep.py` discards such candidates so the N records
 `feasible=0` with no `.pck` rather than a file that looks valid. The N=27 claim is unaffected.
+
+**The n54 sweep finds no feasible packing at N=94..100 (at 250 s).** There its `solve()` returns
+`no candidate — budget too small`: the broad-multistart stage cannot construct a feasible layout that large
+within 250 s, so `results.csv` carries blank `feasible=0` rows and no `.pck` there. Unlike n27's N=97
+(an absorbing-state bug), this is purely a budget limit — those sizes need a much larger per-N time budget.
+So the n54 artifacts cover **N=2..93** (92 packings).
 
 ## Layout
 
