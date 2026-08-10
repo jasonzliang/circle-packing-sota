@@ -22,7 +22,7 @@ how to reproduce, and how the solvers work.
 Two AI-evolved solvers live here; all standings are against the **live**
 Packomania `csqv` best-known.
 
-**The evolved n54 solver holds 21 strictly-feasible packings that beat the
+**The updated n54 solver holds 21 strictly-feasible packings that beat the
 current best-known.** Verified against the live table (fetched 2026-08-10): N =
 **50, 51, 52, 53, 54, 55, 62, 63, 66, 67, 68, 69, 71, 72, 77, 80, 82, 83, 84,
 85, 87**, by margins from +2.3e-5 (N=55) to +2.6e-3 (N=51), each independently
@@ -322,13 +322,13 @@ larger per-N time budget. So the n54 artifacts cover **N=2..93** (92 packings).
 solver-nietzsche-sm-radical-v6-n27/  pack.py container.py shape.py  # original AI-written solver (set the N=27 record), UNCHANGED
                exact_check.py  # zero-tolerance feasibility decision in exact rational arithmetic
                run_sweep.py    # parallel N-sweep -> pck + json + results.csv
-solver-nietzsche-sm-radical-v6-n54/  pipeline.py slp.py packlib.py endgame.py broad.py ...  # the EVOLVED solver (21 live wins)
+solver-nietzsche-sm-radical-v6-n54/  pipeline.py slp.py packlib.py endgame.py broad.py ...  # the UPDATED solver (21 live wins)
                run_sweep.py    # its N-sweep driver
 verify_and_compare.py          # fetch LIVE packomania records + independent pck verify + compare -> comparison.md
 sota/          the SOTA comparison, all in one place:
   packomania/    packomania_csqv.json (live, canonical) + history/<dated> snapshots + README   # the best-known records
   nietzsche-sm-radical-v6-n27/  results.csv comparison.md + README; wins/ (csqv27 = now the record), pck/ (no N=97), chase/
-  nietzsche-sm-radical-v6-n54/  results.csv comparison.md; pck/ json/   # evolved solver: 21 live record-beats
+  nietzsche-sm-radical-v6-n54/  results.csv comparison.md; pck/ json/   # updated solver: 21 live record-beats
 writeup/       README.md + figs   # narrative explainer of the original N=27 result
 reproduce.sh  requirements.txt
 ```
@@ -338,27 +338,34 @@ reproduce.sh  requirements.txt
 This repo has **two** solvers, both produced **unchanged** by the same automated
 program-search / self-improvement loop (LLM-driven coding, lineage
 `nietzsche-sm-radical-v6`), not hand-written here. They share one structural
-idea and differ only in how they optimise the circle _centres_:
+idea and differ only in how they optimise the circle _centres_.
 
-- **`solver-nietzsche-sm-radical-v6-n54/`** — the **evolved** solver behind all
-  **21 live record-beats**. One n-generic entry point `solve(n, seconds, seed)`
-  (`solve.py` → `pipeline.py`): a **broad multistart** to find a good funnel,
-  then an **endgame** basin-hop that squeezes it. Its centre optimiser is a
-  **feasibility-preserving Sequential LP (SLP)** that drives any layout to a KKT
-  point, wrapped in **threshold-accepting basin hopping** over KKT points. This
-  is the evolved improvement that cracked records the n27 approach plateaued on.
-- **`solver-nietzsche-sm-radical-v6-n27/pack.py`** (+ `container.py`,
-  `shape.py`, `exact_check.py`) — the **original** solver that set the N=27
-  best-known (Σr = 2.685978684198 — now the _listed_ best-known, a tie; see
-  [Verify](#verify-the-results)). Its centre optimiser is **joint SLSQP over (x,
-  y, r)** with **greedy subset hopping**. Entry point `search(n, seed, budget)`.
+**Shared inner layer — radii are an exact LP for fixed centres.** For _fixed_
+centres, the optimal radii are the solution of a linear program
+(`r_i + r_j ≤ d_ij` for every pair, `r_i ≤ w_i`, `r_i ≥ 0`), solved exactly and
+in milliseconds, so both solvers treat the problem as a search over centres with
+the radii one LP away. Both implement it with scipy/HiGHS and fall back to a
+numpy-only monotone fixed point when scipy is absent (n54: `packlib.max_radii`;
+n27: `pack.lp_solve`).
+[full algorithm](solver-nietzsche-sm-radical-v6-n54/README.md#algorithm)
 
-**Shared core.** For _fixed_ centres, the optimal radii are the solution of a
-linear program (below), solved exactly and in milliseconds. Both solvers are
-built on this, so each treats the problem as a search over centres with the
-radii one LP away. They **diverge in the centre optimiser**: n27 uses SLSQP +
-greedy hopping; n54 uses feasibility-preserving SLP + KKT-based
-threshold-accepting basin hopping.
+**The updated n54 solver** (`solver-nietzsche-sm-radical-v6-n54/`) is behind all
+**21 live record-beats**. Its one n-generic entry point
+`solve(n, seconds, seed)` (`solve.py` → `pipeline.py`) runs a **broad
+multistart** to a good funnel, then an **endgame** basin-hop: exact-LP radii →
+an **SLP-KKT primal linearization polish** (a feasibility-preserving Sequential
+LP that drives any layout to a jammed KKT point) → **threshold-accepting basin
+hopping** over KKT points. This is the improvement that cracked records the n27
+approach plateaued on.
+[full algorithm](solver-nietzsche-sm-radical-v6-n54/README.md#algorithm)
+
+**The original n27 solver** (`solver-nietzsche-sm-radical-v6-n27/pack.py`) set
+the N=27 best-known (Σr = 2.685978684198 — now the _listed_ best-known, a tie;
+see [Verify](#verify-the-results)). Its entry point `search(n, seed, budget)` is
+a multi-start over centres whose optimiser is **joint SLSQP over (x, y, r)**
+with exact-LP radii, a **provable contact-graph reduction**, and greedy **subset
+hopping**.
+[full algorithm](solver-nietzsche-sm-radical-v6-n27/README.md#algorithm)
 
 **Novelty, stated without over-claim.** Both solvers are clean **syntheses of
 published parts**, assembled and tuned autonomously by the loop, not new
@@ -378,168 +385,3 @@ not a novel method.
 > `artifacts/iter9_cycles_sweep.log`. None exist here. Read them as provenance,
 > not instructions; every runnable entry point is
 > `solver-nietzsche-sm-radical-v6-{n27,n54}/*.py`.
-
-### The shared inner layer: radii are an exact LP for fixed centres
-
-**Notation.** `c_i = (x_i, y_i)`, `r_i` are circle `i`'s centre and radius;
-`d_ij = |c_i − c_j|`; `w_i` is the distance from `c_i` to the nearest wall; the
-objective is `Σr = Σ_i r_i`.
-
-Maximising `Σr` over centres _and_ radii is a nonlinear program, but freezing
-the centres leaves
-
-```text
-maximize     Σ r_i
-subject to   r_i + r_j  ≤  d_ij       for every pair (i, j)
-             r_i        ≤  w_i        for every i
-             r_i        ≥  0
-```
-
-a **pure linear program in `r`** — exact, no gradient noise, no step-size
-tuning. Both solvers implement it with scipy/HiGHS and fall back to a numpy-only
-monotone fixed point when scipy is absent, keeping whichever is better, so scipy
-is an accelerator, not a hard dependency (n54: `packlib.max_radii`; n27:
-`pack.lp_solve`). n27 additionally solves it for its **duals** and applies a
-**provable contact-graph reduction** (both below).
-
-### The evolved solver (`solver-nietzsche-sm-radical-v6-n54/`) — the 21 live wins
-
-`solve(n, seconds, seed)` runs one **broad → endgame** chain (default split ≈
-25% broad / 75% endgame, measured; `pipeline.py`). Every configuration either
-stage emits is strictly feasible by construction.
-
-**broad — multistart to a good funnel (`broad.py`).** Waves of _construct → Adam
-→ LP screen → refine → SLP-KKT polish_, ranked by the **converged KKT value**
-rather than by how far a penalty descent got:
-
-1. **Topology-diverse construction** — six start families (uniform, jittered
-   grid, hex rows, size-graded greedy, rotated hex lattice, random row
-   partition), because the optimum is genuinely unequal-radius and different
-   constructions land in different contact topologies.
-2. **Batched quadratic-penalty Adam** over all `3n` variables of all `B` starts
-   at once (`packlib.adam_run`, shape `(3, B, n)`), a coarse funnel-finder.
-3. **LP screen** — exact-LP radii for each start; keep a top slice, refine those
-   with more Adam.
-4. **SLP-KKT polish of every kept start** to a true local optimum, then rank by
-   that value. The screen is _audited_: a random sample of non-elite starts is
-   polished too and the Spearman correlation between screen and KKT value is
-   reported, so a misleading screen would be caught.
-
-**SLP — the feasibility-preserving centre optimiser (`slp.py`).** The key
-insight: radii are already an exact LP for fixed centres, and the centres can
-**join** that LP because the only nonlinear constraint is a norm, and a norm is
-convex, so its first-order expansion is a **global under-estimator**:
-
-```text
-‖a + s‖  ≥  ‖a‖ + ê·s,        ê = a / ‖a‖
-```
-
-Taking `a = c_i − c_j` and `s = δc_i − δc_j` at the current point turns each
-non-overlap constraint into one linear cut that **implies** (not approximates)
-the true constraint:
-
-```text
-r_i + r_j − ê·(δc_i − δc_j)  ≤  d_ij
-```
-
-The box rows are already exactly linear, so with variables `[δx, δy, r]` and a
-trust box `|δx|,|δy| ≤ δ`, the LP is an **inner (restricted) model** of the true
-problem. Three consequences: every LP solution is **truly feasible** (no repair
-can eat the gain); `δc = 0` is feasible, so the step is **monotone** by
-construction; and at a fixed point the linearisation is first-order exact, so it
-lands on a **KKT point** — an actually jammed packing — in ~1 s. `δ` only bounds
-how far the model is trusted and is shrunk geometrically to squeeze out the last
-digits. Warm entry: `slp_polish(x, y, r)`.
-
-**endgame — threshold-accepting basin hopping over KKT points (`endgame.py`).**
-The hop loop compares local optima to local optima:
-
-```text
-perturb incumbent  →  LP radii  →  SLP-polish to KKT  →  accept-if-better
-```
-
-- **Coherent moves** (jitter, region shake, affine stretch/rotate, swirl,
-  recluster) — displacing a single circle far in a jammed packing forfeits its
-  whole radius, so every move deforms many circles together instead of tearing a
-  hole. Because SLP is monotone and feasible from any start, it absorbs the
-  perturbation with no Adam needed.
-- **Threshold-accepting walk** (Dueck & Scheuer): the walker may step downhill
-  by up to `T`, where `T` cycles geometrically from `T_HI = 8e-4` down to
-  `T_LO = 2e-5` and resets, so exploration stays alive for the whole budget
-  while the band is wide enough to reach neighbouring optima but never to buy
-  out of the good basin family. A separate incumbent **`best` only ever rises**,
-  and the walker is teleported back to it if it drifts more than
-  `MAX_DRIFT = 3e-3` below.
-
-Warm entry: `endgame(x, y, r, seconds)`. Both `broad_frac` and `t_hi` are
-exposed but were measured to be flat-or-negative to tune (see the `pipeline.py`
-/ `endgame.py` docstrings); the solver ships at the defaults.
-
-**Repair.** `packlib.repair` guarantees strict feasibility by shrinking radii
-only (centres untouched), capping each `r_i` at `w_i − 1e-12` and halving any
-residual pair overlap — a per-circle shrink, so a single bad circle cannot zero
-the whole configuration.
-
-### The original solver (`solver-nietzsche-sm-radical-v6-n27/pack.py`) — set N=27
-
-`search(n, seed, budget)` is a multi-start over centres. ~65% of iterations hop
-from the incumbent and the rest are fresh starts (random or staggered-row
-grids); each candidate is run through `refine()`, checked for feasibility, and
-scored.
-
-**Outer optimiser: joint SLSQP + greedy hopping.**
-
-- **Joint SLSQP over all of `(x, y, r)`** with analytic constraint Jacobians
-  (`slsqp`), so the local solver trades radius against position in one step;
-  `refine()` alternates SLSQP with the exact radius LP for up to 3 rounds,
-  keeping the LP's radii whenever they beat SLSQP's.
-- **Uniform subset hopping** (`perturb`): perturb a random 12/25/45% of circles
-  at one of three jump scales, deflating their radii to 30%. Acceptance is
-  **strictly greedy** (`if s > best_s`) — no temperature, no Metropolis — so
-  this is closer to iterated local search than to stochastic basin hopping.
-
-**A provable, exact contact-graph reduction.** The formulation has `n(n−1)/2`
-pair constraints, but a packing's contact graph is essentially planar (≤ `3n−6`
-contacts). The reduction is **provable, not heuristic**: since
-`r_i + r_j ≤ d_ij` and `r_j ≥ 0`, every `j` forces `r_i ≤ d_ij`, so
-
-```text
-u_i := min( w_i, min_{j≠i} d_ij )      is a valid bound on r_i in every feasible config
-drop pair (i, j)  when  d_ij ≥ u_i + u_j
-```
-
-Impose `r_i ≤ u_i` as a variable bound (valid bounds never cut off the optimum)
-and the dropped pairs are **implied by those two bounds**, so deletion loses
-provably nothing (`valid_caps`, `live_pairs`). The bound and the drop rule are
-one argument and must be used together. This applies to the **radius LP only**;
-`--self-test` checks the reduced LP against a naive all-pairs reference and
-finds the optimum preserved to float precision while keeping only a small
-fraction of the rows. `u_i` is valid only for the centres it was computed from,
-so it goes stale the moment SLSQP moves anything, and only the LP _value_ is
-preserved, not the duals of dropped rows (which report `λ = 0`).
-
-**Strict feasibility by construction, not by tolerance.** `repair()` projects
-centres into the container, then applies **one uniform radius scale**
-`min(1, s)` — the largest factor making every pair and wall constraint hold at
-once — and shaves a further `1e-12`. Any candidate still violating a constraint
-by more than `1e-9` is dropped, and `main()` refuses to emit an infeasible
-config. Uniformity is cheap but brittle: `s = 0` zeroes every radius, which is
-exactly how the N=97 sweep collapsed (see [Known issues](#known-issues)). The
-float repair is separate from the tolerance-free guarantee, which comes from
-`exact_check.py` (run above for N=27).
-
-**LP duals as a search signal (opt-in, `--dual`).** The radius LP also returns
-its duals: `λ_k` prices each tight contact (with `Σ_j λ_ij + μ_i = 1` by
-complementary slackness), so `perturb_dual()` can sample contacts ∝ `λ` and
-spend hops on the load-bearing ones. The LP is often degenerate, so `λ` is one
-optimal dual vector, not a true gradient — and no measurement here shows
-`--dual` beats uniform hopping.
-
-**What the N=27 win used — and did not.** The record came from the **default
-path only**: multi-start joint SLSQP, exact-LP radii with the contact-graph
-reduction, uniform subset hopping, disks in the unit square. It did **not** use
-`--dual`, the trust-region QP (`--sparse`, off — measured no faster), or the
-polytope joint-LP path; the container/shape abstractions
-(`--container`/`--shape`) and `--self-test` (dual identity, zero duality gap,
-reduction-vs-naive-LP, a proved `√n/2` optimum) are exercised but contributed
-nothing to the result.
