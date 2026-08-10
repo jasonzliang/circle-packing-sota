@@ -8,7 +8,7 @@ the authoritative **Packomania** records for:
 > all stay inside the square, maximizing the sum of the radii Σr**, the
 > AlphaEvolve / ShinkaEvolve benchmark (Packomania's `csqv` table).
 
-Records are **fetched live** from Packomania (not hardcoded) — the `csqv` table
+Records are **fetched live** from Packomania (not hardcoded); the `csqv` table
 is actively updated, so best-known values move over time and every claim below
 is checked against the table _as fetched_.
 
@@ -34,14 +34,14 @@ re-verified from its `.pck` coordinates. Full per-N table:
 **The original n27 solver set the N=27 best-known.** It reproduces 27 known
 records and found N=27 Σr = **2.685978684198**, which beat the long-standing
 2011/12 entry (2.685350025228, +6.3e-4; reference [1], D. W. Cantrell, sci.math
-forum). The live `csqv` table has since been updated to **exactly that value** —
-it matches our Σr to all 12 digits — so against the _current_ best-known, N=27
+forum). The live `csqv` table has since been updated to **exactly that value**
+(it matches our Σr to all 12 digits), so against the _current_ best-known, N=27
 now reads as a **tie**: our result is the record, not a beat. As many other
 records also rose (43 of 100 between the 2026-08-03 and 2026-08-10 snapshots),
 this solver's full sweep is now **0 wins · 28 ties · 70 below** vs the live
 table:
 [`sota/sm-radical-v6-n27/comparison.md`](sota/sm-radical-v6-n27/comparison.md).
-(It failed outright only at N=97 — see [Known issues](#known-issues).)
+(It failed outright only at N=97; see [Known issues](#known-issues).)
 
 **Every claimed win is independently re-verifiable from its `.pck` with
 `verify_and_compare.py verify`**; `verify_and_compare.py fetch` refreshes the
@@ -51,7 +51,7 @@ record table.
 
 **No search re-run needed.** Each packing is a fixed file; checking it is pure
 arithmetic on its (x, y, r) triples, so nothing needs installing. Verify any
-single packing — feasibility + Σr, and (with `--records`) its status against the
+single packing: feasibility + Σr, and (with `--records`) its status against the
 best-known:
 
 ```bash
@@ -74,8 +74,8 @@ record          : 3.841733103296
 Δ (ours-record) : +9.027e-04   -> BEATS the record
 ```
 
-To check **all** packings against the **current live** records at once — a WIN
-must be strictly feasible AND strictly exceed the record — refresh the table
+To check **all** packings against the **current live** records at once (a WIN
+must be strictly feasible AND strictly exceed the record), refresh the table
 straight from Packomania and compare:
 
 ```bash
@@ -91,8 +91,8 @@ alone, and exits non-zero on any failure. The win slacks are small but
 
 **On N=27:** the earlier N=27 packing
 ([`sota/sm-radical-v6-n27/pck/csqv27.pck`](sota/sm-radical-v6-n27/pck/csqv27.pck),
-Σr = 2.685978684198) is now the _listed_ best-known — the live record equals it
-to 12 digits — so `verify … --records` reports it as a **tie**. Against the
+Σr = 2.685978684198) is now the _listed_ best-known (the live record equals it
+to 12 digits), so `verify … --records` reports it as a **tie**. Against the
 older 2011/12 value it originally beat it still shows `BEATS`:
 `verify_and_compare.py verify sota/sm-radical-v6-n27/pck/csqv27.pck --record 2.685350025228`.
 
@@ -148,9 +148,9 @@ SLSQP**: `pack.py` degrades to an iterative radius-shrinking heuristic that is
 measurably worse and returns no duals. Treat scipy as required.
 `verify_and_compare.py` and `exact_check.py` need only the standard library.
 
-## Reproduce the 21 live record-beats (n54 solver — the headline)
+## Reproduce the 21 live record-beats (n54 solver: the headline)
 
-**No search needed to check them** — the 21 wins are fixed `.pck` files.
+**No search needed to check them**: the 21 wins are fixed `.pck` files.
 Re-derive their status against the current live records with the same
 `compare --refresh` shown in [Verify](#verify-the-results): it re-verifies all
 92 committed packings and prints `WINS: 21` while the table stands, regenerating
@@ -158,12 +158,12 @@ Re-derive their status against the current live records with the same
 records do; the `.pck` never change.
 
 **Re-run the sweeps that produced them** (stochastic wall-clock search). It took
-three passes — the base sweep, a longer targeted pass for four hard near-misses,
+three passes: the base sweep, a longer targeted pass for four hard near-misses,
 and a still-longer phase-2 pass for three more:
 
-_Base sweep — 13 of the 21 wins_ (`N=2..100`, 250 s/(N, seed), best over seeds
+_Base sweep: 13 of the 21 wins_ (`N=2..100`, 250 s/(N, seed), best over seeds
 1..10; ~7 h on 10 cores; N=54's committed win is instead Run B's own 240 s run,
-folded in — see notes):
+folded in; see notes):
 
 ```bash
 cd solver-sm-radical-v6-n54                     # run_sweep.py does `import solve`, so run it here
@@ -173,7 +173,7 @@ OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREAD
 cd .. && python3 verify_and_compare.py compare --pck-dir repro-n54 --refresh --out repro-n54/comparison.md
 ```
 
-_Targeted near-miss pass — the other 4 wins (N=72, 82, 84, 85)_, which needed a
+_Targeted near-miss pass: the other 4 wins (N=72, 82, 84, 85)_, which needed a
 longer 400 s budget:
 
 ```bash
@@ -182,7 +182,7 @@ OMP_NUM_THREADS=1 python3 run_sweep.py --ns 72,82,84,85 --time 400 \
   --seeds 1,2,3,4,5,6,7,8,9,10 --workers 4 --out-dir ../repro-n54-targeted
 ```
 
-_Phase-2 near-miss pass — 3 more wins (N=62, 66, 67)_, at a much longer 1500
+_Phase-2 near-miss pass: 3 more wins (N=62, 66, 67)_, at a much longer 1500
 s/(N, seed) over ten stubborn near-misses (seeds 1–4):
 
 ```bash
@@ -191,13 +191,13 @@ OMP_NUM_THREADS=1 python3 run_sweep.py --ns 38,39,57,60,62,65,66,67,70,75 --time
   --seeds 1,2,3,4 --workers 10 --out-dir ../repro-n54-phase2
 ```
 
-Write to a **fresh `--out-dir`** — the default (`../sota/sm-radical-v6-n54`)
-_is_ the committed reference. Both are stochastic searches under a wall-clock
-budget, so a re-run **won't be bit-identical** and the exact set of live wins
-can differ run to run; every emitted `.pck` is independently verifiable (see
-caveats below). Each win's `json/out<N>.json` records the budget + seed it was
-found at (250 s for the 13 base-sweep wins, 240 s for N=54, 400 s for the four
-targeted ones, and 1500 s for the three phase-2 ones).
+Write to a **fresh `--out-dir`**: the default (`../sota/sm-radical-v6-n54`) _is_
+the committed reference. Both are stochastic searches under a wall-clock budget,
+so a re-run **won't be bit-identical** and the exact set of live wins can differ
+run to run; every emitted `.pck` is independently verifiable (see caveats
+below). Each win's `json/out<N>.json` records the budget + seed it was found at
+(250 s for the 13 base-sweep wins, 240 s for N=54, 400 s for the four targeted
+ones, and 1500 s for the three phase-2 ones).
 
 ## Reproduce the N=27 record (n27 solver)
 
@@ -214,7 +214,7 @@ wall-clock budget. It is a stochastic search, so a re-run elsewhere is not
 pass/fail; see the caveats below.
 
 **Whole n27 sweep, one command** (`reproduce.sh` drives the n27 `run_sweep.py`,
-then compares + independently verifies every packing into a fresh `repro/` dir —
+then compares + independently verifies every packing into a fresh `repro/` dir;
 it does **not** clobber the committed reference; full `N=2..100` takes ~25 min
 on a 10-core machine):
 
@@ -235,33 +235,33 @@ for f in repro/pck/csqv*.pck; do python3 verify_and_compare.py verify "$f" >/dev
 
 (To re-score the _committed_ n27 sweep against the live table instead of
 `repro/`, point the same `compare --refresh` at
-`--pck-dir sota/sm-radical-v6-n27`; N=27 now reads as a tie — see
+`--pck-dir sota/sm-radical-v6-n27`; N=27 now reads as a tie; see
 [Verify](#verify-the-results).)
 
 ## Reproducibility notes
 
 - **The artifacts are fixed and verifiable; both searches are stochastic.** Each
   solver is a multi-start search under a _wall-clock_ budget, so a given N's
-  best depends on seed, budget and machine speed — a re-run won't be
+  best depends on seed, budget and machine speed; a re-run won't be
   bit-identical, and for n54 the exact set of live wins can shift from run to
   run. That weakens no claim: every committed `.pck` is strictly feasible and
   independently checkable with `verify_and_compare.py verify` (pure stdlib, no
   shared code), however it was found.
-- **The seed dominates — vary seeds before raising `--time`.** n27: seed 1 @120
-  s found the record-beating 2.685978684198, while seed 7 @300 s found a worse
+- **The seed dominates; vary seeds before raising `--time`.** n27: seed 1 @120 s
+  found the record-beating 2.685978684198, while seed 7 @300 s found a worse
   2.683803 on 2.5× the budget. n54: 13 of the 21 wins came from the `N=2..100`
   base sweep at 250 s/(N, seed), best over seeds `1..10` (winning seeds spread
-  across the range — e.g. N=87 seed 4, N=55 seed 9, N=63 seed 10); N=54's
+  across the range, e.g. N=87 seed 4, N=55 seed 9, N=63 seed 10); N=54's
   committed packing is Run B's own 240 s iteration-10 result, folded in as it
   beats the sweep's N=54; the other 4 (N=72, 82, 84, 85) came from a **targeted
   400 s** near-miss pass; and 3 (N=62, 66, 67) from a longer **1500 s phase-2**
-  pass — so both _more seeds_ and _more time per seed_ mattered, and no single
+  pass, so both _more seeds_ and _more time per seed_ mattered, and no single
   seed carries the result. Use `--seeds` (both `run_sweep.py`) or
-  `pack.py --seed`. n27 N=97 is a case where more time cannot help at all — see
+  `pack.py --seed`. n27 N=97 is a case where more time cannot help at all; see
   [Known issues](#known-issues).
 - **What is stored where.**
   - **n54 (headline, 21 wins)** → `sota/sm-radical-v6-n54/`: `pck/csqv<N>.pck`
-    (92 packings for N=2..93 — N=94..100 have no feasible packing at 250 s, see
+    (92 packings for N=2..93; N=94..100 have no feasible packing at 250 s, see
     Known issues; 12 dp, Packomania format), `json/out<N>.json` (full float64
     config + winning seed + budget), `results.csv`, `comparison.md`, and the
     run's `sweep.log`.
@@ -275,7 +275,7 @@ for f in repro/pck/csqv*.pck; do python3 verify_and_compare.py verify "$f" >/dev
   strictly feasible (at n27 the shave costs 3.1e-13 of Σr; the positive win
   slacks in [Verify](#verify-the-results) are all measured post-rounding). Where
   a raw solution only just touches (a 12-dp slack of ~−1e-13),
-  `verify_and_compare.py repair <pck>` makes it submission-grade — a uniform
+  `verify_and_compare.py repair <pck>` makes it submission-grade: a uniform
   radius shrink to a target min slack (default 1e-11), record-gated so it never
   emits a packing that no longer wins.
 
@@ -307,11 +307,12 @@ radius, and `run_sweep.py` discards such candidates so the N records
 is unaffected.
 
 **The n54 sweep finds no feasible packing at N=94..100 (at 250 s).** There its
-`solve()` returns `no candidate — budget too small`: the broad-multistart stage
-cannot construct a feasible layout that large within 250 s, so `results.csv`
-carries blank `feasible=0` rows and no `.pck` there. Unlike n27's N=97 (an
-absorbing-state bug), this is purely a budget limit — those sizes need a much
-larger per-N time budget. So the n54 artifacts cover **N=2..93** (92 packings).
+`solve()` fails with `no candidate produced -- budget too small`: the
+broad-multistart stage cannot construct a feasible layout that large within 250
+s, so `results.csv` carries blank `feasible=0` rows and no `.pck` there. Unlike
+n27's N=97 (an absorbing-state bug), this is purely a budget limit: those sizes
+need a much larger per-N time budget. So the n54 artifacts cover **N=2..93** (92
+packings).
 
 ## Layout
 
@@ -337,7 +338,7 @@ program-search / self-improvement loop (LLM-driven coding, lineage
 `sm-radical-v6`), not hand-written here. They share one structural idea and
 differ only in how they optimise the circle _centres_.
 
-**Shared inner layer — radii are an exact LP for fixed centres.** For _fixed_
+**Shared inner layer: radii are an exact LP for fixed centres.** For _fixed_
 centres, the optimal radii are the solution of a linear program
 (`r_i + r_j ≤ d_ij` for every pair, `r_i ≤ w_i`, `r_i ≥ 0`), solved exactly and
 in milliseconds, so both solvers treat the problem as a search over centres with
@@ -356,7 +357,7 @@ is the improvement that cracked records the n27 approach plateaued on.
 [full algorithm](solver-sm-radical-v6-n54/README.md#algorithm)
 
 **The original n27 solver** (`solver-sm-radical-v6-n27/pack.py`) set the N=27
-best-known (Σr = 2.685978684198 — now the _listed_ best-known, a tie; see
+best-known (Σr = 2.685978684198, now the _listed_ best-known, a tie; see
 [Verify](#verify-the-results)). Its entry point `search(n, seed, budget)` is a
 multi-start over centres whose optimiser is **joint SLSQP over (x, y, r)** with
 exact-LP radii, a **provable contact-graph reduction**, and greedy **subset
