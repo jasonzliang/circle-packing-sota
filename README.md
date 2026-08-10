@@ -473,29 +473,14 @@ exactly how the N=97 sweep collapsed (see [Known issues](#known-issues)). The
 float repair is separate from the tolerance-free guarantee, which comes from
 `exact_check.py` (run above for N=27).
 
-**LP duals as a search signal.** The radius LP is solved for its duals as well
-(`lp_solve` returns `lam`, `mu`):
+**LP duals as a search signal (opt-in, `--dual`).** The radius LP also returns its duals: `λ_k` prices
+each tight contact (with `Σ_j λ_ij + μ_i = 1` by complementary slackness), so `perturb_dual()` can sample
+contacts ∝ `λ` and spend hops on the load-bearing ones. The LP is often degenerate, so `λ` is one optimal
+dual vector, not a true gradient — and no measurement here shows `--dual` beats uniform hopping.
 
-```text
-λ_k = price of pair row k (zero unless that contact is tight)
-μ_i = price of the variable bound r_i ≤ u_i
-Σ_j λ_ij + μ_i = 1   for every i with r_i > 0        (complementary slackness)
-```
-
-Read as a sensitivity, `λ_k` is the gain in `Σr` per unit of extra room at
-contact `k`, so `perturb_dual()` (opt-in via `--dual`) samples contacts with
-probability proportional to `λ` and moves both ends, spending hops on the
-load-bearing contacts. The LP is often degenerate, so this is one optimal dual
-vector rather than a true gradient; no measurement here shows `--dual` beats
-uniform hopping.
-
-**What the N=27 win used, and what it did not.** The record came from the
-**default path only**: multi-start joint SLSQP, exact-LP radii with the
-contact-graph reduction on, uniform subset hopping, Euclidean disks in the unit
-square. It did **not** use `--dual`, the trust-region QP (`--sparse`, implemented
-but off because it is measured no faster), or the polytope joint-LP path. The
-solver also abstracts the container and the packed shape (both enter the inner LP
-in a fixed, still-linear way; `--container`, `--shape`), and `--self-test`
-validates the machinery against facts — the dual identity, a zero duality gap,
-the reduction vs a naive LP, and a proved optimum (`√n/2` for `k²` axis-aligned
-squares) — but none of that contributed to the N=27 result.
+**What the N=27 win used — and did not.** The record came from the **default path only**: multi-start
+joint SLSQP, exact-LP radii with the contact-graph reduction, uniform subset hopping, disks in the unit
+square. It did **not** use `--dual`, the trust-region QP (`--sparse`, off — measured no faster), or the
+polytope joint-LP path; the container/shape abstractions (`--container`/`--shape`) and `--self-test` (dual
+identity, zero duality gap, reduction-vs-naive-LP, a proved `√n/2` optimum) are exercised but contributed
+nothing to the result.
