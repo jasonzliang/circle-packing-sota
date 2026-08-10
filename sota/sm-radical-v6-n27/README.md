@@ -49,15 +49,14 @@ the main set above rather than kept here.
   (reference [1] = D. W. Cantrell, sci.math forum), **not** one of the recent
   AI-optimized entries (e.g. N=26 = 2.635983, credited to Haowei Lin [8], July
   2026, which we do not beat).
-- Everything for the win is in [`wins/`](wins/): [`csqv27.pck`](wins/csqv27.pck)
-  (the canonical packing, Packomania format), `csqv27.seed1.json` (the full
-  float64 config), and `csqv27.verify.txt` (the independent feasibility + record
-  check). The same packing is also part of the complete set in [`pck/`](pck/).
+- The record packing is [`pck/csqv27.pck`](pck/csqv27.pck) (Packomania format),
+  with the full float64 config (seed + budget) in
+  [`json/out27.json`](json/out27.json).
 
 Verify it yourself (no solver needed):
 
 ```bash
-python3 ../../verify_and_compare.py verify wins/csqv27.pck --record 2.685350025228
+python3 ../../verify_and_compare.py verify pck/csqv27.pck --record 2.685350025228
 ```
 
 ## How the seed works, and where the N=27 result's seed comes from
@@ -93,7 +92,7 @@ second machine: 1017 starts, 1852 hops) despite 2.5x the time, because it
 explored a different basin. Note this varies both seed and budget, so it shows
 the seed dominating rather than more time being harmful in itself. Either way a
 specific win is tied to `(seed, budget, machine)`, while the saved packing
-(`wins/csqv27.pck`) is a fixed artifact that is strictly feasible and beats the
+(`pck/csqv27.pck`) is a fixed artifact that is strictly feasible and beats the
 record regardless of how it was found.
 
 ## Contents
@@ -101,7 +100,7 @@ record regardless of how it was found.
 ```text
 comparison.md            our full ours-vs-Packomania table (N=2..100)
 results.csv              raw sweep output (n, sum_radii, max_violation, seeds, feasible)
-wins/                    the record-beating N=27 result: csqv27.pck + seed1.json (full float64) + verify.txt
+json/out27.json          the N=27 full float64 config (seed + budget)
 pck/csqv<N>.pck          the 98 usable packings, Packomania format (csqv27 also here; no N=97)
 chase/                   re-runs of 12 near-misses at 240s over seeds 1-4; ties the record at 5 of them
 ```

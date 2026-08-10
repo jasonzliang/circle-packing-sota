@@ -9,7 +9,7 @@ Both sides of the comparison for **N variable circles in a unit square, maximize
 - [`sm-radical-v6-n27/`](sm-radical-v6-n27/): **our** updated solver's results
   across N=2..100: the comparison table, the 98 usable packings, and the
   record-beating one (N=27) in
-  [`sm-radical-v6-n27/wins/csqv27.pck`](sm-radical-v6-n27/wins/csqv27.pck).
+  [`sm-radical-v6-n27/pck/csqv27.pck`](sm-radical-v6-n27/pck/csqv27.pck).
 
 **Headline:** 27 ties, **1 strict win (N=27)**, the rest under-searched at the
 sweep's per-N budget. Full per-N table:

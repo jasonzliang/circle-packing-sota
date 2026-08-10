@@ -90,11 +90,11 @@ alone, and exits non-zero on any failure. The win slacks are small but
 **positive** (strictly feasible, not feasible-within-tolerance).
 
 **On N=27:** the earlier N=27 packing
-([`sota/sm-radical-v6-n27/wins/csqv27.pck`](sota/sm-radical-v6-n27/wins/csqv27.pck),
+([`sota/sm-radical-v6-n27/pck/csqv27.pck`](sota/sm-radical-v6-n27/pck/csqv27.pck),
 Σr = 2.685978684198) is now the _listed_ best-known — the live record equals it
 to 12 digits — so `verify … --records` reports it as a **tie**. Against the
 older 2011/12 value it originally beat it still shows `BEATS`:
-`verify_and_compare.py verify sota/sm-radical-v6-n27/wins/csqv27.pck --record 2.685350025228`.
+`verify_and_compare.py verify sota/sm-radical-v6-n27/pck/csqv27.pck --record 2.685350025228`.
 
 ### Zero-tolerance check in exact arithmetic
 
@@ -106,7 +106,7 @@ be _decided_ with **zero tolerance** via `fractions.Fraction` and squared
 comparisons, with no square roots and no epsilon:
 
 ```bash
-python3 solver-sm-radical-v6-n27/exact_check.py sota/sm-radical-v6-n27/wins/csqv27.seed1.json --n 27
+python3 solver-sm-radical-v6-n27/exact_check.py sota/sm-radical-v6-n27/json/out27.json --n 27
 # exact: 27 circles, all constraints decided in exact rational arithmetic with ZERO tolerance
 # exact: tightest wall slack (squared) = +1.460063e-13  (ok)
 # exact: tightest pair slack (d^2-s^2) = +6.269444e-13  (ok)
@@ -266,10 +266,8 @@ for f in repro/pck/csqv*.pck; do python3 verify_and_compare.py verify "$f" >/dev
     config + winning seed + budget), `results.csv`, `comparison.md`, and the
     run's `sweep.log`.
   - **n27 (set the N=27 record)** → `sota/sm-radical-v6-n27/`: `pck/csqv<N>.pck`
-    (98 packings, no file for N=97), `results.csv`, `comparison.md`. `wins/`
-    also holds the N=27 full float64 config with its seed and budget
-    (`csqv27.seed1.json`), its `.pck`, and the stored verifier output
-    (`csqv27.verify.txt`).
+    (98 packings, no file for N=97), `json/out27.json` (the N=27 full float64
+    config with its seed and budget), `results.csv`, `comparison.md`.
   - A fresh sweep from either solver writes the same `pck/` +
     `json/out<N>.json` + `results.csv` layout to its `--out-dir`.
 - **Rounding to 12 dp is safe.** Every comparison and verification runs on the
@@ -326,7 +324,7 @@ solver-sm-radical-v6-n54/  pipeline.py slp.py packlib.py endgame.py broad.py ...
 verify_and_compare.py          # fetch LIVE packomania records + independent pck verify + compare -> comparison.md
 sota/          the SOTA comparison, all in one place:
   packomania/    packomania_csqv.json (live, canonical) + history/<dated> snapshots + README   # the best-known records
-  sm-radical-v6-n27/  results.csv comparison.md + README; wins/ (csqv27 = now the record), pck/ (no N=97), chase/
+  sm-radical-v6-n27/  results.csv comparison.md + README; pck/ (no N=97), json/out27.json, chase/
   sm-radical-v6-n54/  results.csv comparison.md; pck/ json/   # updated solver: 21 live record-beats
 writeup/       README.md + figs   # narrative explainer of the original N=27 result
 reproduce.sh  requirements.txt

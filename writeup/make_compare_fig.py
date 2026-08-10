@@ -18,7 +18,7 @@ def load(p):
     d = json.load(open(p)); return np.array(d["circles"]), d["sum_radii"]
 
 prev, sp = load(f"{HERE}/prev_value_packing.json")
-ours, so = load(f"{SOTA}/sota/ours/wins/csqv27.seed1.json")
+ours, so = load(f"{SOTA}/sota/sm-radical-v6-n27/json/out27.json")
 
 def pairs_axis(C, tol=1.5e-3):
     """Mirror pairs and on-axis circles for the reflection (x,y)->(1-y,1-x) [axis X+Y=1]."""
