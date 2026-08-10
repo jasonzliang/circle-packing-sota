@@ -1,61 +1,88 @@
 # circle-packing-sota
 
-An **AI-written circle-packing solver**, extracted from a self-improvement (AI-Generating-Algorithms)
-experiment and run across a range of N, compared to the authoritative **Packomania** records for:
+**AI-evolved circle-packing solvers**, extracted from self-improvement (AI-Generating-Algorithms)
+experiments and run across a range of N, compared to the authoritative **Packomania** records for:
 
 > **Pack N variable-sized circles in a unit square so that no two overlap and all stay inside the square,
 > maximizing the sum of the radii Σr**, the AlphaEvolve / ShinkaEvolve benchmark (Packomania's `csqv` table).
 
-**Start with the [write-up](writeup/README.md)**, a short explainer with figures: what the problem is, the
-record we beat, how a self-improving AI agent found it, and why it matters. The rest of this file is the
-technical record, covering how to verify the result, how to reproduce it, and how the solver works.
+Records are **fetched live** from Packomania (not hardcoded) — the `csqv` table is actively updated, so
+best-known values move over time and every claim below is checked against the table *as fetched*.
+
+**Start with the [write-up](writeup/README.md)** for the original N=27 result (note: that write-up predates
+the live-record update described below). The rest of this file is the technical record: the current
+standings, how to verify them, how to reproduce, and how the solvers work.
 
 ## Result
 
-A sweep of N=2..100 (120s per N on seed 1, except N=26 which needed 240s over seeds 1-6)
-**reproduces 27 of the known records to within 4e-11** (worst 3.4e-11 at N=29, median 1.5e-11) and
-found one **strictly-feasible packing that beats a current Packomania best-known**: N=27,
-Σr = 2.685978684198 vs the listed 2.685350025228 (+6.3e-4). That record is a
-long-standing 2011/12 entry (reference [1], D. W. Cantrell, sci.math forum), not one of the recent
-AI-optimized entries (e.g. N=26 = 2.635983, credited to Haowei Lin [8] in July 2026, which we do **not**
-beat).
+Two AI-evolved solvers live here; all standings are against the **live** Packomania `csqv` best-known
+(auto-fetched, since the table is actively updated).
 
-**The other 70 fall short, several by more than 1%**: 42 gaps exceed 0.5% and 26 exceed 1%, the worst being
-N=92 at 2.29%. The sweep covered 99 sizes but produced only **98 usable packings**, failing outright at
-N=97 (see [Known issues](#known-issues)). Per-N detail is in `sota/nietzsche-sm-radical-v6-n27/comparison.md`; **every claimed win
-is independently re-verifiable from its `.pck` with `verify_and_compare.py verify`.**
+**The evolved n54 solver holds 14 strictly-feasible packings that beat the current best-known.** Verified
+against the live table (fetched 2026-08-10): N = **50, 51, 52, 53, 54, 55, 63, 68, 69, 71, 77, 80, 83, 87**,
+by margins from +2.3e-5 (N=55) to +2.6e-3 (N=51), each independently re-verified from its `.pck`
+coordinates. Full per-N table:
+[`sota/nietzsche-sm-radical-v6-n54/comparison.md`](sota/nietzsche-sm-radical-v6-n54/comparison.md)
+(**14 wins · 45 ties · 33 below**, of 92 solved). The solver is in
+[`solver-nietzsche-sm-radical-v6-n54/`](solver-nietzsche-sm-radical-v6-n54/).
 
-## Verify the N=27 result
+**The original n27 solver set the N=27 best-known.** It reproduces 27 known records and found
+N=27 Σr = **2.685978684198**, which beat the long-standing 2011/12 entry (2.685350025228, +6.3e-4;
+reference [1], D. W. Cantrell, sci.math forum). The live `csqv` table has since been updated to **exactly
+that value** — it matches our Σr to all 12 digits — so against the *current* best-known, N=27 now reads as
+a **tie**: our result is the record, not a beat. As many other records also rose (41 of 100 between early
+Aug and 2026-08-10), this solver's full sweep is now **0 wins · 28 ties · 70 below** vs the live table:
+[`sota/nietzsche-sm-radical-v6-n27/comparison.md`](sota/nietzsche-sm-radical-v6-n27/comparison.md). (It
+failed outright only at N=97 — see [Known issues](#known-issues).)
 
-**The win does not depend on re-running the search.** The packing is a fixed file, and checking it is pure
-arithmetic on 27 (x, y, r) triples, so nothing needs installing. From a clean checkout:
+**Every claimed win is independently re-verifiable from its `.pck` with `verify_and_compare.py verify`**
+(pure stdlib, shares no code with the solver); `verify_and_compare.py fetch` refreshes the record table.
+
+## Verify the results
+
+**No search re-run needed.** Each packing is a fixed file; checking it is pure arithmetic on its
+(x, y, r) triples, so nothing needs installing. Verify any single packing — feasibility + Σr, and (with
+`--records`) its status against the best-known:
 
 ```bash
-python3 verify_and_compare.py verify sota/nietzsche-sm-radical-v6-n27/wins/csqv27.pck --record 2.685350025228
+python3 verify_and_compare.py verify sota/nietzsche-sm-radical-v6-n54/pck/csqv54.pck \
+        --records sota/packomania/packomania_csqv.json
 ```
 
 Expected output (exit code 0):
 
 ```text
-file            : sota/nietzsche-sm-radical-v6-n27/wins/csqv27.pck
+file            : sota/nietzsche-sm-radical-v6-n54/pck/csqv54.pck
 author          : Jason Liang
-circles (N)     : 27
-sum of radii Σr : 2.685978684198
-min radius      : 6.648e-02  (must be > 0)
-min wall slack  : 1.000e-12  (>= 0 => all circles inside the square)
-min pair slack  : 7.198e-13  (>= 0 => no two circles overlap)
+circles (N)     : 54
+sum of radii Σr : 3.842635794451
+min radius      : 5.000e-02  (must be > 0)
+min wall slack  : 1.000e-11  (>= 0 => all inside the square)
+min pair slack  : 1.775e-11  (>= 0 => no overlap)
 STRICTLY FEASIBLE (tol 1e-09): True
-record          : 2.685350025228
-Δ (ours-record) : +6.287e-04   -> BEATS the record
+record          : 3.841733103296
+Δ (ours-record) : +9.027e-04   -> BEATS the record
+```
+
+To check **all** packings against the **current live** records at once — a WIN must be strictly feasible
+AND strictly exceed the record — refresh the table straight from Packomania and compare:
+
+```bash
+python3 verify_and_compare.py fetch                                              # -> sota/packomania/packomania_csqv.json
+python3 verify_and_compare.py compare --pck-dir sota/nietzsche-sm-radical-v6-n54 --refresh
 ```
 
 `verify_and_compare.py` is **pure standard library and shares no code with the solver**, so it is a genuine
-independent check of our packings or anyone else's: it re-derives the circle count, containment, overlap
-and Σr from the coordinates alone, and exits non-zero on any failure. A copy of the output above is stored
-in [`sota/nietzsche-sm-radical-v6-n27/wins/csqv27.verify.txt`](sota/nietzsche-sm-radical-v6-n27/wins/csqv27.verify.txt) to diff against.
+independent check of our packings or anyone else's: it re-derives circle count, containment, overlap and Σr
+from the coordinates alone, and exits non-zero on any failure. The win slacks are small but **positive**
+(strictly feasible, not feasible-within-tolerance).
 
-The slacks are small but **positive** (strictly feasible, not feasible-within-tolerance), and the win
-margin (+6.287e-4) is 8.7×10⁸ times the smaller of them, so this is not numerical noise.
+**On N=27:** the earlier N=27 packing
+([`sota/nietzsche-sm-radical-v6-n27/wins/csqv27.pck`](sota/nietzsche-sm-radical-v6-n27/wins/csqv27.pck),
+Σr = 2.685978684198) is now the *listed* best-known — the live record equals it to 12 digits — so
+`verify … --records` reports it as a **tie**. Against the older 2011/12 value it originally beat it still
+shows `BEATS`:
+`verify_and_compare.py verify sota/nietzsche-sm-radical-v6-n27/wins/csqv27.pck --record 2.685350025228`.
 
 ### Zero-tolerance check in exact arithmetic
 
@@ -132,12 +159,13 @@ python3 verify_and_compare.py compare --pck-dir repro --refresh --out repro/comp
 for f in repro/pck/csqv*.pck; do python3 verify_and_compare.py verify "$f" >/dev/null || echo "INFEASIBLE: $f"; done
 ```
 
-With no `--results`/`--out`, `compare.py` regenerates the committed `sota/nietzsche-sm-radical-v6-n27/comparison.md` from the
-committed `results.csv`, which is a check in itself. It rewrites that file **in place**, so confirm with
-git rather than by eye:
+`verify_and_compare.py compare --pck-dir <dir>` regenerates that dir's `comparison.md` in place from its
+`.pck` files and the **live** records. Because the records are fetched live (and the `csqv` table changes),
+the output tracks the *current* standings — re-running after a Packomania update will legitimately change
+some ties/wins, so it is deliberately not byte-stable across time:
 
 ```bash
-python3 solver-nietzsche-sm-radical-v6-n27/compare.py && git diff --stat sota/nietzsche-sm-radical-v6-n27/comparison.md   # expect no output: byte-identical
+python3 verify_and_compare.py compare --pck-dir sota/nietzsche-sm-radical-v6-n27 --refresh
 ```
 
 ## Reproducibility notes
@@ -179,25 +207,33 @@ Both checkers now catch it, fixed in the harness since `pack.py` is kept unmodif
 ## Layout
 
 ```text
-solver-nietzsche-sm-radical-v6-n27/        pack.py container.py shape.py   # the AI-written solver, copied UNCHANGED
+solver-nietzsche-sm-radical-v6-n27/  pack.py container.py shape.py  # original AI-written solver (set the N=27 record), UNCHANGED
                exact_check.py  # zero-tolerance feasibility decision in exact rational arithmetic
                run_sweep.py    # parallel N-sweep -> pck + json + results.csv
+solver-nietzsche-sm-radical-v6-n54/  pipeline.py slp.py packlib.py endgame.py broad.py ...  # the EVOLVED solver (14 live wins)
+               run_sweep.py    # its N-sweep driver
 verify_and_compare.py          # fetch LIVE packomania records + independent pck verify + compare -> comparison.md
-sota/          the SOTA comparison, both sides in one place:
-  theirs/        packomania_csqv_records.csv     # the best-known records (N=1..100), + README
-  nietzsche-sm-radical-v6-n27/          results.csv  comparison.md  + README
-                 wins/          # the record-beating N=27 result: csqv27.pck + full-precision json + verify
-                 pck/           # the 98 usable packings (csqv27 also here); no N=97, see Known issues
-                 chase/         # 12 near-misses re-run at 240s over seeds 1-4 (ties the record at 5)
-writeup/       README.md + fig1..3.png   # narrative explainer of the N=27 result (+ make_figs.py to regen)
+sota/          the SOTA comparison, all in one place:
+  packomania/    packomania_csqv_records.csv + packomania_csqv.json (live-fetched) + README   # the best-known records
+  nietzsche-sm-radical-v6-n27/  results.csv comparison.md + README; wins/ (csqv27 = now the record), pck/ (no N=97), chase/
+  nietzsche-sm-radical-v6-n54/  results.csv comparison.md; pck/ json/   # evolved solver: 14 live record-beats
+writeup/       README.md + figs   # narrative explainer of the original N=27 result
 reproduce.sh  requirements.txt
 ```
 
 ## Solver Algorithm
 
-`solver-nietzsche-sm-radical-v6-n27/pack.py` (+ `container.py`, `shape.py`, `exact_check.py`) is used **unchanged** as produced by an
-automated program-search / self-improvement loop (an LLM-driven coding process), not hand-written for this
-repo. `n` is a parameter throughout, so the same code runs at any N.
+This repo has **two** AI-evolved solvers, both produced **unchanged** by automated program-search /
+self-improvement loops (LLM-driven coding), not hand-written here:
+
+- **`solver-nietzsche-sm-radical-v6-n54/`** — the evolved solver behind the 14 live record-beats. One
+  n-generic `solve(n, seconds, seed)`: broad **multistart** → **exact-LP radii** (optimal radii for fixed
+  centres) → a **feasibility-preserving inner-linearized SLP** on the centres (a DCCP / convex-cut step,
+  feasible-by-construction and monotone) → **threshold-accepting basin hopping**. It is a synthesis of
+  published parts (Eppstein radii-LP; DCCP/CCP for the non-overlap constraint; monotonic basin hopping),
+  assembled and tuned autonomously across iterations.
+- **`solver-nietzsche-sm-radical-v6-n27/pack.py`** (+ `container.py`, `shape.py`, `exact_check.py`) — the
+  original solver that set the N=27 record, detailed below. `n` is a parameter throughout, so it runs at any N.
 
 > **Stale internal references.** Being verbatim copies, these files' docstrings still address the
 > originating experiment's layout: `tools/*.py` paths, a `bench/` tree (`bench/verify.py`,
