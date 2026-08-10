@@ -84,11 +84,12 @@ it re-derives circle count, containment, overlap and Σr from the coordinates
 alone, and exits non-zero on any failure. The win slacks are small but
 **positive** (strictly feasible, not feasible-within-tolerance).
 
-**On N=27:** the earlier N=27 packing
+**On N=27:** our N=27 packing
 ([`sota/sm-radical-v6-n27/pck/csqv27.pck`](sota/sm-radical-v6-n27/pck/csqv27.pck),
-Σr = 2.685978684198) is now the _listed_ best-known (the live record equals it
-to 12 digits), so `verify … --records` reports it as a **tie**. Against the
-older 2011/12 value it originally beat it still shows `BEATS`:
+Σr = 2.685978684198) **is** the listed best-known: the live record equals it to
+12 digits, so `verify … --records` against the live table shows it **matching**
+(not exceeding) the record. Against the older 2011/12 value it beat it still
+shows `BEATS`:
 `verify_and_compare.py verify sota/sm-radical-v6-n27/pck/csqv27.pck --record 2.685350025228`.
 
 ### Zero-tolerance check in exact arithmetic
@@ -230,8 +231,8 @@ for f in repro/pck/csqv*.pck; do python3 verify_and_compare.py verify "$f" >/dev
 
 (To re-score the _committed_ n27 sweep against the live table instead of
 `repro/`, point the same `compare --refresh` at
-`--pck-dir sota/sm-radical-v6-n27`; N=27 now reads as a tie; see
-[Verify](#verify-the-results).)
+`--pck-dir sota/sm-radical-v6-n27`; N=27 matches the current listing, which is
+our record; see [Verify](#verify-the-results).)
 
 ## Reproducibility notes
 
@@ -352,7 +353,7 @@ is the improvement that cracked records the n27 approach plateaued on.
 [full algorithm](solver-sm-radical-v6-n54/README.md#algorithm)
 
 **The original n27 solver** (`solver-sm-radical-v6-n27/pack.py`) set the N=27
-best-known (Σr = 2.685978684198, now the _listed_ best-known, a tie; see
+best-known (Σr = 2.685978684198, the listed best-known; see
 [Verify](#verify-the-results)). Its entry point `search(n, seed, budget)` is a
 multi-start over centres whose optimiser is **joint SLSQP over (x, y, r)** with
 exact-LP radii, a **provable contact-graph reduction**, and greedy **subset
