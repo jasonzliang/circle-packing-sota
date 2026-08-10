@@ -232,36 +232,38 @@ def cmd_compare(a):
 
 def cmd_repair(a):
     author, circ = parse_pck(a.pck)
+    dp = a.decimals
 
     def slk(cs):  # slacks + Σr as verify() sees them, at zero tolerance
         r = verify(cs, side=a.side, corner=a.corner, tol=0.0)
         p = r["min_pairwise_slack"]
         return r["min_containment_slack"], (math.inf if p is None else p), r["sum_radii"], r["min_radius"]
 
-    def repaired(d):  # shrink every radius by d, then round to 12 dp exactly as written
-        return [tuple(float(f"{v:.12f}") for v in (x, y, r - d)) for x, y, r in circ]
+    def repaired(d):  # shrink every radius by d, then round to `dp` decimals exactly as written
+        return [tuple(float(f"{v:.{dp}f}") for v in (x, y, r - d)) for x, y, r in circ]
 
     wall0, pair0, S0, _ = slk(circ)
     tgt = a.target
     # a uniform shrink of d raises every wall slack by d and every pair slack by 2d;
-    # start from the analytic minimum, then bump past 12-dp rounding noise on the written values.
+    # start from the analytic minimum, then bump past last-place rounding noise on the written values.
+    step = 10.0 ** (-dp)
     delta = max(0.0, tgt - wall0, (tgt - pair0) / 2.0)
     for _ in range(64):
         cs = repaired(delta)
         wall, pair, S, minr = slk(cs)
         if minr > 0 and wall >= tgt and pair >= tgt:
             break
-        delta += 2e-12
+        delta += step
     else:
         print(f"repair: could not reach slack {tgt:g} for {a.pck}", file=sys.stderr)
         return 1
 
     out = a.out or a.pck
     with open(out, "w") as f:
-        f.write(f"{max(r for *_, r in cs):.12f}\n{author}\n")
+        f.write(f"{max(r for *_, r in cs):.{dp}f}\n{author}\n")
         for x, y, r in sorted(cs, key=lambda t: t[2]):  # packomania: ascending radius
-            f.write(f"{x:.12f} {y:.12f} {r:.12f}\n")
-    print(f"file            : {a.pck}{f' -> {out}' if out != a.pck else ' (in place)'}")
+            f.write(f"{x:.{dp}f} {y:.{dp}f} {r:.{dp}f}\n")
+    print(f"file            : {a.pck}{f' -> {out}' if out != a.pck else ' (in place)'} ({dp} dp)")
     print(f"radius shrink δ : {delta:.3e}  (Σr {S0:.12f} -> {S:.12f}, cost {S0 - S:.2e})")
     print(f"min wall slack  : {wall:.3e}")
     print(f"min pair slack  : {pair:.3e}")
@@ -312,11 +314,14 @@ def main():
     pc.add_argument("--tol", type=float, default=1e-9)
     pc.set_defaults(func=cmd_compare)
 
-    pr = sub.add_parser("repair", help="uniform-shrink radii so the 12-dp .pck is strictly feasible "
-                                       "(min wall/pair slack >= --target)")
+    pr = sub.add_parser("repair", help="re-emit a .pck at full precision, shrinking radii only as much as "
+                                       "needed to reach min wall/pair slack >= --target (default 0). For a "
+                                       "Packomania submission use the solver's full-precision output directly; "
+                                       "a large --target opens contacts.")
     pr.add_argument("pck")
     pr.add_argument("--out", default=None, help="output .pck (default: in place)")
-    pr.add_argument("--target", type=float, default=1e-11, help="required min slack after 12-dp rounding")
+    pr.add_argument("--decimals", type=int, default=16, help="decimals to write (Packomania: as many as possible)")
+    pr.add_argument("--target", type=float, default=0.0, help="required min slack after rounding (0 = minimal fix)")
     pr.add_argument("--record", type=float, default=None, help="fail (exit 2) if the repaired Σr no longer beats this")
     pr.add_argument("--records", default=None, help="records json to look up this N's record for the gate")
     pr.add_argument("--side", type=float, default=1.0)
