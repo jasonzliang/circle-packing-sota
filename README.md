@@ -214,7 +214,7 @@ solver-nietzsche-sm-radical-v6-n54/  pipeline.py slp.py packlib.py endgame.py br
                run_sweep.py    # its N-sweep driver
 verify_and_compare.py          # fetch LIVE packomania records + independent pck verify + compare -> comparison.md
 sota/          the SOTA comparison, all in one place:
-  packomania/    packomania_csqv_records.csv + packomania_csqv.json (live-fetched) + README   # the best-known records
+  packomania/    packomania_csqv.json (live, canonical) + history/<dated> snapshots + README   # the best-known records
   nietzsche-sm-radical-v6-n27/  results.csv comparison.md + README; wins/ (csqv27 = now the record), pck/ (no N=97), chase/
   nietzsche-sm-radical-v6-n54/  results.csv comparison.md; pck/ json/   # evolved solver: 14 live record-beats
 writeup/       README.md + figs   # narrative explainer of the original N=27 result

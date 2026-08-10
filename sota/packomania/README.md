@@ -1,14 +1,23 @@
 # sota/packomania: Packomania reference records (the SOTA to beat)
 
-`packomania_csqv_records.csv` holds the best-known **sum of radii** for packing **N variable-sized circles
-in a unit square** (maximize Σr), for N = 1..100.
+Best-known **sum of radii** for packing **N variable-sized circles in a unit square** (maximize Σr), from
+https://www.packomania.com/csqv/csqv.html (maintainer: Dr. Eckard Specht, Otto-von-Guericke-Universität
+Magdeburg). **Best-known** values, **not proven optima**.
 
-- **Source:** https://www.packomania.com/csqv/csqv.html (the `csqv` table).
-- **Maintainer:** Dr. Eckard Specht, Otto-von-Guericke-Universität Magdeburg.
-- **Fetched:** 2026-08-03 (the table was last refreshed 01-Aug-2026).
-- These are **best-known** values, **not proven optima**.
+- **`packomania_csqv.json`** — the **canonical, latest** table, refreshed live by
+  `../../verify_and_compare.py fetch` (N=1..1013; N=1..100 contiguous). This is what `compare` reads.
+- **`history/packomania_csqv_<YYYY-MM-DD>.json`** — **dated snapshots**, one per fetch, preserving the
+  historical bar each result was measured against. The `csqv` table is **actively updated** (record churn
+  through late-July / Aug 2026), so re-fetch before claiming any win. Snapshots on record: **2026-08-03**
+  (the original 4-way-verified fetch, N≤100, verified below) and **2026-08-10** (full N=1..1013) — these
+  two are **identical for all 100 common N** (the table did not move between the fetches; Aug-10 only adds
+  sparse N>100). (The retired hardcoded table in the old `compare.py` sat ~41 records *lower* — an older
+  snapshot — which is exactly why the tool now fetches live instead of hardcoding.)
 
-## Verification (why we trust these numbers)
+*(The former `packomania_csqv_records.csv` — the 2026-08-03 fetch — is retired into
+`history/packomania_csqv_2026-08-03.json`; the verification below documents that snapshot.)*
+
+## Verification (why we trust the 2026-08-03 snapshot)
 
 The values were extracted via an automated fetch, so they were cross-checked four ways (all passed). Note
 up front that only the first two are independent of this repo; checks 3 and 4 are weaker than they look and
@@ -19,7 +28,7 @@ are labelled as such:
    previous step at 49 of 98 points, which is expected as packings gain and lose symmetry with N. So the
    evidence here is monotonicity of the values, not smoothness of the increments.
 2. **Analytic values.** N=1 = 0.5 exactly (one inscribed circle). N=2 = 0.585786437626 against
-   2−√2 = 0.5857864376269, agreeing to 9.0e-13 (the CSV is stored at 12 dp, so the printed strings differ
+   2−√2 = 0.5857864376269, agreeing to 9.0e-13 (the snapshot is stored at 12 dp, so the printed strings differ
    in the last place). N=26 = 2.635983084918 matches the 2.635983 quoted in the AlphaEvolve/ShinkaEvolve
    literature to its 6 published digits.
 3. **Solver agreement (not independent).** Our own solver reproduces 27 of these records to within 4e-11

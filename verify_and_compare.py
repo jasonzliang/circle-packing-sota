@@ -69,10 +69,13 @@ def write_records_json(recs, source, path):
         "n_min": ns[0], "n_max": ns[-1], "count": len(ns),
         "records": {str(n): recs[n] for n in ns},
     }
-    os.makedirs(os.path.dirname(os.path.abspath(path)), exist_ok=True)
-    with open(path, "w") as f:
-        json.dump(doc, f, indent=1)
-        f.write("\n")
+    d = os.path.dirname(os.path.abspath(path))
+    os.makedirs(d, exist_ok=True)
+    for p in (path, os.path.join(d, "history", f"{os.path.splitext(os.path.basename(path))[0]}_{doc['retrieved']}.json")):
+        os.makedirs(os.path.dirname(p), exist_ok=True)
+        with open(p, "w") as f:
+            json.dump(doc, f, indent=1)
+            f.write("\n")   # canonical latest + a dated snapshot in history/ (records change over time)
     return doc
 
 
