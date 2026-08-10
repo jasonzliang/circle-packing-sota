@@ -29,9 +29,15 @@ def to_pck(circles, author, center_origin=True):
     With center_origin, coordinates are shifted to a side-1 square centred at the origin ([-0.5,0.5]^2)."""
     rows = sorted(([float(x), float(y), float(r)] for x, y, r in circles), key=lambda t: t[2])
     shift = 0.5 if center_origin else 0.0
-    lines = [f"{rows[-1][2]:.12f}", author]
+    # Emit full precision (16 dp), NOT 12 dp. The solver already guarantees strict
+    # feasibility with a 1e-12 margin (repair/MARGIN), so contacts sit at ~1e-12 --
+    # inside Packomania's +-3e-12 contact tolerance. 12-dp rounding destroys that
+    # (adds up to ~3.7e-12 noise -> some gaps negative, some contacts past 3e-12);
+    # writing full precision passes the jammed config through losslessly. hints.html:
+    # "Always provide as many decimal places as possible."
+    lines = [f"{rows[-1][2]:.16f}", author]
     for x, y, r in rows:
-        lines.append(f"{x - shift:.12f} {y - shift:.12f} {r:.12f}")
+        lines.append(f"{x - shift:.16f} {y - shift:.16f} {r:.16f}")
     return "\n".join(lines) + "\n"
 
 
