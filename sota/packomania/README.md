@@ -6,13 +6,14 @@ Magdeburg). **Best-known** values, **not proven optima**.
 
 - **`packomania_csqv.json`** — the **canonical, latest** table, refreshed live by
   `../../verify_and_compare.py fetch` (N=1..1013; N=1..100 contiguous). This is what `compare` reads.
-- **`history/packomania_csqv_<YYYY-MM-DD>.json`** — **dated snapshots**, one per fetch, preserving the
-  historical bar each result was measured against. The `csqv` table is **actively updated** (record churn
-  through late-July / Aug 2026), so re-fetch before claiming any win. Snapshots on record: **2026-08-03**
-  (the original 4-way-verified fetch, N≤100, verified below) and **2026-08-10** (full N=1..1013) — these
-  two are **identical for all 100 common N** (the table did not move between the fetches; Aug-10 only adds
-  sparse N>100). (The retired hardcoded table in the old `compare.py` sat ~41 records *lower* — an older
-  snapshot — which is exactly why the tool now fetches live instead of hardcoding.)
+- **`history/packomania_csqv_<YYYY-MM-DD>.json`** — **dated snapshots**, one per fetch (older ones taken
+  from git history, the authoritative source), preserving the historical bar each result was measured
+  against. Snapshots on record: **2026-08-03** (git commit `21e7568`, the original 4-way-verified fetch,
+  N≤100, verified below) and **2026-08-10** (full N=1..1013, live). The `csqv` table is **actively
+  updated**: **43 of the 100 records rose between these two snapshots** (all upward, up to +5.8e-3 — e.g.
+  N=50 +3.5e-3, N=54 +2.6e-3, N=27 2.685350→2.685979; a few differ only at 1e-12 storage rounding).
+  **15 of our win-N had their bar raised in this window, and we beat the raised Aug-10 values** — so
+  re-fetch before claiming any win.
 
 *(The former `packomania_csqv_records.csv` — the 2026-08-03 fetch — is retired into
 `history/packomania_csqv_2026-08-03.json`; the verification below documents that snapshot.)*
