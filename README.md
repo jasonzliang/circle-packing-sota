@@ -381,3 +381,12 @@ not a novel method.
 > `artifacts/iter9_cycles_sweep.log`. None exist here. Read them as provenance,
 > not instructions; every runnable entry point is
 > `solver-sm-radical-v6-{n27,n54}/*.py`.
+
+## License
+
+The code and result artifacts in this repository are released under the MIT
+license: see [`LICENSE`](LICENSE). Copyright (c) 2026 Jason Liang.
+
+The Packomania `csqv` reference records under `sota/packomania/` are not ours;
+they belong to their maintainer (Dr. Eckard Specht) and the respective record
+holders, and are included only as the comparison baseline.
