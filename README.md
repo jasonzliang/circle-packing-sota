@@ -60,10 +60,10 @@ Expected output (exit code 0):
 file            : sota/sm-radical-v6-n54/pck/csqv54.pck
 author          : Jason Liang
 circles (N)     : 54
-sum of radii Σr : 3.842635794451
+sum of radii Σr : 3.842635794938
 min radius      : 5.000e-02  (must be > 0)
-min wall slack  : 1.000e-11  (>= 0 => all inside the square)
-min pair slack  : 1.775e-11  (>= 0 => no overlap)
+min wall slack  : 9.999e-13  (>= 0 => all inside the square)
+min pair slack  : 9.999e-13  (>= 0 => no overlap)
 STRICTLY FEASIBLE (tol 1e-09): True
 record          : 3.841733103296
 Δ (ours-record) : +9.027e-04   -> BEATS the record
@@ -128,8 +128,10 @@ Packomania's submission format, defined at
 - line 3 onward = one `x y r` per circle, whitespace-separated, **sorted by
   increasing radius**;
 - the square container is fixed at **side 1, centred at (0,0)**, so coordinates
-  live in `[-0.5, 0.5]²` and must be rescaled to fit. We emit 12 decimals,
-  matching Packomania's own published `csqv` coordinates.
+  live in `[-0.5, 0.5]²` and must be rescaled to fit. We emit 16 decimals
+  (Packomania's hints ask for as many as possible; 12 dp is too coarse to
+  represent contacts). The older n27 packings are the original 12-dp sweep
+  output.
 
 **Two conventions coexist in this repo:** `.pck` files are origin-centred as
 above, while the solver's `.json` configs use the `[0, 1]²` corner convention
@@ -258,7 +260,7 @@ our record; see [Verify](#verify-the-results).)
 - **What is stored where.**
   - **n54 (headline, 21 wins)** → `sota/sm-radical-v6-n54/`: `pck/csqv<N>.pck`
     (92 packings for N=2..93; N=94..100 have no feasible packing at 250 s, see
-    Known issues; 12 dp, Packomania format), `json/out<N>.json` (full float64
+    Known issues; 16 dp, Packomania format), `json/out<N>.json` (full float64
     config + winning seed + budget), `results.csv`, `comparison.md`, and the
     run's `sweep.log`.
   - **n27 (set the N=27 record)** → `sota/sm-radical-v6-n27/`: `pck/csqv<N>.pck`
@@ -266,14 +268,13 @@ our record; see [Verify](#verify-the-results).)
     config with its seed and budget), `results.csv`, `comparison.md`.
   - A fresh sweep from either solver writes the same `pck/` +
     `json/out<N>.json` + `results.csv` layout to its `--out-dir`.
-- **Rounding to 12 dp is safe.** Every comparison and verification runs on the
-  rounded `.pck` itself, not on the unrounded solution, and the packings stay
-  strictly feasible (at n27 the shave costs 3.1e-13 of Σr; the positive win
-  slacks in [Verify](#verify-the-results) are all measured post-rounding). Where
-  a raw solution only just touches (a 12-dp slack of ~−1e-13),
-  `verify_and_compare.py repair <pck>` makes it submission-grade: a uniform
-  radius shrink to a target min slack (default 1e-11), record-gated so it never
-  emits a packing that no longer wins.
+- **Full precision keeps the contacts.** The n54 packings are written at **16
+  decimals**: the solver jams to a +1e-12 margin, so at full precision every gap
+  is ≥ 0 (no overlap) and every contact stays within ~2e-12 (Packomania's
+  contact tolerance is 3e-12). Truncating to 12 dp injects ~±3.7e-12 of rounding
+  noise, wider than that tolerance, so contacts stop registering; writing 16 dp
+  avoids it. (`verify_and_compare.py repair` re-emits a `.pck` at full precision
+  and shrinks only to clear a genuine overlap.)
 
 ## Known issues
 
