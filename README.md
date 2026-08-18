@@ -1,25 +1,44 @@
-# circle-packing-sota
+# Circle Packing SOTA
 
-**Read about it:** [How a Self-Improving AI Agent Broke a Decade-Old Math
+**Solvers written by a self-improving AI agent that beat 21 of the best-known
+circle-packing records.**
+
+[How a Self-Improving AI Agent Broke a Decade-Old Math
 Record](https://www.cognizant.com/us/en/ai-lab/blog/self-improving-ai-agent-breaks-math-record)
-(Cognizant AI Lab) · [the N=27 record](https://jasonzliang.github.io/blog/circle-packing/)
-· [21 records in one sweep](https://jasonzliang.github.io/blog/packing-records/)
+(Cognizant AI Lab) · [the N=27
+record](https://jasonzliang.github.io/blog/circle-packing/) · [21 records in one
+sweep](https://jasonzliang.github.io/blog/packing-records/)
 
-**AI-generated circle-packing solvers**, extracted from self-improvement
-(AI-Generating-Algorithms) experiments and run across a range of N, compared to
-the authoritative **Packomania** records for:
+![The N=27 packing, before and after: two arrangements of 27 unequal circles in
+a unit square, the previous record at the left and the new one at the right,
+mirror-symmetric about the diagonal.](writeup/fig4_prev_vs_new.png)
 
-> **Pack N variable-sized circles in a unit square so that no two overlap and
-> all stay inside the square, maximizing the sum of the radii Σr**, the
-> AlphaEvolve / ShinkaEvolve benchmark (Packomania's `csqv` table).
+<sub>The record this repo started with. Left, a packing at the previous
+best-known Σr; right, the one that beat it and is now the listed record at
+N=27.</sub>
 
-Records are **fetched live** from Packomania (not hardcoded); the `csqv` table
-is actively updated, so best-known values move over time and every claim below
-is checked against the table _as fetched_.
+The benchmark is the one AlphaEvolve and ShinkaEvolve report on, Packomania's
+`csqv` table:
 
-**Start with the [write-up](writeup/README.md)** for the original N=27 result.
-The rest of this file is the technical record: the current standings, how to
-verify them, how to reproduce, and how the solvers work.
+> **Pack N variable-sized circles in a unit square so that none overlap and all
+> stay inside it, maximizing the sum of the radii Σr.**
+
+Nobody wrote these solvers by hand. They were produced by a self-improving loop
+(an AI-Generating-Algorithms experiment), extracted unchanged, and swept across
+a range of N. This repository holds the solvers, every packing they found as
+plain coordinates, and the tooling to check them.
+
+**Every claim here is verifiable without running a solver.** A packing is a list
+of circle centres and radii, so checking one is arithmetic: a standalone
+verifier that shares no code with the solvers re-derives the circle count,
+containment, overlaps and Σr from the coordinates alone. Records are fetched
+live from Packomania rather than hardcoded, because the `csqv` table is actively
+maintained and best-known values move; each claim is stated against the table
+*as fetched*, and is re-checkable by refetching it.
+
+Below is the technical record: current standings, how to verify them, how to
+reproduce them, and how the solvers work. For the narrative account of the first
+result, see the [write-up](writeup/README.md).
 
 ## Result
 
