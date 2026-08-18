@@ -1,5 +1,10 @@
 # circle-packing-sota
 
+**Read about it:** [How a Self-Improving AI Agent Broke a Decade-Old Math
+Record](https://www.cognizant.com/us/en/ai-lab/blog/self-improving-ai-agent-breaks-math-record)
+(Cognizant AI Lab) · [the N=27 record](https://jasonzliang.github.io/blog/circle-packing/)
+· [21 records in one sweep](https://jasonzliang.github.io/blog/packing-records/)
+
 **AI-generated circle-packing solvers**, extracted from self-improvement
 (AI-Generating-Algorithms) experiments and run across a range of N, compared to
 the authoritative **Packomania** records for:
