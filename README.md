@@ -1,5 +1,7 @@
 # Circle Packing SOTA
 
+[Citation](#citation) · [Download BibTeX](CITATION.bib)
+
 **Solvers written by a self-improving AI agent that beat 21 of the best-known
 circle-packing records.**
 
@@ -402,6 +404,25 @@ not a novel method.
 > `artifacts/iter9_cycles_sweep.log`. None exist here. Read them as provenance,
 > not instructions; every runnable entry point is
 > `solver-sm-radical-v6-{n27,n54}/*.py`.
+
+## Citation
+
+If you use these solvers, packing configurations, or verification tools, please
+cite this repository. The entry is also available in [CITATION.bib](CITATION.bib).
+
+```bibtex
+@misc{liang2026circlepacking,
+  author       = {Liang, Jason},
+  title        = {Circle Packing {SOTA}},
+  year         = {2026},
+  howpublished = {GitHub repository},
+  url          = {https://github.com/jasonzliang/circle-packing-sota},
+  note         = {Solvers, packing configurations, and independent verification tools}
+}
+```
+
+For reproducibility, also report the commit you used and the date of any
+Packomania reference snapshot used for comparisons.
 
 ## License
 
