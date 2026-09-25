@@ -1,6 +1,6 @@
 # Circle Packing SOTA
 
-[Citation](#citation) · [Download BibTeX](CITATION.bib)
+[Citation](#citation)
 
 **Solvers written by a self-improving AI agent that beat 21 of the best-known
 circle-packing records.**
@@ -408,7 +408,7 @@ not a novel method.
 ## Citation
 
 If you use these solvers, packing configurations, or verification tools, please
-cite this repository. The entry is also available in [CITATION.bib](CITATION.bib).
+cite this repository using the BibTeX entry below.
 
 ```bibtex
 @misc{liang2026circlepacking,
