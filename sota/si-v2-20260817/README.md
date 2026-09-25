@@ -1,9 +1,9 @@
 # circle-packing csqv record beats -- SI-v2 batches of 2026-08-17
 
 Seventeen circle packings that **strictly beat the 2026-08-14 snapshot of the Packomania `csqv`
-table**, exported byte-for-byte from the runs that produced them, with a standalone re-verifier.
+table**, exported byte-for-byte from the runs that produced them, with verification instructions.
 
-This directory is a **self-contained export**, added alongside the earlier `sota/` results already in
+This directory is an **artifact export**, added alongside the earlier `sota/` results already in
 this repository; it overwrites nothing of theirs and shares no packings with them (see *Provenance and
 prior claims*, point 3).
 
@@ -94,10 +94,20 @@ beat = v["feasible"] and harness.counts_for(v["sum_r"], record)   # sum_r >= rec
 * Slacks in the exported packings run from `+0.0` to `+4.7e-9` (wall) and `+0.0` to `+1.0e-10`
   (pairwise): they are on the constraint boundary, as an optimal packing must be, but never past it.
 
-Re-run it yourself:
+To verify the exported coordinates and their margins using only this repository,
+run from the repository root:
 
 ```bash
-python3 verify_sota.py                                  # frozen scorer at its in-repo path
+python3 verify_and_compare.py compare --pck-dir sota/si-v2-20260817 \
+  --records sota/si-v2-20260817/packomania_csqv_20260814.json \
+  --tol 0 --out comparison-si-v2.md
+```
+
+The additional manifest audit requires the original frozen mission scorer,
+which is not bundled in this repository. If you have that scorer, run from
+this directory:
+
+```bash
 python3 verify_sota.py --scorer /path/to/missions/circle-packing/scorer
 ```
 
