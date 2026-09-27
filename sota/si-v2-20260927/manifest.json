@@ -6,11 +6,12 @@
  "rule": "strictly feasible at tol 0 (wall and pairwise slack >= 0 in double precision) AND sum_r > record + 1e-9 (verify_and_compare.WIN_EPS)",
  "counts": {
   "exported": 100,
-  "WIN": 17,
+  "WIN": 18,
   "tie": 82,
-  "below": 1
+  "below": 0
  },
  "wins": [
+  66,
   78,
   79,
   80,
@@ -113,9 +114,7 @@
   90,
   91
  ],
- "below": [
-  66
- ],
+ "below": [],
  "per_n": {
   "1": {
    "sum_r": 0.5,
@@ -1743,26 +1742,26 @@
    }
   },
   "66": {
-   "sum_r": 4.255649280783182,
+   "sum_r": 4.25674949286196,
    "record": 4.255807931448,
-   "margin": -0.00015865066481879353,
-   "verdict": "below",
-   "min_wall_slack": 1.0101641745308143e-13,
-   "min_pair_slack": 1.9997892231060632e-13,
-   "min_r": 0.04159985282812741,
-   "pck_sha256": "eb6bc12046c07cc06fd264544357659e1d353352b885aeda8afc49c3789cc886",
+   "margin": 0.000941561413959846,
+   "verdict": "WIN",
+   "min_wall_slack": 1.0322298571452393e-13,
+   "min_pair_slack": 2.0000667788622195e-13,
+   "min_r": 0.0428828312709864,
+   "pck_sha256": "9d1418783b037363547c1c51beb25cfd3fcdb5a78af52f2c0fb1d3d72ffcd6c7",
    "provenance": {
     "n": 66,
-    "sum_r": 4.255649280783182,
+    "sum_r": 4.25674949286196,
     "record_live": 4.255807931448,
-    "margin": -0.00015865066481879353,
+    "margin": 0.000941561413959846,
     "source": "sweep",
     "solver": "tv14pf6",
-    "mode": "self",
-    "seed": 2,
-    "job": "roundB/jobs/tv14pf6/self/n066_s2.json",
+    "mode": "nbr",
+    "seed": 12,
+    "job": "roundD/jobs/tv14pf6/nbr/n066_s12.json",
     "warm_path": null,
-    "label": "SI-v2 sweep tv14pf6 seed 2 self",
+    "label": "SI-v2 sweep tv14pf6 seed 12 nbr",
     "solver_origin": "jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v14-probefix-x10/transcendence-v14-probefix-6",
     "solver_sha256": "4498fcdd171624bdce5d6935ec007691c66fcef5067b6f3ccf504991ffa3722c"
    }

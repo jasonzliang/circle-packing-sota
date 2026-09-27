@@ -3,9 +3,9 @@
 **100 packings (N = 1..100)**, the best strictly feasible packing per N found by sweeping fifteen
 LLM-evolved circle-packing solvers from the self-improvement-v2 (SI-v2) `circle-packing` mission, seeded
 from every packing those runs ever stored. Compared against the Packomania `csqv` table
-**retrieved 2026-09-27** (`sota/packomania/history/packomania_csqv_2026-09-27.json`): **17 WIN / 82 tie / 1 below**.
+**retrieved 2026-09-27** (`sota/packomania/history/packomania_csqv_2026-09-27.json`): **18 WIN / 82 tie / 0 below**.
 
-Sweep campaign status at 2026-09-27 16:00 UTC: 4398 jobs aggregated from phase1, roundA, roundB, roundC, roundD.
+Sweep campaign status at 2026-09-27 18:51 UTC: 5142 jobs aggregated from phase1, roundA, roundB, roundC, roundD.
 
 This directory is regenerated automatically by the sweep campaign; every number in it is recomputed
 from the `.pck` coordinates at each update. Read *Margins, honestly* before quoting any of it.
@@ -24,6 +24,7 @@ implementations). A **WIN** means `sum_r > record + 1e-9` (the repository's `WIN
 
 | N | ours Σr | record | Δ (abs) | Δ (rel) | found by |
 |---:|---|---|---:|---:|---|
+| 66 | 4.256749492862 | 4.255807931448 | +9.416e-04 | +2.21e-04 | `tv14pf6` nbr seed 12 |
 | 78 | 4.636796920037 | 4.636377420432 | +4.195e-04 | +9.05e-05 | `tv14pf6` nbr seed 1 |
 | 79 | 4.666928346066 | 4.666466802554 | +4.615e-04 | +9.89e-05 | `deon6` self seed 1 |
 | 80 | 4.695876897572 | 4.695590667948 | +2.862e-04 | +6.10e-05 | `none7` self seed 2 |
@@ -46,7 +47,7 @@ implementations). A **WIN** means `sum_r > record + 1e-9` (the repository's `WIN
 
 | N | ours Σr | record | Δ |
 |---:|---|---|---:|
-| 66 | 4.255649280783 | 4.255807931448 | -1.587e-04 |
+| - | - | - | - |
 
 Every other N ties the tabulated value to within 1e-9.
 
@@ -100,21 +101,21 @@ Per-solver sweep statistics (mean digits vs the live table by N band, unique bes
 
 | solver | jobs | ok | feasible | strict | mean digits vs live | n at best (±1e-9) | unique best | improved over warm | beats live | digits 1-25 | digits 26-50 | digits 51-75 | digits 76-100 |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| anchor1 | 247 | 247 | 247 | 215 | 5.900 | 127 | 0 | 47 | 14 | - | 7.00 | 6.62 | 6.53 |
-| anchor6 | 150 | 150 | 150 | 150 | 5.495 | 65 | 0 | 26 | 13 | - | 7.00 | 6.36 | 6.40 |
-| b6x2_1 | 191 | 191 | 191 | 191 | 5.128 | 89 | 0 | 4 | 7 | - | 7.00 | 5.36 | 5.22 |
-| b9_5 | 261 | 261 | 261 | 261 | 5.803 | 141 | 0 | 31 | 12 | - | 7.00 | 6.40 | 6.40 |
-| cvirt7 | 110 | 110 | 110 | 110 | 4.700 | 35 | 0 | 9 | 11 | - | 7.00 | 6.48 | 6.15 |
-| deon6 | 623 | 623 | 623 | 623 | 5.993 | 392 | 0 | 36 | 16 | 7.00 | 7.00 | 6.64 | 6.79 |
-| nalt6 | 300 | 300 | 300 | 300 | 6.182 | 150 | 1 | 79 | 16 | 7.00 | 7.00 | 6.75 | 6.79 |
-| none3 | 119 | 119 | 119 | 119 | 4.881 | 38 | 0 | 9 | 12 | - | 7.00 | 6.36 | 6.40 |
-| none7 | 535 | 523 | 535 | 535 | 6.361 | 331 | 0 | 65 | 15 | 7.00 | 7.00 | 6.36 | 6.60 |
-| plain1 | 242 | 240 | 242 | 242 | 5.575 | 115 | 0 | 30 | 13 | 7.00 | 7.00 | 6.49 | 6.47 |
-| smv16_10 | 232 | 230 | 232 | 232 | 5.631 | 108 | 0 | 16 | 14 | 7.00 | 7.00 | 6.37 | 6.46 |
-| smv16_6 | 106 | 106 | 106 | 106 | 4.848 | 0 | 0 | 6 | 12 | - | 7.00 | 6.36 | 6.26 |
-| tv14ob9 | 500 | 500 | 500 | 365 | 6.452 | 343 | 9 | 29 | 9 | 7.00 | 7.00 | 6.37 | 5.83 |
-| tv14pf6 | 512 | 512 | 512 | 482 | 6.433 | 317 | 1 | 86 | 17 | 7.00 | 7.00 | 6.66 | 6.86 |
-| tv16ob6 | 270 | 270 | 270 | 270 | 6.317 | 144 | 1 | 67 | 16 | 7.00 | 7.00 | 6.62 | 6.72 |
+| anchor1 | 279 | 279 | 279 | 247 | 5.829 | 137 | 0 | 48 | 14 | - | 7.00 | 6.62 | 6.53 |
+| anchor6 | 206 | 206 | 206 | 206 | 5.215 | 74 | 0 | 34 | 13 | - | 7.00 | 6.36 | 6.45 |
+| b6x2_1 | 199 | 199 | 199 | 199 | 5.061 | 89 | 0 | 4 | 7 | - | 7.00 | 5.39 | 5.22 |
+| b9_5 | 269 | 269 | 269 | 269 | 5.754 | 141 | 0 | 31 | 12 | - | 7.00 | 6.40 | 6.40 |
+| cvirt7 | 126 | 126 | 126 | 126 | 4.496 | 35 | 0 | 9 | 11 | - | 7.00 | 6.48 | 6.15 |
+| deon6 | 651 | 651 | 651 | 651 | 5.870 | 392 | 0 | 36 | 16 | 7.00 | 7.00 | 6.64 | 6.79 |
+| nalt6 | 388 | 388 | 388 | 388 | 6.029 | 189 | 1 | 92 | 17 | 7.00 | 7.00 | 6.75 | 6.92 |
+| none3 | 167 | 167 | 167 | 167 | 4.682 | 39 | 0 | 11 | 12 | - | 7.00 | 6.37 | 6.40 |
+| none7 | 631 | 619 | 631 | 631 | 6.207 | 363 | 0 | 76 | 16 | 7.00 | 7.00 | 6.36 | 6.74 |
+| plain1 | 282 | 280 | 282 | 282 | 5.303 | 115 | 0 | 31 | 13 | 7.00 | 7.00 | 6.49 | 6.48 |
+| smv16_10 | 288 | 286 | 288 | 288 | 5.357 | 114 | 0 | 25 | 15 | 7.00 | 7.00 | 6.37 | 6.59 |
+| smv16_6 | 130 | 130 | 130 | 130 | 4.600 | 0 | 0 | 6 | 12 | - | 7.00 | 6.36 | 6.26 |
+| tv14ob9 | 532 | 532 | 532 | 397 | 6.339 | 343 | 9 | 29 | 10 | 7.00 | 7.00 | 6.37 | 5.97 |
+| tv14pf6 | 568 | 568 | 568 | 538 | 6.426 | 357 | 1 | 108 | 18 | 7.00 | 7.00 | 6.76 | 7.00 |
+| tv16ob6 | 426 | 426 | 426 | 426 | 6.195 | 214 | 1 | 108 | 16 | 7.00 | 7.00 | 6.62 | 6.72 |
 
 
 ## Files
