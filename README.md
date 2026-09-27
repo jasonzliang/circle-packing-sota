@@ -79,6 +79,14 @@ experiments](sota/si-v2-20260817/README.md) exceed the **2026-08-14 reference
 snapshot**. That collection includes its own comparison, coordinates, and
 provenance; its count is reported separately from the n54 sweep.
 
+**Portfolio sweep (2026-09-27, in progress):** the best packing per N from a
+24-hour successive-halving sweep of **fifteen SI-v2 solvers** over N = 1..100,
+against the **2026-09-27 reference snapshot**, is maintained in
+[`sota/si-v2-20260927/`](sota/si-v2-20260927/README.md) and updated
+automatically as the sweep runs (every packing re-verified from coordinates at
+zero tolerance before it is committed). The solvers and the sweep tooling are in
+[`solver-si-v2-20260927/`](solver-si-v2-20260927/README.md).
+
 **Every claimed win is independently re-verifiable from its `.pck` with
 `verify_and_compare.py verify`**; `verify_and_compare.py fetch` refreshes the
 record table.
@@ -373,6 +381,8 @@ sota/          the SOTA comparison, all in one place:
   sm-radical-v6-n27/  results.csv comparison.md + README; pck/ (no N=97), json/out27.json, chase/
   sm-radical-v6-n54/  results.csv comparison.md; pck/ json/   # 21 wins vs. 2026-08-10
   si-v2-20260817/     manifest.json comparison.md; pck/ json/ # 17 wins vs. 2026-08-14
+  si-v2-20260927/     manifest.json comparison.md; pck/ json/ # portfolio sweep vs. 2026-09-27 (auto-updated)
+solver-si-v2-20260927/  solvers/<15 solver.py> scorer/ tools/  # the portfolio + the sweep/publish tooling
 writeup/       README.md + figs   # narrative explainer of the original N=27 result
 reproduce.sh  requirements.txt
 ```
