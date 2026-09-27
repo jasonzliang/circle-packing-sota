@@ -2542,28 +2542,28 @@
    }
   },
   "98": {
-   "sum_r": 5.209477308376245,
+   "sum_r": 5.209524986801411,
    "record": 5.208578422017,
-   "margin": 0.0008988863592449547,
+   "margin": 0.0009465647844111302,
    "verdict": "WIN",
-   "min_wall_slack": 9.999778782798785e-13,
-   "min_pair_slack": 1.9999835121353726e-12,
-   "min_r": 0.03716380910501653,
-   "pck_sha256": "a874f2fd29012f3787509adc3894243e8dfa36570e2e88524cbda888f6cdfa2a",
+   "min_wall_slack": 1.0114131754335176e-13,
+   "min_pair_slack": 2.0000667788622195e-13,
+   "min_r": 0.03685301546038431,
+   "pck_sha256": "9854f18950a8951402c797505386c125c520cf0d3f93ba5b824d3720c95e617d",
    "provenance": {
     "n": 98,
-    "sum_r": 5.209477308376245,
+    "sum_r": 5.209524986801411,
     "record_live": 5.208578422017,
-    "margin": 0.0008988863592449547,
+    "margin": 0.0009465647844111302,
     "source": "sweep",
-    "solver": "tv16ob6",
+    "solver": "tv14pf6",
     "mode": "nbr",
-    "seed": 12,
-    "job": "roundD/jobs/tv16ob6/nbr/n098_s12.json",
+    "seed": 26,
+    "job": "roundE/jobs/tv14pf6/nbr/n098_s26.json",
     "warm_path": null,
-    "label": "SI-v2 sweep tv16ob6 seed 12 nbr",
-    "solver_origin": "jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v16-oldbrief-x10/transcendence-v16-oldbrief-6",
-    "solver_sha256": "64209a4d5b52b3b8e57344f8519645d8efb13b65e4c136da469eb16325a3d275"
+    "label": "SI-v2 sweep tv14pf6 seed 26 nbr",
+    "solver_origin": "jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v14-probefix-x10/transcendence-v14-probefix-6",
+    "solver_sha256": "4498fcdd171624bdce5d6935ec007691c66fcef5067b6f3ccf504991ffa3722c"
    }
   },
   "99": {
