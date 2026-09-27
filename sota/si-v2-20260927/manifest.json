@@ -1518,26 +1518,26 @@
    }
   },
   "57": {
-   "sum_r": 3.954683754496703,
+   "sum_r": 3.954683754496984,
    "record": 3.954683754499,
-   "margin": -2.296829393344524e-12,
+   "margin": -2.0157209235094342e-12,
    "verdict": "tie",
-   "min_wall_slack": 8.971989817752046e-15,
-   "min_pair_slack": 1.4183099139586375e-14,
-   "min_r": 0.046237597567006315,
-   "pck_sha256": "aef0696a411d2d10073ae8f2a736a86b355388cb2b906a034be1cbf7a13c4d54",
+   "min_wall_slack": 5.530298441414061e-15,
+   "min_pair_slack": 1.2337353361147052e-14,
+   "min_r": 0.046237597567010034,
+   "pck_sha256": "d744e4b3d5195bd628ee3394649573677d7f381417d94ceec3f1b6d0e35a0c5c",
    "provenance": {
     "n": 57,
-    "sum_r": 3.954683754496703,
+    "sum_r": 3.954683754496984,
     "record_live": 3.954683754499,
-    "margin": -2.296829393344524e-12,
+    "margin": -2.0157209235094342e-12,
     "source": "sweep",
     "solver": "deon6",
     "mode": "self",
-    "seed": 0,
-    "job": "roundA/jobs/deon6/self/n057_s0.json",
+    "seed": 1,
+    "job": "roundB/jobs/deon6/self/n057_s1.json",
     "warm_path": null,
-    "label": "SI-v2 sweep deon6 seed 0 self",
+    "label": "SI-v2 sweep deon6 seed 1 self",
     "solver_origin": "aws results/circle-packing/2026-08-22_circle-register-x10-15it30m/explore-deon-6",
     "solver_sha256": "2ffd019e66c4d3597354caed287e3884d630ce916b19ac068d4c6672e361bc23"
    }
@@ -1607,14 +1607,14 @@
     "record_live": 4.057789066904,
     "margin": 3.339550858072471e-13,
     "source": "sweep",
-    "solver": "deon6",
+    "solver": "anchor1",
     "mode": "self",
-    "seed": 0,
-    "job": "roundA/jobs/deon6/self/n060_s0.json",
+    "seed": 1,
+    "job": "roundB/jobs/anchor1/self/n060_s1.json",
     "warm_path": null,
-    "label": "SI-v2 sweep deon6 seed 0 self",
-    "solver_origin": "aws results/circle-packing/2026-08-22_circle-register-x10-15it30m/explore-deon-6",
-    "solver_sha256": "2ffd019e66c4d3597354caed287e3884d630ce916b19ac068d4c6672e361bc23"
+    "label": "SI-v2 sweep anchor1 seed 1 self",
+    "solver_origin": "jason-mbp _archive 2026-08-19_circle-bulletcount-x10-12it30m/anchor-1",
+    "solver_sha256": "319de73d2ce77172052130080bba235a940b5cbe581c1276d7de3dbd5979ba08"
    }
   },
   "61": {
