@@ -1667,28 +1667,28 @@
    }
   },
   "63": {
-   "sum_r": 4.1557663241492335,
+   "sum_r": 4.155766324149243,
    "record": 4.155766324151,
-   "margin": -1.766586876783549e-12,
+   "margin": -1.7568169141668477e-12,
    "verdict": "tie",
-   "min_wall_slack": 4.3076653355456074e-14,
-   "min_pair_slack": 1.0710876630071198e-13,
-   "min_r": 0.04279032692455654,
-   "pck_sha256": "64cd1f63d35fab2b7ade203bf78c5594b37eb5381eb9525c099e28a8374988d3",
+   "min_wall_slack": 4.299338662860919e-14,
+   "min_pair_slack": 1.0712264408851979e-13,
+   "min_r": 0.042790326924556615,
+   "pck_sha256": "93383000049540ce2dc1363e28ee7fd495576460a2ef51ad0c914c10422cafaf",
    "provenance": {
     "n": 63,
-    "sum_r": 4.1557663241492335,
+    "sum_r": 4.155766324149243,
     "record_live": 4.155766324151,
-    "margin": -1.766586876783549e-12,
+    "margin": -1.7568169141668477e-12,
     "source": "sweep",
-    "solver": "b9_5",
+    "solver": "b6x2_1",
     "mode": "nbr",
-    "seed": 17,
-    "job": "roundD/jobs/b9_5/nbr/n063_s17.json",
+    "seed": 25,
+    "job": "roundE/jobs/b6x2_1/nbr/n063_s25.json",
     "warm_path": null,
-    "label": "SI-v2 sweep b9_5 seed 17 nbr",
-    "solver_origin": "jason-mbp _archive 2026-08-19_circle-bulletcount-x10-12it30m-b/9bullets-5",
-    "solver_sha256": "7ad13997ec9a836fe698d7170c0cec72700e7a2df0045ff063b49d2c23d8d6a7"
+    "label": "SI-v2 sweep b6x2_1 seed 25 nbr",
+    "solver_origin": "jason-mbp _archive 2026-08-19_circle-bulletcount-x10-12it30m/6bullets-2xlength-1",
+    "solver_sha256": "51078242d9e3e20bc43497c2fa8344666b7570002378111205e523babb938b82"
    }
   },
   "64": {
