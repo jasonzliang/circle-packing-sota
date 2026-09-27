@@ -5,7 +5,7 @@ LLM-evolved circle-packing solvers from the self-improvement-v2 (SI-v2) `circle-
 from every packing those runs ever stored. Compared against the Packomania `csqv` table
 **retrieved 2026-09-27** (`sota/packomania/history/packomania_csqv_2026-09-27.json`): **17 WIN / 81 tie / 2 below**.
 
-Sweep campaign status at 2026-09-27 12:53 UTC: 2438 jobs aggregated from phase1, roundA, roundB.
+Sweep campaign status at 2026-09-27 13:03 UTC: 2562 jobs aggregated from phase1, roundA, roundB.
 
 This directory is regenerated automatically by the sweep campaign; every number in it is recomputed
 from the `.pck` coordinates at each update. Read *Margins, honestly* before quoting any of it.
@@ -30,7 +30,7 @@ implementations). A **WIN** means `sum_r > record + 1e-9` (the repository's `WIN
 | 82 | 4.756048298931 | 4.755873680213 | +1.746e-04 | +3.67e-05 | `deon6` self seed 0 |
 | 83 | 4.786683838811 | 4.786393807284 | +2.900e-04 | +6.06e-05 | `deon6` self seed 0 |
 | 84 | 4.816567858213 | 4.816500879756 | +6.698e-05 | +1.39e-05 | `deon6` self seed 0 |
-| 85 | 4.848035445623 | 4.847351780582 | +6.837e-04 | +1.41e-04 | `deon6` self seed 0 |
+| 85 | 4.848035445623 | 4.847351780582 | +6.837e-04 | +1.41e-04 | `deon6` self seed 1 |
 | 89 | 4.967596361102 | 4.966850487024 | +7.459e-04 | +1.50e-04 | `deon6` self seed 0 |
 | 92 | 5.049048324656 | 5.048761669590 | +2.867e-04 | +5.68e-05 | `deon6` self seed 0 |
 | 93 | 5.076445593910 | 5.076245164998 | +2.004e-04 | +3.95e-05 | `plain1` self seed 1 |
@@ -86,7 +86,7 @@ SI-v2 run (values arm and brief noted below); the solver files and the sweep too
 | `none7` | aws results/circle-packing/2026-09-15_circle-6arm-v14-probefix-x10/none-7 | none-v14.md | c16b7ffb | 6.355 | `08e14f9cbf06` | 1 |
 | `tv14ob9` | jason-mbp results/circle-packing/2026-09-15_transcendence-v14-oldbrief-x10/transcendence-v14-9 | universalism-v14.md | 81dc2151 | 6.287 | `84be19a746c5` | 7 |
 | `smv16_10` | aws results/circle-packing/2026-08-26_circle_smframe_4x10_15it30m/explore-sm-v16-10 | - | - | - | `99ee426845af` | 0 |
-| `deon6` | aws results/circle-packing/2026-08-22_circle-register-x10-15it30m/explore-deon-6 | - | - | - | `2ffd019e66c4` | 59 |
+| `deon6` | aws results/circle-packing/2026-08-22_circle-register-x10-15it30m/explore-deon-6 | - | - | - | `2ffd019e66c4` | 57 |
 | `nalt6` | aws results/circle-packing/2026-08-24_circle-figures-x10-15it30m/nietzsche-alt-6 | - | - | - | `2d59f02c64cc` | 0 |
 | `smv16_6` | jason-mbp _archive 2026-08-26_circle-smframe-4x10-15it30m/explore-sm-v16-6 | - | - | - | `b58b0c619a67` | 0 |
 | `cvirt7` | jason-mbp _archive 2026-08-22_circle-register-x10-15it30m/conservative-virt-7 | - | - | - | `716aa29ec11f` | 0 |
@@ -101,20 +101,20 @@ Per-solver sweep statistics (mean digits vs the live table by N band, unique bes
 
 | solver | jobs | ok | feasible | strict | mean digits vs live | n at best (Â±1e-9) | unique best | improved over warm | beats live | digits 1-25 | digits 26-50 | digits 51-75 | digits 76-100 |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| anchor1 | 114 | 114 | 114 | 107 | 5.378 | 47 | 0 | 15 | 13 | - | 7.00 | 6.46 | 6.40 |
-| anchor6 | 110 | 110 | 110 | 110 | 5.242 | 43 | 0 | 12 | 13 | - | 7.00 | 6.36 | 6.40 |
-| b6x2_1 | 108 | 108 | 108 | 108 | 4.409 | 26 | 0 | 4 | 7 | - | 7.00 | 5.36 | 5.22 |
-| b9_5 | 114 | 114 | 114 | 114 | 5.099 | 43 | 0 | 11 | 12 | - | 7.00 | 6.36 | 6.26 |
+| anchor1 | 128 | 128 | 128 | 117 | 5.555 | 61 | 0 | 18 | 14 | - | 7.00 | 6.46 | 6.53 |
+| anchor6 | 118 | 118 | 118 | 118 | 5.361 | 51 | 0 | 16 | 13 | - | 7.00 | 6.36 | 6.40 |
+| b6x2_1 | 122 | 122 | 122 | 122 | 4.706 | 40 | 0 | 4 | 7 | - | 7.00 | 5.36 | 5.22 |
+| b9_5 | 140 | 140 | 140 | 140 | 5.452 | 65 | 0 | 15 | 12 | - | 7.00 | 6.36 | 6.26 |
 | cvirt7 | 106 | 106 | 106 | 106 | 4.613 | 31 | 0 | 5 | 11 | - | 7.00 | 6.48 | 6.15 |
-| deon6 | 210 | 210 | 210 | 210 | 5.268 | 104 | 0 | 9 | 11 | 7.00 | 7.00 | 6.38 | 6.07 |
+| deon6 | 238 | 238 | 238 | 238 | 5.472 | 128 | 0 | 11 | 11 | 7.00 | 7.00 | 6.38 | 6.07 |
 | nalt6 | 214 | 214 | 214 | 214 | 6.367 | 132 | 0 | 33 | 15 | 7.00 | 7.00 | 6.64 | 6.68 |
 | none3 | 108 | 108 | 108 | 108 | 5.003 | 38 | 0 | 8 | 12 | - | 7.00 | 6.36 | 6.40 |
-| none7 | 212 | 208 | 212 | 212 | 5.976 | 122 | 0 | 14 | 14 | 7.00 | 7.00 | 6.36 | 6.50 |
+| none7 | 230 | 226 | 230 | 230 | 6.046 | 139 | 0 | 18 | 14 | 7.00 | 7.00 | 6.36 | 6.50 |
 | plain1 | 208 | 206 | 208 | 208 | 5.675 | 108 | 0 | 14 | 13 | 7.00 | 7.00 | 6.49 | 6.47 |
 | smv16_10 | 204 | 202 | 204 | 204 | 5.796 | 108 | 0 | 9 | 12 | 7.00 | 7.00 | 6.37 | 6.30 |
 | smv16_6 | 106 | 106 | 106 | 106 | 4.848 | 0 | 0 | 6 | 12 | - | 7.00 | 6.36 | 6.26 |
-| tv14ob9 | 208 | 208 | 208 | 182 | 5.926 | 84 | 10 | 11 | 9 | 7.00 | 7.00 | 6.37 | 5.83 |
-| tv14pf6 | 208 | 208 | 208 | 201 | 6.280 | 131 | 0 | 18 | 13 | 7.00 | 7.00 | 6.64 | 6.33 |
+| tv14ob9 | 220 | 220 | 220 | 190 | 5.985 | 96 | 10 | 12 | 9 | 7.00 | 7.00 | 6.37 | 5.83 |
+| tv14pf6 | 212 | 212 | 212 | 205 | 6.293 | 135 | 0 | 22 | 13 | 7.00 | 7.00 | 6.64 | 6.33 |
 | tv16ob6 | 208 | 208 | 208 | 208 | 6.294 | 130 | 2 | 19 | 13 | 7.00 | 7.00 | 6.62 | 6.55 |
 
 
@@ -127,5 +127,7 @@ json/out<N>.json    sidecar in the corner frame [0,1]^2 (x+0.5, y+0.5, r) with Î
 results.csv         n, sum_radii, max_violation, record_20260927, delta, feasible
 comparison.md       output of verify_and_compare.py compare --tol 0 against the 2026-09-27 snapshot
 manifest.json       per-N recomputed values, sha256 of every pck, provenance, counts
+survey_all_runs.md  survey of every packing ever stored by the SI-v2 runs on all three machines:
+                    which stored packings beat the current table, and how many independent runs found each
 README.md           this file (generated)
 ```
