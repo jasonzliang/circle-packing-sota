@@ -5,7 +5,7 @@ LLM-evolved circle-packing solvers from the self-improvement-v2 (SI-v2) `circle-
 from every packing those runs ever stored. Compared against the Packomania `csqv` table
 **retrieved 2026-09-27** (`sota/packomania/history/packomania_csqv_2026-09-27.json`): **17 WIN / 82 tie / 1 below**.
 
-Sweep campaign status at 2026-09-27 13:33 UTC: 2996 jobs aggregated from phase1, roundA, roundB.
+Sweep campaign status at 2026-09-27 13:43 UTC: 3185 jobs aggregated from phase1, roundA, roundB.
 
 This directory is regenerated automatically by the sweep campaign; every number in it is recomputed
 from the `.pck` coordinates at each update. Read *Margins, honestly* before quoting any of it.
@@ -101,19 +101,19 @@ Per-solver sweep statistics (mean digits vs the live table by N band, unique bes
 | solver | jobs | ok | feasible | strict | mean digits vs live | n at best (±1e-9) | unique best | improved over warm | beats live | digits 1-25 | digits 26-50 | digits 51-75 | digits 76-100 |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | anchor1 | 198 | 198 | 198 | 167 | 6.026 | 126 | 0 | 30 | 14 | - | 7.00 | 6.62 | 6.53 |
-| anchor6 | 128 | 128 | 128 | 128 | 5.441 | 58 | 0 | 22 | 13 | - | 7.00 | 6.36 | 6.40 |
-| b6x2_1 | 162 | 162 | 162 | 162 | 5.273 | 80 | 0 | 4 | 7 | - | 7.00 | 5.36 | 5.22 |
-| b9_5 | 210 | 210 | 210 | 210 | 5.923 | 120 | 0 | 29 | 12 | - | 7.00 | 6.40 | 6.40 |
+| anchor6 | 136 | 136 | 136 | 136 | 5.532 | 66 | 0 | 22 | 13 | - | 7.00 | 6.36 | 6.40 |
+| b6x2_1 | 170 | 170 | 170 | 170 | 5.304 | 86 | 0 | 4 | 7 | - | 7.00 | 5.36 | 5.22 |
+| b9_5 | 226 | 226 | 226 | 226 | 5.999 | 136 | 0 | 29 | 12 | - | 7.00 | 6.40 | 6.40 |
 | cvirt7 | 110 | 110 | 110 | 110 | 4.700 | 35 | 0 | 9 | 11 | - | 7.00 | 6.48 | 6.15 |
-| deon6 | 334 | 334 | 334 | 334 | 5.858 | 209 | 0 | 27 | 11 | 7.00 | 7.00 | 6.64 | 6.21 |
+| deon6 | 383 | 383 | 383 | 383 | 6.005 | 254 | 0 | 27 | 11 | 7.00 | 7.00 | 6.64 | 6.21 |
 | nalt6 | 230 | 230 | 230 | 230 | 6.362 | 140 | 1 | 48 | 15 | 7.00 | 7.00 | 6.75 | 6.68 |
 | none3 | 112 | 112 | 112 | 112 | 4.937 | 37 | 0 | 8 | 12 | - | 7.00 | 6.36 | 6.40 |
-| none7 | 256 | 252 | 256 | 256 | 6.116 | 161 | 0 | 22 | 14 | 7.00 | 7.00 | 6.36 | 6.50 |
+| none7 | 296 | 292 | 296 | 296 | 6.221 | 196 | 0 | 22 | 14 | 7.00 | 7.00 | 6.36 | 6.50 |
 | plain1 | 216 | 214 | 216 | 216 | 5.658 | 111 | 0 | 18 | 13 | 7.00 | 7.00 | 6.49 | 6.47 |
 | smv16_10 | 208 | 206 | 208 | 208 | 5.752 | 106 | 0 | 11 | 12 | 7.00 | 7.00 | 6.37 | 6.30 |
 | smv16_6 | 106 | 106 | 106 | 106 | 4.848 | 0 | 0 | 6 | 12 | - | 7.00 | 6.36 | 6.26 |
-| tv14ob9 | 276 | 276 | 276 | 226 | 6.147 | 148 | 10 | 20 | 9 | 7.00 | 7.00 | 6.37 | 5.83 |
-| tv14pf6 | 230 | 230 | 230 | 223 | 6.239 | 142 | 1 | 39 | 14 | 7.00 | 7.00 | 6.66 | 6.46 |
+| tv14ob9 | 314 | 314 | 314 | 238 | 6.251 | 186 | 10 | 20 | 9 | 7.00 | 7.00 | 6.37 | 5.83 |
+| tv14pf6 | 260 | 260 | 260 | 253 | 6.327 | 168 | 1 | 39 | 14 | 7.00 | 7.00 | 6.66 | 6.46 |
 | tv16ob6 | 220 | 220 | 220 | 220 | 6.277 | 137 | 0 | 30 | 13 | 7.00 | 7.00 | 6.62 | 6.55 |
 
 
