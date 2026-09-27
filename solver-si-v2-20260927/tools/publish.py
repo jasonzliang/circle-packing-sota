@@ -3,10 +3,10 @@
 circle-packing-sota repo (sota/<artifact>/), regenerate that directory's README from the manifest, and
 commit + push when anything changed. Safe to run every few minutes.
 
-  python publish.py [--no-push] [--rounds-root DIR] [--repo REPO]
+  python publish.py [--no-push] [--rounds-root /tmp/si_tools/cp_sweep] [--repo ~/Desktop/circle-packing-sota]
                     [--artifact sota/si-v2-20260927] [--records sota/packomania/history/packomania_csqv_2026-09-27.json]
 """
-import sys, argparse, glob, json, os, subprocess, sys, time, csv, collections
+import argparse, glob, json, os, subprocess, sys, time, csv, collections
 HERE = os.path.dirname(os.path.abspath(__file__))
 PY = sys.executable
 
@@ -112,6 +112,8 @@ json/out<N>.json    sidecar in the corner frame [0,1]^2 (x+0.5, y+0.5, r) with Î
 results.csv         n, sum_radii, max_violation, record_20260927, delta, feasible
 comparison.md       output of verify_and_compare.py compare --tol 0 against the 2026-09-27 snapshot
 manifest.json       per-N recomputed values, sha256 of every pck, provenance, counts
+survey_all_runs.md  survey of every packing ever stored by the SI-v2 runs on all three machines:
+                    which stored packings beat the current table, and how many independent runs found each
 README.md           this file (generated)
 ```
 """
@@ -124,7 +126,7 @@ def main():
     ap.add_argument("--repo", default=os.path.expanduser("~/Desktop/circle-packing-sota"))
     ap.add_argument("--artifact", default="sota/si-v2-20260927")
     ap.add_argument("--records", default="sota/packomania/history/packomania_csqv_2026-09-27.json")
-    ap.add_argument("--warm", default=os.path.join(os.environ.get("CP_CENSUS", os.path.join(HERE, "census")), "warm_p1"))
+    ap.add_argument("--warm", default=os.environ.get("CP_CENSUS", "/tmp/si_tools/cp_census") + "/warm_p1")
     ap.add_argument("--no-push", action="store_true")
     ap.add_argument("--note", default="")
     a = ap.parse_args()
@@ -147,6 +149,11 @@ def main():
     rc, st = sh(["git", "status", "--porcelain", "--", a.artifact], cwd=a.repo)
     changed = [ln[3:] for ln in st.splitlines() if ln.strip()]
     changed_n = sorted({int(os.path.basename(c)[4:-4]) for c in changed if os.path.basename(c).startswith("csqv") and c.endswith(".pck")})
+    # a README whose only change is its timestamp note is not worth a commit: revert it unless something substantive moved
+    substantive = [c for c in changed if not c.endswith("README.md")]
+    if changed and not substantive:
+        sh(["git", "checkout", "--", os.path.join(a.artifact, "README.md")], cwd=a.repo)
+        changed = []
     line = "%s publish: jobs=%d WIN=%d tie=%d below=%d exported=%d" % (time.strftime("%H:%M:%S"), summ["jobs"], man["counts"]["WIN"], man["counts"]["tie"], man["counts"]["below"], man["counts"]["exported"])
     if changed:
         sh(["git", "add", "--", a.artifact], cwd=a.repo)
@@ -165,5 +172,21 @@ def main():
     else:
         line += " | no change"
     line += " (%.0fs)" % (time.time() - t0)
+    # WINS against the CURRENT Packomania table: re-fetch at most hourly, fall back to the dated snapshot
+    live_path = os.environ.get("CP_LIVE", "/tmp/si_tools/cp_live") + "/latest.json"
+    try:
+        if not os.path.isfile(live_path) or time.time() - os.path.getmtime(live_path) > 3600:
+            r = subprocess.run([PY, os.path.join(a.repo, "verify_and_compare.py"), "fetch", "--out", live_path + ".tmp"], capture_output=True, text=True, timeout=120)
+            if r.returncode == 0 and os.path.isfile(live_path + ".tmp"): os.replace(live_path + ".tmp", live_path)
+        live_doc = json.load(open(live_path)); live_src = "live %s" % time.strftime("%H:%M", time.gmtime(os.path.getmtime(live_path)))
+    except Exception:
+        live_doc = json.load(open(rec)); live_src = "snapshot 2026-09-27"
+    live = {int(k): float(v) for k, v in live_doc["records"].items()}
+    snap = {int(k): float(v) for k, v in json.load(open(rec))["records"].items()}
+    drift = sorted(n for n in range(1, 101) if n in live and n in snap and abs(live[n] - snap[n]) > 1e-12)
+    wins = [(int(n), v["sum_r"] - live[int(n)]) for n, v in man["per_n"].items() if int(n) in live and v["sum_r"] > live[int(n)] + 1e-9]
+    wins.sort()
+    line += " || BEATEN vs %s (%d): " % (live_src, len(wins)) + ", ".join("%d(%+.1e)" % w for w in wins)
+    if drift: line += " || table moved since 09-27 at N=%s" % ",".join(map(str, drift))
     print(line)
 main()

@@ -1,0 +1,17 @@
+{
+ "skip_n": "1-25",
+ "single_solver_n": "26-50",
+ "single_seeds": 1,
+ "boost_n": "51-100",
+ "boost_extra_top": 1,
+ "boost_solvers_first": [
+  "nalt6",
+  "tv14pf6",
+  "deon6"
+ ],
+ "modes_override": "both",
+ "self_seeds": 1,
+ "self_cpu_cap": 90,
+ "alloc": "thompson",
+ "self_top": 2
+}

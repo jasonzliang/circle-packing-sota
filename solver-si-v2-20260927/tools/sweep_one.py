@@ -257,11 +257,15 @@ def _child_main(req_path):
     np.random.seed(seed)
 
     ckpt = {"last_sum": None, "last_t": 0.0}
+    trace = []                                   # anytime curve: [cpu_s_since_entry, sum_r] at every new best
+    t_entry = {"cpu": None}
 
     def _dump_ckpt(force=False):
         cur = ev.best.get(n)
         if cur is None:
             return
+        if not trace or cur[0] > trace[-1][1]:
+            trace.append([round(time.process_time() - (t_entry["cpu"] or 0.0), 3), cur[0]])
         now = time.time()
         if not force and (cur[0] == ckpt["last_sum"] or now - ckpt["last_t"] < 1.0):
             return
@@ -317,6 +321,7 @@ def _child_main(req_path):
         signal.signal(signal.SIGPROF, _on_prof)
         signal.setitimer(signal.ITIMER_PROF, float(req["cpu_seconds"]))
     t0, c0 = time.time(), time.process_time()
+    t_entry["cpu"] = c0
     status = "ok"
     try:
         solve_fn(evaluate, ro_meter, rng, [n], **kwargs)
@@ -332,6 +337,7 @@ def _child_main(req_path):
         signal.setitimer(signal.ITIMER_PROF, 0)
     result["solve_wall_s"] = round(time.time() - t0, 3)
     result["solve_cpu_s"] = round(time.process_time() - c0, 3)
+    result["trace"] = trace[-400:]
     result["nfev"], result["calls"] = meter.used, ev.calls
     cur = ev.best.get(n)
     if cur is None:
@@ -417,7 +423,7 @@ def run_one(a):
                                                    "solve_wall_s", "solve_cpu_s", "solver_kwargs",
                                                    "wall_alarm_fired", "cpu_backstop_fired",
                                                    "solver_error", "forbidden",
-                                                   "module_attrs_applied", "module_attrs_missing")})
+                                                   "module_attrs_applied", "module_attrs_missing", "trace")})
             out["cpu_s"] = child.get("child_cpu_s")
             out["status"] = child.get("status")
             out["sum_radii_claimed"] = child.get("sum_r_claimed")

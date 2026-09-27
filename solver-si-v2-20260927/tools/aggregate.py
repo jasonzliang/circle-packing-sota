@@ -6,9 +6,9 @@ independently (pure python, tol 1e-9 AND strict slack >= 0), and write:
    <agg>/solvers.md             per-solver stats + specialization by n-band
    <agg>/best/csqv<n>.pck+json  best STRICT packing per n (from sweeps; falls back to the warm census if strict)
    <agg>/warm_next/             warm dir for the next phase (best at tol 1e-9 of census + sweeps)
-Usage: aggregate.py --phase DIR [--phase DIR2 ...] --warm <census>/warm_p1 --out AGG
+Usage: aggregate.py --phase DIR [--phase DIR2 ...] --warm /tmp/si_tools/cp_census/warm_p1 --out AGG
 """
-import sys, argparse, csv, glob, json, math, os, sys, shutil, hashlib, collections
+import argparse, csv, glob, json, math, os, sys, shutil, hashlib, collections
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import sweep_one   # validate_local, write_pck, parse_pck
 LIVE = os.environ.get("CP_LIVE_RECORDS", os.path.join(HERE, "..", "..", "sota", "packomania", "packomania_csqv.json"))

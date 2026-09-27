@@ -110,7 +110,24 @@ tools/export_sota.py write sota/<name>/{pck,json,results.csv,manifest.json} and 
 tools/publish.py     aggregate -> export -> README -> git commit/push when anything changed
 tools/campaign.py    the 24 h driver: rounds of escalate -> sweep_multi, publish every 10 minutes
 tools/sweep_all.py   single-solver convenience launcher
+tools/restart_analysis.py  seeds-vs-run-length analysis from the recorded anytime traces (k restarts of B/k)
+tools/focus.json     the allocation policy used from round C on: skip N<=25, one solver on 26-50, both
+                     warm modes on 51-100 with one 90 s refine job and yield-weighted (Thompson-sampled)
+                     neighbour-mode restarts; rounds interleave size bands so every band progresses
 ```
+
+## What the campaign taught about allocation
+
+* Refine-the-incumbent runs are deterministic polishers: the same incumbent gives the same result for
+  any seed 86% of the time, and improvements arrive within seconds. One short run per size is enough.
+* Neighbours-only runs are the stochastic search: seeds differ 72% of the time when a run improves, and
+  the first improvement typically arrives only after several minutes, so a single long run beats
+  splitting the same budget into shorter restarts.
+* Yield differs by an order of magnitude across solvers (neighbour-mode incumbent-beat rates 0.9% to
+  9% at N >= 51), and it is not predicted by which solver holds the most published packings, since
+  polishers inherit provenance. Allocation is therefore by observed yield, recomputed every round.
+* Sizes 1-50 are converged: 800+ jobs produced no improvement over the tabulated values, which every
+  solver reproduces to ~1e-12.
 
 ## Running a sweep
 

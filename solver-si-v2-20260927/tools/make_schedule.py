@@ -2,7 +2,7 @@
 """Emit a schedule.jsonl. cpu(n) = base + slope*n (generous, increasing with n).
    python make_schedule.py --out phase1.jsonl --solvers all --seeds 0 --modes self,nbr --base 60 --slope 3
    --restrict '{"nalt6":"60-100", ...}' limits some solvers to an n range."""
-import sys, argparse, json, os
+import argparse, json, os
 HERE = os.path.dirname(os.path.abspath(__file__))
 ap = argparse.ArgumentParser()
 ap.add_argument("--out", required=True); ap.add_argument("--portfolio", default=os.path.join(HERE, "portfolio.json"))

@@ -7,7 +7,7 @@ Then runs the repo's verify_and_compare.py compare --tol 0 against the given rec
 Usage: export_sota.py --best AGG/best --records sota/packomania/history/packomania_csqv_2026-09-27.json \
                       --out ~/Desktop/circle-packing-sota/sota/si-v2-20260927 [--author "Jason Liang"]
 """
-import sys, argparse, csv, glob, hashlib, json, os, subprocess, sys, math
+import argparse, csv, glob, hashlib, json, os, subprocess, sys, math
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import sweep_one
 REPO = os.path.abspath(os.path.join(HERE, "..", ".."))

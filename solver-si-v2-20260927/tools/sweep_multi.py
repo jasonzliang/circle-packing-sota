@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """sweep_multi.py -- run a schedule of (solver, n, seed, mode, cpu) jobs through one pool of workers.
 
-    python sweep_multi.py --schedule phase1.jsonl --out-dir phase1 --jobs 60 \
-        --warm $CP_CENSUS/warm_p1 --records-file $CP_CENSUS/records_live_inflated.json   # CP_CENSUS = your census dir
+    python sweep_multi.py --schedule phase1.jsonl --out-dir /tmp/si_tools/cp_sweep/phase1 --jobs 60 \
+        --warm /tmp/si_tools/cp_census/warm_p1 --records-file /tmp/si_tools/cp_census/records_live_inflated.json
 
 schedule line: {"solver": "<portfolio key>", "n": 27, "seed": 1, "mode": "self"|"nbr", "cpu": 240}
   mode self = warm dir as is (incumbent + neighbours); nbr = incumbent csqv<n>.pck withheld (transfer/cold start)
 Each job -> <out-dir>/jobs/<solver>/<mode>/n###_s#.json (sweep_one result; re-validated later by aggregate.py).
 Resumable: jobs whose JSON exists with a status are skipped. Longest jobs first (LPT).
 """
-import sys, argparse, json, os, random, subprocess, sys, time, threading, concurrent.futures as cf
+import argparse, json, os, random, subprocess, sys, time, threading, concurrent.futures as cf
 HERE = os.path.dirname(os.path.abspath(__file__))
 PY = sys.executable
 
@@ -43,7 +43,18 @@ def main():
                 if json.load(open(jp)).get("status"): continue
             except ValueError: pass
         todo.append((j, jp))
-    todo.sort(key=lambda t: -t[0]["cpu"])          # LPT: longest first
+    # Order: every size band progresses at the same pace through the round (fractional rank within the
+    # band, longest jobs first inside a band). Pure longest-first would run all of n=78..100 before any
+    # n=51..77 job started, leaving the mid sizes untouched for hours.
+    def band(n): return 0 if n <= 50 else 1 if n <= 77 else 2
+    groups = {}
+    for t in todo: groups.setdefault(band(t[0]["n"]), []).append(t)
+    ordered = []
+    for g in groups.values():
+        g.sort(key=lambda t: -t[0]["cpu"])
+        for i, t in enumerate(g): ordered.append(((i + 0.5) / len(g), -t[0]["cpu"], t))
+    ordered.sort(key=lambda x: (x[0], x[1]))
+    todo = [t for _, _, t in ordered]
     total, skipped = len(todo), len(sched) - len(todo)
     log = open(os.path.join(a.out_dir, "launcher.log"), "a")
     def say(msg):

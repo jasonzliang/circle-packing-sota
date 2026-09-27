@@ -5,9 +5,8 @@ into the circle-packing-sota repo every 10 minutes (publish.py: aggregate -> exp
   nohup python campaign.py --hours 24 --wait-for roundA > campaign.stdout 2>&1 &
 Status lines go to campaign.log (one per publish, i.e. every 10 min) -- tail it for monitoring.
 """
-import sys, argparse, json, os, shutil, subprocess, sys, time
+import argparse, json, os, shutil, subprocess, sys, time
 HERE = os.path.dirname(os.path.abspath(__file__)); PY = sys.executable
-CP_CENSUS = os.environ.get("CP_CENSUS", os.path.join(HERE, "census"))   # warm dirs + records_live_inflated.json
 LOG = os.path.join(HERE, "campaign.log")
 
 def say(msg):
@@ -89,13 +88,13 @@ def main():
         else:
             njobs, cpu_tot = sched_cost(sched)
         if r.returncode != 0: continue
-        warm = os.path.join(CP_CENSUS, "warm_%s" % name)
+        warm = os.environ.get("CP_CENSUS", "/tmp/si_tools/cp_census") + "/warm_%s" % name
         shutil.rmtree(warm, ignore_errors=True); shutil.copytree(os.path.join(HERE, "agg", "warm_next"), warm)
         out_dir = os.path.join(HERE, name); os.makedirs(out_dir, exist_ok=True)
         say("%s LAUNCH: %d jobs, %.1f CPU-h, est %.1f h wall; top=%d seeds=%s/%s cpu=%.0f+%.1fn modes=%s; warm=%s (%d packs)" % (
             name, njobs, cpu_tot / 3600, cpu_tot * 1.10 / a.jobs / 3600, spec["top"], spec["seeds"], spec["seeds_below"], base, slope, spec["modes"], warm, len(os.listdir(warm))))
         p = subprocess.Popen([PY, os.path.join(HERE, "sweep_multi.py"), "--schedule", sched, "--out-dir", out_dir, "--jobs", str(a.jobs),
-                              "--warm", warm, "--records-file", os.path.join(CP_CENSUS, "records_live_inflated.json")],
+                              "--warm", warm, "--records-file", os.environ.get("CP_CENSUS", "/tmp/si_tools/cp_census") + "/records_live_inflated.json"],
                              stdout=open(os.path.join(out_dir, "stdout.log"), "a"), stderr=subprocess.STDOUT)
         open(os.path.join(out_dir, "launcher.pid"), "w").write(str(p.pid))
         last = time.time()
