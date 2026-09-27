@@ -2418,28 +2418,28 @@
    }
   },
   "93": {
-   "sum_r": 5.076445593910281,
+   "sum_r": 5.076445593910298,
    "record": 5.076245164998,
-   "margin": 0.0002004289122803371,
+   "margin": 0.00020042891229810067,
    "verdict": "WIN",
-   "min_wall_slack": 1.0004080897019207e-12,
-   "min_pair_slack": 2.0000112677109882e-12,
-   "min_r": 0.036786323283465705,
-   "pck_sha256": "91e806e3fefb6e46fc23d4347e800254899be5a81365a62fd2180e24864e79c5",
+   "min_wall_slack": 9.999778782798785e-13,
+   "min_pair_slack": 1.9999835121353726e-12,
+   "min_r": 0.03678632328346617,
+   "pck_sha256": "458b6cf834e839b04cc6df869c35e17212d254ca52b839b7b66f0f0575f0afcd",
    "provenance": {
     "n": 93,
-    "sum_r": 5.076445593910281,
+    "sum_r": 5.076445593910298,
     "record_live": 5.076245164998,
-    "margin": 0.0002004289122803371,
+    "margin": 0.00020042891229810067,
     "source": "sweep",
-    "solver": "plain1",
+    "solver": "tv16ob6",
     "mode": "self",
-    "seed": 1,
-    "job": "roundB/jobs/plain1/self/n093_s1.json",
+    "seed": 5,
+    "job": "roundC/jobs/tv16ob6/self/n093_s5.json",
     "warm_path": null,
-    "label": "SI-v2 sweep plain1 seed 1 self",
-    "solver_origin": "aws results/circle-packing/2026-08-23_circle-plain-b/explore-plain-1",
-    "solver_sha256": "9a9b0f34c82a142f10a0060b79f2bda5312d945526a5739d6643dacb26b4eea9"
+    "label": "SI-v2 sweep tv16ob6 seed 5 self",
+    "solver_origin": "jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v16-oldbrief-x10/transcendence-v16-oldbrief-6",
+    "solver_sha256": "64209a4d5b52b3b8e57344f8519645d8efb13b65e4c136da469eb16325a3d275"
    }
   },
   "94": {
