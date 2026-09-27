@@ -5,7 +5,7 @@ LLM-evolved circle-packing solvers from the self-improvement-v2 (SI-v2) `circle-
 from every packing those runs ever stored. Compared against the Packomania `csqv` table
 **retrieved 2026-09-27** (`sota/packomania/history/packomania_csqv_2026-09-27.json`): **17 WIN / 82 tie / 1 below**.
 
-Sweep campaign status at 2026-09-27 15:13 UTC: 4274 jobs aggregated from phase1, roundA, roundB, roundC.
+Sweep campaign status at 2026-09-27 16:00 UTC: 4398 jobs aggregated from phase1, roundA, roundB, roundC, roundD.
 
 This directory is regenerated automatically by the sweep campaign; every number in it is recomputed
 from the `.pck` coordinates at each update. Read *Margins, honestly* before quoting any of it.
@@ -38,7 +38,7 @@ implementations). A **WIN** means `sum_r > record + 1e-9` (the repository's `WIN
 | 95 | 5.129235581979 | 5.129111105835 | +1.245e-04 | +2.43e-05 | `none7` nbr seed 5 |
 | 96 | 5.155724268915 | 5.155289947655 | +4.343e-04 | +8.42e-05 | `none7` nbr seed 6 |
 | 97 | 5.182315239431 | 5.181609663002 | +7.056e-04 | +1.36e-04 | `deon6` self seed 5 |
-| 98 | 5.209385524613 | 5.208578422017 | +8.071e-04 | +1.55e-04 | `deon6` self seed 5 |
+| 98 | 5.209477308376 | 5.208578422017 | +8.989e-04 | +1.73e-04 | `tv16ob6` nbr seed 12 |
 | 99 | 5.236903198995 | 5.236244728577 | +6.585e-04 | +1.26e-04 | `anchor1` self seed 5 |
 | 100 | 5.264237427967 | 5.262787458777 | +1.450e-03 | +2.76e-04 | `anchor1` self seed 1 |
 
@@ -81,11 +81,11 @@ SI-v2 run (values arm and brief noted below); the solver files and the sweep too
 | key | origin run | values file | values md5 | held-out endpoint | solver sha256 | packings |
 |---|---|---|---|---:|---|---:|
 | `tv14pf6` | jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v14-probefix-x10/transcendence-v14-probefix-6 | universalism-v14.md | 81dc2151 | 6.744 | `4498fcdd1716` | 10 |
-| `tv16ob6` | jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v16-oldbrief-x10/transcendence-v16-oldbrief-6 | transcendence-v16.md | f67e211e | void | `64209a4d5b52` | 0 |
+| `tv16ob6` | jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v16-oldbrief-x10/transcendence-v16-oldbrief-6 | transcendence-v16.md | f67e211e | void | `64209a4d5b52` | 1 |
 | `none7` | aws results/circle-packing/2026-09-15_circle-6arm-v14-probefix-x10/none-7 | none-v14.md | c16b7ffb | 6.355 | `08e14f9cbf06` | 3 |
 | `tv14ob9` | jason-mbp results/circle-packing/2026-09-15_transcendence-v14-oldbrief-x10/transcendence-v14-9 | universalism-v14.md | 81dc2151 | 6.287 | `84be19a746c5` | 12 |
 | `smv16_10` | aws results/circle-packing/2026-08-26_circle_smframe_4x10_15it30m/explore-sm-v16-10 | - | - | - | `99ee426845af` | 0 |
-| `deon6` | aws results/circle-packing/2026-08-22_circle-register-x10-15it30m/explore-deon-6 | - | - | - | `2ffd019e66c4` | 58 |
+| `deon6` | aws results/circle-packing/2026-08-22_circle-register-x10-15it30m/explore-deon-6 | - | - | - | `2ffd019e66c4` | 57 |
 | `nalt6` | aws results/circle-packing/2026-08-24_circle-figures-x10-15it30m/nietzsche-alt-6 | - | - | - | `2d59f02c64cc` | 1 |
 | `smv16_6` | jason-mbp _archive 2026-08-26_circle-smframe-4x10-15it30m/explore-sm-v16-6 | - | - | - | `b58b0c619a67` | 0 |
 | `cvirt7` | jason-mbp _archive 2026-08-22_circle-register-x10-15it30m/conservative-virt-7 | - | - | - | `716aa29ec11f` | 0 |
@@ -105,16 +105,16 @@ Per-solver sweep statistics (mean digits vs the live table by N band, unique bes
 | b6x2_1 | 191 | 191 | 191 | 191 | 5.128 | 89 | 0 | 4 | 7 | - | 7.00 | 5.36 | 5.22 |
 | b9_5 | 261 | 261 | 261 | 261 | 5.803 | 141 | 0 | 31 | 12 | - | 7.00 | 6.40 | 6.40 |
 | cvirt7 | 110 | 110 | 110 | 110 | 4.700 | 35 | 0 | 9 | 11 | - | 7.00 | 6.48 | 6.15 |
-| deon6 | 623 | 623 | 623 | 623 | 5.993 | 393 | 0 | 36 | 16 | 7.00 | 7.00 | 6.64 | 6.79 |
-| nalt6 | 300 | 300 | 300 | 300 | 6.182 | 153 | 1 | 79 | 16 | 7.00 | 7.00 | 6.75 | 6.79 |
+| deon6 | 623 | 623 | 623 | 623 | 5.993 | 392 | 0 | 36 | 16 | 7.00 | 7.00 | 6.64 | 6.79 |
+| nalt6 | 300 | 300 | 300 | 300 | 6.182 | 150 | 1 | 79 | 16 | 7.00 | 7.00 | 6.75 | 6.79 |
 | none3 | 119 | 119 | 119 | 119 | 4.881 | 38 | 0 | 9 | 12 | - | 7.00 | 6.36 | 6.40 |
-| none7 | 495 | 483 | 495 | 495 | 6.403 | 327 | 2 | 42 | 14 | 7.00 | 7.00 | 6.36 | 6.50 |
-| plain1 | 234 | 232 | 234 | 234 | 5.608 | 115 | 0 | 30 | 13 | 7.00 | 7.00 | 6.49 | 6.47 |
-| smv16_10 | 208 | 206 | 208 | 208 | 5.752 | 106 | 0 | 11 | 12 | 7.00 | 7.00 | 6.37 | 6.30 |
+| none7 | 535 | 523 | 535 | 535 | 6.361 | 331 | 0 | 65 | 15 | 7.00 | 7.00 | 6.36 | 6.60 |
+| plain1 | 242 | 240 | 242 | 242 | 5.575 | 115 | 0 | 30 | 13 | 7.00 | 7.00 | 6.49 | 6.47 |
+| smv16_10 | 232 | 230 | 232 | 232 | 5.631 | 108 | 0 | 16 | 14 | 7.00 | 7.00 | 6.37 | 6.46 |
 | smv16_6 | 106 | 106 | 106 | 106 | 4.848 | 0 | 0 | 6 | 12 | - | 7.00 | 6.36 | 6.26 |
-| tv14ob9 | 500 | 500 | 500 | 365 | 6.452 | 346 | 9 | 29 | 9 | 7.00 | 7.00 | 6.37 | 5.83 |
-| tv14pf6 | 496 | 496 | 496 | 466 | 6.466 | 321 | 1 | 72 | 17 | 7.00 | 7.00 | 6.66 | 6.86 |
-| tv16ob6 | 234 | 234 | 234 | 234 | 6.263 | 137 | 0 | 44 | 14 | 7.00 | 7.00 | 6.62 | 6.55 |
+| tv14ob9 | 500 | 500 | 500 | 365 | 6.452 | 343 | 9 | 29 | 9 | 7.00 | 7.00 | 6.37 | 5.83 |
+| tv14pf6 | 512 | 512 | 512 | 482 | 6.433 | 317 | 1 | 86 | 17 | 7.00 | 7.00 | 6.66 | 6.86 |
+| tv16ob6 | 270 | 270 | 270 | 270 | 6.317 | 144 | 1 | 67 | 16 | 7.00 | 7.00 | 6.62 | 6.72 |
 
 
 ## Files
