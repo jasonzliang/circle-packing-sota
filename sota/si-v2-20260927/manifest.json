@@ -2492,28 +2492,28 @@
    }
   },
   "96": {
-   "sum_r": 5.155724268915257,
+   "sum_r": 5.155743250528732,
    "record": 5.155289947655,
-   "margin": 0.00043432126025777507,
+   "margin": 0.00045330287373257505,
    "verdict": "WIN",
-   "min_wall_slack": 1.0000333894311098e-13,
+   "min_wall_slack": 1.078026556911027e-13,
    "min_pair_slack": 2.0000667788622195e-13,
-   "min_r": 0.031132816511467144,
-   "pck_sha256": "9d79a08d2fe894bc8d69b4ba3d84334ecc038340de2f28f631b353cdec9450d5",
+   "min_r": 0.035988253504118405,
+   "pck_sha256": "5e3ca178536b06d6b92ba154c982e5a0ffb7c8ad0a6bb0cf39b010d45eacd9b1",
    "provenance": {
     "n": 96,
-    "sum_r": 5.155724268915257,
+    "sum_r": 5.155743250528732,
     "record_live": 5.155289947655,
-    "margin": 0.00043432126025777507,
+    "margin": 0.00045330287373257505,
     "source": "sweep",
-    "solver": "none7",
+    "solver": "tv14pf6",
     "mode": "nbr",
-    "seed": 6,
-    "job": "roundC/jobs/none7/nbr/n096_s6.json",
+    "seed": 23,
+    "job": "roundE/jobs/tv14pf6/nbr/n096_s23.json",
     "warm_path": null,
-    "label": "SI-v2 sweep none7 seed 6 nbr",
-    "solver_origin": "aws results/circle-packing/2026-09-15_circle-6arm-v14-probefix-x10/none-7",
-    "solver_sha256": "08e14f9cbf06f473742439f3875bd30aaffbe3a08e83ca8299c76018569967d7"
+    "label": "SI-v2 sweep tv14pf6 seed 23 nbr",
+    "solver_origin": "jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v14-probefix-x10/transcendence-v14-probefix-6",
+    "solver_sha256": "4498fcdd171624bdce5d6935ec007691c66fcef5067b6f3ccf504991ffa3722c"
    }
   },
   "97": {
