@@ -241,5 +241,147 @@
    "heldout_endpoint": 4.656288582043945,
    "heldout_endpoint_state": "measured"
   }
+ },
+ "uv15pf7": {
+  "solver": "solvers/uv15pf7.py",
+  "attrs": [
+   "_CPU_PER_SIZE_S",
+   "_CPU_TOTAL_CAP_S"
+  ],
+  "origin": "universalism-v15-probefix-7 (jason-mbp _archive 2026-09-14_universalism-v15-probefix-x10)",
+  "sha256": "754172099953a7db8fb14f854acbad68737046d4b011580818698964b32c06b8",
+  "bytes": 67827,
+  "lines": 1258,
+  "added": "screen round I"
+ },
+ "tv14ob1": {
+  "solver": "solvers/tv14ob1.py",
+  "attrs": [
+   "CPU_BUDGET"
+  ],
+  "origin": "transcendence-v14-1 (jason-mbp 2026-09-15_transcendence-v14-oldbrief-x10)",
+  "sha256": "03a93725a0c044de2e2c13862461795215f266e85abdee5c6d116c8cb2ea068a",
+  "bytes": 75544,
+  "lines": 1345,
+  "added": "screen round I"
+ },
+ "tv16pf2": {
+  "solver": "solvers/tv16pf2.py",
+  "attrs": [
+   "PER_N_CPU",
+   "TOTAL_CPU"
+  ],
+  "origin": "transcendence-v16-probefix-2 (jason-mbp _archive 2026-09-14_transcendence-v16-probefix-x10)",
+  "sha256": "0ae3994e6645ba5008b61c692a2ed93f171b551449d34d5edb80dc291f8470f5",
+  "bytes": 84249,
+  "lines": 1580,
+  "added": "screen round I"
+ },
+ "tv16pf1": {
+  "solver": "solvers/tv16pf1.py",
+  "attrs": [
+   "CPU_ONE",
+   "CPU_TOTAL_CAP"
+  ],
+  "origin": "transcendence-v16-probefix-1 (jason-mbp _archive 2026-09-14_transcendence-v16-probefix-x10)",
+  "sha256": "66f0ddd1dad0e456581eb09d85b93d25327edb4030b2f040baec10fd27a2fbb8",
+  "bytes": 85225,
+  "lines": 1658,
+  "added": "screen round I"
+ },
+ "tv14pf9": {
+  "solver": "solvers/tv14pf9.py",
+  "attrs": [
+   "CPU_PER_SIZE",
+   "CPU_CALL_CAP"
+  ],
+  "origin": "transcendence-v14-probefix-9 (jason-mbp _archive 2026-09-15_transcendence-v14-probefix-x10)",
+  "sha256": "20e1ea5e8f0280b9d1b0f18173f9e6d26f19b126123734efce4982a8314b56de",
+  "bytes": 78332,
+  "lines": 1607,
+  "added": "screen round I"
+ },
+ "deon10": {
+  "solver": "solvers/deon10.py",
+  "attrs": [
+   "CPU_BUDGET"
+  ],
+  "origin": "explore-deon-10 (aws 2026-08-22_circle-register-x10-15it30m)",
+  "sha256": "002595ff8cbd3061c611aee4fefe560a79e6ac559e916f6991264e070fbf33e4",
+  "bytes": 96279,
+  "lines": 1947,
+  "added": "screen round I",
+  "note": "copy patched: single-target budget = CPU_BUDGET (original hard-coded 8.7 s)",
+  "patched": "copy patched for the sweep: the single-target CPU budget (original hard-coded 8.7 s = min(100, 6+2.7*1)) reads the CPU_BUDGET module constant; sha256/bytes/lines are of the patched copy"
+ },
+ "sm2": {
+  "solver": "solvers/sm2.py",
+  "attrs": [
+   "CPU_BUDGET"
+  ],
+  "origin": "explore-sm-2 (aws 2026-08-17_circle-sm-x10-20it30m)",
+  "sha256": "054deb4d6118cd624554e7dba4cc170ee583d841e38e8683d68f6d4603857eb3",
+  "bytes": 128327,
+  "lines": 2166,
+  "added": "screen round I"
+ },
+ "sm7": {
+  "solver": "solvers/sm7.py",
+  "attrs": [
+   "CPU_BUDGET_S"
+  ],
+  "origin": "explore-sm-7 (aws 2026-08-17_circle-sm-x10-20it30m)",
+  "sha256": "47ac76f6d3fdc0dcfd599b1acb8c5b99013e6347e0b2b397b1f519e0c94c2087",
+  "bytes": 111686,
+  "lines": 1950,
+  "added": "screen round I"
+ },
+ "v2enh5": {
+  "solver": "solvers/v2enh5.py",
+  "attrs": [
+   "CPU_ONE_TARGET",
+   "CPU_MANY"
+  ],
+  "origin": "circle-packing-v2 enhancement-v15-5 (aws 2026-09-16_circle-v2-enh15-x10)",
+  "sha256": "b94f3cc37cbfd9a25f06696ff82874f5f91957ec0cd5a67397e9888fc1a811f2",
+  "bytes": 63009,
+  "lines": 1265,
+  "added": "screen round I"
+ },
+ "v2exp8": {
+  "solver": "solvers/v2exp8.py",
+  "attrs": [
+   "CPU_SINGLE",
+   "CPU_TOTAL_MULTI"
+  ],
+  "origin": "circle-packing-v2 explore-8 (aws 2026-09-16_circle-v2-8arm-x10)",
+  "sha256": "38618042a9f271261f2e3ce1a47efb75f69540da377560e5d3fb7c5032758413",
+  "bytes": 175574,
+  "lines": 3437,
+  "added": "screen round I"
+ },
+ "smr27": {
+  "solver": "solvers/smr27.py",
+  "attrs": [
+   "CPU_BUDGET"
+  ],
+  "origin": "circle-packing-sota solver-sm-radical-v6-n27 pack.search (adapter)",
+  "sha256": "046162a5c3fbd9e1d7dea28e0d1381bc8add97cf0f768bdcc5ccba67f577d49f",
+  "bytes": 1776,
+  "lines": 33,
+  "added": "screen round I",
+  "patched": "thin adapter (not an SI-v2 solver); REPO path made relative to this file (../../solver-sm-radical-v6-n27) for the repository copy, sha256 is of that copy"
+ },
+ "smr54": {
+  "solver": "solvers/smr54.py",
+  "attrs": [
+   "CPU_BUDGET"
+  ],
+  "origin": "circle-packing-sota solver-sm-radical-v6-n54 endgame/pipeline (adapter)",
+  "sha256": "d027c323f9b5f15287f75dacd28bcadf60e39d1477b253701835bb7b4e828f31",
+  "bytes": 2119,
+  "lines": 43,
+  "added": "screen round I",
+  "patched": "thin adapter (not an SI-v2 solver); REPO path made relative to this file (../../solver-sm-radical-v6-n54) for the repository copy, sha256 is of that copy"
  }
 }

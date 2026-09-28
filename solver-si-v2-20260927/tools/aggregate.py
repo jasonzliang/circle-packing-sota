@@ -6,10 +6,11 @@ independently (pure python, tol 1e-9 AND strict slack >= 0), and write:
    <agg>/solvers.md             per-solver stats + specialization by n-band
    <agg>/best/csqv<n>.pck+json  best STRICT packing per n (from sweeps; falls back to the warm census if strict)
    <agg>/warm_next/             warm dir for the next phase (best at tol 1e-9 of census + sweeps)
-Usage: aggregate.py --phase DIR [--phase DIR2 ...] --warm /tmp/si_tools/cp_census/warm_p1 --out AGG
+Usage: aggregate.py --phase DIR [--phase DIR2 ...] --warm $CP_CENSUS/warm_p1 --out AGG
 """
 import argparse, csv, glob, json, math, os, sys, shutil, hashlib, collections
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
 import sweep_one   # validate_local, write_pck, parse_pck
 LIVE = os.environ.get("CP_LIVE_RECORDS", os.path.join(HERE, "..", "..", "sota", "packomania", "packomania_csqv.json"))
 CENSUS = os.environ.get("CP_CENSUS_MANIFEST", "")
@@ -82,8 +83,11 @@ def main():
     for n in ns:
         cand = [r for r in rows if r["n"] == n and r["feasible"]]
         strict_c = [r for r in cand if r["strict"]]
-        best_any = max(cand, key=lambda r: r["sum_r"]) if cand else None
-        best_strict = max(strict_c, key=lambda r: r["sum_r"]) if strict_c else None
+        # deterministic tie-break: equal sums (to 1e-12) keep the EARLIEST job, so provenance does not churn
+        PH = {"phase1": 0, "roundA": 1}
+        def rank(r): return (round(r["sum_r"], 12), -PH.get(r["phase"], ord(r["phase"][-1]) if r["phase"].startswith("round") else 99), tuple(-ord(c) for c in r["job"]))
+        best_any = max(cand, key=rank) if cand else None
+        best_strict = max(strict_c, key=rank) if strict_c else None
         wb = warm.get(n)
         # publishable best = best strict among sweeps and (strict) warm baseline
         pool = []
@@ -168,4 +172,5 @@ def main():
             "new_beats_from_sweep": sorted(n for n in ns if per_n[n]["pub"] and per_n[n]["pub"][0] == "sweep" and margins[n] >= 1e-6 and (per_n[n]["warm"] is None or per_n[n]["warm"] < per_n[n]["rec"] + 1e-6))}
     json.dump(summ, open(os.path.join(a.out, "summary.json"), "w"), indent=1)
     print(json.dumps(summ, indent=1))
-main()
+if __name__ == "__main__":
+    main()

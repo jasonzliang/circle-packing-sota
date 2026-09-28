@@ -107,7 +107,7 @@ class Collector:
         if not v["feasible"]:
             return False
         cur = self.best.get(n)
-        if cur is not None and v["sum_r"] <= cur["sum_r"] + 1e-15:
+        if cur is not None and v["sum_r"] <= cur["sum_r"] + 1e-12:
             return False
         rec = self.records.get(n, (None, None))[0]
         row = {"n": n, "seed": int(res["seed"]), "sum_r": v["sum_r"], "record": rec,

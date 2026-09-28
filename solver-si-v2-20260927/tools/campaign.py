@@ -113,4 +113,5 @@ def main():
     publish(note="Sweep campaign finished at %s UTC." % time.strftime("%Y-%m-%d %H:%M"))
     say("CAMPAIGN DONE")
     open(os.path.join(HERE, "CAMPAIGN_DONE"), "w").write(time.strftime("%Y-%m-%d %H:%M:%S"))
-main()
+if __name__ == "__main__":
+    main()

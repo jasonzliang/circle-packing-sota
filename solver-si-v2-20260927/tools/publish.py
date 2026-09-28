@@ -3,7 +3,7 @@
 circle-packing-sota repo (sota/<artifact>/), regenerate that directory's README from the manifest, and
 commit + push when anything changed. Safe to run every few minutes.
 
-  python publish.py [--no-push] [--rounds-root /tmp/si_tools/cp_sweep] [--repo ~/Desktop/circle-packing-sota]
+  python publish.py [--no-push] [--rounds-root $CP_SWEEP_ROOT] [--repo <repo root>]
                     [--artifact sota/si-v2-20260927] [--records sota/packomania/history/packomania_csqv_2026-09-27.json]
 """
 import argparse, glob, json, os, subprocess, sys, time, csv, collections
@@ -122,8 +122,8 @@ README.md           this file (generated)
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--rounds-root", default=HERE)
-    ap.add_argument("--repo", default=os.path.expanduser("~/Desktop/circle-packing-sota"))
+    ap.add_argument("--rounds-root", default=os.environ.get("CP_SWEEP_ROOT", HERE))
+    ap.add_argument("--repo", default=os.path.abspath(os.path.join(HERE, "..", "..")))
     ap.add_argument("--artifact", default="sota/si-v2-20260927")
     ap.add_argument("--records", default="sota/packomania/history/packomania_csqv_2026-09-27.json")
     ap.add_argument("--warm", default=os.environ.get("CP_CENSUS", "/tmp/si_tools/cp_census") + "/warm_p1")
@@ -189,4 +189,5 @@ def main():
     line += " || BEATEN vs %s (%d): " % (live_src, len(wins)) + ", ".join("%d(%+.1e)" % w for w in wins)
     if drift: line += " || table moved since 09-27 at N=%s" % ",".join(map(str, drift))
     print(line)
-main()
+if __name__ == "__main__":
+    main()

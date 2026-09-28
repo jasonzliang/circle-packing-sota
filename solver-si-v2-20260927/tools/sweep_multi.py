@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """sweep_multi.py -- run a schedule of (solver, n, seed, mode, cpu) jobs through one pool of workers.
 
-    python sweep_multi.py --schedule phase1.jsonl --out-dir /tmp/si_tools/cp_sweep/phase1 --jobs 60 \
-        --warm /tmp/si_tools/cp_census/warm_p1 --records-file /tmp/si_tools/cp_census/records_live_inflated.json
+    python sweep_multi.py --schedule phase1.jsonl --out-dir phase1 --jobs 60 \
+        --warm $CP_CENSUS/warm_p1 --records-file $CP_CENSUS/records_live_inflated.json
 
 schedule line: {"solver": "<portfolio key>", "n": 27, "seed": 1, "mode": "self"|"nbr", "cpu": 240}
   mode self = warm dir as is (incumbent + neighbours); nbr = incumbent csqv<n>.pck withheld (transfer/cold start)
@@ -48,7 +48,7 @@ def main():
     # n=51..77 job started, leaving the mid sizes untouched for hours.
     def band(n): return 0 if n <= 50 else 1 if n <= 77 else 2
     groups = {}
-    for t in todo: groups.setdefault(band(t[0]["n"]), []).append(t)
+    for t in todo: groups.setdefault((band(t[0]["n"]), t[0]["mode"]), []).append(t)   # per band AND mode
     ordered = []
     for g in groups.values():
         g.sort(key=lambda t: -t[0]["cpu"])
@@ -96,4 +96,5 @@ def main():
         list(ex.map(run, todo))
     say("SWEEP DONE %s" % a.out_dir)
     open(os.path.join(a.out_dir, "DONE"), "w").write(time.strftime("%Y-%m-%d %H:%M:%S"))
-main()
+if __name__ == "__main__":
+    main()

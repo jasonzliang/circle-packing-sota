@@ -282,6 +282,31 @@ def _child_main(req_path):
         _emit(4)
     result["import_wall_s"] = round(time.time() - t_imp, 3)
 
+    # --- seed mixing: several evolved solvers build their OWN generators from constant seeds
+    # (np.random.RandomState(7), default_rng(0), random.Random(3) ...), which silently makes every job seed
+    # produce the same search. Mix the job seed into every explicitly seeded generator so seeds are real,
+    # while keeping each (job seed, solver) deterministic. Unseeded generators are left alone.
+    import random as _random
+    _JOB_SEED = int(seed)
+    def _mix(sd):
+        if sd is None: return None
+        try:
+            base = int(sd) if not hasattr(sd, "__len__") else int(np.asarray(sd).ravel()[0])
+        except Exception:
+            return sd
+        return (base * 1000003 + 7919 * _JOB_SEED + 12345) % (2 ** 32)
+    _RS = np.random.RandomState
+    class _MixedRandomState(_RS):
+        def __init__(self, seed=None): super().__init__(_mix(seed))
+    np.random.RandomState = _MixedRandomState
+    _orig_default_rng = np.random.default_rng
+    np.random.default_rng = lambda seed=None: _orig_default_rng(_mix(seed))
+    _orig_Random = _random.Random
+    class _MixedRandom(_orig_Random):
+        def __init__(self, x=None): super().__init__(_mix(x) if isinstance(x, int) else x)
+    _random.Random = _MixedRandom
+    result["seed_mixing"] = True
+
     # --- metered oracle (solve_driver.py:244-248)
     budget = int(req["evals"])
     meter = harness.Meter(budget)
@@ -459,7 +484,7 @@ def run_one(a):
                                                    "solve_wall_s", "solve_cpu_s", "solver_kwargs",
                                                    "wall_alarm_fired", "cpu_backstop_fired",
                                                    "solver_error", "forbidden",
-                                                   "module_attrs_applied", "module_attrs_missing", "trace")})
+                                                   "module_attrs_applied", "module_attrs_missing", "trace", "seed_mixing")})
             out["cpu_s"] = child.get("child_cpu_s")
             out["status"] = child.get("status")
             out["sum_radii_claimed"] = child.get("sum_r_claimed")
