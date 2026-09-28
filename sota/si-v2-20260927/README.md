@@ -5,7 +5,7 @@ LLM-evolved circle-packing solvers from the self-improvement-v2 (SI-v2) `circle-
 from every packing those runs ever stored. Compared against the Packomania `csqv` table
 **retrieved 2026-09-27** (`sota/packomania/history/packomania_csqv_2026-09-27.json`): **19 WIN / 81 tie / 0 below**.
 
-Sweep campaign status at 2026-09-28 10:09 UTC: 12580 jobs aggregated from phase1, roundA, roundB, roundC, roundD, roundE, roundF, roundG, roundH, roundI, roundJ, roundK, roundL.
+Sweep campaign status at 2026-09-28 10:19 UTC: 12630 jobs aggregated from phase1, roundA, roundB, roundC, roundD, roundE, roundF, roundG, roundH, roundI, roundJ, roundK, roundL.
 
 This directory is regenerated automatically by the sweep campaign; every number in it is recomputed
 from the `.pck` coordinates at each update. Read *Margins, honestly* before quoting any of it.
@@ -37,7 +37,7 @@ implementations). A **WIN** means `sum_r > record + 1e-9` (the repository's `WIN
 | 92 | 5.049048324656 | 5.048761669590 | +2.867e-04 | +5.68e-05 | `deon6` self seed 0 |
 | 93 | 5.076445594003 | 5.076245164998 | +2.004e-04 | +3.95e-05 | `deon6` self seed 5 |
 | 94 | 5.103121333926 | 5.101975416147 | +1.146e-03 | +2.25e-04 | `deon6` self seed 1 |
-| 95 | 5.129235581988 | 5.129111105835 | +1.245e-04 | +2.43e-05 | `sm7` self seed 0 |
+| 95 | 5.129349439039 | 5.129111105835 | +2.383e-04 | +4.65e-05 | `tv14pf6` nbr seed 162 |
 | 96 | 5.155841390323 | 5.155289947655 | +5.514e-04 | +1.07e-04 | `tv14pf6` nbr seed 167 |
 | 97 | 5.182315239434 | 5.181609663002 | +7.056e-04 | +1.36e-04 | `sm7` self seed 0 |
 | 98 | 5.209524986807 | 5.208578422017 | +9.466e-04 | +1.82e-04 | `sm7` self seed 0 |
@@ -82,7 +82,7 @@ SI-v2 run (values arm and brief noted below); the solver files and the sweep too
 
 | key | origin run | values file | values md5 | held-out endpoint | solver sha256 | packings |
 |---|---|---|---|---:|---|---:|
-| `tv14pf6` | jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v14-probefix-x10/transcendence-v14-probefix-6 | universalism-v14.md | 81dc2151 | 6.744 | `4498fcdd1716` | 5 |
+| `tv14pf6` | jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v14-probefix-x10/transcendence-v14-probefix-6 | universalism-v14.md | 81dc2151 | 6.744 | `4498fcdd1716` | 6 |
 | `tv16ob6` | jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v16-oldbrief-x10/transcendence-v16-oldbrief-6 | transcendence-v16.md | f67e211e | void | `64209a4d5b52` | 0 |
 | `none7` | aws results/circle-packing/2026-09-15_circle-6arm-v14-probefix-x10/none-7 | none-v14.md | c16b7ffb | 6.355 | `08e14f9cbf06` | 0 |
 | `tv14ob9` | jason-mbp results/circle-packing/2026-09-15_transcendence-v14-oldbrief-x10/transcendence-v14-9 | universalism-v14.md | 81dc2151 | 6.287 | `84be19a746c5` | 2 |
@@ -104,7 +104,7 @@ SI-v2 run (values arm and brief noted below); the solver files and the sweep too
 | `tv14pf9` | transcendence-v14-probefix-9 (jason-mbp _archive 2026-09-15_transcendence-v14-probefix-x10) | - | - | - | `20e1ea5e8f02` | 0 |
 | `deon10` | explore-deon-10 (aws 2026-08-22_circle-register-x10-15it30m) | - | - | - | `002595ff8cbd` | 0 |
 | `sm2` | explore-sm-2 (aws 2026-08-17_circle-sm-x10-20it30m) | - | - | - | `054deb4d6118` | 0 |
-| `sm7` | explore-sm-7 (aws 2026-08-17_circle-sm-x10-20it30m) | - | - | - | `47ac76f6d3fd` | 15 |
+| `sm7` | explore-sm-7 (aws 2026-08-17_circle-sm-x10-20it30m) | - | - | - | `47ac76f6d3fd` | 14 |
 | `v2enh5` | circle-packing-v2 enhancement-v15-5 (aws 2026-09-16_circle-v2-enh15-x10) | - | - | - | `b94f3cc37cbf` | 0 |
 | `v2exp8` | circle-packing-v2 explore-8 (aws 2026-09-16_circle-v2-8arm-x10) | - | - | - | `38618042a9f2` | 0 |
 | `smr27` | circle-packing-sota solver-sm-radical-v6-n27 pack.search (adapter) | - | - | - | `82182c73b8e2` | 0 |
@@ -115,32 +115,32 @@ Per-solver sweep statistics (mean digits vs the live table by N band, unique bes
 | solver | jobs | ok | feasible | strict | mean digits vs live | n at best (±1e-9) | unique best | improved over warm | beats live | digits 1-25 | digits 26-50 | digits 51-75 | digits 76-100 |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | anchor1 | 532 | 532 | 532 | 500 | 5.362 | 179 | 0 | 68 | 15 | - | 7.00 | 6.62 | 6.63 |
-| anchor6 | 529 | 529 | 529 | 529 | 4.987 | 141 | 0 | 88 | 16 | - | 7.00 | 6.40 | 6.91 |
+| anchor6 | 531 | 531 | 531 | 531 | 4.982 | 141 | 0 | 89 | 16 | - | 7.00 | 6.40 | 6.91 |
 | b6x2_1 | 429 | 429 | 429 | 429 | 4.261 | 96 | 0 | 5 | 7 | - | 7.00 | 5.55 | 5.30 |
 | b9_5 | 448 | 448 | 448 | 448 | 5.317 | 173 | 0 | 43 | 14 | - | 7.00 | 6.49 | 6.60 |
 | cvirt7 | 370 | 370 | 370 | 370 | 4.051 | 52 | 0 | 27 | 16 | - | 7.00 | 7.00 | 6.60 |
-| deon10 | 164 | 164 | 164 | 164 | 5.392 | 80 | 0 | 31 | 19 | - | - | 7.00 | 7.00 |
+| deon10 | 164 | 164 | 164 | 164 | 5.392 | 79 | 0 | 31 | 19 | - | - | 7.00 | 7.00 |
 | deon6 | 837 | 837 | 837 | 837 | 5.348 | 413 | 0 | 40 | 16 | 7.00 | 7.00 | 6.64 | 6.79 |
-| nalt6 | 1065 | 1065 | 1065 | 1065 | 5.719 | 397 | 0 | 201 | 19 | 7.00 | 7.00 | 7.00 | 7.00 |
-| none3 | 442 | 442 | 442 | 442 | 4.425 | 78 | 0 | 30 | 16 | - | 7.00 | 6.52 | 6.86 |
-| none7 | 890 | 878 | 890 | 890 | 5.861 | 425 | 0 | 114 | 17 | 7.00 | 7.00 | 6.36 | 6.86 |
-| plain1 | 585 | 583 | 585 | 585 | 4.855 | 183 | 0 | 47 | 13 | 7.00 | 7.00 | 6.88 | 6.48 |
-| sm2 | 293 | 293 | 293 | 287 | 4.988 | 108 | 0 | 36 | 19 | - | - | 7.00 | 7.00 |
-| sm7 | 161 | 161 | 161 | 161 | 5.485 | 61 | 0 | 36 | 19 | - | - | 7.00 | 7.00 |
-| smr27 | 108 | 88 | 88 | 79 | 4.912 | 49 | 0 | 18 | 19 | - | - | 7.00 | 7.00 |
-| smr54 | 117 | 117 | 117 | 108 | 4.631 | 50 | 0 | 18 | 19 | - | - | 7.00 | 7.00 |
-| smv16_10 | 498 | 496 | 498 | 498 | 5.082 | 172 | 0 | 52 | 18 | 7.00 | 7.00 | 6.88 | 7.00 |
+| nalt6 | 1069 | 1069 | 1069 | 1069 | 5.715 | 397 | 0 | 203 | 19 | 7.00 | 7.00 | 7.00 | 7.00 |
+| none3 | 442 | 442 | 442 | 442 | 4.425 | 77 | 0 | 30 | 16 | - | 7.00 | 6.52 | 6.86 |
+| none7 | 891 | 879 | 891 | 891 | 5.862 | 423 | 0 | 115 | 17 | 7.00 | 7.00 | 6.36 | 6.86 |
+| plain1 | 585 | 583 | 585 | 585 | 4.855 | 179 | 0 | 47 | 13 | 7.00 | 7.00 | 6.88 | 6.48 |
+| sm2 | 293 | 293 | 293 | 287 | 4.988 | 107 | 0 | 36 | 19 | - | - | 7.00 | 7.00 |
+| sm7 | 161 | 161 | 161 | 161 | 5.485 | 60 | 0 | 36 | 19 | - | - | 7.00 | 7.00 |
+| smr27 | 108 | 88 | 88 | 79 | 4.912 | 48 | 0 | 18 | 19 | - | - | 7.00 | 7.00 |
+| smr54 | 117 | 117 | 117 | 108 | 4.631 | 49 | 0 | 18 | 19 | - | - | 7.00 | 7.00 |
+| smv16_10 | 498 | 496 | 498 | 498 | 5.082 | 169 | 0 | 52 | 18 | 7.00 | 7.00 | 6.88 | 7.00 |
 | smv16_6 | 404 | 404 | 404 | 404 | 3.891 | 0 | 0 | 13 | 14 | - | 7.00 | 6.36 | 6.46 |
-| tv14ob1 | 121 | 121 | 121 | 121 | 5.034 | 50 | 0 | 18 | 19 | - | - | 7.00 | 7.00 |
+| tv14ob1 | 121 | 121 | 121 | 121 | 5.034 | 49 | 0 | 18 | 19 | - | - | 7.00 | 7.00 |
 | tv14ob9 | 1043 | 1043 | 1043 | 849 | 5.682 | 421 | 9 | 59 | 11 | 7.00 | 7.00 | 6.65 | 6.26 |
-| tv14pf6 | 1694 | 1694 | 1694 | 1664 | 6.374 | 1058 | 1 | 412 | 19 | 7.00 | 7.00 | 7.00 | 7.00 |
-| tv14pf9 | 116 | 116 | 116 | 110 | 5.234 | 51 | 0 | 18 | 19 | - | - | 7.00 | 7.00 |
-| tv16ob6 | 972 | 972 | 972 | 972 | 6.153 | 464 | 0 | 253 | 18 | 7.00 | 7.00 | 7.00 | 7.00 |
-| tv16pf1 | 109 | 109 | 109 | 108 | 5.154 | 47 | 0 | 17 | 19 | - | - | 7.00 | 7.00 |
-| tv16pf2 | 121 | 121 | 121 | 120 | 5.432 | 46 | 0 | 18 | 19 | - | - | 7.00 | 7.00 |
-| uv15pf7 | 100 | 100 | 100 | 100 | 5.531 | 48 | 0 | 18 | 19 | - | - | 7.00 | 7.00 |
-| v2enh5 | 316 | 316 | 316 | 316 | 5.610 | 158 | 0 | 57 | 19 | - | - | 7.00 | 7.00 |
-| v2exp8 | 116 | 116 | 116 | 0 | 5.108 | 48 | 0 | 17 | 19 | - | - | 7.00 | 7.00 |
+| tv14pf6 | 1722 | 1722 | 1722 | 1692 | 6.359 | 1065 | 2 | 422 | 19 | 7.00 | 7.00 | 7.00 | 7.00 |
+| tv14pf9 | 116 | 116 | 116 | 110 | 5.234 | 50 | 0 | 18 | 19 | - | - | 7.00 | 7.00 |
+| tv16ob6 | 987 | 987 | 987 | 987 | 6.132 | 462 | 0 | 260 | 18 | 7.00 | 7.00 | 7.00 | 7.00 |
+| tv16pf1 | 109 | 109 | 109 | 108 | 5.154 | 46 | 0 | 17 | 19 | - | - | 7.00 | 7.00 |
+| tv16pf2 | 121 | 121 | 121 | 120 | 5.432 | 45 | 0 | 18 | 19 | - | - | 7.00 | 7.00 |
+| uv15pf7 | 100 | 100 | 100 | 100 | 5.531 | 47 | 0 | 18 | 19 | - | - | 7.00 | 7.00 |
+| v2enh5 | 316 | 316 | 316 | 316 | 5.610 | 157 | 0 | 57 | 19 | - | - | 7.00 | 7.00 |
+| v2exp8 | 116 | 116 | 116 | 0 | 5.108 | 47 | 0 | 17 | 19 | - | - | 7.00 | 7.00 |
 
 
 ## Files
