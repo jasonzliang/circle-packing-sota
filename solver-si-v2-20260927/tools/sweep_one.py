@@ -155,7 +155,34 @@ def parse_pck(path):
 
 
 # ------------------------------------------------------------------ throwaway workspace
-def build_workspace(root, n, warm, mission_dir, hide_records, records_file=None, warm_exclude_self=False):
+def kick_pack(circ, n, frac, seed):
+    """Iterated-local-search kick of a feasible packing: relocate m = max(2, round(frac*n)) randomly chosen
+    circles to uniformly random positions and give each the largest radius that keeps it inside the square and
+    clear of every other circle (greedy, in random order). The untouched circles keep their radii, so the
+    result is feasible by construction; the solver then regrows/rearranges from this new basin. Deterministic
+    in (n, seed)."""
+    import random as _r
+    rng = _r.Random(1000003 * n + seed)
+    circ = [list(c) for c in circ]
+    m = max(2, int(round(frac * n)))
+    idx = rng.sample(range(n), min(m, n))
+    fixed = [c for i, c in enumerate(circ) if i not in set(idx)]
+    placed = []
+    for i in idx:
+        best = None
+        for _ in range(64):                            # a few random spots, keep the roomiest
+            x, y = rng.uniform(-0.5, 0.5), rng.uniform(-0.5, 0.5)
+            r = min(x + 0.5, 0.5 - x, y + 0.5, 0.5 - y)
+            for fx, fy, fr in fixed + placed:
+                r = min(r, math.hypot(x - fx, y - fy) - fr)
+                if r <= 0: break
+            if r > 1e-4 and (best is None or r > best[2]): best = (x, y, r)
+        if best is None: best = (0.0, 0.0, 1e-4)      # degenerate but finite; validated below anyway
+        placed.append(best)
+    return [tuple(c) for c in fixed] + placed
+
+
+def build_workspace(root, n, warm, mission_dir, hide_records, records_file=None, warm_exclude_self=False, warm_kick=None, seed=0):
     """<root>/bench/packs/ (+ warm packs) and <root>/bench/records.json (the mission's visible table,
     unless hide_records). Mirrors what seed_bench.py gives an agent (records.json + packs/)."""
     packs = os.path.join(root, "bench", "packs")
@@ -176,6 +203,14 @@ def build_workspace(root, n, warm, mission_dir, hide_records, records_file=None,
             copied.append(dst)
         else:
             raise FileNotFoundError("--warm %r is neither a file nor a directory" % warm)
+    if warm_kick and warm and os.path.isdir(warm):
+        src = os.path.join(warm, "csqv%d.pck" % n)
+        if os.path.isfile(src):
+            kicked = kick_pack(parse_pck(src), n, float(warm_kick), int(seed))
+            v = validate_local(kicked, n)
+            if v["feasible"]:
+                write_pck(os.path.join(packs, "csqv%d.pck" % n), kicked, "kick %.2f seed %d" % (float(warm_kick), int(seed)))
+                copied.append("csqv%d.pck (kicked)" % n)
     if not hide_records:
         src = records_file or os.path.join(mission_dir, "scorer", "records.json")
         if os.path.isfile(src):
@@ -377,8 +412,9 @@ def run_one(a):
         import hashlib
         out["solver_sha"] = hashlib.sha256(open(solver, "rb").read()).hexdigest()[:12]
         out["warm_files"] = build_workspace(ws, a.n, a.warm, mission, a.hide_records, a.records_file,
-                                            a.warm_exclude_self)
+                                            a.warm_exclude_self, a.warm_kick, a.seed)
         out["warm_exclude_self"] = bool(a.warm_exclude_self)
+        out["warm_kick"] = a.warm_kick
         out["records_file"] = (os.path.abspath(a.records_file) if a.records_file else None)
         out["module_attrs"] = (json.loads(a.module_attrs) if a.module_attrs else {})
         req = {"n": a.n, "seed": a.seed, "solver": solver, "scorer_dir": scorer_dir,
@@ -542,6 +578,8 @@ def main(argv=None):
     ap.add_argument("--module-attrs", default=None,
                     help="JSON dict of module-level attributes to set on the solver after import "
                          "(e.g. CPU budget constants); names the module lacks are reported, not created")
+    ap.add_argument("--warm-kick", type=float, default=None,
+                    help="ILS kick: relocate this fraction of the incumbent's circles at random (feasibility kept) before the solver runs")
     ap.add_argument("--warm-exclude-self", action="store_true",
                     help="with a --warm dir: copy every pack EXCEPT csqv<n>.pck (neighbour transfer only, no incumbent)")
     ap.add_argument("--records-file", default=None,

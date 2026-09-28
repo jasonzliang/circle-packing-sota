@@ -61,6 +61,12 @@ for r in csv.DictReader(open(os.path.join(a.agg, "jobs.csv"))):
     if r["feasible"] == "1" and r["sum_r"]:
         i = incumbent(r["phase"], n)
         if i is not None and float(r["sum_r"]) > i + 1e-9: ystat[key][1] += 1
+distinct = collections.defaultdict(set)              # n -> distinct nbr outcomes (rounded 1e-9) within 2e-3 of the best
+_vals = collections.defaultdict(list)
+for r in csv.DictReader(open(os.path.join(a.agg, "jobs.csv"))):
+    if r["mode"] == "nbr" and r["feasible"] == "1" and r["sum_r"]: _vals[int(r["n"])].append(float(r["sum_r"]))
+for n_, vs in _vals.items():
+    top = max(vs); distinct[n_] = {round(v, 9) for v in vs if top - v < 2e-3}
 def sample_yield(solver, n, mode):
     j, b = ystat.get((solver, band_of(n), mode), [0, 0])
     return random.betavariate(1 + b, 1 + max(0, j - b))     # posterior draw of P(beat incumbent)
@@ -87,8 +93,10 @@ for n in sorted(ns):
         cands = list(per_solver)                                # every solver seen at this n
         nbr_pick = sorted(cands, key=lambda s: -sample_yield(s, n, "nbr"))[:k]
         self_pick = sorted(cands, key=lambda s: -sample_yield(s, n, "self"))[:int(FOCUS.get("self_top", 2))]
-        keep = [(s, per_solver[s]) for s in dict.fromkeys(nbr_pick + self_pick)]
-        keep_modes = {s: (["nbr"] if s in nbr_pick else []) + (["self"] if s in self_pick else []) for s in dict.fromkeys(nbr_pick + self_pick)}
+        kick_pick = sorted(cands, key=lambda s: -sample_yield(s, n, "kick") - 0.5 * sample_yield(s, n, "self"))[:int(FOCUS.get("kick_top", 0))] if FOCUS.get("kick") else []
+        allk = list(dict.fromkeys(nbr_pick + self_pick + kick_pick))
+        keep = [(s, per_solver[s]) for s in allk]
+        keep_modes = {s: (["nbr"] if s in nbr_pick else []) + (["self"] if s in self_pick else []) + (["kick"] if s in kick_pick else []) for s in allk}
         sd = seeds_below
     elif n in boost_n:
         k = max(a.top, a.min_solvers) + int(FOCUS.get("boost_extra_top", 0))
@@ -111,8 +119,15 @@ for n in sorted(ns):
         for mode in modes:
             seeds_for_mode = sd[:int(self_seeds)] if (mode == "self" and self_seeds) else sd
             cpu_mode = min(cpu, float(self_cap)) if (mode == "self" and self_cap) else cpu
+            if mode == "kick":
+                cpu_mode = round(cpu * float(FOCUS.get("kick_cpu_scale", 0.5)), 1)
+                if verdict != "BEAT" and len(distinct.get(n, ())) >= int(FOCUS.get("rugged_bonus_min_distinct", 10**9)):
+                    seeds_for_mode = list(sd) + [x + 1000 for x in sd]        # rugged, unbeaten size: double the kicks
+            fr = FOCUS.get("kick_fracs", [0.15, 0.25, 0.35, 0.45])
             for seed in seeds_for_mode:
-                rows.append({"solver": s, "n": n, "seed": seed, "mode": mode, "cpu": cpu_mode}); kept[s] += 1
+                job = {"solver": s, "n": n, "seed": seed, "mode": mode, "cpu": cpu_mode}
+                if mode == "kick": job["kick"] = fr[seed % len(fr)]
+                rows.append(job); kept[s] += 1
 with open(a.out, "w") as fh:
     for r in rows: fh.write(json.dumps(r) + "\n")
 tot = sum(r["cpu"] for r in rows)

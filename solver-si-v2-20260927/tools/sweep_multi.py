@@ -74,6 +74,7 @@ def main():
         if a.records_file: cmd += ["--records-file", a.records_file]
         if a.hide_records: cmd += ["--hide-records"]
         if j["mode"] == "nbr": cmd += ["--warm-exclude-self"]
+        if j["mode"].startswith("kick"): cmd += ["--warm-kick", str(j.get("kick", 0.1))]
         env = dict(os.environ); env.update({k: "1" for k in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "NUMEXPR_NUM_THREADS")})
         st = "?"
         try:

@@ -141,9 +141,11 @@ python3 tools/aggregate.py --phase roundA --warm $CP_CENSUS/warm_p1 --out agg
 python3 tools/escalate.py --agg agg --out roundB.jsonl --top 4 --seeds 1-2 --seeds-below 1-4 --base 60 --slope 3
 ```
 
-Two warm modes: `self` gives the solver the incumbent `csqv<n>.pck` plus its neighbours (refine);
+Three warm modes: `self` gives the solver the incumbent `csqv<n>.pck` plus its neighbours (refine);
 `nbr` withholds the incumbent so the solver must build n from neighbouring sizes or cold starts
-(diversify). The records file handed to the solvers is the live Packomania table inflated by 5e-4
+(diversify); `kick` (`--warm-kick F`) is an iterated-local-search perturbation: a fraction F of the
+incumbent's circles are relocated at random with feasibility preserved, and the solver regrows the
+packing from that new basin (deterministic in size and seed; strengths cycle over 0.15-0.45). The records file handed to the solvers is the live Packomania table inflated by 5e-4
 relative, so no solver stops early at "the record".
 
 Requirements: Python 3.10+, numpy, scipy (HiGHS via `scipy.optimize.linprog`). Single-threaded BLAS is
