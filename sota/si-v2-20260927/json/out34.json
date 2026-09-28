@@ -9,6 +9,10 @@
  "solver": "tv14ob9",
  "warm_mode": "self",
  "source": "sweep",
+ "exact_feasible": true,
+ "exact_min_wall_slack": 6.161737786669619e-15,
+ "exact_min_pair_slack_sq": 4.2022523659586565e-15,
+ "exact_repair_factor": 1.0,
  "record_20260927": 3.029799271186,
  "delta": 1.5565326805244695e-12,
  "circles": [

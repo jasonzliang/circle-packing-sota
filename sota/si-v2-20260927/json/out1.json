@@ -9,6 +9,10 @@
  "solver": null,
  "warm_mode": null,
  "source": "warm",
+ "exact_feasible": true,
+ "exact_min_wall_slack": 0.0,
+ "exact_min_pair_slack_sq": null,
+ "exact_repair_factor": 1.0,
  "record_20260927": 0.5,
  "delta": 0.0,
  "circles": [

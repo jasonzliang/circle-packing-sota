@@ -9,6 +9,10 @@
  "solver": "deon6",
  "warm_mode": "self",
  "source": "sweep",
+ "exact_feasible": true,
+ "exact_min_wall_slack": 5.100087019371813e-15,
+ "exact_min_pair_slack_sq": 2.1834054693584697e-15,
+ "exact_repair_factor": 1.0,
  "record_20260927": 4.190585830354,
  "delta": 2.4069635173873394e-12,
  "circles": [

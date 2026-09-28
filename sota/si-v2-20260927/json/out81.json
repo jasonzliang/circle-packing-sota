@@ -9,6 +9,10 @@
  "solver": "anchor1",
  "warm_mode": "self",
  "source": "sweep",
+ "exact_feasible": true,
+ "exact_min_wall_slack": 5.6343818499726694e-15,
+ "exact_min_pair_slack_sq": 2.397035431257545e-15,
+ "exact_repair_factor": 1.0,
  "record_20260927": 4.726033735177,
  "delta": -1.708855279503041e-12,
  "circles": [
