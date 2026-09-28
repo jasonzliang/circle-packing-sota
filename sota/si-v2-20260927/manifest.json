@@ -1806,14 +1806,14 @@
     "record_live": 4.324531544548,
     "margin": -7.347900066179136e-12,
     "source": "sweep",
-    "solver": "tv14pf6",
-    "mode": "nbr",
-    "seed": 25,
-    "job": "roundE/jobs/tv14pf6/nbr/n068_s25.json",
+    "solver": "tv14ob9",
+    "mode": "self",
+    "seed": 35,
+    "job": "roundG/jobs/tv14ob9/self/n068_s35.json",
     "warm_path": null,
-    "label": "SI-v2 sweep tv14pf6 seed 25 nbr",
-    "solver_origin": "jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v14-probefix-x10/transcendence-v14-probefix-6",
-    "solver_sha256": "4498fcdd171624bdce5d6935ec007691c66fcef5067b6f3ccf504991ffa3722c"
+    "label": "SI-v2 sweep tv14ob9 seed 35 self",
+    "solver_origin": "jason-mbp results/circle-packing/2026-09-15_transcendence-v14-oldbrief-x10/transcendence-v14-9",
+    "solver_sha256": "84be19a746c5e4795d720e47832cc92ed8d368dc220fcc20ec7acffeba9ccb54"
    }
   },
   "69": {
