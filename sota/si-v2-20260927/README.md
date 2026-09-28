@@ -5,7 +5,7 @@ LLM-evolved circle-packing solvers from the self-improvement-v2 (SI-v2) `circle-
 from every packing those runs ever stored. Compared against the Packomania `csqv` table
 **retrieved 2026-09-27** (`sota/packomania/history/packomania_csqv_2026-09-27.json`): **19 WIN / 81 tie / 0 below**.
 
-Sweep campaign status at 2026-09-28 11:02 UTC: 13154 jobs aggregated from phase1, roundA, roundB, roundC, roundD, roundE, roundF, roundG, roundH, roundI, roundJ, roundK, roundL, roundS0.
+Sweep campaign status at 2026-09-28 11:12 UTC: 13320 jobs aggregated from phase1, roundA, roundB, roundC, roundD, roundE, roundF, roundG, roundH, roundI, roundJ, roundK, roundL, roundS0.
 
 This directory is regenerated automatically by the sweep campaign; every number in it is recomputed
 from the `.pck` coordinates at each update. Read *Margins, honestly* before quoting any of it.
@@ -25,24 +25,24 @@ implementations). A **WIN** means `sum_r > record + 1e-9` (the repository's `WIN
 | N | ours Σr | record | Δ (abs) | Δ (rel) | found by |
 |---:|---|---|---:|---:|---|
 | 63 | 4.155808089351 | 4.155766324151 | +4.177e-05 | +1.00e-05 | `sm7` self seed 0 |
-| 66 | 4.256749492868 | 4.255807931448 | +9.416e-04 | +2.21e-04 | `sm7` self seed 0 |
-| 78 | 4.636796920045 | 4.636377420432 | +4.195e-04 | +9.05e-05 | `sm7` self seed 0 |
-| 79 | 4.666928346067 | 4.666466802554 | +4.615e-04 | +9.89e-05 | `sm7` self seed 0 |
-| 80 | 4.695876897580 | 4.695590667948 | +2.862e-04 | +6.10e-05 | `sm7` nbr seed 0 |
-| 82 | 4.756048298931 | 4.755873680213 | +1.746e-04 | +3.67e-05 | `deon6` self seed 0 |
-| 83 | 4.786683838811 | 4.786393807284 | +2.900e-04 | +6.06e-05 | `deon6` self seed 0 |
-| 84 | 4.816567858213 | 4.816500879756 | +6.698e-05 | +1.39e-05 | `deon6` self seed 0 |
-| 85 | 4.848035445623 | 4.847351780582 | +6.837e-04 | +1.41e-04 | `deon6` self seed 0 |
-| 89 | 4.967596361103 | 4.966850487024 | +7.459e-04 | +1.50e-04 | `sm7` self seed 0 |
-| 92 | 5.049048324656 | 5.048761669590 | +2.867e-04 | +5.68e-05 | `deon6` self seed 0 |
+| 66 | 4.256749492862 | 4.255807931448 | +9.416e-04 | +2.21e-04 | `tv14pf6` nbr seed 12 |
+| 78 | 4.636796919967 | 4.636377420432 | +4.195e-04 | +9.05e-05 | `tv16ob6` nbr seed 0 |
+| 79 | 4.666928346063 | 4.666466802554 | +4.615e-04 | +9.89e-05 | `b9_5` self seed 1 |
+| 80 | 4.695876897572 | 4.695590667948 | +2.862e-04 | +6.10e-05 | `anchor6` self seed 1 |
+| 82 | 4.756048298923 | 4.755873680213 | +1.746e-04 | +3.67e-05 | `anchor6` self seed 0 |
+| 83 | 4.786683838803 | 4.786393807284 | +2.900e-04 | +6.06e-05 | `anchor6` self seed 0 |
+| 84 | 4.816567858205 | 4.816500879756 | +6.698e-05 | +1.39e-05 | `anchor6` self seed 0 |
+| 85 | 4.848035445604 | 4.847351780582 | +6.837e-04 | +1.41e-04 | `anchor1` self seed 0 |
+| 89 | 4.967596361095 | 4.966850487024 | +7.459e-04 | +1.50e-04 | `anchor6` self seed 0 |
+| 92 | 5.049048324651 | 5.048761669590 | +2.867e-04 | +5.68e-05 | `b6x2_1` self seed 0 |
 | 93 | 5.076445594003 | 5.076245164998 | +2.004e-04 | +3.95e-05 | `deon6` self seed 5 |
-| 94 | 5.103121333926 | 5.101975416147 | +1.146e-03 | +2.25e-04 | `deon6` self seed 1 |
+| 94 | 5.103121333917 | 5.101975416147 | +1.146e-03 | +2.25e-04 | `anchor6` self seed 0 |
 | 95 | 5.129349439039 | 5.129111105835 | +2.383e-04 | +4.65e-05 | `tv14pf6` nbr seed 162 |
 | 96 | 5.155841390323 | 5.155289947655 | +5.514e-04 | +1.07e-04 | `tv14pf6` nbr seed 167 |
-| 97 | 5.182315239434 | 5.181609663002 | +7.056e-04 | +1.36e-04 | `sm7` self seed 0 |
-| 98 | 5.209524986807 | 5.208578422017 | +9.466e-04 | +1.82e-04 | `sm7` self seed 0 |
-| 99 | 5.236903198995 | 5.236244728577 | +6.585e-04 | +1.26e-04 | `deon6` self seed 1 |
-| 100 | 5.264237427967 | 5.262787458777 | +1.450e-03 | +2.76e-04 | `deon6` self seed 0 |
+| 97 | 5.182315239429 | 5.181609663002 | +7.056e-04 | +1.36e-04 | `b9_5` self seed 5 |
+| 98 | 5.209524986801 | 5.208578422017 | +9.466e-04 | +1.82e-04 | `tv14pf6` nbr seed 20 |
+| 99 | 5.236903198990 | 5.236244728577 | +6.585e-04 | +1.26e-04 | `b9_5` self seed 1 |
+| 100 | 5.264237427961 | 5.262787458777 | +1.450e-03 | +2.76e-04 | `anchor1` self seed 0 |
 
 ## Sizes still below the table
 
@@ -83,18 +83,18 @@ SI-v2 run (values arm and brief noted below); the solver files and the sweep too
 | key | origin run | values file | values md5 | held-out endpoint | solver sha256 | packings |
 |---|---|---|---|---:|---|---:|
 | `tv14pf6` | jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v14-probefix-x10/transcendence-v14-probefix-6 | universalism-v14.md | 81dc2151 | 6.744 | `4498fcdd1716` | 6 |
-| `tv16ob6` | jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v16-oldbrief-x10/transcendence-v16-oldbrief-6 | transcendence-v16.md | f67e211e | void | `64209a4d5b52` | 0 |
+| `tv16ob6` | jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v16-oldbrief-x10/transcendence-v16-oldbrief-6 | transcendence-v16.md | f67e211e | void | `64209a4d5b52` | 1 |
 | `none7` | aws results/circle-packing/2026-09-15_circle-6arm-v14-probefix-x10/none-7 | none-v14.md | c16b7ffb | 6.355 | `08e14f9cbf06` | 0 |
-| `tv14ob9` | jason-mbp results/circle-packing/2026-09-15_transcendence-v14-oldbrief-x10/transcendence-v14-9 | universalism-v14.md | 81dc2151 | 6.287 | `84be19a746c5` | 2 |
+| `tv14ob9` | jason-mbp results/circle-packing/2026-09-15_transcendence-v14-oldbrief-x10/transcendence-v14-9 | universalism-v14.md | 81dc2151 | 6.287 | `84be19a746c5` | 0 |
 | `smv16_10` | aws results/circle-packing/2026-08-26_circle_smframe_4x10_15it30m/explore-sm-v16-10 | - | - | - | `99ee426845af` | 0 |
-| `deon6` | aws results/circle-packing/2026-08-22_circle-register-x10-15it30m/explore-deon-6 | - | - | - | `2ffd019e66c4` | 60 |
+| `deon6` | aws results/circle-packing/2026-08-22_circle-register-x10-15it30m/explore-deon-6 | - | - | - | `2ffd019e66c4` | 45 |
 | `nalt6` | aws results/circle-packing/2026-08-24_circle-figures-x10-15it30m/nietzsche-alt-6 | - | - | - | `2d59f02c64cc` | 0 |
 | `smv16_6` | jason-mbp _archive 2026-08-26_circle-smframe-4x10-15it30m/explore-sm-v16-6 | - | - | - | `b58b0c619a67` | 0 |
 | `cvirt7` | jason-mbp _archive 2026-08-22_circle-register-x10-15it30m/conservative-virt-7 | - | - | - | `716aa29ec11f` | 0 |
-| `anchor6` | jason-mbp _archive 2026-08-19_circle-bulletcount-x10-12it30m/anchor-6 | - | - | - | `bab7b669d06a` | 0 |
-| `anchor1` | jason-mbp _archive 2026-08-19_circle-bulletcount-x10-12it30m/anchor-1 | - | - | - | `319de73d2ce7` | 9 |
-| `b6x2_1` | jason-mbp _archive 2026-08-19_circle-bulletcount-x10-12it30m/6bullets-2xlength-1 | - | - | - | `51078242d9e3` | 0 |
-| `b9_5` | jason-mbp _archive 2026-08-19_circle-bulletcount-x10-12it30m-b/9bullets-5 | - | - | - | `7ad13997ec9a` | 0 |
+| `anchor6` | jason-mbp _archive 2026-08-19_circle-bulletcount-x10-12it30m/anchor-6 | - | - | - | `bab7b669d06a` | 14 |
+| `anchor1` | jason-mbp _archive 2026-08-19_circle-bulletcount-x10-12it30m/anchor-1 | - | - | - | `319de73d2ce7` | 17 |
+| `b6x2_1` | jason-mbp _archive 2026-08-19_circle-bulletcount-x10-12it30m/6bullets-2xlength-1 | - | - | - | `51078242d9e3` | 1 |
+| `b9_5` | jason-mbp _archive 2026-08-19_circle-bulletcount-x10-12it30m-b/9bullets-5 | - | - | - | `7ad13997ec9a` | 4 |
 | `plain1` | aws results/circle-packing/2026-08-23_circle-plain-b/explore-plain-1 | - | - | - | `9a9b0f34c82a` | 0 |
 | `none3` | aws results/circle-packing/2026-09-15_circle-6arm-v14-probefix-x10/none-3 | none-v14.md | c16b7ffb | 4.656 | `2d43ecf819d6` | 0 |
 | `uv15pf7` | universalism-v15-probefix-7 (jason-mbp _archive 2026-09-14_universalism-v15-probefix-x10) | - | - | - | `754172099953` | 0 |
@@ -104,7 +104,7 @@ SI-v2 run (values arm and brief noted below); the solver files and the sweep too
 | `tv14pf9` | transcendence-v14-probefix-9 (jason-mbp _archive 2026-09-15_transcendence-v14-probefix-x10) | - | - | - | `20e1ea5e8f02` | 0 |
 | `deon10` | explore-deon-10 (aws 2026-08-22_circle-register-x10-15it30m) | - | - | - | `002595ff8cbd` | 0 |
 | `sm2` | explore-sm-2 (aws 2026-08-17_circle-sm-x10-20it30m) | - | - | - | `054deb4d6118` | 0 |
-| `sm7` | explore-sm-7 (aws 2026-08-17_circle-sm-x10-20it30m) | - | - | - | `47ac76f6d3fd` | 12 |
+| `sm7` | explore-sm-7 (aws 2026-08-17_circle-sm-x10-20it30m) | - | - | - | `47ac76f6d3fd` | 2 |
 | `v2enh5` | circle-packing-v2 enhancement-v15-5 (aws 2026-09-16_circle-v2-enh15-x10) | - | - | - | `b94f3cc37cbf` | 0 |
 | `v2exp8` | circle-packing-v2 explore-8 (aws 2026-09-16_circle-v2-8arm-x10) | - | - | - | `38618042a9f2` | 0 |
 | `smr27` | circle-packing-sota solver-sm-radical-v6-n27 pack.search (adapter) | - | - | - | `82182c73b8e2` | 0 |
@@ -119,7 +119,7 @@ SI-v2 run (values arm and brief noted below); the solver files and the sweep too
 | `m_ove5_0817` | jason-mbp:2026-08-17_circle-6v-x5-20it30m-b/overfit-5 | - | - | - | `1875b6a54bc8` | 0 |
 | `m_mac4_0824` | jason-mbp:2026-08-24_circle-figures-x10-15it30m/machiavelli-4 | - | - | - | `1f982cb50225` | 0 |
 | `m_hin9_0818` | jason-mbp:2026-08-18_circle-hint-v10-x10-12it30m/hint-9 | - | - | - | `5f4e69e2f30f` | 0 |
-| `consplai9_0823plainb` | main:2026-08-23_circle-plain-b/conservative-plain-9 | - | - | - | `ae1ad849a862` | 6 |
+| `consplai9_0823plainb` | main:2026-08-23_circle-plain-b/conservative-plain-9 | - | - | - | `ae1ad849a862` | 0 |
 | `9bul6_0819bulletcoun` | main:2026-08-19_circle-bulletcount-x10-12it30m-b/9bullets-6 | - | - | - | `98d355675bc4` | 0 |
 | `conssmv141_0826smframe` | main:2026-08-26_circle_smframe_4x10_15it30m/conservative-sm-v14-1 | - | - | - | `44004fa5e17d` | 0 |
 | `expl6_09156armv14pro` | main:2026-09-15_circle-6arm-v14-probefix-x10/explore-6 | - | - | - | `ea126a00f444` | 0 |
@@ -141,6 +141,7 @@ Per-solver sweep statistics (mean digits vs the live table by N band, unique bes
 
 | solver | jobs | ok | feasible | strict | mean digits vs live | n at best (±1e-9) | unique best | improved over warm | beats live | digits 1-25 | digits 26-50 | digits 51-75 | digits 76-100 |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 9bul1_0819bulletcoun | 12 | 12 | 12 | 12 | 7.000 | 11 | 0 | 1 | 0 | - | - | 7.00 | - |
 | 9bul2_0819bulletcoun | 30 | 30 | 30 | 30 | 5.504 | 15 | 0 | 1 | 0 | - | 5.16 | 7.00 | - |
 | 9bul6_0819bulletcoun | 30 | 30 | 30 | 30 | 6.285 | 11 | 0 | 1 | 0 | - | 4.83 | 7.00 | - |
 | anchor1 | 532 | 532 | 532 | 500 | 5.362 | 179 | 0 | 68 | 15 | - | 7.00 | 6.62 | 6.63 |
@@ -155,17 +156,21 @@ Per-solver sweep statistics (mean digits vs the live table by N band, unique bes
 | expl10_08172v | 30 | 30 | 30 | 30 | 5.925 | 19 | 0 | 1 | 0 | - | 5.83 | 7.00 | - |
 | expl1_08276armv14 | 30 | 30 | 30 | 30 | 6.276 | 20 | 0 | 1 | 0 | - | 6.49 | 7.00 | - |
 | expl6_09156armv14pro | 30 | 30 | 30 | 30 | 6.044 | 18 | 0 | 2 | 0 | - | 5.39 | 7.00 | - |
-| expl7_08276armv14 | 21 | 21 | 21 | 21 | 6.412 | 0 | 0 | 1 | 0 | - | 5.87 | 7.00 | - |
+| expl7_08276armv14 | 30 | 30 | 30 | 30 | 5.722 | 0 | 0 | 1 | 0 | - | 4.64 | 7.00 | - |
 | explutil8_0822register | 30 | 30 | 30 | 30 | 5.876 | 18 | 0 | 1 | 0 | - | 5.18 | 7.00 | - |
 | hint2_0818hintv10 | 30 | 30 | 30 | 30 | 5.804 | 17 | 0 | 1 | 0 | - | 5.87 | 7.00 | - |
+| m_6bu5_0819 | 30 | 30 | 30 | 30 | 5.499 | 0 | 0 | 1 | 0 | - | 5.30 | 7.00 | - |
+| m_enhv1410_0916 | 30 | 30 | 30 | 30 | 5.840 | 17 | 0 | 1 | 0 | - | 5.30 | 7.00 | - |
 | m_hin9_0818 | 30 | 30 | 30 | 30 | 5.711 | 17 | 0 | 1 | 0 | - | 4.52 | 7.00 | - |
 | m_mac4_0824 | 30 | 30 | 30 | 0 | 5.960 | 19 | 0 | 1 | 0 | - | 5.93 | 7.00 | - |
 | m_ove5_0817 | 30 | 30 | 30 | 30 | 6.374 | 23 | 0 | 1 | 0 | - | 5.77 | 7.00 | - |
+| mach1_0824figures | 7 | 7 | 7 | 6 | 7.000 | 6 | 0 | 0 | 0 | - | - | 7.00 | - |
 | mast1_08276armv14 | 30 | 30 | 30 | 30 | 5.881 | 18 | 0 | 1 | 0 | - | 5.27 | 7.00 | - |
-| nalt6 | 1075 | 1075 | 1075 | 1075 | 5.711 | 399 | 0 | 206 | 19 | 7.00 | 7.00 | 7.00 | 7.00 |
-| nietsmv148_0828nietzscheg | 12 | 12 | 12 | 12 | 7.000 | 11 | 0 | 1 | 0 | - | - | 7.00 | - |
+| nalt6 | 1075 | 1075 | 1075 | 1075 | 5.711 | 402 | 0 | 206 | 19 | 7.00 | 7.00 | 7.00 | 7.00 |
+| nietsmv148_0828nietzscheg | 30 | 30 | 30 | 30 | 5.626 | 16 | 0 | 1 | 0 | - | 5.27 | 7.00 | - |
 | none3 | 442 | 442 | 442 | 442 | 4.425 | 77 | 0 | 30 | 16 | - | 7.00 | 6.52 | 6.86 |
 | none7 | 893 | 881 | 893 | 893 | 5.861 | 424 | 0 | 115 | 17 | 7.00 | 7.00 | 6.36 | 6.86 |
+| oversm5_08176v | 30 | 30 | 30 | 30 | 5.906 | 18 | 0 | 1 | 0 | - | 5.76 | 7.00 | - |
 | plain1 | 585 | 583 | 585 | 585 | 4.855 | 179 | 0 | 47 | 13 | 7.00 | 7.00 | 6.88 | 6.48 |
 | sm2 | 293 | 293 | 293 | 287 | 4.988 | 107 | 0 | 36 | 19 | - | - | 7.00 | 7.00 |
 | sm7 | 161 | 161 | 161 | 161 | 5.485 | 60 | 0 | 36 | 19 | - | - | 7.00 | 7.00 |
@@ -181,9 +186,10 @@ Per-solver sweep statistics (mean digits vs the live table by N band, unique bes
 | tv16ob6 | 1003 | 1003 | 1003 | 1003 | 6.116 | 468 | 0 | 267 | 19 | 7.00 | 7.00 | 7.00 | 7.00 |
 | tv16pf1 | 109 | 109 | 109 | 108 | 5.154 | 46 | 0 | 17 | 19 | - | - | 7.00 | 7.00 |
 | tv16pf2 | 121 | 121 | 121 | 120 | 5.432 | 45 | 0 | 18 | 19 | - | - | 7.00 | 7.00 |
-| univv15prob3_0914universalimbp | 12 | 12 | 12 | 12 | 7.000 | 11 | 0 | 1 | 0 | - | - | 7.00 | - |
+| univv15prob2_0914universalimbp | 12 | 12 | 12 | 12 | 7.000 | 11 | 0 | 1 | 0 | - | - | 7.00 | - |
+| univv15prob3_0914universalimbp | 30 | 30 | 30 | 30 | 5.379 | 14 | 0 | 1 | 0 | - | 4.09 | 7.00 | - |
 | uv15pf7 | 100 | 100 | 100 | 100 | 5.531 | 47 | 0 | 18 | 19 | - | - | 7.00 | 7.00 |
-| v2enh5 | 316 | 316 | 316 | 316 | 5.610 | 157 | 0 | 57 | 19 | - | - | 7.00 | 7.00 |
+| v2enh5 | 316 | 316 | 316 | 316 | 5.610 | 158 | 0 | 57 | 19 | - | - | 7.00 | 7.00 |
 | v2exp8 | 116 | 116 | 116 | 0 | 5.108 | 47 | 0 | 17 | 19 | - | - | 7.00 | 7.00 |
 
 
