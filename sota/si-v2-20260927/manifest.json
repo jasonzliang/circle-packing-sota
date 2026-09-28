@@ -6,11 +6,12 @@
  "rule": "strictly feasible at tol 0 (wall and pairwise slack >= 0 in double precision) AND sum_r > record + 1e-9 (verify_and_compare.WIN_EPS)",
  "counts": {
   "exported": 100,
-  "WIN": 18,
-  "tie": 82,
+  "WIN": 19,
+  "tie": 81,
   "below": 0
  },
  "wins": [
+  63,
   66,
   78,
   79,
@@ -93,7 +94,6 @@
   60,
   61,
   62,
-  63,
   64,
   65,
   67,
@@ -1667,28 +1667,28 @@
    }
   },
   "63": {
-   "sum_r": 4.155766324149243,
+   "sum_r": 4.155808089345866,
    "record": 4.155766324151,
-   "margin": -1.7568169141668477e-12,
-   "verdict": "tie",
-   "min_wall_slack": 4.299338662860919e-14,
-   "min_pair_slack": 1.0712264408851979e-13,
-   "min_r": 0.042790326924556615,
-   "pck_sha256": "93383000049540ce2dc1363e28ee7fd495576460a2ef51ad0c914c10422cafaf",
+   "margin": 4.1765194866094646e-05,
+   "verdict": "WIN",
+   "min_wall_slack": 1.0123846205800646e-13,
+   "min_pair_slack": 2.0000667788622195e-13,
+   "min_r": 0.04280578828908106,
+   "pck_sha256": "91d2a395b5e73b73916f376649fbb700aef208ab0127b4b16030a3f0f825983e",
    "provenance": {
     "n": 63,
-    "sum_r": 4.155766324149243,
+    "sum_r": 4.155808089345866,
     "record_live": 4.155766324151,
-    "margin": -1.7568169141668477e-12,
+    "margin": 4.1765194866094646e-05,
     "source": "sweep",
-    "solver": "b6x2_1",
+    "solver": "tv14pf6",
     "mode": "nbr",
-    "seed": 25,
-    "job": "roundE/jobs/b6x2_1/nbr/n063_s25.json",
+    "seed": 42,
+    "job": "roundG/jobs/tv14pf6/nbr/n063_s42.json",
     "warm_path": null,
-    "label": "SI-v2 sweep b6x2_1 seed 25 nbr",
-    "solver_origin": "jason-mbp _archive 2026-08-19_circle-bulletcount-x10-12it30m/6bullets-2xlength-1",
-    "solver_sha256": "51078242d9e3e20bc43497c2fa8344666b7570002378111205e523babb938b82"
+    "label": "SI-v2 sweep tv14pf6 seed 42 nbr",
+    "solver_origin": "jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v14-probefix-x10/transcendence-v14-probefix-6",
+    "solver_sha256": "4498fcdd171624bdce5d6935ec007691c66fcef5067b6f3ccf504991ffa3722c"
    }
   },
   "64": {
