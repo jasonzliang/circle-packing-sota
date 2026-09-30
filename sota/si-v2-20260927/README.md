@@ -5,7 +5,7 @@ LLM-evolved circle-packing solvers from the self-improvement-v2 (SI-v2) `circle-
 from every packing those runs ever stored. Compared against the Packomania `csqv` table
 **retrieved 2026-09-27** (`sota/packomania/history/packomania_csqv_2026-09-27.json`): **19 WIN / 81 tie / 0 below**.
 
-Sweep campaign status at 2026-09-30 17:34 UTC: 36008 jobs aggregated from phase1, roundA, roundB, roundC, roundD, roundE, roundF, roundG, roundH, roundI, roundJ, roundK, roundL, roundP1, roundS0, roundS1, roundS2, roundS3, roundS4, roundS5, roundS6, roundS7, roundT1, roundT2, roundT3, roundU1, roundU10, roundU11, roundU12, roundU13, roundU2, roundU3, roundU4, roundU5, roundU6, roundU7, roundU8, roundU9.
+Sweep campaign status at 2026-09-30 17:44 UTC: 36107 jobs aggregated from phase1, roundA, roundB, roundC, roundD, roundE, roundF, roundG, roundH, roundI, roundJ, roundK, roundL, roundP1, roundS0, roundS1, roundS2, roundS3, roundS4, roundS5, roundS6, roundS7, roundT1, roundT2, roundT3, roundU1, roundU10, roundU11, roundU12, roundU13, roundU2, roundU3, roundU4, roundU5, roundU6, roundU7, roundU8, roundU9.
 
 This directory is regenerated automatically by the sweep campaign; every number in it is recomputed
 from the `.pck` coordinates at each update. Read *Margins, honestly* before quoting any of it.
@@ -82,17 +82,17 @@ SI-v2 run (values arm and brief noted below); the solver files and the sweep too
 
 | key | origin run | values file | values md5 | held-out endpoint | solver sha256 | packings |
 |---|---|---|---|---:|---|---:|
-| `tv14pf6` | jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v14-probefix-x10/transcendence-v14-probefix-6 | universalism-v14.md | 81dc2151 | 6.744 | `4498fcdd1716` | 4 |
+| `tv14pf6` | jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v14-probefix-x10/transcendence-v14-probefix-6 | universalism-v14.md | 81dc2151 | 6.744 | `4498fcdd1716` | 1 |
 | `tv16ob6` | jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v16-oldbrief-x10/transcendence-v16-oldbrief-6 | transcendence-v16.md | f67e211e | void | `64209a4d5b52` | 0 |
 | `none7` | aws results/circle-packing/2026-09-15_circle-6arm-v14-probefix-x10/none-7 | none-v14.md | c16b7ffb | 6.355 | `08e14f9cbf06` | 0 |
 | `tv14ob9` | jason-mbp results/circle-packing/2026-09-15_transcendence-v14-oldbrief-x10/transcendence-v14-9 | universalism-v14.md | 81dc2151 | 6.287 | `84be19a746c5` | 1 |
 | `smv16_10` | aws results/circle-packing/2026-08-26_circle_smframe_4x10_15it30m/explore-sm-v16-10 | - | - | - | `99ee426845af` | 0 |
-| `deon6` | aws results/circle-packing/2026-08-22_circle-register-x10-15it30m/explore-deon-6 | - | - | - | `2ffd019e66c4` | 20 |
+| `deon6` | aws results/circle-packing/2026-08-22_circle-register-x10-15it30m/explore-deon-6 | - | - | - | `2ffd019e66c4` | 0 |
 | `nalt6` | aws results/circle-packing/2026-08-24_circle-figures-x10-15it30m/nietzsche-alt-6 | - | - | - | `2d59f02c64cc` | 0 |
 | `smv16_6` | jason-mbp _archive 2026-08-26_circle-smframe-4x10-15it30m/explore-sm-v16-6 | - | - | - | `b58b0c619a67` | 0 |
 | `cvirt7` | jason-mbp _archive 2026-08-22_circle-register-x10-15it30m/conservative-virt-7 | - | - | - | `716aa29ec11f` | 0 |
 | `anchor6` | jason-mbp _archive 2026-08-19_circle-bulletcount-x10-12it30m/anchor-6 | - | - | - | `bab7b669d06a` | 0 |
-| `anchor1` | jason-mbp _archive 2026-08-19_circle-bulletcount-x10-12it30m/anchor-1 | - | - | - | `319de73d2ce7` | 2 |
+| `anchor1` | jason-mbp _archive 2026-08-19_circle-bulletcount-x10-12it30m/anchor-1 | - | - | - | `319de73d2ce7` | 1 |
 | `b6x2_1` | jason-mbp _archive 2026-08-19_circle-bulletcount-x10-12it30m/6bullets-2xlength-1 | - | - | - | `51078242d9e3` | 0 |
 | `b9_5` | jason-mbp _archive 2026-08-19_circle-bulletcount-x10-12it30m-b/9bullets-5 | - | - | - | `7ad13997ec9a` | 0 |
 | `plain1` | aws results/circle-packing/2026-08-23_circle-plain-b/explore-plain-1 | - | - | - | `9a9b0f34c82a` | 0 |
@@ -187,16 +187,16 @@ Per-solver sweep statistics (mean digits vs the live table by N band, unique bes
 | consplai9_0823plainb | 1253 | 1253 | 1253 | 1081 | 5.926 | 564 | 0 | 303 | 19 | - | 7.00 | 7.00 | 6.80 |
 | conssmv141_0826smframe | 298 | 298 | 298 | 298 | 5.614 | 116 | 0 | 1 | 0 | - | 6.82 | 7.00 | - |
 | cvirt7 | 370 | 370 | 370 | 370 | 4.051 | 52 | 0 | 27 | 16 | - | 7.00 | 7.00 | 6.60 |
-| deon10 | 568 | 568 | 568 | 568 | 5.659 | 251 | 0 | 55 | 19 | - | 6.86 | 7.00 | 7.00 |
+| deon10 | 569 | 569 | 569 | 569 | 5.655 | 251 | 0 | 55 | 19 | - | 6.86 | 7.00 | 7.00 |
 | deon6 | 837 | 837 | 837 | 837 | 5.348 | 413 | 0 | 40 | 16 | 7.00 | 7.00 | 6.64 | 6.79 |
 | expl10_08172v | 298 | 298 | 298 | 298 | 5.779 | 124 | 0 | 1 | 0 | - | 6.87 | 7.00 | - |
-| expl1_08276armv14 | 596 | 596 | 596 | 596 | 5.888 | 238 | 0 | 69 | 12 | - | 6.97 | 7.00 | 6.10 |
+| expl1_08276armv14 | 598 | 598 | 598 | 598 | 5.887 | 238 | 0 | 70 | 12 | - | 6.97 | 7.00 | 6.10 |
 | expl6_09156armv14pro | 298 | 298 | 298 | 298 | 5.694 | 107 | 0 | 2 | 0 | - | 6.72 | 7.00 | - |
 | expl7_08276armv14 | 265 | 265 | 265 | 265 | 5.122 | 0 | 0 | 1 | 0 | - | 6.70 | 7.00 | - |
 | expl8_08276armv14 | 265 | 265 | 265 | 265 | 5.925 | 0 | 0 | 1 | 0 | - | 6.97 | 7.00 | - |
 | explutil8_0822register | 287 | 287 | 287 | 287 | 5.835 | 121 | 0 | 3 | 0 | - | 6.86 | 7.00 | - |
 | hint2_0818hintv10 | 287 | 287 | 287 | 286 | 5.846 | 117 | 0 | 1 | 0 | - | 6.74 | 7.00 | - |
-| hpolish | 71 | 71 | 71 | 71 | 7.000 | 59 | 0 | 17 | 19 | - | 7.00 | 7.00 | 7.00 |
+| hpolish | 96 | 96 | 96 | 96 | 7.000 | 83 | 0 | 17 | 19 | 7.00 | 7.00 | 7.00 | 7.00 |
 | m_6bu4_0819 | 223 | 223 | 223 | 223 | 5.546 | 80 | 0 | 1 | 0 | - | 6.71 | 7.00 | - |
 | m_6bu5_0819 | 184 | 184 | 184 | 184 | 5.726 | 0 | 0 | 2 | 0 | - | 6.86 | 7.00 | - |
 | m_9bu3_0819 | 298 | 298 | 298 | 140 | 5.503 | 118 | 0 | 1 | 0 | - | 7.00 | 7.00 | - |
@@ -206,11 +206,11 @@ Per-solver sweep statistics (mean digits vs the live table by N band, unique bes
 | m_ove5_0817 | 412 | 412 | 412 | 412 | 5.957 | 208 | 0 | 2 | 0 | - | 6.67 | 7.00 | - |
 | mach1_0824figures | 316 | 316 | 316 | 222 | 5.789 | 126 | 0 | 4 | 0 | - | 6.88 | 7.00 | - |
 | mast1_08276armv14 | 287 | 287 | 287 | 287 | 5.903 | 124 | 0 | 3 | 0 | - | 6.73 | 7.00 | - |
-| nalt6 | 2459 | 2459 | 2459 | 2459 | 5.937 | 1007 | 0 | 587 | 19 | 7.00 | 7.00 | 7.00 | 7.00 |
+| nalt6 | 2463 | 2463 | 2463 | 2463 | 5.938 | 1011 | 0 | 587 | 19 | 7.00 | 7.00 | 7.00 | 7.00 |
 | nietsmv148_0828nietzscheg | 223 | 223 | 223 | 223 | 5.537 | 81 | 0 | 2 | 0 | - | 6.75 | 7.00 | - |
 | nietv157_0828nietzscheg | 223 | 223 | 223 | 223 | 5.176 | 70 | 0 | 3 | 0 | - | 6.52 | 7.00 | - |
 | none3 | 491 | 491 | 491 | 491 | 4.371 | 81 | 0 | 30 | 16 | - | 7.00 | 6.52 | 6.86 |
-| none7 | 1159 | 1147 | 1159 | 1159 | 5.740 | 494 | 0 | 206 | 18 | 7.00 | 7.00 | 6.49 | 6.86 |
+| none7 | 1162 | 1150 | 1162 | 1162 | 5.741 | 496 | 0 | 206 | 18 | 7.00 | 7.00 | 6.49 | 6.86 |
 | oversm5_08176v | 298 | 298 | 298 | 298 | 5.437 | 93 | 0 | 1 | 0 | - | 6.52 | 7.00 | - |
 | plain1 | 585 | 583 | 585 | 585 | 4.855 | 179 | 0 | 47 | 13 | 7.00 | 7.00 | 6.88 | 6.48 |
 | sm2 | 1460 | 1460 | 1460 | 1454 | 5.142 | 532 | 0 | 267 | 19 | - | 7.00 | 7.00 | 7.00 |
@@ -223,9 +223,9 @@ Per-solver sweep statistics (mean digits vs the live table by N band, unique bes
 | tranv16prob6_0914transcendembp | 265 | 265 | 265 | 265 | 5.623 | 101 | 0 | 3 | 0 | - | 6.88 | 7.00 | - |
 | tv14ob1 | 121 | 121 | 121 | 121 | 5.034 | 49 | 0 | 18 | 19 | - | - | 7.00 | 7.00 |
 | tv14ob9 | 1043 | 1043 | 1043 | 849 | 5.682 | 421 | 9 | 59 | 11 | 7.00 | 7.00 | 6.65 | 6.26 |
-| tv14pf6 | 5014 | 5014 | 5014 | 4984 | 6.332 | 2978 | 0 | 1515 | 19 | 7.00 | 7.00 | 7.00 | 7.00 |
+| tv14pf6 | 5032 | 5032 | 5032 | 5002 | 6.332 | 2993 | 0 | 1515 | 19 | 7.00 | 7.00 | 7.00 | 7.00 |
 | tv14pf9 | 116 | 116 | 116 | 110 | 5.234 | 50 | 0 | 18 | 19 | - | - | 7.00 | 7.00 |
-| tv16ob6 | 3412 | 3412 | 3412 | 3412 | 6.134 | 1587 | 0 | 1006 | 19 | 7.00 | 7.00 | 7.00 | 7.00 |
+| tv16ob6 | 3420 | 3420 | 3420 | 3420 | 6.135 | 1592 | 0 | 1010 | 19 | 7.00 | 7.00 | 7.00 | 7.00 |
 | tv16pf1 | 109 | 109 | 109 | 108 | 5.154 | 46 | 0 | 17 | 19 | - | - | 7.00 | 7.00 |
 | tv16pf2 | 121 | 121 | 121 | 120 | 5.432 | 45 | 0 | 18 | 19 | - | - | 7.00 | 7.00 |
 | univv15prob2_0914universalimbp | 30 | 30 | 30 | 30 | 5.175 | 13 | 0 | 1 | 0 | - | 4.03 | 7.00 | - |
@@ -235,38 +235,38 @@ Per-solver sweep statistics (mean digits vs the live table by N band, unique bes
 | v2exp8 | 116 | 116 | 116 | 0 | 5.108 | 47 | 0 | 17 | 19 | - | - | 7.00 | 7.00 |
 | w2_0817circle2vx1_conservative | 55 | 55 | 55 | 55 | 6.135 | 0 | 0 | 16 | 19 | - | - | 7.00 | 7.00 |
 | w2_0817circle2vx1_conservative_195e | 62 | 62 | 62 | 62 | 5.724 | 37 | 0 | 16 | 19 | - | - | 7.00 | 7.00 |
-| w2_0817circle6vx5_generalize1 | 68 | 68 | 68 | 68 | 5.583 | 38 | 0 | 18 | 19 | - | - | 7.00 | 7.00 |
-| w2_0817circle6vx5_generalize2 | 78 | 78 | 78 | 78 | 5.525 | 41 | 0 | 17 | 19 | - | - | 7.00 | 7.00 |
-| w2_0817circlesmx1_exploresm1 | 69 | 69 | 69 | 69 | 5.704 | 38 | 0 | 18 | 19 | - | - | 7.00 | 7.00 |
-| w2_0817circlesmx1_exploresm10 | 64 | 64 | 64 | 64 | 5.705 | 38 | 0 | 16 | 19 | - | - | 7.00 | 7.00 |
-| w2_0818circlehint_hint10 | 74 | 74 | 74 | 74 | 5.858 | 41 | 0 | 19 | 19 | - | - | 7.00 | 7.00 |
-| w2_0818circlehint_hint8 | 74 | 74 | 74 | 74 | 5.908 | 43 | 0 | 18 | 19 | - | - | 7.00 | 7.00 |
+| w2_0817circle6vx5_generalize1 | 70 | 70 | 70 | 70 | 5.514 | 38 | 0 | 18 | 19 | - | - | 7.00 | 7.00 |
+| w2_0817circle6vx5_generalize2 | 79 | 79 | 79 | 79 | 5.497 | 41 | 0 | 17 | 19 | - | - | 7.00 | 7.00 |
+| w2_0817circlesmx1_exploresm1 | 70 | 70 | 70 | 70 | 5.678 | 38 | 0 | 18 | 19 | - | - | 7.00 | 7.00 |
+| w2_0817circlesmx1_exploresm10 | 65 | 65 | 65 | 65 | 5.669 | 38 | 0 | 16 | 19 | - | - | 7.00 | 7.00 |
+| w2_0818circlehint_hint10 | 75 | 75 | 75 | 75 | 5.833 | 41 | 0 | 20 | 19 | - | - | 7.00 | 7.00 |
+| w2_0818circlehint_hint8 | 75 | 75 | 75 | 75 | 5.882 | 43 | 0 | 18 | 19 | - | - | 7.00 | 7.00 |
 | w2_0819circlebull_2xlength3 | 55 | 55 | 55 | 55 | 6.094 | 0 | 0 | 16 | 19 | - | - | 7.00 | 7.00 |
-| w2_0819circlebull_2xlength4 | 64 | 64 | 64 | 64 | 5.662 | 36 | 0 | 16 | 19 | - | - | 7.00 | 7.00 |
-| w2_0819circlebull_2xlength8 | 75 | 75 | 75 | 75 | 5.839 | 42 | 0 | 17 | 19 | - | - | 7.00 | 7.00 |
-| w2_0819circlebull_anchor5 | 80 | 80 | 80 | 79 | 5.897 | 46 | 0 | 19 | 19 | - | - | 7.00 | 7.00 |
-| w2_0823circleplai_exploreplain | 207 | 207 | 207 | 207 | 6.072 | 122 | 0 | 37 | 19 | - | - | 7.00 | 7.00 |
-| w2_0823circleplai_exploreplain_e604 | 73 | 73 | 73 | 73 | 5.870 | 43 | 0 | 23 | 19 | - | - | 7.00 | 7.00 |
+| w2_0819circlebull_2xlength4 | 65 | 65 | 65 | 65 | 5.626 | 36 | 0 | 16 | 19 | - | - | 7.00 | 7.00 |
+| w2_0819circlebull_2xlength8 | 76 | 76 | 76 | 76 | 5.809 | 42 | 0 | 17 | 19 | - | - | 7.00 | 7.00 |
+| w2_0819circlebull_anchor5 | 81 | 81 | 81 | 80 | 5.873 | 46 | 0 | 19 | 19 | - | - | 7.00 | 7.00 |
+| w2_0823circleplai_exploreplain | 212 | 212 | 212 | 212 | 6.062 | 125 | 0 | 37 | 19 | - | - | 7.00 | 7.00 |
+| w2_0823circleplai_exploreplain_e604 | 74 | 74 | 74 | 74 | 5.843 | 43 | 0 | 23 | 19 | - | - | 7.00 | 7.00 |
 | w2_0824circlefigu_buddha5 | 55 | 55 | 55 | 50 | 6.136 | 38 | 0 | 20 | 19 | - | - | 7.00 | 7.00 |
-| w2_0824circlefigu_machiavelli7 | 73 | 73 | 73 | 73 | 5.770 | 41 | 0 | 16 | 19 | - | - | 7.00 | 7.00 |
+| w2_0824circlefigu_machiavelli7 | 74 | 74 | 74 | 74 | 5.740 | 41 | 0 | 16 | 19 | - | - | 7.00 | 7.00 |
 | w2_0825circlefigu_nietzschev15 | 55 | 55 | 55 | 50 | 5.791 | 38 | 0 | 17 | 19 | - | - | 7.00 | 7.00 |
-| w2_0825circlefigu_placebo3 | 78 | 78 | 78 | 78 | 5.745 | 45 | 0 | 17 | 19 | - | - | 7.00 | 7.00 |
+| w2_0825circlefigu_placebo3 | 79 | 79 | 79 | 79 | 5.761 | 46 | 0 | 18 | 19 | - | - | 7.00 | 7.00 |
 | w2_0826circlesmfr_conservative | 55 | 55 | 55 | 55 | 6.038 | 0 | 0 | 18 | 19 | - | - | 7.00 | 7.00 |
 | w2_0826circlesmfr_exploresmv14 | 62 | 62 | 62 | 62 | 5.953 | 37 | 0 | 18 | 19 | - | - | 7.00 | 7.00 |
-| w2_0828circleniet_nietzschev14 | 66 | 66 | 66 | 66 | 5.667 | 39 | 0 | 19 | 19 | - | - | 7.00 | 7.00 |
+| w2_0828circleniet_nietzschev14 | 67 | 67 | 67 | 67 | 5.628 | 39 | 0 | 19 | 19 | - | - | 7.00 | 7.00 |
 | w2_0828circleniet_nietzschev15 | 55 | 55 | 55 | 50 | 6.234 | 38 | 0 | 20 | 19 | - | - | 7.00 | 7.00 |
-| w2_0906circleenha_enhancementv | 204 | 204 | 204 | 204 | 6.168 | 87 | 0 | 35 | 19 | - | - | 7.00 | 7.00 |
-| w2_0912transcende_transcendenc | 219 | 219 | 219 | 219 | 4.501 | 37 | 0 | 18 | 4 | - | - | 6.51 | 4.81 |
+| w2_0906circleenha_enhancementv | 209 | 209 | 209 | 209 | 6.171 | 89 | 0 | 36 | 19 | - | - | 7.00 | 7.00 |
+| w2_0912transcende_transcendenc | 224 | 224 | 224 | 224 | 4.517 | 39 | 0 | 18 | 4 | - | - | 6.51 | 4.81 |
 | w2_0913transcende_transcendenc | 55 | 55 | 55 | 55 | 6.227 | 0 | 0 | 17 | 19 | - | - | 7.00 | 7.00 |
 | w2_0913transcende_transcendenc_e3ac | 62 | 62 | 62 | 62 | 5.703 | 36 | 0 | 16 | 19 | - | - | 7.00 | 7.00 |
 | w2_0914universali_universalism | 55 | 55 | 55 | 55 | 6.109 | 0 | 0 | 15 | 19 | - | - | 7.00 | 7.00 |
 | w2_0915circle6arm_placebo10 | 55 | 55 | 55 | 50 | 5.882 | 38 | 0 | 18 | 19 | - | - | 7.00 | 7.00 |
-| w2_0915transcende_transcendenc | 65 | 65 | 65 | 65 | 5.776 | 38 | 0 | 18 | 19 | - | - | 7.00 | 7.00 |
+| w2_0915transcende_transcendenc | 66 | 66 | 66 | 66 | 5.748 | 38 | 0 | 18 | 19 | - | - | 7.00 | 7.00 |
 | w2_0915universali_universalism | 55 | 55 | 55 | 55 | 6.137 | 36 | 0 | 17 | 19 | - | - | 7.00 | 7.00 |
-| w2_0915universali_universalism_5a62 | 69 | 69 | 69 | 69 | 5.691 | 38 | 0 | 21 | 19 | - | - | 7.00 | 7.00 |
-| w2_0916circlev28a_explore4 | 77 | 77 | 77 | 77 | 5.914 | 46 | 0 | 19 | 19 | - | - | 7.00 | 7.00 |
-| w2_0916circlev28a_explore6 | 70 | 70 | 70 | 70 | 5.641 | 40 | 0 | 16 | 19 | - | - | 7.00 | 7.00 |
-| w2_0916circlev2en_enhancementv | 204 | 204 | 204 | 204 | 6.086 | 126 | 0 | 38 | 19 | - | - | 7.00 | 7.00 |
+| w2_0915universali_universalism_5a62 | 70 | 70 | 70 | 70 | 5.656 | 38 | 0 | 21 | 19 | - | - | 7.00 | 7.00 |
+| w2_0916circlev28a_explore4 | 78 | 78 | 78 | 78 | 5.884 | 46 | 0 | 19 | 19 | - | - | 7.00 | 7.00 |
+| w2_0916circlev28a_explore6 | 71 | 71 | 71 | 71 | 5.617 | 40 | 0 | 16 | 19 | - | - | 7.00 | 7.00 |
+| w2_0916circlev2en_enhancementv | 209 | 209 | 209 | 209 | 6.094 | 130 | 0 | 40 | 19 | - | - | 7.00 | 7.00 |
 | w2_0916circlev2en_enhancementv_2761 | 55 | 55 | 55 | 55 | 6.272 | 0 | 0 | 20 | 19 | - | - | 7.00 | 7.00 |
 
 
