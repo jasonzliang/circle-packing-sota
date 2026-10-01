@@ -3,7 +3,7 @@
 **80 WIN** against the Packomania `csqv` table retrieved **2026-10-01 12:21 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 100 sizes searched.
 Only WIN packings (strictly feasible in exact rational arithmetic, `sum_r > record + 1e-9`) are published here.
 
-Extension campaign status at 2026-10-01 12:52 UTC: 2131 jobs aggregated from roundE0, roundE1, roundE2, roundE3, roundP1.
+Extension campaign status at 2026-10-01 13:02 UTC: 2210 jobs aggregated from roundE0, roundE1, roundE2, roundE3, roundP1.
 
 ## How this differs from `si-v2-20260927` (N <= 100)
 
@@ -19,7 +19,7 @@ many sizes ended tied or below, from the sweep's own aggregate.
 | BEAT | 80 |
 | tie | 20 |
 
-Closest non-winning results (within 1e-5 of the record): 104 (-1.1e-11), 105 (-1.1e-11), 106 (-8.7e-12), 108 (-4.0e-13), 109 (-6.1e-12), 110 (+4.3e-12), 113 (-1.3e-11), 114 (-1.1e-11), 121 (+2.0e-11), 124 (-1.8e-11), 127 (-5.9e-13), 128 (-1.3e-11), 149 (+9.1e-14), 150 (-1.5e-11), 151 (-1.6e-11), 161 (-1.4e-11), 169 (-1.6e-11), 170 (-2.1e-13), 171 (-1.8e-11), 199 (-3.9e-11).
+Closest non-winning results (within 1e-5 of the record): 104 (-1.1e-11), 105 (-1.1e-11), 106 (-8.7e-12), 108 (-4.0e-13), 109 (-6.1e-12), 110 (+4.3e-12), 113 (-1.3e-11), 114 (-1.1e-11), 121 (+2.1e-11), 124 (-1.8e-11), 127 (-5.9e-13), 128 (-1.3e-11), 149 (+9.1e-14), 150 (-1.5e-11), 151 (-1.6e-11), 161 (-1.4e-11), 169 (-1.6e-11), 170 (-2.1e-13), 171 (-1.8e-11), 199 (-3.9e-11).
 
 ## Wins
 
@@ -40,20 +40,20 @@ Closest non-winning results (within 1e-5 of the record): 104 (-1.1e-11), 105 (-1
 | 122 | 5.828469948565 | 5.828135840589 | +3.341e-04 | +5.73e-05 | `hpolish` self seed 0 | Wilfred Heap |
 | 123 | 5.853520686624 | 5.853393864742 | +1.268e-04 | +2.17e-05 | `hpolish` self seed 0 | Wilfred Heap |
 | 125 | 5.902676475677 | 5.902296796096 | +3.797e-04 | +6.43e-05 | `hpolish` self seed 0 | Wilfred Heap |
-| 126 | 5.927023865066 | 5.926814799439 | +2.091e-04 | +3.53e-05 | `hpolish` self seed 0 | Jean-René Denoual |
+| 126 | 5.927049561247 | 5.926814799439 | +2.348e-04 | +3.96e-05 | `tv16ob6` self seed 7301 | Jean-René Denoual |
 | 129 | 5.999378456469 | 5.998868370219 | +5.101e-04 | +8.50e-05 | `hpolish` self seed 0 | Jean-René Denoual |
 | 130 | 6.022691506144 | 6.022424077079 | +2.674e-04 | +4.44e-05 | `hpolish` self seed 0 | Jean-René Denoual |
 | 131 | 6.045071828436 | 6.044773912185 | +2.979e-04 | +4.93e-05 | `hpolish` self seed 0 | Jean-René Denoual |
 | 132 | 6.067352992248 | 6.067101865258 | +2.511e-04 | +4.14e-05 | `hpolish` self seed 0 | Jean-René Denoual |
 | 133 | 6.089430384704 | 6.089190901004 | +2.395e-04 | +3.93e-05 | `hpolish` self seed 0 | Jean-René Denoual |
 | 134 | 6.112320860066 | 6.111583027658 | +7.378e-04 | +1.21e-04 | `hpolish` self seed 0 | Jean-René Denoual |
-| 135 | 6.134955477590 | 6.133616190771 | +1.339e-03 | +2.18e-04 | `tv14pf6` self seed 7301 | Wilfred Heap |
-| 136 | 6.157057108223 | 6.156404709652 | +6.524e-04 | +1.06e-04 | `tv16ob6` self seed 7301 | Wilfred Heap |
-| 137 | 6.179880388526 | 6.179272030442 | +6.084e-04 | +9.85e-05 | `tv14pf6` self seed 7301 | Eckard Specht |
-| 138 | 6.201825638259 | 6.201196207424 | +6.294e-04 | +1.02e-04 | `tv16ob6` self seed 7301 | Jean-René Denoual |
+| 135 | 6.134955477629 | 6.133616190771 | +1.339e-03 | +2.18e-04 | `hpolish` self seed 0 | Wilfred Heap |
+| 136 | 6.157057108359 | 6.156404709652 | +6.524e-04 | +1.06e-04 | `hpolish` self seed 0 | Wilfred Heap |
+| 137 | 6.179880388540 | 6.179272030442 | +6.084e-04 | +9.85e-05 | `hpolish` self seed 0 | Eckard Specht |
+| 138 | 6.201825638399 | 6.201196207424 | +6.294e-04 | +1.02e-04 | `hpolish` self seed 0 | Jean-René Denoual |
 | 139 | 6.225610568452 | 6.224048511183 | +1.562e-03 | +2.51e-04 | `hpolish` self seed 0 | Jean-René Denoual |
 | 140 | 6.248556124146 | 6.248286289975 | +2.698e-04 | +4.32e-05 | `hpolish` self seed 0 | Jean-René Denoual |
-| 141 | 6.271936069879 | 6.270968968004 | +9.671e-04 | +1.54e-04 | `tv16ob6` self seed 7301 | Eckard Specht |
+| 141 | 6.271936070020 | 6.270968968004 | +9.671e-04 | +1.54e-04 | `hpolish` self seed 0 | Eckard Specht |
 | 142 | 6.295445902290 | 6.293740807174 | +1.705e-03 | +2.71e-04 | `hpolish` self seed 0 | Jean-René Denoual |
 | 143 | 6.319392351687 | 6.319024034482 | +3.683e-04 | +5.83e-05 | `hpolish` self seed 0 | Eckard Specht |
 | 144 | 6.342599233865 | 6.341449107518 | +1.150e-03 | +1.81e-04 | `hpolish` self seed 0 | Jean-René Denoual |
@@ -137,20 +137,20 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 122 | 5.828469948565 | 5.828135840589 | +3.3e-04 | Wilfred Heap |
 | 123 | 5.853520686624 | 5.853393864742 | +1.3e-04 | Wilfred Heap |
 | 125 | 5.902676475677 | 5.902296796096 | +3.8e-04 | Wilfred Heap |
-| 126 | 5.927023865066 | 5.926814799439 | +2.1e-04 | Jean-René Denoual |
+| 126 | 5.927049561247 | 5.926814799439 | +2.3e-04 | Jean-René Denoual |
 | 129 | 5.999378456469 | 5.998868370219 | +5.1e-04 | Jean-René Denoual |
 | 130 | 6.022691506144 | 6.022424077079 | +2.7e-04 | Jean-René Denoual |
 | 131 | 6.045071828436 | 6.044773912185 | +3.0e-04 | Jean-René Denoual |
 | 132 | 6.067352992248 | 6.067101865258 | +2.5e-04 | Jean-René Denoual |
 | 133 | 6.089430384704 | 6.089190901004 | +2.4e-04 | Jean-René Denoual |
 | 134 | 6.112320860066 | 6.111583027658 | +7.4e-04 | Jean-René Denoual |
-| 135 | 6.134955477590 | 6.133616190771 | +1.3e-03 | Wilfred Heap |
-| 136 | 6.157057108223 | 6.156404709652 | +6.5e-04 | Wilfred Heap |
-| 137 | 6.179880388526 | 6.179272030442 | +6.1e-04 | Eckard Specht |
-| 138 | 6.201825638259 | 6.201196207424 | +6.3e-04 | Jean-René Denoual |
+| 135 | 6.134955477629 | 6.133616190771 | +1.3e-03 | Wilfred Heap |
+| 136 | 6.157057108359 | 6.156404709652 | +6.5e-04 | Wilfred Heap |
+| 137 | 6.179880388540 | 6.179272030442 | +6.1e-04 | Eckard Specht |
+| 138 | 6.201825638399 | 6.201196207424 | +6.3e-04 | Jean-René Denoual |
 | 139 | 6.225610568452 | 6.224048511183 | +1.6e-03 | Jean-René Denoual |
 | 140 | 6.248556124146 | 6.248286289975 | +2.7e-04 | Jean-René Denoual |
-| 141 | 6.271936069879 | 6.270968968004 | +9.7e-04 | Eckard Specht |
+| 141 | 6.271936070020 | 6.270968968004 | +9.7e-04 | Eckard Specht |
 | 142 | 6.295445902290 | 6.293740807174 | +1.7e-03 | Jean-René Denoual |
 | 143 | 6.319392351687 | 6.319024034482 | +3.7e-04 | Eckard Specht |
 | 144 | 6.342599233865 | 6.341449107518 | +1.2e-03 | Jean-René Denoual |
@@ -207,4 +207,4 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 
 `pck/csqv<N>.pck` (Packomania text, centred square, %.17g), `json/out<N>.json` (corner-frame sidecar), `results.csv`, `manifest.json`,
 `comparison.md` (`verify_and_compare.py compare --tol 0`). Verify any file with `python verify_and_compare.py verify pck/csqv<N>.pck`.
-Sweep: 2131 jobs over 5 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
+Sweep: 2210 jobs over 5 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
