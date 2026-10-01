@@ -1,0 +1,47 @@
+{
+ "artifact": "si-v2-20261001-n101-200",
+ "records_file": "sota/packomania/history/packomania_csqv_2026-10-01.json",
+ "records_sha256": "699870d061a7260580bc81955b6bf05c288cbd7923c346f87bbaf402f85b4bbc",
+ "records_retrieved": "2026-10-01",
+ "rule": "feasible in EXACT rational arithmetic with zero tolerance (fractions.Fraction, squared comparisons; ulp-level overlaps repaired by shrinking radii) AND sum_r > record + 1e-9 (verify_and_compare.WIN_EPS)",
+ "counts": {
+  "exported": 1,
+  "WIN": 1,
+  "tie": 0,
+  "below": 0
+ },
+ "wins": [
+  200
+ ],
+ "ties": [],
+ "below": [],
+ "per_n": {
+  "200": {
+   "sum_r": 7.4940710216545625,
+   "record": 7.493815304616,
+   "margin": 0.00025571703856286376,
+   "verdict": "WIN",
+   "min_wall_slack": 9.999778782798785e-13,
+   "min_pair_slack": 1.999969634347565e-12,
+   "min_r": 0.02533148355376125,
+   "exact_feasible": true,
+   "exact_repair_factor": 1.0,
+   "pck_sha256": "44dce85b98d47e86aae4b764028ec3a3f9ff3d2a44a4ec8959f4cffc049bc9b8",
+   "provenance": {
+    "n": 200,
+    "sum_r": 7.4940710216545625,
+    "record_live": 7.493815304616,
+    "margin": 0.00025571703856286376,
+    "source": "sweep",
+    "solver": "tv16ob6",
+    "mode": "nbr",
+    "seed": 1,
+    "job": "../cp_ext/roundE0/jobs/tv16ob6/nbr/n200_s1.json",
+    "warm_path": null,
+    "label": "SI-v2 sweep tv16ob6 seed 1 nbr",
+    "solver_origin": "jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v16-oldbrief-x10/transcendence-v16-oldbrief-6",
+    "solver_sha256": "64209a4d5b52b3b8e57344f8519645d8efb13b65e4c136da469eb16325a3d275"
+   }
+  }
+ }
+}
