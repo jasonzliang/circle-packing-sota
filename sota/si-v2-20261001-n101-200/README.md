@@ -3,7 +3,7 @@
 **82 WIN** against the Packomania `csqv` table retrieved **2026-10-01 14:28 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 100 sizes searched.
 Only WIN packings (strictly feasible in exact rational arithmetic, `sum_r > record + 1e-9`) are published here.
 
-Extension campaign status at 2026-10-01 14:59 UTC: 2868 jobs aggregated from roundE0, roundE1, roundE2, roundE3, roundE4, roundP1.
+Extension campaign status at 2026-10-01 15:08 UTC: 2936 jobs aggregated from roundE0, roundE1, roundE2, roundE3, roundE4, roundP1.
 
 ## How this differs from `si-v2-20260927` (N <= 100)
 
@@ -45,12 +45,12 @@ Closest non-winning results (within 1e-5 of the record): 104 (-1.1e-11), 105 (-1
 | 130 | 6.022691506144 | 6.022424077079 | +2.674e-04 | +4.44e-05 | `hpolish` self seed 0 | Jean-René Denoual |
 | 131 | 6.045071828436 | 6.044773912185 | +2.979e-04 | +4.93e-05 | `hpolish` self seed 0 | Jean-René Denoual |
 | 132 | 6.067352992248 | 6.067101865258 | +2.511e-04 | +4.14e-05 | `hpolish` self seed 0 | Jean-René Denoual |
-| 133 | 6.089430384704 | 6.089190901004 | +2.395e-04 | +3.93e-05 | `hpolish` self seed 0 | Jean-René Denoual |
+| 133 | 6.089538386383 | 6.089190901004 | +3.475e-04 | +5.71e-05 | `tv16ob6` self seed 7401 | Jean-René Denoual |
 | 134 | 6.112320860066 | 6.111583027658 | +7.378e-04 | +1.21e-04 | `hpolish` self seed 0 | Jean-René Denoual |
-| 135 | 6.134955477629 | 6.133616190771 | +1.339e-03 | +2.18e-04 | `hpolish` self seed 0 | Wilfred Heap |
+| 135 | 6.135034215487 | 6.133616190771 | +1.418e-03 | +2.31e-04 | `tv16ob6` self seed 7401 | Wilfred Heap |
 | 136 | 6.157057108359 | 6.156404709652 | +6.524e-04 | +1.06e-04 | `hpolish` self seed 0 | Wilfred Heap |
 | 137 | 6.179880388540 | 6.179272030442 | +6.084e-04 | +9.85e-05 | `hpolish` self seed 0 | Eckard Specht |
-| 138 | 6.201825638399 | 6.201196207424 | +6.294e-04 | +1.02e-04 | `hpolish` self seed 0 | Jean-René Denoual |
+| 138 | 6.201826321603 | 6.201196207424 | +6.301e-04 | +1.02e-04 | `tv14pf6` self seed 7401 | Jean-René Denoual |
 | 139 | 6.225610568452 | 6.224048511183 | +1.562e-03 | +2.51e-04 | `hpolish` self seed 0 | Jean-René Denoual |
 | 140 | 6.248556124146 | 6.248286289975 | +2.698e-04 | +4.32e-05 | `hpolish` self seed 0 | Jean-René Denoual |
 | 141 | 6.271936070020 | 6.270968968004 | +9.671e-04 | +1.54e-04 | `hpolish` self seed 0 | Eckard Specht |
@@ -144,12 +144,12 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 130 | 6.022691506144 | 6.022424077079 | +2.7e-04 | Jean-René Denoual |
 | 131 | 6.045071828436 | 6.044773912185 | +3.0e-04 | Jean-René Denoual |
 | 132 | 6.067352992248 | 6.067101865258 | +2.5e-04 | Jean-René Denoual |
-| 133 | 6.089430384704 | 6.089190901004 | +2.4e-04 | Jean-René Denoual |
+| 133 | 6.089538386383 | 6.089190901004 | +3.5e-04 | Jean-René Denoual |
 | 134 | 6.112320860066 | 6.111583027658 | +7.4e-04 | Jean-René Denoual |
-| 135 | 6.134955477629 | 6.133616190771 | +1.3e-03 | Wilfred Heap |
+| 135 | 6.135034215487 | 6.133616190771 | +1.4e-03 | Wilfred Heap |
 | 136 | 6.157057108359 | 6.156404709652 | +6.5e-04 | Wilfred Heap |
 | 137 | 6.179880388540 | 6.179272030442 | +6.1e-04 | Eckard Specht |
-| 138 | 6.201825638399 | 6.201196207424 | +6.3e-04 | Jean-René Denoual |
+| 138 | 6.201826321603 | 6.201196207424 | +6.3e-04 | Jean-René Denoual |
 | 139 | 6.225610568452 | 6.224048511183 | +1.6e-03 | Jean-René Denoual |
 | 140 | 6.248556124146 | 6.248286289975 | +2.7e-04 | Jean-René Denoual |
 | 141 | 6.271936070020 | 6.270968968004 | +9.7e-04 | Eckard Specht |
@@ -211,4 +211,4 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 
 `pck/csqv<N>.pck` (Packomania text, centred square, %.17g), `json/out<N>.json` (corner-frame sidecar), `results.csv`, `manifest.json`,
 `comparison.md` (`verify_and_compare.py compare --tol 0`). Verify any file with `python verify_and_compare.py verify pck/csqv<N>.pck`.
-Sweep: 2868 jobs over 6 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
+Sweep: 2936 jobs over 6 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
