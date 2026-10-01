@@ -1,9 +1,9 @@
 # si-v2-20261001-n201-300: SI-v2 solver sweep extended to N = 201..300
 
-**1 WIN** against the Packomania `csqv` table retrieved **2026-10-01 15:30 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 100 sizes searched.
+**3 WIN** against the Packomania `csqv` table retrieved **2026-10-01 15:30 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 100 sizes searched.
 Only WIN packings (strictly feasible in exact rational arithmetic, `sum_r > record + 1e-9`) are published here.
 
-Extension campaign status at 2026-10-01 15:46 UTC: 3182 jobs aggregated from roundE0, roundE1, roundE2, roundE3, roundE4, roundE5, roundP1.
+Extension campaign status at 2026-10-01 15:57 UTC: 3197 jobs aggregated from roundE0, roundE1, roundE2, roundE3, roundE4, roundE5, roundP1.
 
 ## How this differs from `si-v2-20260927` (N <= 100)
 
@@ -16,17 +16,19 @@ many sizes ended tied or below, from the sweep's own aggregate.
 
 | status at N = 201..300 (best strict sweep result vs the live table) | sizes |
 |---|---:|
-| - | 97 |
-| BEAT | 1 |
-| tie | 2 |
+| - | 92 |
+| BEAT | 3 |
+| tie | 5 |
 
-Closest non-winning results (within 1e-5 of the record): 299 (-4.1e-11), 300 (-8.9e-11).
+Closest non-winning results (within 1e-5 of the record): 294 (-5.7e-11), 296 (-7.9e-11), 297 (-5.5e-11), 299 (-4.1e-11), 300 (-8.9e-11).
 
 ## Wins
 
 | N | ours Σr | record | Δ (abs) | Δ (rel) | found by | record holder |
 |---:|---|---|---:|---:|---|---|
-| 298 | 9.161869537967 | 9.161800772953 | +6.877e-05 | +7.51e-06 | `tv16ob6` self seed 7501 | Jean-René Denoual |
+| 293 | 9.088258641565 | 9.088041361012 | +2.173e-04 | +2.39e-05 | `tv14pf6` self seed 7501 | Jean-René Denoual |
+| 295 | 9.117257272531 | 9.116204790462 | +1.052e-03 | +1.15e-04 | `tv14pf6` self seed 7501 | Jean-René Denoual |
+| 298 | 9.161869538266 | 9.161800772953 | +6.877e-05 | +7.51e-06 | `hpolish` self seed 0 | Jean-René Denoual |
 
 ## All records beaten, N = 1..300, against the live table (2026-10-01 15:30 UTC)
 
@@ -126,10 +128,12 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 198 | 7.456737445837 | 7.454135017058 | +2.6e-03 | Jean-René Denoual |
 | 199 | 7.475687680419 | 7.475311776105 | +3.8e-04 | Jean-René Denoual |
 | 200 | 7.494071021855 | 7.493815304616 | +2.6e-04 | Jean-René Denoual |
-| 298 | 9.161869537967 | 9.161800772953 | +6.9e-05 | Jean-René Denoual |
+| 293 | 9.088258641565 | 9.088041361012 | +2.2e-04 | Jean-René Denoual |
+| 295 | 9.117257272531 | 9.116204790462 | +1.1e-03 | Jean-René Denoual |
+| 298 | 9.161869538266 | 9.161800772953 | +6.9e-05 | Jean-René Denoual |
 
 ## Files
 
 `pck/csqv<N>.pck` (Packomania text, centred square, %.17g), `json/out<N>.json` (corner-frame sidecar), `results.csv`, `manifest.json`,
 `comparison.md` (`verify_and_compare.py compare --tol 0`). Verify any file with `python verify_and_compare.py verify pck/csqv<N>.pck`.
-Sweep: 3182 jobs over 7 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
+Sweep: 3197 jobs over 7 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
