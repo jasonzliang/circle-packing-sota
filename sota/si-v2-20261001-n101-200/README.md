@@ -3,7 +3,7 @@
 **82 WIN** against the Packomania `csqv` table retrieved **2026-10-01 14:28 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 100 sizes searched.
 Only WIN packings (strictly feasible in exact rational arithmetic, `sum_r > record + 1e-9`) are published here.
 
-Extension campaign status at 2026-10-01 14:29 UTC: 2667 jobs aggregated from roundE0, roundE1, roundE2, roundE3, roundE4, roundP1.
+Extension campaign status at 2026-10-01 14:49 UTC: 2793 jobs aggregated from roundE0, roundE1, roundE2, roundE3, roundE4, roundP1.
 
 ## How this differs from `si-v2-20260927` (N <= 100)
 
@@ -39,7 +39,7 @@ Closest non-winning results (within 1e-5 of the record): 104 (-1.1e-11), 105 (-1
 | 120 | 5.777647518851 | 5.777303097445 | +3.444e-04 | +5.96e-05 | `hpolish` self seed 0 | Elian Alfonso López Preciado |
 | 122 | 5.828469948565 | 5.828135840589 | +3.341e-04 | +5.73e-05 | `hpolish` self seed 0 | Wilfred Heap |
 | 123 | 5.853520686624 | 5.853393864742 | +1.268e-04 | +2.17e-05 | `hpolish` self seed 0 | Wilfred Heap |
-| 125 | 5.902676475677 | 5.902296796096 | +3.797e-04 | +6.43e-05 | `hpolish` self seed 0 | Wilfred Heap |
+| 125 | 5.902749941015 | 5.902296796096 | +4.531e-04 | +7.68e-05 | `tv14pf6` nbr seed 7401 | Wilfred Heap |
 | 126 | 5.927049561373 | 5.926814799439 | +2.348e-04 | +3.96e-05 | `hpolish` self seed 0 | Jean-René Denoual |
 | 129 | 5.999378456469 | 5.998868370219 | +5.101e-04 | +8.50e-05 | `hpolish` self seed 0 | Jean-René Denoual |
 | 130 | 6.022691506144 | 6.022424077079 | +2.674e-04 | +4.44e-05 | `hpolish` self seed 0 | Jean-René Denoual |
@@ -62,7 +62,7 @@ Closest non-winning results (within 1e-5 of the record): 104 (-1.1e-11), 105 (-1
 | 147 | 6.410627442871 | 6.410094597843 | +5.328e-04 | +8.31e-05 | `hpolish` self seed 0 | Jean-René Denoual |
 | 148 | 6.432731989105 | 6.432461590552 | +2.704e-04 | +4.20e-05 | `hpolish` self seed 0 | Jean-René Denoual |
 | 152 | 6.520443940705 | 6.520366820754 | +7.712e-05 | +1.18e-05 | `hpolish` self seed 0 | Jean-René Denoual |
-| 153 | 6.541662942927 | 6.541408426141 | +2.545e-04 | +3.89e-05 | `hpolish` self seed 0 | Jean-René Denoual |
+| 153 | 6.541670295741 | 6.541408426141 | +2.619e-04 | +4.00e-05 | `tv16ob6` self seed 7401 | Jean-René Denoual |
 | 154 | 6.563211094217 | 6.561927143305 | +1.284e-03 | +1.96e-04 | `hpolish` self seed 0 | Jean-René Denoual |
 | 155 | 6.583307096478 | 6.582091347104 | +1.216e-03 | +1.85e-04 | `hpolish` self seed 0 | Jean-René Denoual |
 | 156 | 6.603620180147 | 6.602458999560 | +1.161e-03 | +1.76e-04 | `hpolish` self seed 0 | Jean-René Denoual |
@@ -138,7 +138,7 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 120 | 5.777647518851 | 5.777303097445 | +3.4e-04 | Elian Alfonso López Preciado |
 | 122 | 5.828469948565 | 5.828135840589 | +3.3e-04 | Wilfred Heap |
 | 123 | 5.853520686624 | 5.853393864742 | +1.3e-04 | Wilfred Heap |
-| 125 | 5.902676475677 | 5.902296796096 | +3.8e-04 | Wilfred Heap |
+| 125 | 5.902749941015 | 5.902296796096 | +4.5e-04 | Wilfred Heap |
 | 126 | 5.927049561373 | 5.926814799439 | +2.3e-04 | Jean-René Denoual |
 | 129 | 5.999378456469 | 5.998868370219 | +5.1e-04 | Jean-René Denoual |
 | 130 | 6.022691506144 | 6.022424077079 | +2.7e-04 | Jean-René Denoual |
@@ -161,7 +161,7 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 147 | 6.410627442871 | 6.410094597843 | +5.3e-04 | Jean-René Denoual |
 | 148 | 6.432731989105 | 6.432461590552 | +2.7e-04 | Jean-René Denoual |
 | 152 | 6.520443940705 | 6.520366820754 | +7.7e-05 | Jean-René Denoual |
-| 153 | 6.541662942927 | 6.541408426141 | +2.5e-04 | Jean-René Denoual |
+| 153 | 6.541670295741 | 6.541408426141 | +2.6e-04 | Jean-René Denoual |
 | 154 | 6.563211094217 | 6.561927143305 | +1.3e-03 | Jean-René Denoual |
 | 155 | 6.583307096478 | 6.582091347104 | +1.2e-03 | Jean-René Denoual |
 | 156 | 6.603620180147 | 6.602458999560 | +1.2e-03 | Jean-René Denoual |
@@ -211,4 +211,4 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 
 `pck/csqv<N>.pck` (Packomania text, centred square, %.17g), `json/out<N>.json` (corner-frame sidecar), `results.csv`, `manifest.json`,
 `comparison.md` (`verify_and_compare.py compare --tol 0`). Verify any file with `python verify_and_compare.py verify pck/csqv<N>.pck`.
-Sweep: 2667 jobs over 6 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
+Sweep: 2793 jobs over 6 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
