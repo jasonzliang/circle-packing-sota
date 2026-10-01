@@ -3,7 +3,7 @@
 **82 WIN** against the Packomania `csqv` table retrieved **2026-10-01 21:51 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 100 sizes searched.
 Only WIN packings (strictly feasible in exact rational arithmetic, `sum_r > record + 1e-9`) are published here.
 
-Extension campaign status at 2026-10-01 22:23 UTC: 4966 jobs aggregated from roundE0, roundE1, roundE2, roundE3, roundE4, roundE5, roundE6, roundE7, roundP1.
+Extension campaign status at 2026-10-01 22:34 UTC: 5018 jobs aggregated from roundE0, roundE1, roundE2, roundE3, roundE4, roundE5, roundE6, roundE7, roundP1.
 
 ## How this differs from `si-v2-20260927` (N <= 100)
 
@@ -297,14 +297,14 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 293 | 9.088930498053 | 9.088041361012 | +8.9e-04 | Jean-René Denoual |
 | 294 | 9.104009751046 | 9.103186323553 | +8.2e-04 | Jean-René Denoual |
 | 295 | 9.119378513625 | 9.116204790462 | +3.2e-03 | Jean-René Denoual |
-| 296 | 9.134896514275 | 9.131106084861 | +3.8e-03 | Jean-René Denoual |
-| 297 | 9.148395738189 | 9.147139780469 | +1.3e-03 | Jean-René Denoual |
+| 296 | 9.134896514571 | 9.131106084861 | +3.8e-03 | Jean-René Denoual |
+| 297 | 9.148395738339 | 9.147139780469 | +1.3e-03 | Jean-René Denoual |
 | 298 | 9.161869538266 | 9.161800772953 | +6.9e-05 | Jean-René Denoual |
-| 299 | 9.179031309452 | 9.176674773948 | +2.4e-03 | Jean-René Denoual |
+| 299 | 9.179031309752 | 9.176674773948 | +2.4e-03 | Jean-René Denoual |
 | 300 | 9.196770845441 | 9.192717162187 | +4.1e-03 | Jean-René Denoual |
 
 ## Files
 
 `pck/csqv<N>.pck` (Packomania text, centred square, %.17g), `json/out<N>.json` (corner-frame sidecar), `results.csv`, `manifest.json`,
 `comparison.md` (`verify_and_compare.py compare --tol 0`). Verify any file with `python verify_and_compare.py verify pck/csqv<N>.pck`.
-Sweep: 4966 jobs over 9 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
+Sweep: 5018 jobs over 9 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
