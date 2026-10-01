@@ -5,8 +5,8 @@
  "records_retrieved": "2026-10-01",
  "rule": "feasible in EXACT rational arithmetic with zero tolerance (fractions.Fraction, squared comparisons; ulp-level overlaps repaired by shrinking radii) AND sum_r > record + 1e-9 (verify_and_compare.WIN_EPS)",
  "counts": {
-  "exported": 66,
-  "WIN": 66,
+  "exported": 69,
+  "WIN": 69,
   "tie": 0,
   "below": 0
  },
@@ -62,9 +62,12 @@
   178,
   179,
   180,
+  181,
   182,
   183,
+  184,
   185,
+  186,
   188,
   189,
   190,
@@ -1458,6 +1461,33 @@
     "solver_sha256": null
    }
   },
+  "181": {
+   "sum_r": 7.120266927223986,
+   "record": 7.120170554574,
+   "margin": 9.637264998563211e-05,
+   "verdict": "WIN",
+   "min_wall_slack": 9.999778782798785e-13,
+   "min_pair_slack": 1.999969634347565e-12,
+   "min_r": 0.023195844657232196,
+   "exact_feasible": true,
+   "exact_repair_factor": 1.0,
+   "pck_sha256": "b94df8806e57751dad365d7f7ce405a4650e6e7edadc91165e4e6dd930fa98af",
+   "provenance": {
+    "n": 181,
+    "sum_r": 7.120266927223986,
+    "record_live": 7.120170554574,
+    "margin": 9.637264998563211e-05,
+    "source": "sweep",
+    "solver": "tv16ob6",
+    "mode": "nbr",
+    "seed": 7201,
+    "job": "../cp_ext/roundE2/jobs/tv16ob6/nbr/n181_s7201.json",
+    "warm_path": null,
+    "label": "SI-v2 sweep tv16ob6 seed 7201 nbr",
+    "solver_origin": "jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v16-oldbrief-x10/transcendence-v16-oldbrief-6",
+    "solver_sha256": "64209a4d5b52b3b8e57344f8519645d8efb13b65e4c136da469eb16325a3d275"
+   }
+  },
   "182": {
    "sum_r": 7.13884123658585,
    "record": 7.138696832806,
@@ -1512,6 +1542,33 @@
     "solver_sha256": null
    }
   },
+  "184": {
+   "sum_r": 7.178671517764111,
+   "record": 7.17839927076,
+   "margin": 0.0002722470041112146,
+   "verdict": "WIN",
+   "min_wall_slack": 9.999778782798785e-13,
+   "min_pair_slack": 1.9999835121353726e-12,
+   "min_r": 0.02645993380719451,
+   "exact_feasible": true,
+   "exact_repair_factor": 1.0,
+   "pck_sha256": "2ff132da81d60410814e52b18b8c77c1bfef0eb1da7cba4e7619a8b2835a33b9",
+   "provenance": {
+    "n": 184,
+    "sum_r": 7.178671517764111,
+    "record_live": 7.17839927076,
+    "margin": 0.0002722470041112146,
+    "source": "sweep",
+    "solver": "tv16ob6",
+    "mode": "nbr",
+    "seed": 7204,
+    "job": "../cp_ext/roundE2/jobs/tv16ob6/nbr/n184_s7204.json",
+    "warm_path": null,
+    "label": "SI-v2 sweep tv16ob6 seed 7204 nbr",
+    "solver_origin": "jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v16-oldbrief-x10/transcendence-v16-oldbrief-6",
+    "solver_sha256": "64209a4d5b52b3b8e57344f8519645d8efb13b65e4c136da469eb16325a3d275"
+   }
+  },
   "185": {
    "sum_r": 7.198651480801373,
    "record": 7.19762508195,
@@ -1537,6 +1594,33 @@
     "label": "SI-v2 sweep hpolish seed 0 self",
     "solver_origin": null,
     "solver_sha256": null
+   }
+  },
+  "186": {
+   "sum_r": 7.218458932884491,
+   "record": 7.218383296615,
+   "margin": 7.563626949025348e-05,
+   "verdict": "WIN",
+   "min_wall_slack": 9.999778782798785e-13,
+   "min_pair_slack": 1.9999835121353726e-12,
+   "min_r": 0.025729532202693778,
+   "exact_feasible": true,
+   "exact_repair_factor": 1.0,
+   "pck_sha256": "e3cc393f8a1b277ed2bbb159068aac0ba85a9e447608dfc4d352f4796444ae20",
+   "provenance": {
+    "n": 186,
+    "sum_r": 7.218458932884491,
+    "record_live": 7.218383296615,
+    "margin": 7.563626949025348e-05,
+    "source": "sweep",
+    "solver": "tv16ob6",
+    "mode": "nbr",
+    "seed": 7202,
+    "job": "../cp_ext/roundE2/jobs/tv16ob6/nbr/n186_s7202.json",
+    "warm_path": null,
+    "label": "SI-v2 sweep tv16ob6 seed 7202 nbr",
+    "solver_origin": "jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v16-oldbrief-x10/transcendence-v16-oldbrief-6",
+    "solver_sha256": "64209a4d5b52b3b8e57344f8519645d8efb13b65e4c136da469eb16325a3d275"
    }
   },
   "188": {
@@ -1594,30 +1678,30 @@
    }
   },
   "190": {
-   "sum_r": 7.298075044327521,
+   "sum_r": 7.298182304111972,
    "record": 7.297283358464,
-   "margin": 0.0007916858635210744,
+   "margin": 0.0008989456479717717,
    "verdict": "WIN",
-   "min_wall_slack": 9.999778782798785e-13,
-   "min_pair_slack": 1.9999835121353726e-12,
-   "min_r": 0.025431154728118292,
+   "min_wall_slack": 1.3750112159982564e-13,
+   "min_pair_slack": 2.0000667788622195e-13,
+   "min_r": 0.026645772543964285,
    "exact_feasible": true,
    "exact_repair_factor": 1.0,
-   "pck_sha256": "ec51f2bebc97272acce3e5484288d3b2459273a4fbfa7c084b70e5608c433e1a",
+   "pck_sha256": "4b57ba113bef81058e79aa806b947ab902f5d6e66c1d3f7e56a25e6c4517631f",
    "provenance": {
     "n": 190,
-    "sum_r": 7.298075044327521,
+    "sum_r": 7.298182304111972,
     "record_live": 7.297283358464,
-    "margin": 0.0007916858635210744,
+    "margin": 0.0008989456479717717,
     "source": "sweep",
-    "solver": "tv16ob6",
-    "mode": "self",
+    "solver": "tv14pf6",
+    "mode": "nbr",
     "seed": 7201,
-    "job": "../cp_ext/roundE2/jobs/tv16ob6/self/n190_s7201.json",
+    "job": "../cp_ext/roundE2/jobs/tv14pf6/nbr/n190_s7201.json",
     "warm_path": null,
-    "label": "SI-v2 sweep tv16ob6 seed 7201 self",
-    "solver_origin": "jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v16-oldbrief-x10/transcendence-v16-oldbrief-6",
-    "solver_sha256": "64209a4d5b52b3b8e57344f8519645d8efb13b65e4c136da469eb16325a3d275"
+    "label": "SI-v2 sweep tv14pf6 seed 7201 nbr",
+    "solver_origin": "jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v14-probefix-x10/transcendence-v14-probefix-6",
+    "solver_sha256": "4498fcdd171624bdce5d6935ec007691c66fcef5067b6f3ccf504991ffa3722c"
    }
   },
   "191": {
