@@ -3,7 +3,7 @@
 **148 WIN** against the Packomania `csqv` table retrieved **2026-10-02 16:56 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 199 sizes posted by Packomania in this range.
 Only WIN packings (strictly feasible in exact rational arithmetic, `sum_r > record + 1e-9`) are published here.
 
-Extension campaign status at 2026-10-02 17:43 UTC: 9163 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE2, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
+Extension campaign status at 2026-10-02 18:14 UTC: 9184 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE12, roundE2, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
 
 ## How this differs from `si-v2-20260927` (N <= 100)
 
@@ -533,12 +533,16 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 961 | 16.546730901447 | 16.546634626446 | +9.6e-05 | Wilfred Heap |
 | 1296 | 19.210051958922 | 19.199876694862 | +1.0e-02 | Eckard Specht |
 | 1369 | 19.740427738526 | 19.736013462864 | +4.4e-03 | Eckard Specht |
+| 2916 | 28.876058717417 | 28.851930778431 | +2.4e-02 | Eckard Specht |
+| 3249 | 30.511081629717 | 30.460572103527 | +5.1e-02 | Eckard Specht |
 | 3600 | 32.093688955694 | 32.069351262839 | +2.4e-02 | Eckard Specht |
+| 3844 | 33.180384313552 | 33.141829232378 | +3.9e-02 | Eckard Specht |
 | 4624 | 36.396110740396 | 36.359273349608 | +3.7e-02 | Eckard Specht |
 | 5041 | 37.975219102001 | 37.967939918159 | +7.3e-03 | Eckard Specht |
+| 5929 | 41.243099663071 | 41.185404340592 | +5.8e-02 | Eckard Specht |
 
 ## Files
 
 `pck/csqv<N>.pck` (Packomania text, centred square, %.17g), `json/out<N>.json` (corner-frame sidecar), `results.csv`, `manifest.json`,
 `comparison.md` (`verify_and_compare.py compare --tol 0`). Verify any file with `python verify_and_compare.py verify pck/csqv<N>.pck`.
-Sweep: 9163 jobs over 13 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
+Sweep: 9184 jobs over 14 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
