@@ -5,8 +5,8 @@
  "records_retrieved": "2026-10-01",
  "rule": "feasible in EXACT rational arithmetic with zero tolerance (fractions.Fraction, squared comparisons; ulp-level overlaps repaired by shrinking radii) AND sum_r > record + 1e-9 (verify_and_compare.WIN_EPS)",
  "counts": {
-  "exported": 153,
-  "WIN": 153,
+  "exported": 155,
+  "WIN": 155,
   "tie": 0,
   "below": 0
  },
@@ -67,6 +67,7 @@
   361,
   363,
   366,
+  369,
   370,
   372,
   373,
@@ -77,6 +78,7 @@
   381,
   382,
   383,
+  384,
   385,
   386,
   387,
@@ -1680,6 +1682,33 @@
     "solver_sha256": "c213b2c32795f8a82337e652d3bfa48ca39ea029e18c0f3d5ee3211a3fe36a14"
    }
   },
+  "369": {
+   "sum_r": 10.209822192538036,
+   "record": 10.209460915964,
+   "margin": 0.00036127657403639546,
+   "verdict": "WIN",
+   "min_wall_slack": 1.000000082740371e-11,
+   "min_pair_slack": 1.9999994715913516e-11,
+   "min_r": 0.018859600622123864,
+   "exact_feasible": true,
+   "exact_repair_factor": 1.0,
+   "pck_sha256": "9651d7a71fe36d8d30bfffd90caf9f1a2c701775cf77c854fa435cf4c9a412f2",
+   "provenance": {
+    "n": 369,
+    "sum_r": 10.209822192538036,
+    "record_live": 10.209460915964,
+    "margin": 0.00036127657403639546,
+    "source": "sweep",
+    "solver": "w2_0823circleplai_exploreplain",
+    "mode": "nbr",
+    "seed": 8201,
+    "job": "../cp_ext/roundE12/jobs/w2_0823circleplai_exploreplain/nbr/n369_s8201.json",
+    "warm_path": null,
+    "label": "SI-v2 sweep w2_0823circleplai_exploreplain seed 8201 nbr",
+    "solver_origin": "aws:2026-08-23_circle-plain-b/explore-plain-9",
+    "solver_sha256": "e8266caf0659ad99343e308c231fc4570f9ffe4df58fb0f07b978329c806fbe5"
+   }
+  },
   "370": {
    "sum_r": 10.224249820219775,
    "record": 10.222766514638,
@@ -1946,6 +1975,33 @@
     "job": "../cp_ext/roundE11/jobs/tv16ob6/nbr/n383_s8101.json",
     "warm_path": null,
     "label": "SI-v2 sweep tv16ob6 seed 8101 nbr",
+    "solver_origin": "jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v16-oldbrief-x10/transcendence-v16-oldbrief-6",
+    "solver_sha256": "64209a4d5b52b3b8e57344f8519645d8efb13b65e4c136da469eb16325a3d275"
+   }
+  },
+  "384": {
+   "sum_r": 10.423161540200686,
+   "record": 10.423034367204,
+   "margin": 0.00012717299668629778,
+   "verdict": "WIN",
+   "min_wall_slack": 9.999778782798785e-13,
+   "min_pair_slack": 1.9999904510292765e-12,
+   "min_r": 0.018545349085300065,
+   "exact_feasible": true,
+   "exact_repair_factor": 1.0,
+   "pck_sha256": "a2d52026893b728012e777bb86bb13382bf5be82ea2f88ad6a751c29f2d05022",
+   "provenance": {
+    "n": 384,
+    "sum_r": 10.423161540200686,
+    "record_live": 10.423034367204,
+    "margin": 0.00012717299668629778,
+    "source": "sweep",
+    "solver": "tv16ob6",
+    "mode": "nbr",
+    "seed": 8201,
+    "job": "../cp_ext/roundE12/jobs/tv16ob6/nbr/n384_s8201.json",
+    "warm_path": null,
+    "label": "SI-v2 sweep tv16ob6 seed 8201 nbr",
     "solver_origin": "jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v16-oldbrief-x10/transcendence-v16-oldbrief-6",
     "solver_sha256": "64209a4d5b52b3b8e57344f8519645d8efb13b65e4c136da469eb16325a3d275"
    }
