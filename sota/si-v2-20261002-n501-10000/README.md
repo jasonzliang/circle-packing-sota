@@ -1,9 +1,9 @@
 # si-v2-20261002-n501-10000: SI-v2 solver sweep extended to N = 501..10000
 
-**25 WIN** against the Packomania `csqv` table retrieved **2026-10-02 18:15 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 84 sizes posted by Packomania in this range.
+**40 WIN** against the Packomania `csqv` table retrieved **2026-10-02 18:15 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 84 sizes posted by Packomania in this range.
 Only WIN packings (strictly feasible in exact rational arithmetic, `sum_r > record + 1e-9`) are published here.
 
-Extension campaign status at 2026-10-02 18:48 UTC: 9186 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE12, roundE2, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
+Extension campaign status at 2026-10-02 18:56 UTC: 9218 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE12, roundE2, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
 
 ## How this differs from `si-v2-20260927` (N <= 100)
 
@@ -16,11 +16,11 @@ many sizes ended tied or below, from the sweep's own aggregate.
 
 | status at N = 501..10000 (best strict sweep result vs the live table) | sizes |
 |---|---:|
-| BEAT | 25 |
-| below | 58 |
+| BEAT | 40 |
+| below | 43 |
 | tie | 1 |
 
-Closest non-winning results (within 1e-5 of the record): 1013 (-1.0e-09), 1024 (-1.1e-09), 1089 (-6.3e-10), 1156 (-2.6e-09), 1225 (-5.3e-09), 1444 (-5.8e-09), 1521 (-2.5e-09), 1600 (-4.7e-09), 1681 (-3.5e-09), 1764 (-7.1e-09), 1849 (-6.7e-09), 1936 (-7.1e-09), 2025 (-6.7e-09), 2116 (-7.8e-09), 2209 (-9.8e-09), 2304 (-9.4e-09), 2401 (-6.8e-09), 2500 (-8.2e-09), 2601 (-1.2e-08), 2704 (-1.7e-08), 2809 (-1.2e-08), 3025 (-1.2e-08), 3136 (-1.2e-08), 3364 (-1.1e-08), 3481 (-1.2e-08), 3721 (-1.8e-08), 3969 (-1.9e-08), 4096 (-1.8e-08), 4225 (-2.1e-08), 4356 (-1.6e-08), 4489 (-2.1e-08), 4761 (-1.6e-08), 4900 (-2.2e-08), 5184 (-2.1e-08), 5329 (-2.1e-08), 5476 (-2.4e-08), 5776 (-2.3e-08), 6084 (-3.2e-08), 6241 (-2.7e-08), 6400 (-2.4e-08), 6561 (-3.9e-08), 6724 (-3.8e-08), 6889 (-2.5e-08), 7056 (-2.4e-08), 7225 (-3.2e-08), 7396 (-4.0e-08), 7569 (-3.1e-08), 7744 (-3.7e-08), 7921 (-3.3e-08), 8100 (-4.6e-08), 8281 (-3.9e-08), 8464 (-3.9e-08), 8649 (-4.9e-08), 9025 (-5.6e-08), 9216 (-4.5e-08), 9409 (-4.7e-08), 9604 (-5.9e-08), 9801 (-5.5e-08), 10000 (-4.9e-08).
+Closest non-winning results (within 1e-5 of the record): 1013 (-1.0e-09), 1024 (-1.1e-09), 1089 (-6.3e-10), 1156 (-2.6e-09), 1225 (-5.3e-09), 1444 (-5.8e-09), 1600 (-4.7e-09), 1681 (-3.5e-09), 1764 (-7.1e-09), 1849 (-6.7e-09), 1936 (-7.1e-09), 2209 (-9.8e-09), 2304 (-9.4e-09), 2401 (-6.8e-09), 2500 (-8.2e-09), 2601 (-1.2e-08), 2809 (-1.2e-08), 3025 (-1.2e-08), 3721 (-1.8e-08), 3969 (-1.9e-08), 4096 (-1.8e-08), 4225 (-2.1e-08), 4356 (-1.6e-08), 4489 (-2.1e-08), 4761 (-1.6e-08), 5184 (-2.1e-08), 5476 (-2.4e-08), 5776 (-2.3e-08), 6084 (-3.2e-08), 6400 (-2.4e-08), 6724 (-3.8e-08), 6889 (-2.5e-08), 7225 (-3.2e-08), 7396 (-4.0e-08), 7569 (-3.1e-08), 7921 (-3.3e-08), 8100 (-4.6e-08), 8281 (-3.9e-08), 8649 (-4.9e-08), 9025 (-5.6e-08), 9216 (-4.5e-08), 9604 (-5.9e-08), 9801 (-5.5e-08), 10000 (-4.9e-08).
 
 ## Wins
 
@@ -42,15 +42,30 @@ Closest non-winning results (within 1e-5 of the record): 1013 (-1.0e-09), 1024 (
 | 961 | 16.546730901447 | 16.546634626446 | +9.628e-05 | +5.82e-06 | `tv16ob6` self seed 8101 | Wilfred Heap |
 | 1296 | 19.210051958922 | 19.199876694862 | +1.018e-02 | +5.30e-04 | `tv14pf6` nbr seed 8101 | Eckard Specht |
 | 1369 | 19.740427738526 | 19.736013462864 | +4.414e-03 | +2.24e-04 | `tv14pf6` nbr seed 8101 | Eckard Specht |
-| 2916 | 28.876058717417 | 28.851930778431 | +2.413e-02 | +8.36e-04 | `none7` nbr seed 8201 | Eckard Specht |
+| 1521 | 20.822014003645 | 20.808443169665 | +1.357e-02 | +6.52e-04 | `tv14pf6` nbr seed 8201 | Eckard Specht |
+| 2025 | 24.063543547972 | 24.025779688154 | +3.776e-02 | +1.57e-03 | `w2_0912transcende_transcendenc` nbr seed 8201 | Eckard Specht |
+| 2116 | 24.584776926319 | 24.562078565552 | +2.270e-02 | +9.24e-04 | `w2_0906circleenha_enhancementv` nbr seed 8201 | Eckard Specht |
+| 2704 | 27.821021473333 | 27.779462444871 | +4.156e-02 | +1.50e-03 | `w2_0912transcende_transcendenc` nbr seed 8201 | Eckard Specht |
+| 2916 | 28.898979562059 | 28.851930778431 | +4.705e-02 | +1.63e-03 | `w2_0912transcende_transcendenc` nbr seed 8201 | Eckard Specht |
+| 3136 | 29.953626618775 | 29.924401780096 | +2.922e-02 | +9.77e-04 | `w2_0912transcende_transcendenc` nbr seed 8201 | Eckard Specht |
 | 3249 | 30.511081629717 | 30.460572103527 | +5.051e-02 | +1.66e-03 | `none7` nbr seed 8201 | Eckard Specht |
+| 3364 | 31.033782931099 | 30.996875450684 | +3.691e-02 | +1.19e-03 | `w2_0912transcende_transcendenc` nbr seed 8201 | Eckard Specht |
+| 3481 | 31.579991714946 | 31.533047403339 | +4.694e-02 | +1.49e-03 | `w2_0912transcende_transcendenc` nbr seed 8201 | Eckard Specht |
 | 3600 | 32.093688955694 | 32.069351262839 | +2.434e-02 | +7.59e-04 | `w2_0912transcende_transcendenc` nbr seed 8101 | Eckard Specht |
 | 3844 | 33.180384313552 | 33.141829232378 | +3.856e-02 | +1.16e-03 | `none7` nbr seed 8201 | Eckard Specht |
 | 4624 | 36.396110740396 | 36.359273349608 | +3.684e-02 | +1.01e-03 | `w2_0912transcende_transcendenc` nbr seed 8101 | Eckard Specht |
+| 4900 | 37.453570795820 | 37.431757737679 | +2.181e-02 | +5.83e-04 | `w2_0912transcende_transcendenc` nbr seed 8201 | Eckard Specht |
 | 5041 | 37.975219102001 | 37.967939918159 | +7.279e-03 | +1.92e-04 | `none7` nbr seed 8101 | Eckard Specht |
+| 5329 | 39.079569101026 | 39.040427133252 | +3.914e-02 | +1.00e-03 | `w2_0912transcende_transcendenc` nbr seed 8201 | Eckard Specht |
 | 5625 | 40.155096145848 | 40.112915048219 | +4.218e-02 | +1.05e-03 | `none7` nbr seed 8201 | Eckard Specht |
 | 5929 | 41.243099663071 | 41.185404340592 | +5.770e-02 | +1.40e-03 | `none7` nbr seed 8201 | Eckard Specht |
+| 6241 | 42.272665992466 | 42.257894222053 | +1.477e-02 | +3.50e-04 | `w2_0912transcende_transcendenc` nbr seed 8201 | Eckard Specht |
+| 6561 | 43.385724999577 | 43.330385277980 | +5.534e-02 | +1.28e-03 | `w2_0912transcende_transcendenc` nbr seed 8201 | Eckard Specht |
+| 7056 | 44.944273518075 | 44.939178568456 | +5.095e-03 | +1.13e-04 | `w2_0912transcende_transcendenc` nbr seed 8201 | Eckard Specht |
+| 7744 | 47.130009797431 | 47.084163459560 | +4.585e-02 | +9.74e-04 | `none7` nbr seed 8201 | Eckard Specht |
+| 8464 | 49.238051455440 | 49.229150869190 | +8.901e-03 | +1.81e-04 | `w2_0912transcende_transcendenc` nbr seed 8201 | Eckard Specht |
 | 8836 | 50.391538227840 | 50.301645429788 | +8.989e-02 | +1.79e-03 | `none7` nbr seed 8201 | Eckard Specht |
+| 9409 | 51.945685093102 | 51.910336788398 | +3.535e-02 | +6.81e-04 | `w2_0912transcende_transcendenc` nbr seed 8201 | Eckard Specht |
 
 ## All records beaten, N = 1..10000, against the live table (2026-10-02 18:15 UTC)
 
@@ -411,18 +426,33 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 961 | 16.546730901447 | 16.546634626446 | +9.6e-05 | Wilfred Heap |
 | 1296 | 19.210051958922 | 19.199876694862 | +1.0e-02 | Eckard Specht |
 | 1369 | 19.740427738526 | 19.736013462864 | +4.4e-03 | Eckard Specht |
-| 2916 | 28.876058717417 | 28.851930778431 | +2.4e-02 | Eckard Specht |
+| 1521 | 20.822014003645 | 20.808443169665 | +1.4e-02 | Eckard Specht |
+| 2025 | 24.063543547972 | 24.025779688154 | +3.8e-02 | Eckard Specht |
+| 2116 | 24.584776926319 | 24.562078565552 | +2.3e-02 | Eckard Specht |
+| 2704 | 27.821021473333 | 27.779462444871 | +4.2e-02 | Eckard Specht |
+| 2916 | 28.898979562059 | 28.851930778431 | +4.7e-02 | Eckard Specht |
+| 3136 | 29.953626618775 | 29.924401780096 | +2.9e-02 | Eckard Specht |
 | 3249 | 30.511081629717 | 30.460572103527 | +5.1e-02 | Eckard Specht |
+| 3364 | 31.033782931099 | 30.996875450684 | +3.7e-02 | Eckard Specht |
+| 3481 | 31.579991714946 | 31.533047403339 | +4.7e-02 | Eckard Specht |
 | 3600 | 32.093688955694 | 32.069351262839 | +2.4e-02 | Eckard Specht |
 | 3844 | 33.180384313552 | 33.141829232378 | +3.9e-02 | Eckard Specht |
 | 4624 | 36.396110740396 | 36.359273349608 | +3.7e-02 | Eckard Specht |
+| 4900 | 37.453570795820 | 37.431757737679 | +2.2e-02 | Eckard Specht |
 | 5041 | 37.975219102001 | 37.967939918159 | +7.3e-03 | Eckard Specht |
+| 5329 | 39.079569101026 | 39.040427133252 | +3.9e-02 | Eckard Specht |
 | 5625 | 40.155096145848 | 40.112915048219 | +4.2e-02 | Eckard Specht |
 | 5929 | 41.243099663071 | 41.185404340592 | +5.8e-02 | Eckard Specht |
+| 6241 | 42.272665992466 | 42.257894222053 | +1.5e-02 | Eckard Specht |
+| 6561 | 43.385724999577 | 43.330385277980 | +5.5e-02 | Eckard Specht |
+| 7056 | 44.944273518075 | 44.939178568456 | +5.1e-03 | Eckard Specht |
+| 7744 | 47.130009797431 | 47.084163459560 | +4.6e-02 | Eckard Specht |
+| 8464 | 49.238051455440 | 49.229150869190 | +8.9e-03 | Eckard Specht |
 | 8836 | 50.391538227840 | 50.301645429788 | +9.0e-02 | Eckard Specht |
+| 9409 | 51.945685093102 | 51.910336788398 | +3.5e-02 | Eckard Specht |
 
 ## Files
 
 `pck/csqv<N>.pck` (Packomania text, centred square, %.17g), `json/out<N>.json` (corner-frame sidecar), `results.csv`, `manifest.json`,
 `comparison.md` (`verify_and_compare.py compare --tol 0`). Verify any file with `python verify_and_compare.py verify pck/csqv<N>.pck`.
-Sweep: 9186 jobs over 14 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
+Sweep: 9218 jobs over 14 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
