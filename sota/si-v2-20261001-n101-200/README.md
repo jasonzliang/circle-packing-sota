@@ -1,9 +1,9 @@
 # si-v2-20261001-n101-200: SI-v2 solver sweep extended to N = 101..200
 
-**82 WIN** against the Packomania `csqv` table retrieved **2026-10-02 07:23 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 100 sizes searched.
+**82 WIN** against the Packomania `csqv` table retrieved **2026-10-02 08:27 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 100 sizes searched.
 Only WIN packings (strictly feasible in exact rational arithmetic, `sum_r > record + 1e-9`) are published here.
 
-Extension campaign status at 2026-10-02 07:35 UTC: 7779 jobs aggregated from roundE0, roundE1, roundE10, roundE2, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
+Extension campaign FINISHED at 2026-10-02 08:24 UTC after 10 full rounds (E1-E10, 8157 jobs aggregated). Final tally: 179 WIN above N=100 (82 at 101-200, 97 at 201-300); 189 of 1-300 beaten against the live Packomania table retrieved 2026-10-02 07:23 UTC. No further rounds are scheduled; this artifact is frozen unless a later campaign supersedes it.
 
 ## How this differs from `si-v2-20260927` (N <= 100)
 
@@ -108,7 +108,7 @@ Closest non-winning results (within 1e-5 of the record): 104 (+4.8e-14), 105 (+3
 | 199 | 7.475687680419 | 7.475311776105 | +3.759e-04 | +5.03e-05 | `hpolish` self seed 0 | Jean-René Denoual |
 | 200 | 7.494071021855 | 7.493815304616 | +2.557e-04 | +3.41e-05 | `hpolish` self seed 0 | Jean-René Denoual |
 
-## All records beaten, N = 1..300, against the live table (2026-10-02 07:23 UTC)
+## All records beaten, N = 1..300, against the live table (2026-10-02 08:27 UTC)
 
 Combined with `si-v2-20260927` (N <= 100). A row means our published packing exceeds the live Packomania value by more than 1e-9.
 
@@ -308,4 +308,4 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 
 `pck/csqv<N>.pck` (Packomania text, centred square, %.17g), `json/out<N>.json` (corner-frame sidecar), `results.csv`, `manifest.json`,
 `comparison.md` (`verify_and_compare.py compare --tol 0`). Verify any file with `python verify_and_compare.py verify pck/csqv<N>.pck`.
-Sweep: 7779 jobs over 12 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
+Sweep: 8157 jobs over 12 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
