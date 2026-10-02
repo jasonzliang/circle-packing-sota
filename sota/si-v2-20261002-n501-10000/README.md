@@ -3,7 +3,7 @@
 **50 WIN** against the Packomania `csqv` table retrieved **2026-10-02 21:22 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 84 sizes posted by Packomania in this range.
 Only WIN packings (strictly feasible in exact rational arithmetic, `sum_r > record + 1e-9`) are published here.
 
-Extension campaign status at 2026-10-02 21:53 UTC: 9942 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE12, roundE2, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
+Extension campaign status at 2026-10-02 21:58 UTC: 9951 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE12, roundE2, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
 
 ## How this differs from `si-v2-20260927` (N <= 100)
 
@@ -421,7 +421,7 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 470 | 11.538072626079 | 11.535717024814 | +2.4e-03 | Jean-René Denoual |
 | 471 | 11.549560024400 | 11.548024053592 | +1.5e-03 | Jean-René Denoual |
 | 472 | 11.561147013423 | 11.559922693009 | +1.2e-03 | Jean-René Denoual |
-| 473 | 11.572372781243 | 11.572268460196 | +1.0e-04 | Jean-René Denoual |
+| 473 | 11.573923845408 | 11.572268460196 | +1.7e-03 | Jean-René Denoual |
 | 474 | 11.584879034703 | 11.584603098149 | +2.8e-04 | Jean-René Denoual |
 | 475 | 11.597503942847 | 11.596644766915 | +8.6e-04 | Jean-René Denoual |
 | 476 | 11.609721169396 | 11.609006039390 | +7.2e-04 | Jean-René Denoual |
@@ -433,7 +433,7 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 482 | 11.683590062417 | 11.682781965040 | +8.1e-04 | Jean-René Denoual |
 | 483 | 11.695599608678 | 11.694407066264 | +1.2e-03 | Jean-René Denoual |
 | 484 | 11.707372534638 | 11.706739384534 | +6.3e-04 | Jean-René Denoual |
-| 487 | 11.742914233627 | 11.742424558708 | +4.9e-04 | Jean-René Denoual |
+| 487 | 11.742914233739 | 11.742424558708 | +4.9e-04 | Jean-René Denoual |
 | 488 | 11.755459642473 | 11.753818598945 | +1.6e-03 | Jean-René Denoual |
 | 489 | 11.769610100652 | 11.767847428021 | +1.8e-03 | Jean-René Denoual |
 | 490 | 11.781005238596 | 11.780098018438 | +9.1e-04 | Jean-René Denoual |
@@ -500,4 +500,4 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 
 `pck/csqv<N>.pck` (Packomania text, centred square, %.17g), `json/out<N>.json` (corner-frame sidecar), `results.csv`, `manifest.json`,
 `comparison.md` (`verify_and_compare.py compare --tol 0`). Verify any file with `python verify_and_compare.py verify pck/csqv<N>.pck`.
-Sweep: 9942 jobs over 14 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
+Sweep: 9951 jobs over 14 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
