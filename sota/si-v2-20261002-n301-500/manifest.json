@@ -5,8 +5,8 @@
  "records_retrieved": "2026-10-01",
  "rule": "feasible in EXACT rational arithmetic with zero tolerance (fractions.Fraction, squared comparisons; ulp-level overlaps repaired by shrinking radii) AND sum_r > record + 1e-9 (verify_and_compare.WIN_EPS)",
  "counts": {
-  "exported": 155,
-  "WIN": 155,
+  "exported": 158,
+  "WIN": 158,
   "tie": 0,
   "below": 0
  },
@@ -90,6 +90,7 @@
   393,
   394,
   395,
+  396,
   397,
   398,
   399,
@@ -99,6 +100,7 @@
   403,
   404,
   405,
+  406,
   407,
   408,
   409,
@@ -114,6 +116,7 @@
   423,
   424,
   425,
+  428,
   429,
   430,
   434,
@@ -2303,6 +2306,33 @@
     "solver_sha256": "4498fcdd171624bdce5d6935ec007691c66fcef5067b6f3ccf504991ffa3722c"
    }
   },
+  "396": {
+   "sum_r": 10.58099542035442,
+   "record": 10.576994618622,
+   "margin": 0.0040008017324186795,
+   "verdict": "WIN",
+   "min_wall_slack": 9.997558336749535e-14,
+   "min_pair_slack": 2.0002055567402977e-13,
+   "min_r": 0.015804859845316217,
+   "exact_feasible": true,
+   "exact_repair_factor": 1.0,
+   "pck_sha256": "4579c9cdd394e8d01294a87ea45346bd240f1d74738d8699ecf23f96bbf50e06",
+   "provenance": {
+    "n": 396,
+    "sum_r": 10.58099542035442,
+    "record_live": 10.576994618622,
+    "margin": 0.0040008017324186795,
+    "source": "sweep",
+    "solver": "none7",
+    "mode": "nbr",
+    "seed": 8201,
+    "job": "../cp_ext/roundE12/jobs/none7/nbr/n396_s8201.json",
+    "warm_path": null,
+    "label": "SI-v2 sweep none7 seed 8201 nbr",
+    "solver_origin": "aws results/circle-packing/2026-09-15_circle-6arm-v14-probefix-x10/none-7",
+    "solver_sha256": "08e14f9cbf06f473742439f3875bd30aaffbe3a08e83ca8299c76018569967d7"
+   }
+  },
   "397": {
    "sum_r": 10.59050700879258,
    "record": 10.589897201759,
@@ -2542,6 +2572,33 @@
     "job": "../cp_ext/roundE11/jobs/tv16ob6/nbr/n405_s8101.json",
     "warm_path": null,
     "label": "SI-v2 sweep tv16ob6 seed 8101 nbr",
+    "solver_origin": "jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v16-oldbrief-x10/transcendence-v16-oldbrief-6",
+    "solver_sha256": "64209a4d5b52b3b8e57344f8519645d8efb13b65e4c136da469eb16325a3d275"
+   }
+  },
+  "406": {
+   "sum_r": 10.714817709262032,
+   "record": 10.713481777078,
+   "margin": 0.0013359321840322735,
+   "verdict": "WIN",
+   "min_wall_slack": 9.999778782798785e-13,
+   "min_pair_slack": 1.9999904510292765e-12,
+   "min_r": 0.018436168757302255,
+   "exact_feasible": true,
+   "exact_repair_factor": 1.0,
+   "pck_sha256": "93cd1c718da08d37fec30ce8ebcf54fad54e5622a6279bf5cab273a5e01aab5c",
+   "provenance": {
+    "n": 406,
+    "sum_r": 10.714817709262032,
+    "record_live": 10.713481777078,
+    "margin": 0.0013359321840322735,
+    "source": "sweep",
+    "solver": "tv16ob6",
+    "mode": "nbr",
+    "seed": 8201,
+    "job": "../cp_ext/roundE12/jobs/tv16ob6/nbr/n406_s8201.json",
+    "warm_path": null,
+    "label": "SI-v2 sweep tv16ob6 seed 8201 nbr",
     "solver_origin": "jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v16-oldbrief-x10/transcendence-v16-oldbrief-6",
     "solver_sha256": "64209a4d5b52b3b8e57344f8519645d8efb13b65e4c136da469eb16325a3d275"
    }
@@ -2949,6 +3006,33 @@
     "label": "SI-v2 sweep tv16ob6 seed 8101 nbr",
     "solver_origin": "jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v16-oldbrief-x10/transcendence-v16-oldbrief-6",
     "solver_sha256": "64209a4d5b52b3b8e57344f8519645d8efb13b65e4c136da469eb16325a3d275"
+   }
+  },
+  "428": {
+   "sum_r": 11.01129297258895,
+   "record": 11.010629267826,
+   "margin": 0.0006637047629514115,
+   "verdict": "WIN",
+   "min_wall_slack": 7.69495578367696e-13,
+   "min_pair_slack": 1.9999973899231804e-13,
+   "min_r": 0.016687887659796598,
+   "exact_feasible": true,
+   "exact_repair_factor": 1.0,
+   "pck_sha256": "433e2742af9fd3df19a7d0d55933e79fa0e242e0df324e8031f04c7a73e37f34",
+   "provenance": {
+    "n": 428,
+    "sum_r": 11.01129297258895,
+    "record_live": 11.010629267826,
+    "margin": 0.0006637047629514115,
+    "source": "sweep",
+    "solver": "tv14pf6",
+    "mode": "nbr",
+    "seed": 8201,
+    "job": "../cp_ext/roundE12/jobs/tv14pf6/nbr/n428_s8201.json",
+    "warm_path": null,
+    "label": "SI-v2 sweep tv14pf6 seed 8201 nbr",
+    "solver_origin": "jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v14-probefix-x10/transcendence-v14-probefix-6",
+    "solver_sha256": "4498fcdd171624bdce5d6935ec007691c66fcef5067b6f3ccf504991ffa3722c"
    }
   },
   "429": {
