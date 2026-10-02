@@ -3,7 +3,7 @@
 **97 WIN** against the Packomania `csqv` table retrieved **2026-10-02 19:20 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 100 sizes posted by Packomania in this range.
 Only WIN packings (strictly feasible in exact rational arithmetic, `sum_r > record + 1e-9`) are published here.
 
-Extension campaign status at 2026-10-02 20:01 UTC: 9352 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE12, roundE2, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
+Extension campaign status at 2026-10-02 20:12 UTC: 9354 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE12, roundE2, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
 
 ## How this differs from `si-v2-20260927` (N <= 100)
 
@@ -452,7 +452,7 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 460 | 11.413368728927 | 11.412700567346 | +6.7e-04 | Jean-René Denoual |
 | 461 | 11.425784505395 | 11.425580426419 | +2.0e-04 | Jean-René Denoual |
 | 462 | 11.438195719796 | 11.437566177571 | +6.3e-04 | Jean-René Denoual |
-| 463 | 11.450655867230 | 11.450452426588 | +2.0e-04 | Jean-René Denoual |
+| 463 | 11.452211542270 | 11.450452426588 | +1.8e-03 | Jean-René Denoual |
 | 464 | 11.463295940139 | 11.462580065449 | +7.2e-04 | Jean-René Denoual |
 | 465 | 11.475479342544 | 11.475191505336 | +2.9e-04 | Jean-René Denoual |
 | 466 | 11.488092010431 | 11.487639049093 | +4.5e-04 | Jean-René Denoual |
@@ -531,4 +531,4 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 
 `pck/csqv<N>.pck` (Packomania text, centred square, %.17g), `json/out<N>.json` (corner-frame sidecar), `results.csv`, `manifest.json`,
 `comparison.md` (`verify_and_compare.py compare --tol 0`). Verify any file with `python verify_and_compare.py verify pck/csqv<N>.pck`.
-Sweep: 9352 jobs over 14 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
+Sweep: 9354 jobs over 14 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.

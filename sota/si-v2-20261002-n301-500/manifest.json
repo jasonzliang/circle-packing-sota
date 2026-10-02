@@ -3798,30 +3798,30 @@
    }
   },
   "463": {
-   "sum_r": 11.45065586723038,
+   "sum_r": 11.452211542269724,
    "record": 11.450452426588,
-   "margin": 0.00020344064237853843,
+   "margin": 0.0017591156817235998,
    "verdict": "WIN",
-   "min_wall_slack": 3.0747279722298515e-13,
-   "min_pair_slack": 1.9999973899231804e-13,
-   "min_r": 0.015587821711040908,
+   "min_wall_slack": 4.8011702252770405e-11,
+   "min_pair_slack": 1.9999904510292765e-12,
+   "min_r": 0.01644216401894528,
    "exact_feasible": true,
    "exact_repair_factor": 1.0,
-   "pck_sha256": "d58d95f00f5da83358714e630c5b5843250af6d10738c2772437e2bf14d1d4d1",
+   "pck_sha256": "25506e19ce39875af529be1ef8f43d00cd31ac44c1b027138c29c7045f16b60a",
    "provenance": {
     "n": 463,
-    "sum_r": 11.45065586723038,
+    "sum_r": 11.452211542269724,
     "record_live": 11.450452426588,
-    "margin": 0.00020344064237853843,
+    "margin": 0.0017591156817235998,
     "source": "sweep",
-    "solver": "tv14pf6",
+    "solver": "w2_0906circleenha_enhancementv",
     "mode": "nbr",
     "seed": 8201,
-    "job": "../cp_ext/roundE12/jobs/tv14pf6/nbr/n463_s8201.json",
+    "job": "../cp_ext/roundE12/jobs/w2_0906circleenha_enhancementv/nbr/n463_s8201.json",
     "warm_path": null,
-    "label": "SI-v2 sweep tv14pf6 seed 8201 nbr",
-    "solver_origin": "jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v14-probefix-x10/transcendence-v14-probefix-6",
-    "solver_sha256": "4498fcdd171624bdce5d6935ec007691c66fcef5067b6f3ccf504991ffa3722c"
+    "label": "SI-v2 sweep w2_0906circleenha_enhancementv seed 8201 nbr",
+    "solver_origin": "aws:2026-09-06_circle-enhancement-v15-x10-15it30m/enhancement-v15-9",
+    "solver_sha256": "c213b2c32795f8a82337e652d3bfa48ca39ea029e18c0f3d5ee3211a3fe36a14"
    }
   },
   "464": {
