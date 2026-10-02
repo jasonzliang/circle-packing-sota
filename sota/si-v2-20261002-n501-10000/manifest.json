@@ -1,0 +1,17 @@
+{
+ "artifact": "si-v2-20261002-n501-10000",
+ "records_file": "sota/packomania/history/packomania_csqv_2026-10-01.json",
+ "records_sha256": "699870d061a7260580bc81955b6bf05c288cbd7923c346f87bbaf402f85b4bbc",
+ "records_retrieved": "2026-10-01",
+ "rule": "feasible in EXACT rational arithmetic with zero tolerance (fractions.Fraction, squared comparisons; ulp-level overlaps repaired by shrinking radii) AND sum_r > record + 1e-9 (verify_and_compare.WIN_EPS)",
+ "counts": {
+  "exported": 0,
+  "WIN": 0,
+  "tie": 0,
+  "below": 0
+ },
+ "wins": [],
+ "ties": [],
+ "below": [],
+ "per_n": {}
+}
