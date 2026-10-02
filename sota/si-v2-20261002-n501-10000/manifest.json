@@ -5,8 +5,8 @@
  "records_retrieved": "2026-10-01",
  "rule": "feasible in EXACT rational arithmetic with zero tolerance (fractions.Fraction, squared comparisons; ulp-level overlaps repaired by shrinking radii) AND sum_r > record + 1e-9 (verify_and_compare.WIN_EPS)",
  "counts": {
-  "exported": 24,
-  "WIN": 24,
+  "exported": 25,
+  "WIN": 25,
   "tie": 0,
   "below": 0
  },
@@ -34,7 +34,8 @@
   4624,
   5041,
   5625,
-  5929
+  5929,
+  8836
  ],
  "ties": [],
  "below": [],
@@ -681,6 +682,33 @@
     "mode": "nbr",
     "seed": 8201,
     "job": "../cp_ext/roundE12/jobs/none7/nbr/n5929_s8201.json",
+    "warm_path": null,
+    "label": "SI-v2 sweep none7 seed 8201 nbr",
+    "solver_origin": "aws results/circle-packing/2026-09-15_circle-6arm-v14-probefix-x10/none-7",
+    "solver_sha256": "08e14f9cbf06f473742439f3875bd30aaffbe3a08e83ca8299c76018569967d7"
+   }
+  },
+  "8836": {
+   "sum_r": 50.39153822784036,
+   "record": 50.301645429788,
+   "margin": 0.08989279805235384,
+   "verdict": "WIN",
+   "min_wall_slack": 9.997558336749535e-14,
+   "min_pair_slack": 2.000621890374532e-13,
+   "min_r": 0.003689802119923807,
+   "exact_feasible": true,
+   "exact_repair_factor": 1.0,
+   "pck_sha256": "13aed21f4236168cadd976c7298185b8dceb482956dd398597137a93bbf51256",
+   "provenance": {
+    "n": 8836,
+    "sum_r": 50.39153822784036,
+    "record_live": 50.301645429788,
+    "margin": 0.08989279805235384,
+    "source": "sweep",
+    "solver": "none7",
+    "mode": "nbr",
+    "seed": 8201,
+    "job": "../cp_ext/roundE12/jobs/none7/nbr/n8836_s8201.json",
     "warm_path": null,
     "label": "SI-v2 sweep none7 seed 8201 nbr",
     "solver_origin": "aws results/circle-packing/2026-09-15_circle-6arm-v14-probefix-x10/none-7",
