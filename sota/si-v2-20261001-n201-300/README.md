@@ -1,9 +1,9 @@
 # si-v2-20261001-n201-300: SI-v2 solver sweep extended to N = 201..300
 
-**97 WIN** against the Packomania `csqv` table retrieved **2026-10-02 19:20 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 100 sizes posted by Packomania in this range.
+**97 WIN** against the Packomania `csqv` table retrieved **2026-10-02 20:21 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 100 sizes posted by Packomania in this range.
 Only WIN packings (strictly feasible in exact rational arithmetic, `sum_r > record + 1e-9`) are published here.
 
-Extension campaign status at 2026-10-02 20:12 UTC: 9354 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE12, roundE2, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
+Extension campaign status at 2026-10-02 20:22 UTC: 9383 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE12, roundE2, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
 
 ## How this differs from `si-v2-20260927` (N <= 100)
 
@@ -123,7 +123,7 @@ Closest non-winning results (within 1e-5 of the record): 266 (-4.5e-13), 267 (-9
 | 299 | 9.179904120375 | 9.176674773948 | +3.229e-03 | +3.52e-04 | `hpolish` self seed 0 | Jean-René Denoual |
 | 300 | 9.196770845441 | 9.192717162187 | +4.054e-03 | +4.41e-04 | `hpolish` self seed 0 | Jean-René Denoual |
 
-## All records beaten, N = 1..10000, against the live table (2026-10-02 19:20 UTC)
+## All records beaten, N = 1..10000, against the live table (2026-10-02 20:21 UTC)
 
 Combined with `si-v2-20260927` (N <= 100). A row means our published packing exceeds the live Packomania value by more than 1e-9.
 
@@ -149,8 +149,8 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 116 | 5.678137750023 | 5.676573137511 | +1.6e-03 | Wilfred Heap |
 | 117 | 5.702869186618 | 5.702235739011 | +6.3e-04 | Eckard Specht |
 | 118 | 5.727629674344 | 5.727559469522 | +7.0e-05 | Jean-René Denoual |
-| 119 | 5.753185191412 | 5.752646828336 | +5.4e-04 | Jean-René Denoual |
-| 120 | 5.777647518851 | 5.777303097445 | +3.4e-04 | Elian Alfonso López Preciado |
+| 119 | 5.753185191412 | 5.752646828334 | +5.4e-04 | Jean-René Denoual |
+| 120 | 5.777647518851 | 5.777303097443 | +3.4e-04 | Elian Alfonso López Preciado |
 | 122 | 5.828469948565 | 5.828135840589 | +3.3e-04 | Wilfred Heap |
 | 123 | 5.853520686624 | 5.853393864742 | +1.3e-04 | Wilfred Heap |
 | 125 | 5.902749941028 | 5.902296796096 | +4.5e-04 | Wilfred Heap |
@@ -177,24 +177,24 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 148 | 6.432731989105 | 6.432461590552 | +2.7e-04 | Jean-René Denoual |
 | 152 | 6.520443940705 | 6.520366820754 | +7.7e-05 | Jean-René Denoual |
 | 153 | 6.541670295894 | 6.541408426141 | +2.6e-04 | Jean-René Denoual |
-| 154 | 6.563211094217 | 6.561927143305 | +1.3e-03 | Jean-René Denoual |
+| 154 | 6.563211094217 | 6.561927143306 | +1.3e-03 | Jean-René Denoual |
 | 155 | 6.583307096478 | 6.582091347104 | +1.2e-03 | Jean-René Denoual |
 | 156 | 6.603620180147 | 6.602458999560 | +1.2e-03 | Jean-René Denoual |
-| 157 | 6.623376472218 | 6.622760196297 | +6.2e-04 | Jean-René Denoual |
-| 158 | 6.644016750914 | 6.643473474163 | +5.4e-04 | Jean-René Denoual |
+| 157 | 6.623376472218 | 6.622760196299 | +6.2e-04 | Jean-René Denoual |
+| 158 | 6.644016750914 | 6.643473474167 | +5.4e-04 | Jean-René Denoual |
 | 159 | 6.665381293305 | 6.663891763480 | +1.5e-03 | Wilfred Heap |
 | 160 | 6.686422124069 | 6.686377484769 | +4.5e-05 | Yue Huang |
 | 162 | 6.728816089964 | 6.728706099717 | +1.1e-04 | Jean-René Denoual |
 | 163 | 6.750073613931 | 6.749584271556 | +4.9e-04 | Wilfred Heap |
 | 164 | 6.771946802778 | 6.771350627575 | +6.0e-04 | Wilfred Heap |
 | 165 | 6.793231550873 | 6.792830162827 | +4.0e-04 | Jean-René Denoual |
-| 166 | 6.815408144617 | 6.814618735087 | +7.9e-04 | Jean-René Denoual |
-| 167 | 6.837483849387 | 6.836877925708 | +6.1e-04 | Jean-René Denoual |
+| 166 | 6.815408144617 | 6.814618735083 | +7.9e-04 | Jean-René Denoual |
+| 167 | 6.837483849387 | 6.836877925711 | +6.1e-04 | Jean-René Denoual |
 | 168 | 6.858710997365 | 6.858106347377 | +6.0e-04 | Eckard Specht |
 | 171 | 6.922748197450 | 6.922613061509 | +1.4e-04 | Jean-René Denoual |
 | 172 | 6.943397050008 | 6.943340559805 | +5.6e-05 | Jean-René Denoual |
-| 173 | 6.964255012795 | 6.964232150231 | +2.3e-05 | Jean-René Denoual |
-| 174 | 6.985344577949 | 6.985262310499 | +8.2e-05 | Jean-René Denoual |
+| 173 | 6.964255012795 | 6.964232150236 | +2.3e-05 | Jean-René Denoual |
+| 174 | 6.985344577949 | 6.985262310503 | +8.2e-05 | Jean-René Denoual |
 | 175 | 7.005012955534 | 7.004707257451 | +3.1e-04 | Jean-René Denoual |
 | 176 | 7.024096757341 | 7.023425437597 | +6.7e-04 | Jean-René Denoual |
 | 177 | 7.042590101131 | 7.042544930878 | +4.5e-05 | Jean-René Denoual |
@@ -209,37 +209,37 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 186 | 7.218458933071 | 7.218383296615 | +7.6e-05 | Jean-René Denoual |
 | 187 | 7.238253386810 | 7.237822453752 | +4.3e-04 | Jean-René Denoual |
 | 188 | 7.257784502262 | 7.256806779802 | +9.8e-04 | Jean-René Denoual |
-| 189 | 7.277955287382 | 7.277259920003 | +7.0e-04 | Jean-René Denoual |
-| 190 | 7.298182304138 | 7.297283358464 | +9.0e-04 | Jean-René Denoual |
-| 191 | 7.317941398677 | 7.314938403871 | +3.0e-03 | Wilfred Heap |
+| 189 | 7.277955287382 | 7.277259919995 | +7.0e-04 | Jean-René Denoual |
+| 190 | 7.298182304138 | 7.297283358456 | +9.0e-04 | Jean-René Denoual |
+| 191 | 7.317941398677 | 7.314938403868 | +3.0e-03 | Wilfred Heap |
 | 192 | 7.338318546759 | 7.336598450128 | +1.7e-03 | Jean-René Denoual |
 | 193 | 7.357900978665 | 7.357305320712 | +6.0e-04 | Jean-René Denoual |
-| 194 | 7.377620865759 | 7.376248679483 | +1.4e-03 | Jean-René Denoual |
-| 195 | 7.398023926483 | 7.395054318099 | +3.0e-03 | Jean-René Denoual |
-| 196 | 7.417474619912 | 7.414752186446 | +2.7e-03 | Jean-René Denoual |
-| 197 | 7.436323901330 | 7.435507140839 | +8.2e-04 | Jean-René Denoual |
-| 198 | 7.456737445837 | 7.454135017058 | +2.6e-03 | Jean-René Denoual |
-| 199 | 7.475687680419 | 7.475311776105 | +3.8e-04 | Jean-René Denoual |
-| 200 | 7.494071021855 | 7.493815304616 | +2.6e-04 | Jean-René Denoual |
-| 201 | 7.514215471507 | 7.513577601745 | +6.4e-04 | Jean-René Denoual |
-| 202 | 7.532691187047 | 7.530737482199 | +2.0e-03 | Jean-René Denoual |
+| 194 | 7.377620865759 | 7.376248679485 | +1.4e-03 | Jean-René Denoual |
+| 195 | 7.398023926483 | 7.395054318097 | +3.0e-03 | Jean-René Denoual |
+| 196 | 7.417474619912 | 7.414752186443 | +2.7e-03 | Jean-René Denoual |
+| 197 | 7.436323901330 | 7.435507140837 | +8.2e-04 | Jean-René Denoual |
+| 198 | 7.456737445837 | 7.454135017053 | +2.6e-03 | Jean-René Denoual |
+| 199 | 7.475687680419 | 7.475311776108 | +3.8e-04 | Jean-René Denoual |
+| 200 | 7.494071021855 | 7.493815304614 | +2.6e-04 | Jean-René Denoual |
+| 201 | 7.514215471507 | 7.513577601743 | +6.4e-04 | Jean-René Denoual |
+| 202 | 7.532691187047 | 7.530737482198 | +2.0e-03 | Jean-René Denoual |
 | 203 | 7.550506781501 | 7.549453338312 | +1.1e-03 | Jean-René Denoual |
 | 204 | 7.567417355417 | 7.567040637207 | +3.8e-04 | Jean-René Denoual |
-| 205 | 7.585501515237 | 7.585145048634 | +3.6e-04 | Jean-René Denoual |
-| 206 | 7.603841369906 | 7.602847648701 | +9.9e-04 | Jean-René Denoual |
-| 207 | 7.622201198658 | 7.620986073417 | +1.2e-03 | Jean-René Denoual |
-| 208 | 7.639765308014 | 7.638874318313 | +8.9e-04 | Jean-René Denoual |
-| 209 | 7.657963657677 | 7.656781531190 | +1.2e-03 | Jean-René Denoual |
-| 210 | 7.675809055326 | 7.674608739197 | +1.2e-03 | Jean-René Denoual |
-| 211 | 7.694453725207 | 7.693286838327 | +1.2e-03 | Jean-René Denoual |
-| 212 | 7.712204253418 | 7.712135369769 | +6.9e-05 | Jean-René Denoual |
-| 213 | 7.731052088427 | 7.730352006424 | +7.0e-04 | Jean-René Denoual |
-| 214 | 7.750016651895 | 7.749920828063 | +9.6e-05 | Jean-René Denoual |
-| 215 | 7.768840993667 | 7.768139491031 | +7.0e-04 | Jean-René Denoual |
-| 216 | 7.787633520601 | 7.787370320365 | +2.6e-04 | Jean-René Denoual |
-| 217 | 7.806394277851 | 7.805323305341 | +1.1e-03 | Jean-René Denoual |
-| 218 | 7.825291320960 | 7.824384394934 | +9.1e-04 | Jean-René Denoual |
-| 219 | 7.843875392941 | 7.843270863590 | +6.0e-04 | Jean-René Denoual |
+| 205 | 7.585501515237 | 7.585145048644 | +3.6e-04 | Jean-René Denoual |
+| 206 | 7.603841369906 | 7.602847648702 | +9.9e-04 | Jean-René Denoual |
+| 207 | 7.622201198658 | 7.620986073421 | +1.2e-03 | Jean-René Denoual |
+| 208 | 7.639765308014 | 7.638874318312 | +8.9e-04 | Jean-René Denoual |
+| 209 | 7.657963657677 | 7.656781531187 | +1.2e-03 | Jean-René Denoual |
+| 210 | 7.675809055326 | 7.674608739201 | +1.2e-03 | Jean-René Denoual |
+| 211 | 7.694453725207 | 7.693286838324 | +1.2e-03 | Jean-René Denoual |
+| 212 | 7.712204253418 | 7.712135369766 | +6.9e-05 | Jean-René Denoual |
+| 213 | 7.731052088427 | 7.730352006422 | +7.0e-04 | Jean-René Denoual |
+| 214 | 7.750016651895 | 7.749920828062 | +9.6e-05 | Jean-René Denoual |
+| 215 | 7.768840993667 | 7.768139491033 | +7.0e-04 | Jean-René Denoual |
+| 216 | 7.787633520601 | 7.787370320369 | +2.6e-04 | Jean-René Denoual |
+| 217 | 7.806394277851 | 7.805323305340 | +1.1e-03 | Jean-René Denoual |
+| 218 | 7.825291320960 | 7.824384394933 | +9.1e-04 | Jean-René Denoual |
+| 219 | 7.843875392941 | 7.843270863587 | +6.0e-04 | Jean-René Denoual |
 | 220 | 7.863610857273 | 7.862978781947 | +6.3e-04 | Wilfred Heap |
 | 221 | 7.882258332009 | 7.881322193729 | +9.4e-04 | Jean-René Denoual |
 | 222 | 7.900773652117 | 7.900508311326 | +2.7e-04 | Wilfred Heap |
@@ -253,18 +253,18 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 230 | 8.043355500284 | 8.042086155658 | +1.3e-03 | Jean-René Denoual |
 | 231 | 8.060148954445 | 8.059954604485 | +1.9e-04 | Jean-René Denoual |
 | 232 | 8.076147059765 | 8.075645300615 | +5.0e-04 | Jean-René Denoual |
-| 233 | 8.094319110390 | 8.093167942343 | +1.2e-03 | Jean-René Denoual |
-| 234 | 8.110211636931 | 8.109403544494 | +8.1e-04 | Jean-René Denoual |
+| 233 | 8.094319110390 | 8.093167942349 | +1.2e-03 | Jean-René Denoual |
+| 234 | 8.110211636931 | 8.109403544491 | +8.1e-04 | Jean-René Denoual |
 | 235 | 8.127280870897 | 8.124965979221 | +2.3e-03 | Jean-René Denoual |
 | 236 | 8.143218415657 | 8.142183830581 | +1.0e-03 | Jean-René Denoual |
 | 237 | 8.160815684546 | 8.159361330801 | +1.5e-03 | Jean-René Denoual |
 | 238 | 8.177228515181 | 8.176808422664 | +4.2e-04 | Jean-René Denoual |
-| 239 | 8.194709240524 | 8.193958609549 | +7.5e-04 | Jean-René Denoual |
+| 239 | 8.194709240524 | 8.193958609545 | +7.5e-04 | Jean-René Denoual |
 | 240 | 8.212955975303 | 8.211062781761 | +1.9e-03 | Jean-René Denoual |
 | 241 | 8.230636149532 | 8.228747504774 | +1.9e-03 | Wilfred Heap |
-| 242 | 8.248463164210 | 8.245913651626 | +2.5e-03 | Jean-René Denoual |
-| 243 | 8.265827621895 | 8.264972382603 | +8.6e-04 | Jean-René Denoual |
-| 244 | 8.284044016466 | 8.282696623107 | +1.3e-03 | Jean-René Denoual |
+| 242 | 8.248463164210 | 8.245913651625 | +2.5e-03 | Jean-René Denoual |
+| 243 | 8.265827621895 | 8.264972382605 | +8.6e-04 | Jean-René Denoual |
+| 244 | 8.284044016466 | 8.282696623114 | +1.3e-03 | Jean-René Denoual |
 | 245 | 8.301242120377 | 8.300102521900 | +1.1e-03 | Jean-René Denoual |
 | 246 | 8.319606109257 | 8.317883144176 | +1.7e-03 | Jean-René Denoual |
 | 247 | 8.337657453498 | 8.336758433778 | +9.0e-04 | Jean-René Denoual |
@@ -275,8 +275,8 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 252 | 8.425177921053 | 8.424518228844 | +6.6e-04 | Jean-René Denoual |
 | 253 | 8.442542096980 | 8.441592362873 | +9.5e-04 | Wilfred Heap |
 | 254 | 8.459543379931 | 8.458872827124 | +6.7e-04 | Jean-René Denoual |
-| 255 | 8.477130226838 | 8.477029407017 | +1.0e-04 | Wilfred Heap |
-| 256 | 8.493244330801 | 8.492946191754 | +3.0e-04 | Jean-René Denoual |
+| 255 | 8.477130226838 | 8.477029407021 | +1.0e-04 | Wilfred Heap |
+| 256 | 8.493244330801 | 8.492946191750 | +3.0e-04 | Jean-René Denoual |
 | 257 | 8.508918551248 | 8.508422799988 | +5.0e-04 | Jean-René Denoual |
 | 258 | 8.525898717018 | 8.524409881740 | +1.5e-03 | Jean-René Denoual |
 | 259 | 8.541771099822 | 8.541425245228 | +3.5e-04 | Jean-René Denoual |
@@ -286,16 +286,16 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 263 | 8.605274287106 | 8.604914868198 | +3.6e-04 | Jean-René Denoual |
 | 264 | 8.621529016507 | 8.621387757251 | +1.4e-04 | Jean-René Denoual |
 | 265 | 8.637255515421 | 8.636677283514 | +5.8e-04 | Jean-René Denoual |
-| 269 | 8.702568772927 | 8.702116357477 | +4.5e-04 | Jean-René Denoual |
-| 270 | 8.718081000549 | 8.717369002184 | +7.1e-04 | Jean-René Denoual |
-| 271 | 8.734620044638 | 8.733631185820 | +9.9e-04 | Jean-René Denoual |
-| 272 | 8.751332428368 | 8.750101147793 | +1.2e-03 | Jean-René Denoual |
-| 273 | 8.767885688779 | 8.766441467546 | +1.4e-03 | Jean-René Denoual |
-| 274 | 8.783646943132 | 8.782947126324 | +7.0e-04 | Jean-René Denoual |
-| 275 | 8.799821274737 | 8.799100032873 | +7.2e-04 | Jean-René Denoual |
-| 276 | 8.815791617727 | 8.815248638705 | +5.4e-04 | Jean-René Denoual |
-| 277 | 8.833012846276 | 8.831359412359 | +1.7e-03 | Jean-René Denoual |
-| 278 | 8.849078849651 | 8.847454899623 | +1.6e-03 | Jean-René Denoual |
+| 269 | 8.702568772927 | 8.702116357479 | +4.5e-04 | Jean-René Denoual |
+| 270 | 8.718081000549 | 8.717369002188 | +7.1e-04 | Jean-René Denoual |
+| 271 | 8.734620044638 | 8.733631185814 | +9.9e-04 | Jean-René Denoual |
+| 272 | 8.751332428368 | 8.750101147795 | +1.2e-03 | Jean-René Denoual |
+| 273 | 8.767885688779 | 8.766441467544 | +1.4e-03 | Jean-René Denoual |
+| 274 | 8.783646943132 | 8.782947126327 | +7.0e-04 | Jean-René Denoual |
+| 275 | 8.799821274737 | 8.799100032869 | +7.2e-04 | Jean-René Denoual |
+| 276 | 8.815791617727 | 8.815248638710 | +5.4e-04 | Jean-René Denoual |
+| 277 | 8.833012846276 | 8.831359412358 | +1.7e-03 | Jean-René Denoual |
+| 278 | 8.849078849651 | 8.847454899628 | +1.6e-03 | Jean-René Denoual |
 | 279 | 8.865589291170 | 8.865026989516 | +5.6e-04 | Jean-René Denoual |
 | 280 | 8.884272111120 | 8.881441244871 | +2.8e-03 | Jean-René Denoual |
 | 281 | 8.901240953109 | 8.897344530591 | +3.9e-03 | Jean-René Denoual |
@@ -304,19 +304,19 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 284 | 8.950764486072 | 8.946990762449 | +3.8e-03 | Jean-René Denoual |
 | 285 | 8.967891423896 | 8.963362670814 | +4.5e-03 | Jean-René Denoual |
 | 286 | 8.983837096627 | 8.979493799189 | +4.3e-03 | Jean-René Denoual |
-| 287 | 8.998763554843 | 8.996138387721 | +2.6e-03 | Wilfred Heap |
-| 288 | 9.013919095316 | 9.013518286200 | +4.0e-04 | Wilfred Heap |
-| 289 | 9.028618602620 | 9.027041535254 | +1.6e-03 | Wilfred Heap |
+| 287 | 8.998763554843 | 8.996138387720 | +2.6e-03 | Wilfred Heap |
+| 288 | 9.013919095316 | 9.013518286203 | +4.0e-04 | Wilfred Heap |
+| 289 | 9.028618602620 | 9.027041535253 | +1.6e-03 | Wilfred Heap |
 | 290 | 9.043206194969 | 9.042284795006 | +9.2e-04 | Jean-René Denoual |
 | 291 | 9.058616578476 | 9.058001856273 | +6.1e-04 | Jean-René Denoual |
 | 292 | 9.073996180440 | 9.072594144101 | +1.4e-03 | Jean-René Denoual |
 | 293 | 9.088930498053 | 9.088041361012 | +8.9e-04 | Jean-René Denoual |
 | 294 | 9.104009751046 | 9.103186323553 | +8.2e-04 | Jean-René Denoual |
 | 295 | 9.119378513625 | 9.116204790462 | +3.2e-03 | Jean-René Denoual |
-| 296 | 9.134896514571 | 9.131106084861 | +3.8e-03 | Jean-René Denoual |
-| 297 | 9.149420862049 | 9.147139780469 | +2.3e-03 | Jean-René Denoual |
-| 298 | 9.164640675262 | 9.161800772953 | +2.8e-03 | Jean-René Denoual |
-| 299 | 9.179904120375 | 9.176674773948 | +3.2e-03 | Jean-René Denoual |
+| 296 | 9.134896514571 | 9.131106084866 | +3.8e-03 | Jean-René Denoual |
+| 297 | 9.149420862049 | 9.147139780474 | +2.3e-03 | Jean-René Denoual |
+| 298 | 9.164640675262 | 9.161800772959 | +2.8e-03 | Jean-René Denoual |
+| 299 | 9.179904120375 | 9.176674773951 | +3.2e-03 | Jean-René Denoual |
 | 300 | 9.196770845441 | 9.192717162187 | +4.1e-03 | Jean-René Denoual |
 | 301 | 9.209446029318 | 9.206706957124 | +2.7e-03 | Jean-René Denoual |
 | 302 | 9.224733176596 | 9.222457409110 | +2.3e-03 | Jean-René Denoual |
@@ -457,9 +457,11 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 465 | 11.475479342544 | 11.475191505336 | +2.9e-04 | Jean-René Denoual |
 | 466 | 11.488092010431 | 11.487639049093 | +4.5e-04 | Jean-René Denoual |
 | 467 | 11.500556062375 | 11.500055528292 | +5.0e-04 | Jean-René Denoual |
+| 468 | 11.514236838456 | 11.513306429273 | +9.3e-04 | Jean-René Denoual |
 | 469 | 11.524497883752 | 11.522965080147 | +1.5e-03 | Jean-René Denoual |
 | 470 | 11.538072626079 | 11.535717024814 | +2.4e-03 | Jean-René Denoual |
 | 471 | 11.548388349354 | 11.548024053592 | +3.6e-04 | Jean-René Denoual |
+| 472 | 11.560132500831 | 11.559922693009 | +2.1e-04 | Jean-René Denoual |
 | 473 | 11.572372781243 | 11.572268460196 | +1.0e-04 | Jean-René Denoual |
 | 474 | 11.584879034686 | 11.584603098149 | +2.8e-04 | Jean-René Denoual |
 | 475 | 11.597206287043 | 11.596644766915 | +5.6e-04 | Jean-René Denoual |
@@ -473,6 +475,7 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 484 | 11.707106635154 | 11.706739384534 | +3.7e-04 | Jean-René Denoual |
 | 487 | 11.742582154122 | 11.742424558708 | +1.6e-04 | Jean-René Denoual |
 | 488 | 11.755149812763 | 11.753818598945 | +1.3e-03 | Jean-René Denoual |
+| 489 | 11.769610100652 | 11.767847428021 | +1.8e-03 | Jean-René Denoual |
 | 490 | 11.780256537375 | 11.780098018438 | +1.6e-04 | Jean-René Denoual |
 | 491 | 11.793811762967 | 11.792921656649 | +8.9e-04 | Jean-René Denoual |
 | 494 | 11.828122533650 | 11.824004090539 | +4.1e-03 | Jean-René Denoual |
@@ -531,4 +534,4 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 
 `pck/csqv<N>.pck` (Packomania text, centred square, %.17g), `json/out<N>.json` (corner-frame sidecar), `results.csv`, `manifest.json`,
 `comparison.md` (`verify_and_compare.py compare --tol 0`). Verify any file with `python verify_and_compare.py verify pck/csqv<N>.pck`.
-Sweep: 9354 jobs over 14 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
+Sweep: 9383 jobs over 14 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
