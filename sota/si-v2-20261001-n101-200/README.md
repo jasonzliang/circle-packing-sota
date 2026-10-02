@@ -3,7 +3,7 @@
 **82 WIN** against the Packomania `csqv` table retrieved **2026-10-02 15:54 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 100 sizes posted by Packomania in this range.
 Only WIN packings (strictly feasible in exact rational arithmetic, `sum_r > record + 1e-9`) are published here.
 
-Extension campaign status at 2026-10-02 16:28 UTC: 8784 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE2, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
+Extension campaign status at 2026-10-02 16:38 UTC: 8840 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE2, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
 
 ## How this differs from `si-v2-20260927` (N <= 100)
 
@@ -364,11 +364,14 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 383 | 10.410101414734 | 10.408503510571 | +1.6e-03 | Jean-René Denoual |
 | 385 | 10.435848216337 | 10.424399434790 | +1.1e-02 | Jean-René Denoual |
 | 386 | 10.451107304284 | 10.437431673991 | +1.4e-02 | Jean-René Denoual |
-| 387 | 10.458976626060 | 10.458345608697 | +6.3e-04 | Jean-René Denoual |
+| 387 | 10.459213884527 | 10.458345608697 | +8.7e-04 | Jean-René Denoual |
 | 388 | 10.474896068240 | 10.472818517163 | +2.1e-03 | Jean-René Denoual |
 | 389 | 10.487706372632 | 10.486548146241 | +1.2e-03 | Jean-René Denoual |
 | 390 | 10.500099529166 | 10.499937476376 | +1.6e-04 | Jean-René Denoual |
+| 391 | 10.514313001729 | 10.512915238537 | +1.4e-03 | Jean-René Denoual |
+| 392 | 10.528384024929 | 10.526288015021 | +2.1e-03 | Jean-René Denoual |
 | 393 | 10.539438084680 | 10.537703970268 | +1.7e-03 | Jean-René Denoual |
+| 395 | 10.566418011892 | 10.564434141115 | +2.0e-03 | Jean-René Denoual |
 | 397 | 10.590507008793 | 10.589897201759 | +6.1e-04 | Jean-René Denoual |
 | 398 | 10.606396613469 | 10.603648603343 | +2.7e-03 | Jean-René Denoual |
 | 399 | 10.618422232405 | 10.616641862208 | +1.8e-03 | Jean-René Denoual |
@@ -394,13 +397,14 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 424 | 10.959624159167 | 10.959562982145 | +6.1e-05 | Jean-René Denoual |
 | 425 | 10.972419031875 | 10.972363540154 | +5.5e-05 | Jean-René Denoual |
 | 429 | 11.023149948758 | 11.022760186301 | +3.9e-04 | Jean-René Denoual |
-| 430 | 11.034614767355 | 11.034031191924 | +5.8e-04 | Jean-René Denoual |
+| 430 | 11.035507620872 | 11.034031191924 | +1.5e-03 | Jean-René Denoual |
 | 434 | 11.083212647779 | 11.082737805283 | +4.7e-04 | Jean-René Denoual |
-| 438 | 11.133669727529 | 11.133663422819 | +6.3e-06 | Jean-René Denoual |
-| 440 | 11.158063403635 | 11.157976272856 | +8.7e-05 | Jean-René Denoual |
-| 441 | 11.170702082258 | 11.169522435560 | +1.2e-03 | Jean-René Denoual |
+| 438 | 11.133889994179 | 11.133663422819 | +2.3e-04 | Jean-René Denoual |
+| 439 | 11.146050089539 | 11.145396609040 | +6.5e-04 | Jean-René Denoual |
+| 440 | 11.158630900486 | 11.157976272856 | +6.5e-04 | Jean-René Denoual |
+| 441 | 11.170966224284 | 11.169522435560 | +1.4e-03 | Jean-René Denoual |
 | 442 | 11.183606850882 | 11.181832072224 | +1.8e-03 | Jean-René Denoual |
-| 443 | 11.196254814978 | 11.195207710099 | +1.0e-03 | Jean-René Denoual |
+| 443 | 11.196417000577 | 11.195207710099 | +1.2e-03 | Jean-René Denoual |
 | 445 | 11.221334379988 | 11.221259916155 | +7.4e-05 | Jean-René Denoual |
 | 447 | 11.246496069658 | 11.246331389248 | +1.6e-04 | Jean-René Denoual |
 | 449 | 11.273153984076 | 11.271682773930 | +1.5e-03 | Jean-René Denoual |
@@ -448,4 +452,4 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 
 `pck/csqv<N>.pck` (Packomania text, centred square, %.17g), `json/out<N>.json` (corner-frame sidecar), `results.csv`, `manifest.json`,
 `comparison.md` (`verify_and_compare.py compare --tol 0`). Verify any file with `python verify_and_compare.py verify pck/csqv<N>.pck`.
-Sweep: 8784 jobs over 13 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
+Sweep: 8840 jobs over 13 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
