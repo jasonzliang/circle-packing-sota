@@ -5,8 +5,8 @@
  "records_retrieved": "2026-10-01",
  "rule": "feasible in EXACT rational arithmetic with zero tolerance (fractions.Fraction, squared comparisons; ulp-level overlaps repaired by shrinking radii) AND sum_r > record + 1e-9 (verify_and_compare.WIN_EPS)",
  "counts": {
-  "exported": 74,
-  "WIN": 74,
+  "exported": 78,
+  "WIN": 78,
   "tie": 0,
   "below": 0
  },
@@ -81,8 +81,12 @@
   7569,
   7744,
   8100,
+  8281,
   8464,
+  8649,
   8836,
+  9025,
+  9216,
   9409,
   9604
  ],
@@ -1979,6 +1983,33 @@
     "solver_sha256": "08e14f9cbf06f473742439f3875bd30aaffbe3a08e83ca8299c76018569967d7"
    }
   },
+  "8281": {
+   "sum_r": 48.70120649775592,
+   "record": 48.69285049391,
+   "margin": 0.00835600384591828,
+   "verdict": "WIN",
+   "min_wall_slack": 9.997558336749535e-14,
+   "min_pair_slack": 2.0004137235574149e-13,
+   "min_r": 0.003494035711754894,
+   "exact_feasible": true,
+   "exact_repair_factor": 1.0,
+   "pck_sha256": "11959245d3e618268e9422d83328ca2563c601965e849b8421fef65893452002",
+   "provenance": {
+    "n": 8281,
+    "sum_r": 48.70120649775592,
+    "record_live": 48.69285049391,
+    "margin": 0.00835600384591828,
+    "source": "sweep",
+    "solver": "none7",
+    "mode": "nbr",
+    "seed": 8301,
+    "job": "../cp_ext/roundE13/jobs/none7/nbr/n8281_s8301.json",
+    "warm_path": null,
+    "label": "SI-v2 sweep none7 seed 8301 nbr",
+    "solver_origin": "aws results/circle-packing/2026-09-15_circle-6arm-v14-probefix-x10/none-7",
+    "solver_sha256": "08e14f9cbf06f473742439f3875bd30aaffbe3a08e83ca8299c76018569967d7"
+   }
+  },
   "8464": {
    "sum_r": 49.31218379740385,
    "record": 49.22915086919,
@@ -2006,6 +2037,33 @@
     "solver_sha256": "08e14f9cbf06f473742439f3875bd30aaffbe3a08e83ca8299c76018569967d7"
    }
   },
+  "8649": {
+   "sum_r": 49.79126919676384,
+   "record": 49.765345489899,
+   "margin": 0.025923706864844576,
+   "verdict": "WIN",
+   "min_wall_slack": 3.6762922595023895e-08,
+   "min_pair_slack": 1.1549788903053582e-14,
+   "min_r": 0.0038013216751981147,
+   "exact_feasible": true,
+   "exact_repair_factor": 1.0,
+   "pck_sha256": "5fbfbce8f167c40c5966b9e4765d730f95fd5eef2f1f3a9bd2799168f0568c5d",
+   "provenance": {
+    "n": 8649,
+    "sum_r": 49.79126919676384,
+    "record_live": 49.765345489899,
+    "margin": 0.025923706864844576,
+    "source": "sweep",
+    "solver": "w2_0912transcende_transcendenc",
+    "mode": "nbr",
+    "seed": 8301,
+    "job": "../cp_ext/roundE13/jobs/w2_0912transcende_transcendenc/nbr/n8649_s8301.json",
+    "warm_path": null,
+    "label": "SI-v2 sweep w2_0912transcende_transcendenc seed 8301 nbr",
+    "solver_origin": "jason-mbp:2026-09-12_transcendence-v16-x10/transcendence-v16-7",
+    "solver_sha256": "b28e16d5cb4189717bdab100ff312862516c05957d75143d26a1718e0ae63e8d"
+   }
+  },
   "8836": {
    "sum_r": 50.39153822784036,
    "record": 50.301645429788,
@@ -2029,6 +2087,60 @@
     "job": "../cp_ext/roundE12/jobs/none7/nbr/n8836_s8201.json",
     "warm_path": null,
     "label": "SI-v2 sweep none7 seed 8201 nbr",
+    "solver_origin": "aws results/circle-packing/2026-09-15_circle-6arm-v14-probefix-x10/none-7",
+    "solver_sha256": "08e14f9cbf06f473742439f3875bd30aaffbe3a08e83ca8299c76018569967d7"
+   }
+  },
+  "9025": {
+   "sum_r": 50.883225850811414,
+   "record": 50.837840805753,
+   "margin": 0.045385045058417006,
+   "verdict": "WIN",
+   "min_wall_slack": 9.997558336749535e-14,
+   "min_pair_slack": 2.000621890374532e-13,
+   "min_r": 0.0014774416931967172,
+   "exact_feasible": true,
+   "exact_repair_factor": 1.0,
+   "pck_sha256": "aef7740a193da01020c4edabfcfdda9047564c68c3e84308064fcfc342fb9dc8",
+   "provenance": {
+    "n": 9025,
+    "sum_r": 50.883225850811414,
+    "record_live": 50.837840805753,
+    "margin": 0.045385045058417006,
+    "source": "sweep",
+    "solver": "none7",
+    "mode": "nbr",
+    "seed": 8301,
+    "job": "../cp_ext/roundE13/jobs/none7/nbr/n9025_s8301.json",
+    "warm_path": null,
+    "label": "SI-v2 sweep none7 seed 8301 nbr",
+    "solver_origin": "aws results/circle-packing/2026-09-15_circle-6arm-v14-probefix-x10/none-7",
+    "solver_sha256": "08e14f9cbf06f473742439f3875bd30aaffbe3a08e83ca8299c76018569967d7"
+   }
+  },
+  "9216": {
+   "sum_r": 51.47297148204148,
+   "record": 51.374140475396,
+   "margin": 0.09883100664548294,
+   "verdict": "WIN",
+   "min_wall_slack": 9.997558336749535e-14,
+   "min_pair_slack": 2.0008300571916493e-13,
+   "min_r": 0.0035979548439056047,
+   "exact_feasible": true,
+   "exact_repair_factor": 1.0,
+   "pck_sha256": "533cdd06548881bc36fc0925698f283aea4b4bd1cf55b89b3ef8183cf924e59f",
+   "provenance": {
+    "n": 9216,
+    "sum_r": 51.47297148204148,
+    "record_live": 51.374140475396,
+    "margin": 0.09883100664548294,
+    "source": "sweep",
+    "solver": "none7",
+    "mode": "nbr",
+    "seed": 8301,
+    "job": "../cp_ext/roundE13/jobs/none7/nbr/n9216_s8301.json",
+    "warm_path": null,
+    "label": "SI-v2 sweep none7 seed 8301 nbr",
     "solver_origin": "aws results/circle-packing/2026-09-15_circle-6arm-v14-probefix-x10/none-7",
     "solver_sha256": "08e14f9cbf06f473742439f3875bd30aaffbe3a08e83ca8299c76018569967d7"
    }

@@ -3,7 +3,7 @@
 **82 WIN** against the Packomania `csqv` table retrieved **2026-10-02 22:28 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 100 sizes posted by Packomania in this range.
 Only WIN packings (strictly feasible in exact rational arithmetic, `sum_r > record + 1e-9`) are published here.
 
-Extension campaign status at 2026-10-02 22:51 UTC: 9995 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE12, roundE13, roundE2, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
+Extension campaign status at 2026-10-02 23:01 UTC: 10006 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE12, roundE13, roundE2, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
 
 ## How this differs from `si-v2-20260927` (N <= 100)
 
@@ -546,8 +546,12 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 7569 | 46.602514429770 | 46.547862392224 | +5.5e-02 | Eckard Specht |
 | 7744 | 47.130009797431 | 47.084163459560 | +4.6e-02 | Eckard Specht |
 | 8100 | 48.212395982255 | 48.156656887070 | +5.6e-02 | Eckard Specht |
+| 8281 | 48.701206497756 | 48.692850493910 | +8.4e-03 | Eckard Specht |
 | 8464 | 49.312183797404 | 49.229150869190 | +8.3e-02 | Eckard Specht |
+| 8649 | 49.791269196764 | 49.765345489899 | +2.6e-02 | Eckard Specht |
 | 8836 | 50.391538227840 | 50.301645429788 | +9.0e-02 | Eckard Specht |
+| 9025 | 50.883225850811 | 50.837840805753 | +4.5e-02 | Eckard Specht |
+| 9216 | 51.472971482041 | 51.374140475396 | +9.9e-02 | Eckard Specht |
 | 9409 | 51.945685093102 | 51.910336788398 | +3.5e-02 | Eckard Specht |
 | 9604 | 52.473174499261 | 52.446636028618 | +2.7e-02 | Eckard Specht |
 
@@ -555,4 +559,4 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 
 `pck/csqv<N>.pck` (Packomania text, centred square, %.17g), `json/out<N>.json` (corner-frame sidecar), `results.csv`, `manifest.json`,
 `comparison.md` (`verify_and_compare.py compare --tol 0`). Verify any file with `python verify_and_compare.py verify pck/csqv<N>.pck`.
-Sweep: 9995 jobs over 15 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
+Sweep: 10006 jobs over 15 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
