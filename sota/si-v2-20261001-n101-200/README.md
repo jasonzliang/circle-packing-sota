@@ -3,7 +3,7 @@
 **82 WIN** against the Packomania `csqv` table retrieved **2026-10-02 23:29 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 100 sizes posted by Packomania in this range.
 Only WIN packings (strictly feasible in exact rational arithmetic, `sum_r > record + 1e-9`) are published here.
 
-Extension campaign status at 2026-10-02 23:30 UTC: 10044 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE12, roundE13, roundE2, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
+Extension campaign status at 2026-10-02 23:41 UTC: 10076 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE12, roundE13, roundE2, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
 
 ## How this differs from `si-v2-20260927` (N <= 100)
 
@@ -369,6 +369,7 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 372 | 10.251988728554 | 10.251261391169 | +7.3e-04 | Jean-René Denoual |
 | 373 | 10.266103653951 | 10.265674630415 | +4.3e-04 | Jean-René Denoual |
 | 374 | 10.280669891496 | 10.280099023022 | +5.7e-04 | Jean-René Denoual |
+| 375 | 10.294549910959 | 10.294533787995 | +1.6e-05 | Jean-René Denoual |
 | 376 | 10.309353895699 | 10.308942922882 | +4.1e-04 | Jean-René Denoual |
 | 377 | 10.323534933290 | 10.322603841964 | +9.3e-04 | Jean-René Denoual |
 | 378 | 10.337284767725 | 10.336829496116 | +4.6e-04 | Jean-René Denoual |
@@ -500,11 +501,12 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 1024 | 17.059358815466 | 17.055056471349 | +4.3e-03 | Eckard Specht |
 | 1089 | 17.621067903095 | 17.591180823252 | +3.0e-02 | Eckard Specht |
 | 1156 | 18.154686139349 | 18.127461042421 | +2.7e-02 | Eckard Specht |
-| 1225 | 18.665733561858 | 18.663589972222 | +2.1e-03 | Eckard Specht |
+| 1225 | 18.671166863675 | 18.663589972222 | +7.6e-03 | Eckard Specht |
 | 1296 | 19.210317555852 | 19.199876694862 | +1.0e-02 | Eckard Specht |
 | 1369 | 19.743052769488 | 19.736013462864 | +7.0e-03 | Eckard Specht |
 | 1444 | 20.303370504167 | 20.272302808822 | +3.1e-02 | Eckard Specht |
 | 1521 | 20.822014003645 | 20.808443169665 | +1.4e-02 | Eckard Specht |
+| 1600 | 21.347620614459 | 21.344736790743 | +2.9e-03 | Eckard Specht |
 | 1681 | 21.908331856608 | 21.880883155746 | +2.7e-02 | Eckard Specht |
 | 1764 | 22.452005125537 | 22.417178320883 | +3.5e-02 | Eckard Specht |
 | 1849 | 22.985278876122 | 22.953327615747 | +3.2e-02 | Eckard Specht |
@@ -513,7 +515,7 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 2116 | 24.589069953814 | 24.562078565552 | +2.7e-02 | Eckard Specht |
 | 2209 | 25.138459539897 | 25.098235079600 | +4.0e-02 | Eckard Specht |
 | 2401 | 26.204309341989 | 26.170696261929 | +3.4e-02 | Eckard Specht |
-| 2500 | 26.736883256010 | 26.706997466009 | +3.0e-02 | Eckard Specht |
+| 2500 | 26.742068350000 | 26.706997466009 | +3.5e-02 | Eckard Specht |
 | 2601 | 27.277167007842 | 27.243159969444 | +3.4e-02 | Eckard Specht |
 | 2704 | 27.822970328556 | 27.779462444871 | +4.4e-02 | Eckard Specht |
 | 2809 | 28.365758333140 | 28.315628181871 | +5.0e-02 | Eckard Specht |
@@ -526,11 +528,11 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 3600 | 32.093688955694 | 32.069351262839 | +2.4e-02 | Eckard Specht |
 | 3721 | 32.658045620634 | 32.605525581976 | +5.3e-02 | Eckard Specht |
 | 3844 | 33.180384313552 | 33.141829232378 | +3.9e-02 | Eckard Specht |
-| 3969 | 33.700063578234 | 33.678005009071 | +2.2e-02 | Eckard Specht |
+| 3969 | 33.715623938390 | 33.678005009071 | +3.8e-02 | Eckard Specht |
 | 4096 | 34.256584228498 | 34.214308946266 | +4.2e-02 | Eckard Specht |
 | 4225 | 34.778449724728 | 34.750486789519 | +2.8e-02 | Eckard Specht |
 | 4356 | 35.326787086767 | 35.286790428296 | +4.0e-02 | Eckard Specht |
-| 4489 | 35.880982139845 | 35.822969587360 | +5.8e-02 | Eckard Specht |
+| 4489 | 35.881538050747 | 35.822969587360 | +5.9e-02 | Eckard Specht |
 | 4624 | 36.396110740396 | 36.359273349608 | +3.7e-02 | Eckard Specht |
 | 4761 | 36.917663048486 | 36.895454333047 | +2.2e-02 | Eckard Specht |
 | 4900 | 37.453570795820 | 37.431757737679 | +2.2e-02 | Eckard Specht |
@@ -544,7 +546,7 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 6241 | 42.272665992466 | 42.257894222053 | +1.5e-02 | Eckard Specht |
 | 6400 | 42.829956748211 | 42.794196583905 | +3.6e-02 | Eckard Specht |
 | 6561 | 43.385724999577 | 43.330385277980 | +5.5e-02 | Eckard Specht |
-| 6724 | 43.928596145454 | 43.866687207154 | +6.2e-02 | Eckard Specht |
+| 6724 | 43.949176885321 | 43.866687207154 | +8.2e-02 | Eckard Specht |
 | 6889 | 44.452165026735 | 44.402876833941 | +4.9e-02 | Eckard Specht |
 | 7056 | 44.944273518075 | 44.939178568456 | +5.1e-03 | Eckard Specht |
 | 7225 | 45.544167858726 | 45.475369399047 | +6.9e-02 | Eckard Specht |
@@ -552,7 +554,7 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 7569 | 46.602514429770 | 46.547862392224 | +5.5e-02 | Eckard Specht |
 | 7744 | 47.130009797431 | 47.084163459560 | +4.6e-02 | Eckard Specht |
 | 8100 | 48.212395982255 | 48.156656887070 | +5.6e-02 | Eckard Specht |
-| 8281 | 48.701206497756 | 48.692850493910 | +8.4e-03 | Eckard Specht |
+| 8281 | 48.706420369547 | 48.692850493910 | +1.4e-02 | Eckard Specht |
 | 8464 | 49.312183797404 | 49.229150869190 | +8.3e-02 | Eckard Specht |
 | 8649 | 49.791269196764 | 49.765345489899 | +2.6e-02 | Eckard Specht |
 | 8836 | 50.391538227840 | 50.301645429788 | +9.0e-02 | Eckard Specht |
@@ -560,9 +562,10 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 9216 | 51.472971482041 | 51.374140475396 | +9.9e-02 | Eckard Specht |
 | 9409 | 51.945685093102 | 51.910336788398 | +3.5e-02 | Eckard Specht |
 | 9604 | 52.473174499261 | 52.446636028618 | +2.7e-02 | Eckard Specht |
+| 9801 | 53.015624815558 | 52.982833049976 | +3.3e-02 | Eckard Specht |
 
 ## Files
 
 `pck/csqv<N>.pck` (Packomania text, centred square, %.17g), `json/out<N>.json` (corner-frame sidecar), `results.csv`, `manifest.json`,
 `comparison.md` (`verify_and_compare.py compare --tol 0`). Verify any file with `python verify_and_compare.py verify pck/csqv<N>.pck`.
-Sweep: 10044 jobs over 15 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
+Sweep: 10076 jobs over 15 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.

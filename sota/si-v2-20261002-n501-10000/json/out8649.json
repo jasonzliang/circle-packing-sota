@@ -7,7 +7,7 @@
  "frame": "corner [0,1]^2 (pck is centred [-0.5,0.5]^2)",
  "seed": 8301,
  "solver": "w2_0912transcende_transcendenc",
- "warm_mode": "nbr",
+ "warm_mode": "cold",
  "source": "sweep",
  "exact_feasible": true,
  "exact_min_wall_slack": 3.676292261237113e-08,
