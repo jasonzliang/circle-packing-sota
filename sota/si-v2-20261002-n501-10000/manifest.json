@@ -5,8 +5,8 @@
  "records_retrieved": "2026-10-01",
  "rule": "feasible in EXACT rational arithmetic with zero tolerance (fractions.Fraction, squared comparisons; ulp-level overlaps repaired by shrinking radii) AND sum_r > record + 1e-9 (verify_and_compare.WIN_EPS)",
  "counts": {
-  "exported": 50,
-  "WIN": 50,
+  "exported": 53,
+  "WIN": 53,
   "tie": 0,
   "below": 0
  },
@@ -29,10 +29,12 @@
   1296,
   1369,
   1521,
+  1764,
   1936,
   2025,
   2116,
   2500,
+  2601,
   2704,
   2809,
   2916,
@@ -44,6 +46,7 @@
   3600,
   3721,
   3844,
+  4096,
   4356,
   4624,
   4900,
@@ -551,6 +554,33 @@
     "solver_sha256": "4498fcdd171624bdce5d6935ec007691c66fcef5067b6f3ccf504991ffa3722c"
    }
   },
+  "1764": {
+   "sum_r": 22.452005125537262,
+   "record": 22.417178320883,
+   "margin": 0.03482680465426213,
+   "verdict": "WIN",
+   "min_wall_slack": 9.997558336749535e-14,
+   "min_pair_slack": 2.0004484180269344e-13,
+   "min_r": 0.007512522607562289,
+   "exact_feasible": true,
+   "exact_repair_factor": 1.0,
+   "pck_sha256": "8559e839e15706845e69ab486c436f2a3581d7127ad6ba571ea6c178a88a61db",
+   "provenance": {
+    "n": 1764,
+    "sum_r": 22.452005125537262,
+    "record_live": 22.417178320883,
+    "margin": 0.03482680465426213,
+    "source": "sweep",
+    "solver": "none7",
+    "mode": "nbr",
+    "seed": 8301,
+    "job": "../cp_ext/roundE13/jobs/none7/nbr/n1764_s8301.json",
+    "warm_path": null,
+    "label": "SI-v2 sweep none7 seed 8301 nbr",
+    "solver_origin": "aws results/circle-packing/2026-09-15_circle-6arm-v14-probefix-x10/none-7",
+    "solver_sha256": "08e14f9cbf06f473742439f3875bd30aaffbe3a08e83ca8299c76018569967d7"
+   }
+  },
   "1936": {
    "sum_r": 23.521963857841044,
    "record": 23.489625632919,
@@ -657,6 +687,33 @@
     "label": "SI-v2 sweep w2_0912transcende_transcendenc seed 8201 self",
     "solver_origin": "jason-mbp:2026-09-12_transcendence-v16-x10/transcendence-v16-7",
     "solver_sha256": "b28e16d5cb4189717bdab100ff312862516c05957d75143d26a1718e0ae63e8d"
+   }
+  },
+  "2601": {
+   "sum_r": 27.277167007842422,
+   "record": 27.243159969444,
+   "margin": 0.03400703839842123,
+   "verdict": "WIN",
+   "min_wall_slack": 9.997558336749535e-14,
+   "min_pair_slack": 2.000483112496454e-13,
+   "min_r": 0.007096857977694714,
+   "exact_feasible": true,
+   "exact_repair_factor": 1.0,
+   "pck_sha256": "c34d42faada1f677efbb6b7cbc705610354645a0743b9d08948a6496c6cb3dc1",
+   "provenance": {
+    "n": 2601,
+    "sum_r": 27.277167007842422,
+    "record_live": 27.243159969444,
+    "margin": 0.03400703839842123,
+    "source": "sweep",
+    "solver": "none7",
+    "mode": "nbr",
+    "seed": 8301,
+    "job": "../cp_ext/roundE13/jobs/none7/nbr/n2601_s8301.json",
+    "warm_path": null,
+    "label": "SI-v2 sweep none7 seed 8301 nbr",
+    "solver_origin": "aws results/circle-packing/2026-09-15_circle-6arm-v14-probefix-x10/none-7",
+    "solver_sha256": "08e14f9cbf06f473742439f3875bd30aaffbe3a08e83ca8299c76018569967d7"
    }
   },
   "2704": {
@@ -952,6 +1009,33 @@
     "job": "../cp_ext/roundE12/jobs/none7/nbr/n3844_s8201.json",
     "warm_path": null,
     "label": "SI-v2 sweep none7 seed 8201 nbr",
+    "solver_origin": "aws results/circle-packing/2026-09-15_circle-6arm-v14-probefix-x10/none-7",
+    "solver_sha256": "08e14f9cbf06f473742439f3875bd30aaffbe3a08e83ca8299c76018569967d7"
+   }
+  },
+  "4096": {
+   "sum_r": 34.256584228497665,
+   "record": 34.214308946266,
+   "margin": 0.04227528223166388,
+   "verdict": "WIN",
+   "min_wall_slack": 9.997558336749535e-14,
+   "min_pair_slack": 2.0006045431397723e-13,
+   "min_r": 0.005597781196568437,
+   "exact_feasible": true,
+   "exact_repair_factor": 1.0,
+   "pck_sha256": "5e650a3ea7a0ed8564f090c46342490e5fee9f4c81d96dc68c78696657bc6144",
+   "provenance": {
+    "n": 4096,
+    "sum_r": 34.256584228497665,
+    "record_live": 34.214308946266,
+    "margin": 0.04227528223166388,
+    "source": "sweep",
+    "solver": "none7",
+    "mode": "nbr",
+    "seed": 8301,
+    "job": "../cp_ext/roundE13/jobs/none7/nbr/n4096_s8301.json",
+    "warm_path": null,
+    "label": "SI-v2 sweep none7 seed 8301 nbr",
     "solver_origin": "aws results/circle-packing/2026-09-15_circle-6arm-v14-probefix-x10/none-7",
     "solver_sha256": "08e14f9cbf06f473742439f3875bd30aaffbe3a08e83ca8299c76018569967d7"
    }
