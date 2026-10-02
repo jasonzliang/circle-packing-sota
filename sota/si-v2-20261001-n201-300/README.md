@@ -3,7 +3,7 @@
 **97 WIN** against the Packomania `csqv` table retrieved **2026-10-02 16:56 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 100 sizes posted by Packomania in this range.
 Only WIN packings (strictly feasible in exact rational arithmetic, `sum_r > record + 1e-9`) are published here.
 
-Extension campaign status at 2026-10-02 17:10 UTC: 9021 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE2, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
+Extension campaign status at 2026-10-02 17:21 UTC: 9073 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE2, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
 
 ## How this differs from `si-v2-20260927` (N <= 100)
 
@@ -478,9 +478,11 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 900 | 16.006738603334 | 16.003323612102 | +3.4e-03 | Wilfred Heap |
 | 925 | 16.219461696123 | 16.213671971894 | +5.8e-03 | Wilfred Heap |
 | 961 | 16.546730901447 | 16.546634626446 | +9.6e-05 | Wilfred Heap |
+| 1296 | 19.210051958922 | 19.199876694862 | +1.0e-02 | Eckard Specht |
+| 1369 | 19.740427738526 | 19.736013462864 | +4.4e-03 | Eckard Specht |
 
 ## Files
 
 `pck/csqv<N>.pck` (Packomania text, centred square, %.17g), `json/out<N>.json` (corner-frame sidecar), `results.csv`, `manifest.json`,
 `comparison.md` (`verify_and_compare.py compare --tol 0`). Verify any file with `python verify_and_compare.py verify pck/csqv<N>.pck`.
-Sweep: 9021 jobs over 13 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
+Sweep: 9073 jobs over 13 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.

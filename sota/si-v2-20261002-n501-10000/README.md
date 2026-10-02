@@ -1,9 +1,9 @@
 # si-v2-20261002-n501-10000: SI-v2 solver sweep extended to N = 501..10000
 
-**14 WIN** against the Packomania `csqv` table retrieved **2026-10-02 16:56 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 84 sizes posted by Packomania in this range.
+**16 WIN** against the Packomania `csqv` table retrieved **2026-10-02 16:56 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 84 sizes posted by Packomania in this range.
 Only WIN packings (strictly feasible in exact rational arithmetic, `sum_r > record + 1e-9`) are published here.
 
-Extension campaign status at 2026-10-02 17:10 UTC: 9021 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE2, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
+Extension campaign status at 2026-10-02 17:21 UTC: 9073 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE2, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
 
 ## How this differs from `si-v2-20260927` (N <= 100)
 
@@ -16,11 +16,11 @@ many sizes ended tied or below, from the sweep's own aggregate.
 
 | status at N = 501..10000 (best strict sweep result vs the live table) | sizes |
 |---|---:|
-| BEAT | 14 |
-| below | 69 |
+| BEAT | 16 |
+| below | 67 |
 | tie | 1 |
 
-Closest non-winning results (within 1e-5 of the record): 1013 (-1.0e-09), 1024 (-1.1e-09), 1089 (-6.3e-10), 1156 (-2.6e-09), 1225 (-5.3e-09), 1296 (-5.7e-09), 1369 (-4.2e-09), 1444 (-5.8e-09), 1521 (-2.5e-09), 1600 (-4.7e-09), 1681 (-3.5e-09), 1764 (-7.1e-09), 1849 (-6.7e-09), 1936 (-7.1e-09), 2025 (-6.7e-09), 2116 (-7.8e-09), 2209 (-9.8e-09), 2304 (-9.4e-09), 2401 (-6.8e-09), 2500 (-8.2e-09), 2601 (-1.2e-08), 2704 (-1.7e-08), 2809 (-1.2e-08), 2916 (-1.1e-08), 3025 (-1.2e-08), 3136 (-1.2e-08), 3249 (-1.6e-08), 3364 (-1.1e-08), 3481 (-1.2e-08), 3600 (-1.6e-08), 3721 (-1.8e-08), 3844 (-1.6e-08), 3969 (-1.9e-08), 4096 (-1.8e-08), 4225 (-2.1e-08), 4356 (-1.6e-08), 4489 (-2.1e-08), 4624 (-1.7e-08), 4761 (-1.6e-08), 4900 (-2.2e-08), 5041 (-2.4e-08), 5184 (-2.1e-08), 5329 (-2.1e-08), 5476 (-2.4e-08), 5625 (-2.5e-08), 5776 (-2.3e-08), 5929 (-2.3e-08), 6084 (-3.2e-08), 6241 (-2.7e-08), 6400 (-2.4e-08), 6561 (-3.9e-08), 6724 (-3.8e-08), 6889 (-2.5e-08), 7056 (-2.4e-08), 7225 (-3.2e-08), 7396 (-4.0e-08), 7569 (-3.1e-08), 7744 (-3.7e-08), 7921 (-3.3e-08), 8100 (-4.6e-08), 8281 (-3.9e-08), 8464 (-3.9e-08), 8649 (-4.9e-08), 8836 (-6.8e-08), 9025 (-5.6e-08), 9216 (-4.5e-08), 9409 (-4.7e-08), 9604 (-5.9e-08), 9801 (-5.5e-08), 10000 (-4.9e-08).
+Closest non-winning results (within 1e-5 of the record): 1013 (-1.0e-09), 1024 (-1.1e-09), 1089 (-6.3e-10), 1156 (-2.6e-09), 1225 (-5.3e-09), 1444 (-5.8e-09), 1521 (-2.5e-09), 1600 (-4.7e-09), 1681 (-3.5e-09), 1764 (-7.1e-09), 1849 (-6.7e-09), 1936 (-7.1e-09), 2025 (-6.7e-09), 2116 (-7.8e-09), 2209 (-9.8e-09), 2304 (-9.4e-09), 2401 (-6.8e-09), 2500 (-8.2e-09), 2601 (-1.2e-08), 2704 (-1.7e-08), 2809 (-1.2e-08), 2916 (-1.1e-08), 3025 (-1.2e-08), 3136 (-1.2e-08), 3249 (-1.6e-08), 3364 (-1.1e-08), 3481 (-1.2e-08), 3600 (-1.6e-08), 3721 (-1.8e-08), 3844 (-1.6e-08), 3969 (-1.9e-08), 4096 (-1.8e-08), 4225 (-2.1e-08), 4356 (-1.6e-08), 4489 (-2.1e-08), 4624 (-1.7e-08), 4761 (-1.6e-08), 4900 (-2.2e-08), 5041 (-2.4e-08), 5184 (-2.1e-08), 5329 (-2.1e-08), 5476 (-2.4e-08), 5625 (-2.5e-08), 5776 (-2.3e-08), 5929 (-2.3e-08), 6084 (-3.2e-08), 6241 (-2.7e-08), 6400 (-2.4e-08), 6561 (-3.9e-08), 6724 (-3.8e-08), 6889 (-2.5e-08), 7056 (-2.4e-08), 7225 (-3.2e-08), 7396 (-4.0e-08), 7569 (-3.1e-08), 7744 (-3.7e-08), 7921 (-3.3e-08), 8100 (-4.6e-08), 8281 (-3.9e-08), 8464 (-3.9e-08), 8649 (-4.9e-08), 8836 (-6.8e-08), 9025 (-5.6e-08), 9216 (-4.5e-08), 9409 (-4.7e-08), 9604 (-5.9e-08), 9801 (-5.5e-08), 10000 (-4.9e-08).
 
 ## Wins
 
@@ -40,6 +40,8 @@ Closest non-winning results (within 1e-5 of the record): 1013 (-1.0e-09), 1024 (
 | 900 | 16.006738603334 | 16.003323612102 | +3.415e-03 | +2.13e-04 | `tv16ob6` self seed 8101 | Wilfred Heap |
 | 925 | 16.219461696123 | 16.213671971894 | +5.790e-03 | +3.57e-04 | `tv16ob6` self seed 8101 | Wilfred Heap |
 | 961 | 16.546730901447 | 16.546634626446 | +9.628e-05 | +5.82e-06 | `tv16ob6` self seed 8101 | Wilfred Heap |
+| 1296 | 19.210051958922 | 19.199876694862 | +1.018e-02 | +5.30e-04 | `tv14pf6` nbr seed 8101 | Eckard Specht |
+| 1369 | 19.740427738526 | 19.736013462864 | +4.414e-03 | +2.24e-04 | `tv14pf6` nbr seed 8101 | Eckard Specht |
 
 ## All records beaten, N = 1..10000, against the live table (2026-10-02 16:56 UTC)
 
@@ -396,9 +398,11 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 900 | 16.006738603334 | 16.003323612102 | +3.4e-03 | Wilfred Heap |
 | 925 | 16.219461696123 | 16.213671971894 | +5.8e-03 | Wilfred Heap |
 | 961 | 16.546730901447 | 16.546634626446 | +9.6e-05 | Wilfred Heap |
+| 1296 | 19.210051958922 | 19.199876694862 | +1.0e-02 | Eckard Specht |
+| 1369 | 19.740427738526 | 19.736013462864 | +4.4e-03 | Eckard Specht |
 
 ## Files
 
 `pck/csqv<N>.pck` (Packomania text, centred square, %.17g), `json/out<N>.json` (corner-frame sidecar), `results.csv`, `manifest.json`,
 `comparison.md` (`verify_and_compare.py compare --tol 0`). Verify any file with `python verify_and_compare.py verify pck/csqv<N>.pck`.
-Sweep: 9021 jobs over 13 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
+Sweep: 9073 jobs over 13 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
