@@ -1,9 +1,9 @@
 # si-v2-20261002-n301-500: SI-v2 solver sweep extended to N = 301..500
 
-**146 WIN** against the Packomania `csqv` table retrieved **2026-10-02 16:56 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 199 sizes posted by Packomania in this range.
+**148 WIN** against the Packomania `csqv` table retrieved **2026-10-02 16:56 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 199 sizes posted by Packomania in this range.
 Only WIN packings (strictly feasible in exact rational arithmetic, `sum_r > record + 1e-9`) are published here.
 
-Extension campaign status at 2026-10-02 17:21 UTC: 9073 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE2, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
+Extension campaign status at 2026-10-02 17:36 UTC: 9119 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE2, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
 
 ## How this differs from `si-v2-20260927` (N <= 100)
 
@@ -16,8 +16,8 @@ many sizes ended tied or below, from the sweep's own aggregate.
 
 | status at N = 301..500 (best strict sweep result vs the live table) | sizes |
 |---|---:|
-| BEAT | 146 |
-| below | 3 |
+| BEAT | 148 |
+| below | 1 |
 | tie | 50 |
 
 Closest non-winning results (within 1e-5 of the record): 325 (-2.6e-10), 326 (-3.3e-10), 328 (-2.2e-10), 329 (-5.9e-11), 334 (-7.5e-11), 340 (-3.4e-10), 342 (-3.4e-10), 346 (-8.2e-11), 354 (-6.6e-11), 362 (-1.7e-10), 364 (-1.1e-10), 365 (-1.7e-10), 367 (-3.7e-10), 368 (-3.7e-10), 369 (-6.2e-11), 371 (-3.7e-10), 374 (-3.1e-10), 375 (-1.1e-10), 376 (-1.3e-10), 384 (-1.1e-10), 394 (-1.0e-10), 396 (-1.6e-10), 406 (-1.7e-10), 411 (-4.1e-10), 413 (-4.1e-10), 415 (-1.0e-10), 422 (-1.3e-10), 426 (-1.2e-10), 427 (-1.7e-10), 428 (-2.2e-10), 431 (-4.3e-10), 432 (-1.6e-10), 433 (-8.2e-11), 435 (-4.5e-10), 436 (-1.5e-10), 437 (-9.9e-11), 444 (-1.6e-10), 446 (-8.7e-11), 452 (-4.5e-10), 454 (-1.0e-10), 455 (-7.7e-11), 456 (-7.1e-11), 463 (-7.5e-11), 468 (-1.6e-10), 472 (-1.8e-10), 479 (-4.8e-10), 485 (-4.2e-10), 486 (-9.0e-11), 489 (-4.9e-10), 492 (-4.9e-10).
@@ -40,9 +40,11 @@ Closest non-winning results (within 1e-5 of the record): 325 (-2.6e-10), 326 (-3
 | 313 | 9.400424345873 | 9.399575833292 | +8.485e-04 | +9.03e-05 | `hpolish` self seed 0 | Jean-René Denoual |
 | 314 | 9.415455693751 | 9.414131191837 | +1.325e-03 | +1.41e-04 | `hpolish` self seed 0 | Jean-René Denoual |
 | 315 | 9.430792681228 | 9.430651133292 | +1.415e-04 | +1.50e-05 | `hpolish` self seed 0 | Jean-René Denoual |
+| 316 | 9.446115020629 | 9.446030411797 | +8.461e-05 | +8.96e-06 | `tv16ob6` self seed 8101 | Jean-René Denoual |
 | 317 | 9.462160852928 | 9.461295946830 | +8.649e-04 | +9.14e-05 | `hpolish` self seed 0 | Jean-René Denoual |
 | 318 | 9.476733744237 | 9.475501126651 | +1.233e-03 | +1.30e-04 | `hpolish` self seed 0 | Jean-René Denoual |
-| 320 | 9.506483820370 | 9.506126610664 | +3.572e-04 | +3.76e-05 | `hpolish` self seed 0 | Jean-René Denoual |
+| 319 | 9.491291304380 | 9.491078399249 | +2.129e-04 | +2.24e-05 | `tv16ob6` self seed 8101 | Jean-René Denoual |
+| 320 | 9.506926086536 | 9.506126610664 | +7.995e-04 | +8.41e-05 | `tv16ob6` self seed 8101 | Jean-René Denoual |
 | 321 | 9.521945662512 | 9.521410018032 | +5.356e-04 | +5.63e-05 | `hpolish` self seed 0 | Jean-René Denoual |
 | 322 | 9.535934054383 | 9.535451604148 | +4.825e-04 | +5.06e-05 | `hpolish` self seed 0 | Jean-René Denoual |
 | 323 | 9.550057569242 | 9.549618944734 | +4.386e-04 | +4.59e-05 | `hpolish` self seed 0 | Jean-René Denoual |
@@ -382,9 +384,11 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 313 | 9.400424345873 | 9.399575833292 | +8.5e-04 | Jean-René Denoual |
 | 314 | 9.415455693751 | 9.414131191837 | +1.3e-03 | Jean-René Denoual |
 | 315 | 9.430792681228 | 9.430651133292 | +1.4e-04 | Jean-René Denoual |
+| 316 | 9.446115020629 | 9.446030411797 | +8.5e-05 | Jean-René Denoual |
 | 317 | 9.462160852928 | 9.461295946830 | +8.6e-04 | Jean-René Denoual |
 | 318 | 9.476733744237 | 9.475501126651 | +1.2e-03 | Jean-René Denoual |
-| 320 | 9.506483820370 | 9.506126610664 | +3.6e-04 | Jean-René Denoual |
+| 319 | 9.491291304380 | 9.491078399249 | +2.1e-04 | Jean-René Denoual |
+| 320 | 9.506926086536 | 9.506126610664 | +8.0e-04 | Jean-René Denoual |
 | 321 | 9.521945662512 | 9.521410018032 | +5.4e-04 | Jean-René Denoual |
 | 322 | 9.535934054383 | 9.535451604148 | +4.8e-04 | Jean-René Denoual |
 | 323 | 9.550057569242 | 9.549618944734 | +4.4e-04 | Jean-René Denoual |
@@ -530,9 +534,11 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 961 | 16.546730901447 | 16.546634626446 | +9.6e-05 | Wilfred Heap |
 | 1296 | 19.210051958922 | 19.199876694862 | +1.0e-02 | Eckard Specht |
 | 1369 | 19.740427738526 | 19.736013462864 | +4.4e-03 | Eckard Specht |
+| 3600 | 32.093688955694 | 32.069351262839 | +2.4e-02 | Eckard Specht |
+| 4624 | 36.396110740396 | 36.359273349608 | +3.7e-02 | Eckard Specht |
 
 ## Files
 
 `pck/csqv<N>.pck` (Packomania text, centred square, %.17g), `json/out<N>.json` (corner-frame sidecar), `results.csv`, `manifest.json`,
 `comparison.md` (`verify_and_compare.py compare --tol 0`). Verify any file with `python verify_and_compare.py verify pck/csqv<N>.pck`.
-Sweep: 9073 jobs over 13 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
+Sweep: 9119 jobs over 13 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.

@@ -5,8 +5,8 @@
  "records_retrieved": "2026-10-01",
  "rule": "feasible in EXACT rational arithmetic with zero tolerance (fractions.Fraction, squared comparisons; ulp-level overlaps repaired by shrinking radii) AND sum_r > record + 1e-9 (verify_and_compare.WIN_EPS)",
  "counts": {
-  "exported": 146,
-  "WIN": 146,
+  "exported": 148,
+  "WIN": 148,
   "tie": 0,
   "below": 0
  },
@@ -25,8 +25,10 @@
   313,
   314,
   315,
+  316,
   317,
   318,
+  319,
   320,
   321,
   322,
@@ -539,6 +541,33 @@
     "solver_sha256": null
    }
   },
+  "316": {
+   "sum_r": 9.446115020629223,
+   "record": 9.446030411797,
+   "margin": 8.460883222305426e-05,
+   "verdict": "WIN",
+   "min_wall_slack": 9.999778782798785e-13,
+   "min_pair_slack": 1.9999835121353726e-12,
+   "min_r": 0.019963474189543876,
+   "exact_feasible": true,
+   "exact_repair_factor": 1.0,
+   "pck_sha256": "caae06bff9ddd62a5545245332958d1c666ec10e4c9b67af2fdbe8019896faa3",
+   "provenance": {
+    "n": 316,
+    "sum_r": 9.446115020629223,
+    "record_live": 9.446030411797,
+    "margin": 8.460883222305426e-05,
+    "source": "sweep",
+    "solver": "tv16ob6",
+    "mode": "self",
+    "seed": 8101,
+    "job": "../cp_ext/roundE11/jobs/tv16ob6/self/n316_s8101.json",
+    "warm_path": null,
+    "label": "SI-v2 sweep tv16ob6 seed 8101 self",
+    "solver_origin": "jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v16-oldbrief-x10/transcendence-v16-oldbrief-6",
+    "solver_sha256": "64209a4d5b52b3b8e57344f8519645d8efb13b65e4c136da469eb16325a3d275"
+   }
+  },
   "317": {
    "sum_r": 9.462160852928463,
    "record": 9.46129594683,
@@ -593,31 +622,58 @@
     "solver_sha256": null
    }
   },
-  "320": {
-   "sum_r": 9.506483820370386,
-   "record": 9.506126610664,
-   "margin": 0.00035720970638664085,
+  "319": {
+   "sum_r": 9.491291304379798,
+   "record": 9.491078399249,
+   "margin": 0.00021290513079819107,
    "verdict": "WIN",
-   "min_wall_slack": 1.97758476261356e-16,
-   "min_pair_slack": 1.8735013540549517e-16,
-   "min_r": 0.019587054229481277,
+   "min_wall_slack": 9.999778782798785e-13,
+   "min_pair_slack": 1.9999835121353726e-12,
+   "min_r": 0.01987149572074617,
    "exact_feasible": true,
    "exact_repair_factor": 1.0,
-   "pck_sha256": "fc507469b894b06966c6a361f3f90a063e129dea8e537942e90ca9f136e8f818",
+   "pck_sha256": "77958edfb952ed1de645d0498308d909c25a6b0fa38a67cea304d306755a06c1",
+   "provenance": {
+    "n": 319,
+    "sum_r": 9.491291304379798,
+    "record_live": 9.491078399249,
+    "margin": 0.00021290513079819107,
+    "source": "sweep",
+    "solver": "tv16ob6",
+    "mode": "self",
+    "seed": 8101,
+    "job": "../cp_ext/roundE11/jobs/tv16ob6/self/n319_s8101.json",
+    "warm_path": null,
+    "label": "SI-v2 sweep tv16ob6 seed 8101 self",
+    "solver_origin": "jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v16-oldbrief-x10/transcendence-v16-oldbrief-6",
+    "solver_sha256": "64209a4d5b52b3b8e57344f8519645d8efb13b65e4c136da469eb16325a3d275"
+   }
+  },
+  "320": {
+   "sum_r": 9.506926086536373,
+   "record": 9.506126610664,
+   "margin": 0.0007994758723732787,
+   "verdict": "WIN",
+   "min_wall_slack": 9.999778782798785e-13,
+   "min_pair_slack": 1.9999904510292765e-12,
+   "min_r": 0.020091895652720262,
+   "exact_feasible": true,
+   "exact_repair_factor": 1.0,
+   "pck_sha256": "d9a11b27211ec822c7e35d0fbb1827a367c9e778544ea97dfd4d13c90f173dd8",
    "provenance": {
     "n": 320,
-    "sum_r": 9.506483820370386,
+    "sum_r": 9.506926086536373,
     "record_live": 9.506126610664,
-    "margin": 0.00035720970638664085,
+    "margin": 0.0007994758723732787,
     "source": "sweep",
-    "solver": "hpolish",
+    "solver": "tv16ob6",
     "mode": "self",
-    "seed": 0,
-    "job": "../cp_ext/roundP1/jobs/hpolish/self/n320_s0.json",
+    "seed": 8101,
+    "job": "../cp_ext/roundE11/jobs/tv16ob6/self/n320_s8101.json",
     "warm_path": null,
-    "label": "SI-v2 sweep hpolish seed 0 self",
-    "solver_origin": null,
-    "solver_sha256": null
+    "label": "SI-v2 sweep tv16ob6 seed 8101 self",
+    "solver_origin": "jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v16-oldbrief-x10/transcendence-v16-oldbrief-6",
+    "solver_sha256": "64209a4d5b52b3b8e57344f8519645d8efb13b65e4c136da469eb16325a3d275"
    }
   },
   "321": {

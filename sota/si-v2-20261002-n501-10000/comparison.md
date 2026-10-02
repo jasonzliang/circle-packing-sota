@@ -2,8 +2,8 @@
 
 Records: https://www.packomania.com/csqv/txt/sumradii.txt — retrieved 2026-10-01. Every row below is **independently re-verified from its `.pck` coordinates** (pure geometry, no solver); a **WIN** is strictly feasible AND Σr strictly exceeds the record.
 
-**WINS: 16** · ties (≤1e-6): 0 · below: 0 · infeasible: 0 · sizes: 16.
-Wins at N = [529, 545, 576, 613, 625, 676, 685, 729, 761, 784, 841, 900, 925, 961, 1296, 1369].
+**WINS: 18** · ties (≤1e-6): 0 · below: 0 · infeasible: 0 · sizes: 18.
+Wins at N = [529, 545, 576, 613, 625, 676, 685, 729, 761, 784, 841, 900, 925, 961, 1296, 1369, 3600, 4624].
 
 | N | ours Σr | record | Δ (ours−rec) | gap % | verdict |
 |---:|---:|---:|---:|---:|:--|
@@ -23,3 +23,5 @@ Wins at N = [529, 545, 576, 613, 625, 676, 685, 729, 761, 784, 841, 900, 925, 96
 | 961 | 16.546730901447 | 16.546634626446 | +9.63e-05 | +0.0006 | **WIN** 🏆 |
 | 1296 | 19.210051958922 | 19.199876694862 | +1.02e-02 | +0.0530 | **WIN** 🏆 |
 | 1369 | 19.740427738526 | 19.736013462864 | +4.41e-03 | +0.0224 | **WIN** 🏆 |
+| 3600 | 32.093688955694 | 32.069351262839 | +2.43e-02 | +0.0759 | **WIN** 🏆 |
+| 4624 | 36.396110740396 | 36.359273349608 | +3.68e-02 | +0.1013 | **WIN** 🏆 |

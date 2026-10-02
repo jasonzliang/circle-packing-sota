@@ -5,8 +5,8 @@
  "records_retrieved": "2026-10-01",
  "rule": "feasible in EXACT rational arithmetic with zero tolerance (fractions.Fraction, squared comparisons; ulp-level overlaps repaired by shrinking radii) AND sum_r > record + 1e-9 (verify_and_compare.WIN_EPS)",
  "counts": {
-  "exported": 16,
-  "WIN": 16,
+  "exported": 18,
+  "WIN": 18,
   "tie": 0,
   "below": 0
  },
@@ -26,7 +26,9 @@
   925,
   961,
   1296,
-  1369
+  1369,
+  3600,
+  4624
  ],
  "ties": [],
  "below": [],
@@ -461,6 +463,60 @@
     "label": "SI-v2 sweep tv14pf6 seed 8101 nbr",
     "solver_origin": "jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v14-probefix-x10/transcendence-v14-probefix-6",
     "solver_sha256": "4498fcdd171624bdce5d6935ec007691c66fcef5067b6f3ccf504991ffa3722c"
+   }
+  },
+  "3600": {
+   "sum_r": 32.09368895569373,
+   "record": 32.069351262839,
+   "margin": 0.024337692854729198,
+   "verdict": "WIN",
+   "min_wall_slack": 2.3933327069312893e-08,
+   "min_pair_slack": 1.708702623837155e-14,
+   "min_r": 0.004906216727972674,
+   "exact_feasible": true,
+   "exact_repair_factor": 1.0,
+   "pck_sha256": "3dafd2c488dd3f0d7a2b1bc989c1d92b625ac0d2b2dd511f184879c2082b7f6b",
+   "provenance": {
+    "n": 3600,
+    "sum_r": 32.09368895569373,
+    "record_live": 32.069351262839,
+    "margin": 0.024337692854729198,
+    "source": "sweep",
+    "solver": "w2_0912transcende_transcendenc",
+    "mode": "nbr",
+    "seed": 8101,
+    "job": "../cp_ext/roundE11/jobs/w2_0912transcende_transcendenc/nbr/n3600_s8101.json",
+    "warm_path": null,
+    "label": "SI-v2 sweep w2_0912transcende_transcendenc seed 8101 nbr",
+    "solver_origin": "jason-mbp:2026-09-12_transcendence-v16-x10/transcendence-v16-7",
+    "solver_sha256": "b28e16d5cb4189717bdab100ff312862516c05957d75143d26a1718e0ae63e8d"
+   }
+  },
+  "4624": {
+   "sum_r": 36.39611074039558,
+   "record": 36.359273349608,
+   "margin": 0.036837390787574975,
+   "verdict": "WIN",
+   "min_wall_slack": 2.2021912357908513e-08,
+   "min_pair_slack": 1.5796391972244805e-14,
+   "min_r": 0.005254162459729927,
+   "exact_feasible": true,
+   "exact_repair_factor": 1.0,
+   "pck_sha256": "ac03e58ec060b25b3a5a72322535608d4ef9389e1336e9d4de03808fed415a91",
+   "provenance": {
+    "n": 4624,
+    "sum_r": 36.39611074039558,
+    "record_live": 36.359273349608,
+    "margin": 0.036837390787574975,
+    "source": "sweep",
+    "solver": "w2_0912transcende_transcendenc",
+    "mode": "nbr",
+    "seed": 8101,
+    "job": "../cp_ext/roundE11/jobs/w2_0912transcende_transcendenc/nbr/n4624_s8101.json",
+    "warm_path": null,
+    "label": "SI-v2 sweep w2_0912transcende_transcendenc seed 8101 nbr",
+    "solver_origin": "jason-mbp:2026-09-12_transcendence-v16-x10/transcendence-v16-7",
+    "solver_sha256": "b28e16d5cb4189717bdab100ff312862516c05957d75143d26a1718e0ae63e8d"
    }
   }
  }
