@@ -3,7 +3,7 @@
 **97 WIN** against the Packomania `csqv` table retrieved **2026-10-03 00:30 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 100 sizes posted by Packomania in this range.
 Only WIN packings (strictly feasible in exact rational arithmetic, `sum_r > record + 1e-9`) are published here.
 
-Extension campaign status at 2026-10-03 00:31 UTC: 10217 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE12, roundE13, roundE2, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
+Extension campaign status at 2026-10-03 00:41 UTC: 10295 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE12, roundE13, roundE2, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
 
 ## How this differs from `si-v2-20260927` (N <= 100)
 
@@ -469,35 +469,35 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 460 | 11.416580658047 | 11.412700567346 | +3.9e-03 | Jean-René Denoual |
 | 461 | 11.425784505766 | 11.425580426419 | +2.0e-04 | Jean-René Denoual |
 | 462 | 11.438195720151 | 11.437566177571 | +6.3e-04 | Jean-René Denoual |
-| 463 | 11.452211542270 | 11.450452426588 | +1.8e-03 | Jean-René Denoual |
-| 464 | 11.463295940525 | 11.462580065449 | +7.2e-04 | Jean-René Denoual |
-| 465 | 11.476656824574 | 11.475191505336 | +1.5e-03 | Jean-René Denoual |
-| 466 | 11.488092010501 | 11.487639049093 | +4.5e-04 | Jean-René Denoual |
-| 467 | 11.500685368807 | 11.500055528292 | +6.3e-04 | Jean-René Denoual |
-| 468 | 11.514236838456 | 11.513306429273 | +9.3e-04 | Jean-René Denoual |
-| 469 | 11.526152412083 | 11.522965080147 | +3.2e-03 | Jean-René Denoual |
+| 463 | 11.453418969800 | 11.450452426588 | +3.0e-03 | Jean-René Denoual |
+| 464 | 11.464254310478 | 11.462580065449 | +1.7e-03 | Jean-René Denoual |
+| 465 | 11.476656824589 | 11.475191505336 | +1.5e-03 | Jean-René Denoual |
+| 466 | 11.489213060903 | 11.487639049093 | +1.6e-03 | Jean-René Denoual |
+| 467 | 11.501332372758 | 11.500055528292 | +1.3e-03 | Jean-René Denoual |
+| 468 | 11.514331674210 | 11.513306429273 | +1.0e-03 | Jean-René Denoual |
+| 469 | 11.526435282894 | 11.522965080147 | +3.5e-03 | Jean-René Denoual |
 | 470 | 11.538072626079 | 11.535717024814 | +2.4e-03 | Jean-René Denoual |
-| 471 | 11.549560024400 | 11.548024053592 | +1.5e-03 | Jean-René Denoual |
-| 472 | 11.561147013423 | 11.559922693009 | +1.2e-03 | Jean-René Denoual |
-| 473 | 11.573923845408 | 11.572268460196 | +1.7e-03 | Jean-René Denoual |
-| 474 | 11.584879034703 | 11.584603098149 | +2.8e-04 | Jean-René Denoual |
-| 475 | 11.597503942847 | 11.596644766915 | +8.6e-04 | Jean-René Denoual |
-| 476 | 11.609721169396 | 11.609006039390 | +7.2e-04 | Jean-René Denoual |
+| 471 | 11.549771140737 | 11.548024053592 | +1.7e-03 | Jean-René Denoual |
+| 472 | 11.562200541317 | 11.559922693009 | +2.3e-03 | Jean-René Denoual |
+| 473 | 11.573923845412 | 11.572268460196 | +1.7e-03 | Jean-René Denoual |
+| 474 | 11.585691130775 | 11.584603098149 | +1.1e-03 | Jean-René Denoual |
+| 475 | 11.597503943198 | 11.596644766915 | +8.6e-04 | Jean-René Denoual |
+| 476 | 11.610694328765 | 11.609006039390 | +1.7e-03 | Jean-René Denoual |
 | 477 | 11.621992421708 | 11.621121796626 | +8.7e-04 | Jean-René Denoual |
-| 478 | 11.635145957766 | 11.633559016748 | +1.6e-03 | Jean-René Denoual |
-| 479 | 11.646942718926 | 11.646544636677 | +4.0e-04 | Jean-René Denoual |
+| 478 | 11.635281049091 | 11.633559016748 | +1.7e-03 | Jean-René Denoual |
+| 479 | 11.646942719314 | 11.646544636677 | +4.0e-04 | Jean-René Denoual |
 | 480 | 11.659535015830 | 11.657967569371 | +1.6e-03 | Jean-René Denoual |
 | 481 | 11.671384096329 | 11.670331156637 | +1.1e-03 | Jean-René Denoual |
-| 482 | 11.683590062417 | 11.682781965040 | +8.1e-04 | Jean-René Denoual |
-| 483 | 11.695599608678 | 11.694407066264 | +1.2e-03 | Jean-René Denoual |
-| 484 | 11.707372534638 | 11.706739384534 | +6.3e-04 | Jean-René Denoual |
+| 482 | 11.683590062782 | 11.682781965040 | +8.1e-04 | Jean-René Denoual |
+| 483 | 11.695599609112 | 11.694407066264 | +1.2e-03 | Jean-René Denoual |
+| 484 | 11.707372534703 | 11.706739384534 | +6.3e-04 | Jean-René Denoual |
 | 485 | 11.719444191781 | 11.719289534218 | +1.5e-04 | Jean-René Denoual |
 | 487 | 11.742914233739 | 11.742424558708 | +4.9e-04 | Jean-René Denoual |
-| 488 | 11.755459642473 | 11.753818598945 | +1.6e-03 | Jean-René Denoual |
+| 488 | 11.757737294945 | 11.753818598945 | +3.9e-03 | Jean-René Denoual |
 | 489 | 11.769610100652 | 11.767847428021 | +1.8e-03 | Jean-René Denoual |
-| 490 | 11.781005238596 | 11.780098018438 | +9.1e-04 | Jean-René Denoual |
+| 490 | 11.781005238863 | 11.780098018438 | +9.1e-04 | Jean-René Denoual |
 | 491 | 11.793811762967 | 11.792921656649 | +8.9e-04 | Jean-René Denoual |
-| 492 | 11.806232207342 | 11.805589909537 | +6.4e-04 | Jean-René Denoual |
+| 492 | 11.807466669271 | 11.805589909537 | +1.9e-03 | Jean-René Denoual |
 | 494 | 11.832363607649 | 11.824004090539 | +8.4e-03 | Jean-René Denoual |
 | 495 | 11.843409517905 | 11.836128159654 | +7.3e-03 | Jean-René Denoual |
 | 496 | 11.854375105080 | 11.847856118786 | +6.5e-03 | Jean-René Denoual |
@@ -505,19 +505,19 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 498 | 11.878206095286 | 11.872093599977 | +6.1e-03 | Jean-René Denoual |
 | 499 | 11.890330089707 | 11.883589880191 | +6.7e-03 | Jean-René Denoual |
 | 500 | 11.903170336229 | 11.901744072026 | +1.4e-03 | Jean-René Denoual |
-| 529 | 12.235811634988 | 12.229389491201 | +6.4e-03 | Eckard Specht |
+| 529 | 12.235811635027 | 12.229389491201 | +6.4e-03 | Eckard Specht |
 | 545 | 12.436533264929 | 12.428407647582 | +8.1e-03 | Wilfred Heap |
-| 576 | 12.775152325391 | 12.765618381692 | +9.5e-03 | Eckard Specht |
-| 613 | 13.185931385825 | 13.178055048167 | +7.9e-03 | Wilfred Heap |
-| 625 | 13.310397666021 | 13.301701615661 | +8.7e-03 | Eckard Specht |
+| 576 | 12.775152325414 | 12.765618381692 | +9.5e-03 | Eckard Specht |
+| 613 | 13.185931386373 | 13.178055048167 | +7.9e-03 | Wilfred Heap |
+| 625 | 13.315206204568 | 13.301701615661 | +1.4e-02 | Eckard Specht |
 | 676 | 13.853532292832 | 13.843506930660 | +1.0e-02 | Wilfred Heap |
-| 685 | 13.936204309561 | 13.915210345965 | +2.1e-02 | Zeeshan Tariq |
-| 729 | 14.393408216755 | 14.380692110222 | +1.3e-02 | Wilfred Heap |
+| 685 | 13.947043136906 | 13.915210345965 | +3.2e-02 | Zeeshan Tariq |
+| 729 | 14.393408216769 | 14.380692110222 | +1.3e-02 | Wilfred Heap |
 | 761 | 14.702048397620 | 14.691043947468 | +1.1e-02 | Wilfred Heap |
 | 784 | 14.933651793194 | 14.925744508409 | +7.9e-03 | Wilfred Heap |
-| 841 | 15.468060346168 | 15.467205852816 | +8.5e-04 | Wilfred Heap |
-| 900 | 16.010640986370 | 16.003323612102 | +7.3e-03 | Wilfred Heap |
-| 925 | 16.219963384508 | 16.213671971894 | +6.3e-03 | Wilfred Heap |
+| 841 | 15.468060346246 | 15.467205852816 | +8.5e-04 | Wilfred Heap |
+| 900 | 16.011101956274 | 16.003323612102 | +7.8e-03 | Wilfred Heap |
+| 925 | 16.220391273804 | 16.213671971894 | +6.7e-03 | Wilfred Heap |
 | 961 | 16.546730901966 | 16.546634626446 | +9.6e-05 | Wilfred Heap |
 | 1013 | 16.981739091523 | 16.978328452492 | +3.4e-03 | Byron Tasseff |
 | 1024 | 17.059358815466 | 17.055056471349 | +4.3e-03 | Eckard Specht |
@@ -591,4 +591,4 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 
 `pck/csqv<N>.pck` (Packomania text, centred square, %.17g), `json/out<N>.json` (corner-frame sidecar), `results.csv`, `manifest.json`,
 `comparison.md` (`verify_and_compare.py compare --tol 0`). Verify any file with `python verify_and_compare.py verify pck/csqv<N>.pck`.
-Sweep: 10217 jobs over 15 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
+Sweep: 10295 jobs over 15 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
