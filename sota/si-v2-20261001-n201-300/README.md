@@ -1,9 +1,9 @@
 # si-v2-20261001-n201-300: SI-v2 solver sweep extended to N = 201..300
 
-**97 WIN** against the Packomania `csqv` table retrieved **2026-10-03 03:36 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 100 sizes posted by Packomania in this range.
+**97 WIN** against the Packomania `csqv` table retrieved **2026-10-03 04:37 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 100 sizes posted by Packomania in this range.
 Only WIN packings (strictly feasible in exact rational arithmetic, `sum_r > record + 1e-9`) are published here.
 
-Extension campaign status at 2026-10-03 04:17 UTC: 10907 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE12, roundE13, roundE14, roundE2, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
+Extension campaign status at 2026-10-03 04:58 UTC: 11172 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE12, roundE13, roundE14, roundE2, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
 
 ## How this differs from `si-v2-20260927` (N <= 100)
 
@@ -123,7 +123,7 @@ Closest non-winning results (within 1e-5 of the record): 266 (-4.5e-13), 267 (-9
 | 299 | 9.179904120375 | 9.176674773948 | +3.229e-03 | +3.52e-04 | `hpolish` self seed 0 | Jean-René Denoual |
 | 300 | 9.196770845441 | 9.192717162187 | +4.054e-03 | +4.41e-04 | `hpolish` self seed 0 | Jean-René Denoual |
 
-## All records beaten, N = 1..10000, against the live table (2026-10-03 03:36 UTC)
+## All records beaten, N = 1..10000, against the live table (2026-10-03 04:37 UTC)
 
 Combined with `si-v2-20260927` (N <= 100). A row means our published packing exceeds the live Packomania value by more than 1e-9.
 
@@ -577,7 +577,7 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 5625 | 40.155096145848 | 40.112915048219 | +4.2e-02 | Eckard Specht |
 | 5776 | 40.699270213420 | 40.649217977288 | +5.0e-02 | Eckard Specht |
 | 5929 | 41.243099663071 | 41.185404340592 | +5.8e-02 | Eckard Specht |
-| 6084 | 41.743029144790 | 41.721706850114 | +2.1e-02 | Eckard Specht |
+| 6084 | 41.762943968995 | 41.721706850114 | +4.1e-02 | Eckard Specht |
 | 6241 | 42.272665992466 | 42.257894222053 | +1.5e-02 | Eckard Specht |
 | 6400 | 42.829956748211 | 42.794196583905 | +3.6e-02 | Eckard Specht |
 | 6561 | 43.385724999577 | 43.330385277980 | +5.5e-02 | Eckard Specht |
@@ -605,4 +605,4 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 
 `pck/csqv<N>.pck` (Packomania text, centred square, %.17g), `json/out<N>.json` (corner-frame sidecar), `results.csv`, `manifest.json`,
 `comparison.md` (`verify_and_compare.py compare --tol 0`). Verify any file with `python verify_and_compare.py verify pck/csqv<N>.pck`.
-Sweep: 10907 jobs over 16 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
+Sweep: 11172 jobs over 16 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
