@@ -5,8 +5,8 @@
  "records_retrieved": "2026-10-01",
  "rule": "feasible in EXACT rational arithmetic with zero tolerance (fractions.Fraction, squared comparisons; ulp-level overlaps repaired by shrinking radii) AND sum_r > record + 1e-9 (verify_and_compare.WIN_EPS)",
  "counts": {
-  "exported": 82,
-  "WIN": 82,
+  "exported": 83,
+  "WIN": 83,
   "tie": 0,
   "below": 0
  },
@@ -63,6 +63,7 @@
   166,
   167,
   168,
+  169,
   171,
   172,
   173,
@@ -1499,6 +1500,33 @@
     "label": "SI-v2 sweep hpolish seed 0 self",
     "solver_origin": null,
     "solver_sha256": null
+   }
+  },
+  "169": {
+   "sum_r": 6.880767221187544,
+   "record": 6.880734941065,
+   "margin": 3.228012254474777e-05,
+   "verdict": "WIN",
+   "min_wall_slack": 9.999778782798785e-13,
+   "min_pair_slack": 1.9999835121353726e-12,
+   "min_r": 0.027978706004694036,
+   "exact_feasible": true,
+   "exact_repair_factor": 1.0,
+   "pck_sha256": "8a091e3e1c5d6e5e66e10483f6dab8d7069d18f25f31d80f7503ebb5afada386",
+   "provenance": {
+    "n": 169,
+    "sum_r": 6.880767221187544,
+    "record_live": 6.880734941065,
+    "margin": 3.228012254474777e-05,
+    "source": "sweep",
+    "solver": "tv16ob6",
+    "mode": "nbr",
+    "seed": 8602,
+    "job": "../cp_ext/roundE16/jobs/tv16ob6/nbr/n169_s8602_long.json",
+    "warm_path": null,
+    "label": "SI-v2 sweep tv16ob6 seed 8602 nbr",
+    "solver_origin": "jason-mbp results/_archive/circle-packing/2026-09-15_transcendence-v16-oldbrief-x10/transcendence-v16-oldbrief-6",
+    "solver_sha256": "64209a4d5b52b3b8e57344f8519645d8efb13b65e4c136da469eb16325a3d275"
    }
   },
   "171": {
