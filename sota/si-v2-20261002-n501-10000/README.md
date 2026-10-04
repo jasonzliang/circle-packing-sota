@@ -1,9 +1,9 @@
 # si-v2-20261002-n501-10000: SI-v2 solver sweep extended to N = 501..10000
 
-**84 WIN** against the Packomania `csqv` table retrieved **2026-10-04 04:21 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 84 sizes posted by Packomania in this range.
+**84 WIN** against the Packomania `csqv` table retrieved **2026-10-04 05:23 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 84 sizes posted by Packomania in this range.
 Only WIN packings (strictly feasible in exact rational arithmetic, `sum_r > record + 1e-9`) are published here.
 
-Extension campaign status at 2026-10-04 05:13 UTC: 17209 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE12, roundE13, roundE14, roundE15, roundE16, roundE17, roundE18, roundE19, roundE2, roundE20, roundE21, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
+Extension campaign status at 2026-10-04 05:23 UTC: 17247 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE12, roundE13, roundE14, roundE15, roundE16, roundE17, roundE18, roundE19, roundE2, roundE20, roundE21, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
 
 ## How this differs from `si-v2-20260927` (N <= 100)
 
@@ -109,7 +109,7 @@ Closest non-winning results (within 1e-5 of the record): none.
 | 9801 | 53.015624815558 | 52.982833049976 | +3.279e-02 | +6.19e-04 | `none7` nbr seed 8301 | Eckard Specht |
 | 10000 | 53.603343093110 | 53.519132008453 | +8.421e-02 | +1.57e-03 | `none7` nbr seed 8403 | Eckard Specht |
 
-## All records beaten, N = 1..10000, against the live table (2026-10-04 04:21 UTC)
+## All records beaten, N = 1..10000, against the live table (2026-10-04 05:23 UTC)
 
 Combined with `si-v2-20260927` (N <= 100). A row means our published packing exceeds the live Packomania value by more than 1e-9.
 
@@ -440,14 +440,14 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 434 | 11.084566793068 | 11.082737805283 | +1.8e-03 | Jean-René Denoual |
 | 435 | 11.096740754780 | 11.095050841805 | +1.7e-03 | Jean-René Denoual |
 | 436 | 11.109013784905 | 11.107812569878 | +1.2e-03 | Jean-René Denoual |
-| 437 | 11.121841014711 | 11.120861607382 | +9.8e-04 | Jean-René Denoual |
+| 437 | 11.122021758613 | 11.120861607382 | +1.2e-03 | Jean-René Denoual |
 | 438 | 11.134570274830 | 11.133663422819 | +9.1e-04 | Jean-René Denoual |
 | 439 | 11.147250657370 | 11.145396609040 | +1.9e-03 | Jean-René Denoual |
 | 440 | 11.159484571692 | 11.157976272856 | +1.5e-03 | Jean-René Denoual |
 | 441 | 11.171344962483 | 11.169522435560 | +1.8e-03 | Jean-René Denoual |
 | 442 | 11.183744584981 | 11.181832072224 | +1.9e-03 | Jean-René Denoual |
 | 443 | 11.196417000820 | 11.195207710099 | +1.2e-03 | Jean-René Denoual |
-| 444 | 11.209349704521 | 11.208657532459 | +6.9e-04 | Jean-René Denoual |
+| 444 | 11.209516195805 | 11.208657532459 | +8.6e-04 | Jean-René Denoual |
 | 445 | 11.222498416055 | 11.221259916155 | +1.2e-03 | Jean-René Denoual |
 | 446 | 11.234571141333 | 11.233447127648 | +1.1e-03 | Jean-René Denoual |
 | 447 | 11.247594138506 | 11.246331389248 | +1.3e-03 | Jean-René Denoual |
@@ -592,4 +592,4 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 
 `pck/csqv<N>.pck` (Packomania text, centred square, %.17g), `json/out<N>.json` (corner-frame sidecar), `results.csv`, `manifest.json`,
 `comparison.md` (`verify_and_compare.py compare --tol 0`). Verify any file with `python verify_and_compare.py verify pck/csqv<N>.pck`.
-Sweep: 17209 jobs over 23 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
+Sweep: 17247 jobs over 23 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
