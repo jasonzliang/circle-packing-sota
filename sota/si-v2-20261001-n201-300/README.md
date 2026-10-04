@@ -3,7 +3,7 @@
 **97 WIN** against the Packomania `csqv` table retrieved **2026-10-04 02:16 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 100 sizes posted by Packomania in this range.
 Only WIN packings (strictly feasible in exact rational arithmetic, `sum_r > record + 1e-9`) are published here.
 
-Extension campaign status at 2026-10-04 02:27 UTC: 16583 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE12, roundE13, roundE14, roundE15, roundE16, roundE17, roundE18, roundE19, roundE2, roundE20, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
+Extension campaign status at 2026-10-04 02:37 UTC: 16636 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE12, roundE13, roundE14, roundE15, roundE16, roundE17, roundE18, roundE19, roundE2, roundE20, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
 
 ## How this differs from `si-v2-20260927` (N <= 100)
 
@@ -198,7 +198,7 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 174 | 6.985344577949 | 6.985262310503 | +8.2e-05 | Jean-René Denoual |
 | 175 | 7.005012955534 | 7.004707257451 | +3.1e-04 | Jean-René Denoual |
 | 176 | 7.024096757341 | 7.023425437597 | +6.7e-04 | Jean-René Denoual |
-| 177 | 7.042649756731 | 7.042544930878 | +1.0e-04 | Jean-René Denoual |
+| 177 | 7.042754915792 | 7.042544930878 | +2.1e-04 | Jean-René Denoual |
 | 178 | 7.062709690760 | 7.061720669271 | +9.9e-04 | Jean-René Denoual |
 | 179 | 7.082173149539 | 7.080903944143 | +1.3e-03 | Jean-René Denoual |
 | 180 | 7.101454471435 | 7.099941756488 | +1.5e-03 | Jean-René Denoual |
@@ -606,4 +606,4 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 
 `pck/csqv<N>.pck` (Packomania text, centred square, %.17g), `json/out<N>.json` (corner-frame sidecar), `results.csv`, `manifest.json`,
 `comparison.md` (`verify_and_compare.py compare --tol 0`). Verify any file with `python verify_and_compare.py verify pck/csqv<N>.pck`.
-Sweep: 16583 jobs over 22 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
+Sweep: 16636 jobs over 22 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
