@@ -3,7 +3,7 @@
 **198 WIN** against the Packomania `csqv` table retrieved **2026-10-04 04:21 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 199 sizes posted by Packomania in this range.
 Only WIN packings (strictly feasible in exact rational arithmetic, `sum_r > record + 1e-9`) are published here.
 
-Extension campaign status at 2026-10-04 05:03 UTC: 17175 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE12, roundE13, roundE14, roundE15, roundE16, roundE17, roundE18, roundE19, roundE2, roundE20, roundE21, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
+Extension campaign status at 2026-10-04 05:13 UTC: 17209 jobs aggregated from roundE0, roundE1, roundE10, roundE11, roundE12, roundE13, roundE14, roundE15, roundE16, roundE17, roundE18, roundE19, roundE2, roundE20, roundE21, roundE3, roundE4, roundE5, roundE6, roundE7, roundE8, roundE9, roundP1.
 
 ## How this differs from `si-v2-20260927` (N <= 100)
 
@@ -31,7 +31,7 @@ Closest non-winning results (within 1e-5 of the record): 426 (-6.6e-11).
 | 304 | 9.257261071910 | 9.253504120852 | +3.757e-03 | +4.06e-04 | `tv16ob6` self seed 8301 | Jean-René Denoual |
 | 305 | 9.273668547572 | 9.269547427839 | +4.121e-03 | +4.45e-04 | `tv16ob6` self seed 8301 | Jean-René Denoual |
 | 306 | 9.288950901832 | 9.284302999971 | +4.648e-03 | +5.01e-04 | `hpolish` self seed 0 | Jean-René Denoual |
-| 307 | 9.305798998983 | 9.305003208927 | +7.958e-04 | +8.55e-05 | `w2_0906circleenha_enhancementv` nbr seed 9001 | Jean-René Denoual |
+| 307 | 9.305804368798 | 9.305003208927 | +8.012e-04 | +8.61e-05 | `tv14pf6` self seed 9101 | Jean-René Denoual |
 | 308 | 9.321332860923 | 9.319968125993 | +1.365e-03 | +1.46e-04 | `tv14pf6` self seed 8301 | Jean-René Denoual |
 | 309 | 9.336984289826 | 9.335666509317 | +1.318e-03 | +1.41e-04 | `hpolish` self seed 0 | Jean-René Denoual |
 | 310 | 9.353471815160 | 9.352370720792 | +1.101e-03 | +1.18e-04 | `w2_0916circlev2en_enhancementv` nbr seed 8701 | Jean-René Denoual |
@@ -39,7 +39,7 @@ Closest non-winning results (within 1e-5 of the record): 426 (-6.6e-11).
 | 312 | 9.385012613222 | 9.383900680341 | +1.112e-03 | +1.18e-04 | `tv16ob6` nbr seed 8801 | Jean-René Denoual |
 | 313 | 9.400819251021 | 9.399575833292 | +1.243e-03 | +1.32e-04 | `tv16ob6` nbr seed 8701 | Jean-René Denoual |
 | 314 | 9.415455693751 | 9.414131191837 | +1.325e-03 | +1.41e-04 | `hpolish` self seed 0 | Jean-René Denoual |
-| 315 | 9.431267137489 | 9.430651133292 | +6.160e-04 | +6.53e-05 | `tv14pf6` self seed 9001 | Jean-René Denoual |
+| 315 | 9.431267137498 | 9.430651133292 | +6.160e-04 | +6.53e-05 | `tv14pf6` self seed 9101 | Jean-René Denoual |
 | 316 | 9.446971439474 | 9.446030411797 | +9.410e-04 | +9.96e-05 | `tv14pf6` self seed 8701 | Jean-René Denoual |
 | 317 | 9.462942784057 | 9.461295946830 | +1.647e-03 | +1.74e-04 | `tv16ob6` self seed 8701 | Jean-René Denoual |
 | 318 | 9.477870947899 | 9.475501126651 | +2.370e-03 | +2.50e-04 | `tv14pf6` self seed 8301 | Jean-René Denoual |
@@ -49,7 +49,7 @@ Closest non-winning results (within 1e-5 of the record): 426 (-6.6e-11).
 | 322 | 9.536742443189 | 9.535451604148 | +1.291e-03 | +1.35e-04 | `expl1_08276armv14` nbr seed 9101 | Jean-René Denoual |
 | 323 | 9.550057569242 | 9.549618944734 | +4.386e-04 | +4.59e-05 | `hpolish` self seed 0 | Jean-René Denoual |
 | 324 | 9.564266944475 | 9.563484194583 | +7.827e-04 | +8.18e-05 | `hpolish` self seed 0 | Jean-René Denoual |
-| 325 | 9.577543765668 | 9.577108334936 | +4.354e-04 | +4.55e-05 | `tv16ob6` nbr seed 9001 | Jean-René Denoual |
+| 325 | 9.577543765960 | 9.577108334936 | +4.354e-04 | +4.55e-05 | `tv14pf6` self seed 9101 | Jean-René Denoual |
 | 326 | 9.592121131691 | 9.590955525107 | +1.166e-03 | +1.22e-04 | `tv14pf6` nbr seed 8301 | Jean-René Denoual |
 | 327 | 9.606720244607 | 9.605597654827 | +1.123e-03 | +1.17e-04 | `tv14pf6` nbr seed 8701 | Jean-René Denoual |
 | 328 | 9.620923544343 | 9.619828359469 | +1.095e-03 | +1.14e-04 | `tv16ob6` self seed 8301 | Jean-René Denoual |
@@ -92,7 +92,7 @@ Closest non-winning results (within 1e-5 of the record): 426 (-6.6e-11).
 | 365 | 10.154922603302 | 10.153462171620 | +1.460e-03 | +1.44e-04 | `tv16ob6` cold seed 8402 | Zeeshan Tariq |
 | 366 | 10.168114505290 | 10.166756765071 | +1.358e-03 | +1.34e-04 | `tv16ob6` nbr seed 8901 | Jean-René Denoual |
 | 367 | 10.182614617914 | 10.181369332522 | +1.245e-03 | +1.22e-04 | `w2_0916circlev2en_enhancementv` nbr seed 9101 | Jean-René Denoual |
-| 368 | 10.196359271494 | 10.195502127629 | +8.571e-04 | +8.41e-05 | `w2_0823circleplai_exploreplain` nbr seed 9001 | Jean-René Denoual |
+| 368 | 10.196359275100 | 10.195502127629 | +8.571e-04 | +8.41e-05 | `tv14pf6` self seed 9101 | Jean-René Denoual |
 | 369 | 10.210656019959 | 10.209460915964 | +1.195e-03 | +1.17e-04 | `tv16ob6` nbr seed 8801 | Jean-René Denoual |
 | 370 | 10.224249820483 | 10.222766514638 | +1.483e-03 | +1.45e-04 | `tv14pf6` self seed 8201 | Jean-René Denoual |
 | 371 | 10.238525853697 | 10.238015724752 | +5.101e-04 | +4.98e-05 | `tv14pf6` self seed 8701 | Jean-René Denoual |
@@ -102,7 +102,7 @@ Closest non-winning results (within 1e-5 of the record): 426 (-6.6e-11).
 | 375 | 10.295012337985 | 10.294533787995 | +4.785e-04 | +4.65e-05 | `tv16ob6` nbr seed 9101 | Jean-René Denoual |
 | 376 | 10.309353896035 | 10.308942922882 | +4.110e-04 | +3.99e-05 | `tv14pf6` self seed 8701 | Jean-René Denoual |
 | 377 | 10.323534933290 | 10.322603841964 | +9.311e-04 | +9.02e-05 | `tv14pf6` self seed 8201 | Jean-René Denoual |
-| 378 | 10.337798454558 | 10.336829496116 | +9.690e-04 | +9.37e-05 | `tv14pf6` nbr seed 9001 | Jean-René Denoual |
+| 378 | 10.337798454625 | 10.336829496116 | +9.690e-04 | +9.37e-05 | `tv14pf6` self seed 9101 | Jean-René Denoual |
 | 379 | 10.352780705265 | 10.350749285851 | +2.031e-03 | +1.96e-04 | `tv16ob6` self seed 8701 | Jean-René Denoual |
 | 380 | 10.365846050856 | 10.357587145033 | +8.259e-03 | +7.97e-04 | `tv14pf6` self seed 8301 | Jean-René Denoual |
 | 381 | 10.381724201723 | 10.378660854799 | +3.063e-03 | +2.95e-04 | `tv16ob6` self seed 8301 | Jean-René Denoual |
@@ -155,12 +155,12 @@ Closest non-winning results (within 1e-5 of the record): 426 (-6.6e-11).
 | 429 | 11.023518800500 | 11.022760186301 | +7.586e-04 | +6.88e-05 | `tv14pf6` self seed 8801 | Jean-René Denoual |
 | 430 | 11.035716562261 | 11.034031191924 | +1.685e-03 | +1.53e-04 | `tv16ob6` self seed 8301 | Jean-René Denoual |
 | 431 | 11.047793762154 | 11.046926788894 | +8.670e-04 | +7.85e-05 | `tv14pf6` self seed 8701 | Jean-René Denoual |
-| 432 | 11.058998619783 | 11.058264374314 | +7.342e-04 | +6.64e-05 | `tv14pf6` self seed 8801 | Jean-René Denoual |
+| 432 | 11.059504637971 | 11.058264374314 | +1.240e-03 | +1.12e-04 | `w2_0912transcende_transcendenc` nbr seed 9101 | Jean-René Denoual |
 | 433 | 11.071788062005 | 11.069573219852 | +2.215e-03 | +2.00e-04 | `tv16ob6` self seed 8301 | Jean-René Denoual |
 | 434 | 11.084566793068 | 11.082737805283 | +1.829e-03 | +1.65e-04 | `tv16ob6` self seed 8301 | Jean-René Denoual |
 | 435 | 11.096740754780 | 11.095050841805 | +1.690e-03 | +1.52e-04 | `tv14pf6` self seed 8301 | Jean-René Denoual |
 | 436 | 11.109013784905 | 11.107812569878 | +1.201e-03 | +1.08e-04 | `tv14pf6` nbr seed 8801 | Jean-René Denoual |
-| 437 | 11.121779926405 | 11.120861607382 | +9.183e-04 | +8.26e-05 | `tv14pf6` self seed 9101 | Jean-René Denoual |
+| 437 | 11.121841014711 | 11.120861607382 | +9.794e-04 | +8.81e-05 | `tv16ob6` nbr seed 9101 | Jean-René Denoual |
 | 438 | 11.134570274830 | 11.133663422819 | +9.069e-04 | +8.15e-05 | `tv14pf6` self seed 8901 | Jean-René Denoual |
 | 439 | 11.147250657370 | 11.145396609040 | +1.854e-03 | +1.66e-04 | `w2_0906circleenha_enhancementv` nbr seed 8801 | Jean-René Denoual |
 | 440 | 11.159484571692 | 11.157976272856 | +1.508e-03 | +1.35e-04 | `tv16ob6` nbr seed 8701 | Jean-René Denoual |
@@ -426,7 +426,7 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 304 | 9.257261071910 | 9.253504120852 | +3.8e-03 | Jean-René Denoual |
 | 305 | 9.273668547572 | 9.269547427839 | +4.1e-03 | Jean-René Denoual |
 | 306 | 9.288950901832 | 9.284302999971 | +4.6e-03 | Jean-René Denoual |
-| 307 | 9.305798998983 | 9.305003208927 | +8.0e-04 | Jean-René Denoual |
+| 307 | 9.305804368798 | 9.305003208927 | +8.0e-04 | Jean-René Denoual |
 | 308 | 9.321332860923 | 9.319968125993 | +1.4e-03 | Jean-René Denoual |
 | 309 | 9.336984289826 | 9.335666509317 | +1.3e-03 | Jean-René Denoual |
 | 310 | 9.353471815160 | 9.352370720792 | +1.1e-03 | Jean-René Denoual |
@@ -434,7 +434,7 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 312 | 9.385012613222 | 9.383900680341 | +1.1e-03 | Jean-René Denoual |
 | 313 | 9.400819251021 | 9.399575833292 | +1.2e-03 | Jean-René Denoual |
 | 314 | 9.415455693751 | 9.414131191837 | +1.3e-03 | Jean-René Denoual |
-| 315 | 9.431267137489 | 9.430651133292 | +6.2e-04 | Jean-René Denoual |
+| 315 | 9.431267137498 | 9.430651133292 | +6.2e-04 | Jean-René Denoual |
 | 316 | 9.446971439474 | 9.446030411797 | +9.4e-04 | Jean-René Denoual |
 | 317 | 9.462942784057 | 9.461295946830 | +1.6e-03 | Jean-René Denoual |
 | 318 | 9.477870947899 | 9.475501126651 | +2.4e-03 | Jean-René Denoual |
@@ -444,7 +444,7 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 322 | 9.536742443189 | 9.535451604148 | +1.3e-03 | Jean-René Denoual |
 | 323 | 9.550057569242 | 9.549618944734 | +4.4e-04 | Jean-René Denoual |
 | 324 | 9.564266944475 | 9.563484194583 | +7.8e-04 | Jean-René Denoual |
-| 325 | 9.577543765668 | 9.577108334936 | +4.4e-04 | Jean-René Denoual |
+| 325 | 9.577543765960 | 9.577108334936 | +4.4e-04 | Jean-René Denoual |
 | 326 | 9.592121131691 | 9.590955525107 | +1.2e-03 | Jean-René Denoual |
 | 327 | 9.606720244607 | 9.605597654827 | +1.1e-03 | Jean-René Denoual |
 | 328 | 9.620923544343 | 9.619828359469 | +1.1e-03 | Jean-René Denoual |
@@ -487,7 +487,7 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 365 | 10.154922603302 | 10.153462171620 | +1.5e-03 | Zeeshan Tariq |
 | 366 | 10.168114505290 | 10.166756765071 | +1.4e-03 | Jean-René Denoual |
 | 367 | 10.182614617914 | 10.181369332522 | +1.2e-03 | Jean-René Denoual |
-| 368 | 10.196359271494 | 10.195502127629 | +8.6e-04 | Jean-René Denoual |
+| 368 | 10.196359275100 | 10.195502127629 | +8.6e-04 | Jean-René Denoual |
 | 369 | 10.210656019959 | 10.209460915964 | +1.2e-03 | Jean-René Denoual |
 | 370 | 10.224249820483 | 10.222766514638 | +1.5e-03 | Jean-René Denoual |
 | 371 | 10.238525853697 | 10.238015724752 | +5.1e-04 | Jean-René Denoual |
@@ -497,7 +497,7 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 375 | 10.295012337985 | 10.294533787995 | +4.8e-04 | Jean-René Denoual |
 | 376 | 10.309353896035 | 10.308942922882 | +4.1e-04 | Jean-René Denoual |
 | 377 | 10.323534933290 | 10.322603841964 | +9.3e-04 | Jean-René Denoual |
-| 378 | 10.337798454558 | 10.336829496116 | +9.7e-04 | Jean-René Denoual |
+| 378 | 10.337798454625 | 10.336829496116 | +9.7e-04 | Jean-René Denoual |
 | 379 | 10.352780705265 | 10.350749285851 | +2.0e-03 | Jean-René Denoual |
 | 380 | 10.365846050856 | 10.357587145033 | +8.3e-03 | Jean-René Denoual |
 | 381 | 10.381724201723 | 10.378660854799 | +3.1e-03 | Jean-René Denoual |
@@ -550,12 +550,12 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 429 | 11.023518800500 | 11.022760186301 | +7.6e-04 | Jean-René Denoual |
 | 430 | 11.035716562261 | 11.034031191924 | +1.7e-03 | Jean-René Denoual |
 | 431 | 11.047793762154 | 11.046926788894 | +8.7e-04 | Jean-René Denoual |
-| 432 | 11.058998619783 | 11.058264374314 | +7.3e-04 | Jean-René Denoual |
+| 432 | 11.059504637971 | 11.058264374314 | +1.2e-03 | Jean-René Denoual |
 | 433 | 11.071788062005 | 11.069573219852 | +2.2e-03 | Jean-René Denoual |
 | 434 | 11.084566793068 | 11.082737805283 | +1.8e-03 | Jean-René Denoual |
 | 435 | 11.096740754780 | 11.095050841805 | +1.7e-03 | Jean-René Denoual |
 | 436 | 11.109013784905 | 11.107812569878 | +1.2e-03 | Jean-René Denoual |
-| 437 | 11.121779926405 | 11.120861607382 | +9.2e-04 | Jean-René Denoual |
+| 437 | 11.121841014711 | 11.120861607382 | +9.8e-04 | Jean-René Denoual |
 | 438 | 11.134570274830 | 11.133663422819 | +9.1e-04 | Jean-René Denoual |
 | 439 | 11.147250657370 | 11.145396609040 | +1.9e-03 | Jean-René Denoual |
 | 440 | 11.159484571692 | 11.157976272856 | +1.5e-03 | Jean-René Denoual |
@@ -707,4 +707,4 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 
 `pck/csqv<N>.pck` (Packomania text, centred square, %.17g), `json/out<N>.json` (corner-frame sidecar), `results.csv`, `manifest.json`,
 `comparison.md` (`verify_and_compare.py compare --tol 0`). Verify any file with `python verify_and_compare.py verify pck/csqv<N>.pck`.
-Sweep: 17175 jobs over 23 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
+Sweep: 17209 jobs over 23 round(s); solvers are the SI-v2 portfolio in `solver-si-v2-20260927/`.
