@@ -3,7 +3,7 @@
 **198 WIN** against the Packomania `csqv` table retrieved **2026-10-05 10:19 UTC** (`sota/packomania/history/packomania_csqv_2026-10-01.json`), out of 199 sizes posted by Packomania in this range.
 Only WIN packings (strictly feasible in exact rational arithmetic, `sum_r > record + 1e-9`) are published here.
 
-Extension campaign FINISHED 2026-10-04 11:16 UTC (operator budget 2026-10-02 13:48 to 2026-10-04 13:48 UTC; 12 full 4-hour rounds E11-E22, 10,492 jobs, on top of the 10 rounds E1-E10 that covered N = 101..300). Result over the whole Packomania csqv table: 472 of the 583 posted sizes are beaten (10 at N <= 100, 83/100 at 101-200, 97/100 at 201-300, 100/100 at 301-400, 98/99 at 401-500, 84/84 at the sparse sizes 529..10000). The 21 unbeaten sizes above N = 100 (104-106, 108-110, 113, 114, 121, 124, 127, 128, 149-151, 161, 170, 266-268, 426) are converged ties: more than 6,000 jobs re-derived the published packing to 1e-11 and random cold starts land on it about 18% of the time, so they are not claimed. Once every unbeaten size had converged, rounds E17-E22 spent three quarters of their budget widening the thinnest winning margins instead (every published margin is now at least 2.3e-5). Every published packing is strictly feasible in exact rational arithmetic; see verify_and_compare.py. 2026-10-05: for the Packomania submission every published packing was brought to Packomania's csqv requirement of at least 3N contacts tighter than 3e-12 (a jammed local optimum): 55 loose packings re-jammed with a trust-region sequential-LP pass plus Gauss-Newton contact tightening (jam_slp), 43 tightened with the 60-digit contact polisher (hpolish); 98 sums rose as a result (up to +6.0e-2 at N = 9409), none fell. All 472 published packings now have exactly 3N contacts at gap <= 1e-15 and remain strictly feasible in exact rational arithmetic.
+Extension campaign FINISHED 2026-10-04 11:16 UTC (operator budget 2026-10-02 13:48 to 2026-10-04 13:48 UTC; 12 full 4-hour rounds E11-E22, 10,492 jobs, on top of the 10 rounds E1-E10 that covered N = 101..300). Result over the whole Packomania csqv table: 472 of the 583 posted sizes are beaten (10 at N <= 100, 83/100 at 101-200, 97/100 at 201-300, 100/100 at 301-400, 98/99 at 401-500, 84/84 at the sparse sizes 529..10000). The 21 unbeaten sizes above N = 100 (104-106, 108-110, 113, 114, 121, 124, 127, 128, 149-151, 161, 170, 266-268, 426) are converged ties: more than 6,000 jobs re-derived the published packing to 1e-11 and random cold starts land on it about 18% of the time, so they are not claimed. Once every unbeaten size had converged, rounds E17-E22 spent three quarters of their budget widening the thinnest winning margins instead (every published margin is now at least 2.3e-5). Every published packing is strictly feasible in exact rational arithmetic; see verify_and_compare.py. 2026-10-05: for the Packomania submission every published packing was brought to Packomania's csqv requirement of at least 3N contacts tighter than 3e-12 (a jammed local optimum): 55 loose packings re-jammed with a trust-region sequential-LP pass plus Gauss-Newton contact tightening (jam_slp; at 3364, 3600 and 4624 the tv16ob6 self-polish found the better vertex and was tightened the same way), 43 tightened with the 60-digit contact polisher (hpolish); 98 sums rose as a result (up to +6.0e-2 at N = 9409), none fell. All 472 published packings now have exactly 3N contacts at gap <= 1e-15 and remain strictly feasible in exact rational arithmetic.
 
 ## How this differs from `si-v2-20260927` (N <= 100)
 
@@ -659,9 +659,9 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 3025 | 29.434933513113 | 29.388098356776 | +4.7e-02 | Eckard Specht |
 | 3136 | 29.960279941385 | 29.924401780096 | +3.6e-02 | Eckard Specht |
 | 3249 | 30.511081629717 | 30.460572103527 | +5.1e-02 | Eckard Specht |
-| 3364 | 31.043666198270 | 30.996875450684 | +4.7e-02 | Eckard Specht |
+| 3364 | 31.043887002321 | 30.996875450684 | +4.7e-02 | Eckard Specht |
 | 3481 | 31.585575254804 | 31.533047403339 | +5.3e-02 | Eckard Specht |
-| 3600 | 32.125202429164 | 32.069351262839 | +5.6e-02 | Eckard Specht |
+| 3600 | 32.125387450690 | 32.069351262839 | +5.6e-02 | Eckard Specht |
 | 3721 | 32.660891721440 | 32.605525581976 | +5.5e-02 | Eckard Specht |
 | 3844 | 33.180384313552 | 33.141829232378 | +3.9e-02 | Eckard Specht |
 | 3969 | 33.724449969923 | 33.678005009071 | +4.6e-02 | Eckard Specht |
@@ -669,7 +669,7 @@ Combined with `si-v2-20260927` (N <= 100). A row means our published packing exc
 | 4225 | 34.798712978746 | 34.750486789519 | +4.8e-02 | Eckard Specht |
 | 4356 | 35.344143157206 | 35.286790428296 | +5.7e-02 | Eckard Specht |
 | 4489 | 35.887864234952 | 35.822969587360 | +6.5e-02 | Eckard Specht |
-| 4624 | 36.424967780003 | 36.359273349608 | +6.6e-02 | Eckard Specht |
+| 4624 | 36.426290692724 | 36.359273349608 | +6.7e-02 | Eckard Specht |
 | 4761 | 36.952489301152 | 36.895454333047 | +5.7e-02 | Eckard Specht |
 | 4900 | 37.473722318877 | 37.431757737679 | +4.2e-02 | Eckard Specht |
 | 5041 | 37.975219102001 | 37.967939918159 | +7.3e-03 | Eckard Specht |
